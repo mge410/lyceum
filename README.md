@@ -1,10 +1,14 @@
 # lyceum
 
-Windows: </br>
+***Запуск проекта***
+
+Первый шаг одинаковый, дальше резные для OC Windows/Linux </br></br>
 1 Клонируем себе репозиторий: </br>
 Вводим: git clone https://github.com/mge410/lyceum.git и переходим в папку с проектом </br>
 Вводим: cd lyceum </br>
+В репозитории с проектом создаём файл .env и в нём прописываем SECRET_KEY=ВАШ_СЕКРЕТНЫЙ_КЛЮЧ </br>
 
+Windows: </br>
 2 Заводим виртуальное окружение и активируем его: </br>
 Вводим: python -m venv venv </br>
 Затем: .\venv\Scripts\activate </br>
@@ -17,9 +21,6 @@ Windows: </br>
 Вводим: python .\lyceum\manage.py runserver </br>
 
 Linux: </br>
-1 Клонируем себе репозиторий: </br>
-Вводим: git clone https://github.com/mge410/lyceum.git и переходим в папку с проектом </br>
-Вводим: cd lyceum </br>
 
 2 Заводим виртуальное окружение и активируем его: </br>
 Вводим: python3 -m venv venv </br>
@@ -31,3 +32,8 @@ Linux: </br>
 
 4 Запускаем проект: </br> 
 Вводим: python3 lyceum/manage.py runserver </br>
+
+***Тестирование проекта***
+
+Устанавливаем зависимости для тестирования проекта
+Вводим: pip install -r requirements_test.txt
