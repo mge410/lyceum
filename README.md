@@ -1,5 +1,9 @@
 # lyceum
 
+![Bitbucket Pipelines:](https://img.shields.io/bitbucket/pipelines/mge410/lyceum/master)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
+
 ***Запуск проекта***
 
 Первый шаг одинаковый, дальше резные для OC Windows/Linux </br></br>
