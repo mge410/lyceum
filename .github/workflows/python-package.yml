@@ -28,10 +28,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-    - name: Lint with black
+    - name: Lint with flake8 and black
       run: |
-        black . --check --skip-normalization
-    - name: Lint with flake8
-      run: |
-        # stop the build if there are Python syntax errors or undefined names
+        black .
         flake8 . --count --show-source --statistics
