@@ -1,14 +1,33 @@
 # lyceum
 
-1 Клонируем себе репозиторий: 
-Вводим: git clone https://github.com/mge410/lyceum.git
+Windows: </br>
+1 Клонируем себе репозиторий: </br>
+Вводим: git clone https://github.com/mge410/lyceum.git и переходим в папку с проектом </br>
+Вводим: cd lyceum </br>
 
-2 Заводим виртульное окружение и ативируем его:
-Вводим: python -m venv venv
-Затем: lyceum/Scripts/activate
+2 Заводим виртуальное окружение и активируем его: </br>
+Вводим: python -m venv venv </br>
+Затем: .\venv\Scripts\activate </br>
 
-3 Скачиваем туда все что есть в requirements.txt:
-Вводим: pip install -r requirements.txt
+3 Обновляем pip и качаем туда все что есть в requirements.txt: </br>
+Вводим: python -m pip install --upgrade pip </br>
+Затем: pip install -r requirements.txt </br>
 
-4 Запускаем проект:
-Вводим: python lyceum/manage.py runserver
+4 Запускаем проект: </br>
+Вводим: python .\lyceum\manage.py runserver </br>
+
+Linux: </br>
+1 Клонируем себе репозиторий: </br>
+Вводим: git clone https://github.com/mge410/lyceum.git и переходим в папку с проектом </br>
+Вводим: cd lyceum </br>
+
+2 Заводим виртуальное окружение и активируем его: </br>
+Вводим: python3 -m venv venv </br>
+Затем: source venv/bin/activate </br>
+
+3 Обновляем pip и качаем туда все что есть в requirements.txt: </br>
+Вводим: pip install -U pip или python3 -m pip install --upgrade pip </br>
+Затем: pip install -r requirements.txt </br>
+
+4 Запускаем проект: </br> 
+Вводим: python3 lyceum/manage.py runserver </br>
