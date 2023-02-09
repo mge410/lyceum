@@ -27,6 +27,6 @@ jobs:
       - name: flake8 Lint
         uses: py-actions/flake8@v2
         with:
-          ignore: "F401"
+          ignore: "LIT001"
           max-line-length: "88"
           plugins: "pep8-naming flake8-import-order flake8-literal"
