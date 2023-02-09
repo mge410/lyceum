@@ -1,7 +1,11 @@
+# Mac OS Finder
+.DS_Store
+
+
 # IDE
 .idea/
 .vscode/
-.DS_Store
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -107,7 +111,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
+lyceum/.env
 .venv
 env/
 venv/
