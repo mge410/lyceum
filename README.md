@@ -49,12 +49,12 @@ __Для linux__ <br>
 Например прописать DEBAG=False
 
 ***Установка зависимостей***<br>
-Основные зависимости:
+Основные зависимости:<br>
 ```python -m pip install --upgrade pip``` <br>
 ```pip install -r requirements.txt ```<br>
 
-Зависимости для разработки
-``` pip install -r requirements_dev.txt```
+Зависимости для разработки<br>
+``` pip install -r requirements_dev.txt```<br>
 
 зависимости для тестирования <br>
 ``` pip install -r requirements_test.txt```
