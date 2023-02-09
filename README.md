@@ -54,5 +54,5 @@ __Для linux__ <br>
 Зависимости для разработки<br>
 ``` pip install -r requirements_dev.txt```<br>
 
-зависимости для тестирования <br>
+Зависимости для тестирования <br>
 ``` pip install -r requirements_test.txt```
