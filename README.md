@@ -24,7 +24,6 @@ Windows: <br>
 ``` python .\lyceum\manage.py runserver ```<br>
 
 Linux: <br>
-
 2 Заводим виртуальное окружение и активируем его: <br>
 ```python3 -m venv venv ```<br>
 ```source venv/bin/activate ```<br>
