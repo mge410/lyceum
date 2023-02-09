@@ -1,5 +1,8 @@
 # lyceum
 
+[![Python package](https://github.com/mge410/lyceum/actions/workflows/python-package.yml/badge.svg)](https://github.com/mge410/lyceum/actions/workflows/python-package.yml)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
 **Запуск проекта**
 
 Первый шаг одинаковый, дальше разные для OC Windows/Linux <br><br>
