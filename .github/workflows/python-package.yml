@@ -28,4 +28,4 @@ jobs:
         uses: py-actions/flake8@v2
         with:
           max-line-length: "88"
-          plugins: "pep8-naming flake8-import-order flake8-literal"
+          plugins: "flake8==5.0.4 pep8-naming==0.13.3 flake8-broken-line==0.6.0 flake8-return==1.2.0 flake8-isort==6.0.0 flake8-quotes==3.3.2"
