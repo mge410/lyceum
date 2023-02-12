@@ -25,7 +25,6 @@ jobs:
           pip install -r requirements.txt
       - name: Run Django tests
         run: |
-          cd /lyceum/lyceum
           python manage.py test
   linter_name:
     name: runner / black formatter
