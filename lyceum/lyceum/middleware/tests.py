@@ -4,7 +4,6 @@ from django.test import Client, TestCase
 class StaticURLTests(TestCase):
     def test_middlevare_reverse_on_homepage(self):
         client_self = Client()
-        print(123)
         for count in range(1, 11):
             response = client_self.get('/')
             if count != 10:
