@@ -2,7 +2,7 @@ from django.http import HttpResponse
 
 
 def home(request):
-    return HttpResponse('<body>Главная</body>')
+    return HttpResponse('<div><h1>Главная страница</h1></div>')
 
 
 def coffee(request):
