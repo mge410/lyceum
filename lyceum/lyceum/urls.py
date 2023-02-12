@@ -5,4 +5,5 @@ from django.conf import settings
 
 urlpatterns = [
     path('', include('homepage.urls')),
+    path('catalog/', include('catalog.urls')),
 ]
