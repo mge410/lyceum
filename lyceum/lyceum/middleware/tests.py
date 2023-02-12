@@ -26,7 +26,6 @@ class StaticURLTests(TestCase):
             client_self = Client()
             for count in range(1, 11):
                 response = client_self.get('/catalog/')
-                print(response.content.decode('utf-8'))
                 if count != 10:
                     self.assertContains(
                         response, '<body>Список элементов</body>', status_code=200
@@ -37,7 +36,7 @@ class StaticURLTests(TestCase):
                     )
 
     def test_off_middlevare_reverse_on_catalog(self):
-        if settings.REVERSE_MIDDLEWARE:
+        if settings.REVERSE_MIDDLEWARE is False:
             client_self = Client()
             for count in range(1, 11):
                 response = client_self.get('/catalog/')
