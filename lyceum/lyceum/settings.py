@@ -6,6 +6,7 @@ env = environ.Env(
     DEBUG=(str, 'True'),
     SECRET_KEY=(str, 'secret_key'),
     ALLOWED_HOSTS=(list, ['*']),
+    REVERSE_MIDDLEWARE=(str, 'true'),
 )
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -13,7 +14,7 @@ environ.Env.read_env(BASE_DIR / '.env')
 
 SECRET_KEY = env('SECRET_KEY')
 
-DEBUG = str(env('DEBUG')).lower() == 'true'
+DEBUG = str(env('DEBUG')).lower() in ['true', '1', 'y', 'yes']
 
 ALLOWED_HOSTS: list[str] = env('ALLOWED_HOSTS')
 
@@ -28,6 +29,7 @@ INSTALLED_APPS = [
     'about.apps.AboutConfig',
     'catalog.apps.CatalogConfig',
     'homepage.apps.HomepageConfig',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -38,7 +40,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
+
+REVERSE_MIDDLEWARE = str(env('REVERSE_MIDDLEWARE')).lower() in ['true', '1', 'y', 'yes']
+
+if REVERSE_MIDDLEWARE:
+    MIDDLEWARE.append('lyceum.middleware.middleware.ReverseMiddleware')
+
+INTERNAL_IPS = ['127.0.0.1']
 
 ROOT_URLCONF = 'lyceum.urls'
 
