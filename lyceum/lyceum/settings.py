@@ -6,7 +6,7 @@ env = environ.Env(
     DEBUG=(str, 'True'),
     SECRET_KEY=(str, 'secret_key'),
     ALLOWED_HOSTS=(list, ['*']),
-    REVERSE_MIDDLEWARE=(str, 'False'),
+    REVERSE_MIDDLEWARE=(str, 'true'),
 )
 
 BASE_DIR = Path(__file__).resolve().parent.parent
