@@ -1,11 +1,32 @@
 # This workflow will install Python dependencies, run tests and lint with a variety of Python versions
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
-name: Python package
+name: Django and Linter tests
 
 on: [push, pull_request]
 
 jobs:
+  linter:
+    name: runner / black formatter and flake8
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: rickstaa/action-black@v1
+        with:
+          black_args: ". --check --skip-string-normalization"
+
+      - name: Check out source repository
+      - uses: actions/checkout@v3
+      - name: Set up Python environment
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: flake8 Lint
+        uses: py-actions/flake8@v2
+        with:
+          flake8-version: "5.0.4"
+          max-line-length: "88"
+          plugins: "flake8==5.0.4 pep8-naming==0.13.3 flake8-broken-line==0.6.0 flake8-return==1.2.0 flake8-isort==6.0.0 flake8-quotes==3.3.2"
   build:
     runs-on: ubuntu-latest
     strategy:
@@ -23,32 +44,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install -r requirements_dev.txt
       - name: Run Django tests
         run: |
           cd lyceum
           python manage.py test
-  linter_name:
-    name: runner / black formatter
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: rickstaa/action-black@v1
-        with:
-          black_args: ". --check --skip-string-normalization"
-  flake8-lint:
-    runs-on: ubuntu-latest
-    name: Lint
-    steps:
-      - name: Check out source repository
-        uses: actions/checkout@v3
-      - name: Set up Python environment
-        uses: actions/setup-python@v4
-        with:
-          python-version: ${{ matrix.python-version }}
-      - name: flake8 Lint
-        uses: py-actions/flake8@v2
-        with:
-          flake8-version: "5.0.4"
-          max-line-length: "88"
-          plugins: "flake8==5.0.4 pep8-naming==0.13.3 flake8-broken-line==0.6.0 flake8-return==1.2.0 flake8-isort==6.0.0 flake8-quotes==3.3.2"
