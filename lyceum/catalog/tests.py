@@ -1,8 +1,7 @@
 from http import HTTPStatus
 
-from parameterized import parameterized
-
 from django.test import Client, TestCase
+from parameterized import parameterized
 
 
 class StaticURLTests(TestCase):
