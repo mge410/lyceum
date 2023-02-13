@@ -1,6 +1,7 @@
+from http import HTTPStatus
+
 from django.conf import settings
 from django.test import Client, TestCase
-from http import HTTPStatus
 
 
 class StaticURLTests(TestCase):
@@ -29,11 +30,15 @@ class StaticURLTests(TestCase):
                 response = client_self.get('/catalog/')
                 if count != 10:
                     self.assertContains(
-                        response, '<body>Список элементов</body>', status_code=HTTPStatus.OK
+                        response,
+                        '<body>Список элементов</body>',
+                        status_code=HTTPStatus.OK,
                     )
                 else:
                     self.assertContains(
-                        response, '<body>косипС вотнемелэ</body>', status_code=HTTPStatus.OK
+                        response,
+                        '<body>косипС вотнемелэ</body>',
+                        status_code=HTTPStatus.OK,
                     )
 
     def test_off_middlevare_reverse_on_catalog(self):
