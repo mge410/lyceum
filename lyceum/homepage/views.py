@@ -1,9 +1,11 @@
+from http import HTTPStatus
+
 from django.http import HttpResponse
 
 
 def home(request):
-    return HttpResponse('<div><h1>Главная страница</h1></div>')
+    return HttpResponse('<div>Главная страница</div>')
 
 
 def coffee(request):
-    return HttpResponse('Я чайник', status=418)
+    return HttpResponse('<div>Я чайник</div>', status=HTTPStatus.IM_A_TEAPOT)

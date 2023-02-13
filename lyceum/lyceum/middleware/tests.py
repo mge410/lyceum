@@ -13,13 +13,13 @@ class StaticURLTests(TestCase):
                 if count != 10:
                     self.assertContains(
                         response,
-                        '<div><h1>Главная страница</h1></div>',
+                        '<div>Главная страница</div>',
                         status_code=HTTPStatus.OK,
                     )
                 else:
                     self.assertContains(
                         response,
-                        '<div><h1>яанвалГ ацинартс</h1></div>',
+                        '<div>яанвалГ ацинартс</div>',
                         status_code=HTTPStatus.OK,
                     )
 
@@ -31,13 +31,13 @@ class StaticURLTests(TestCase):
                 if count != 10:
                     self.assertContains(
                         response,
-                        '<body>Список элементов</body>',
+                        '<div>Список элементов</div>',
                         status_code=HTTPStatus.OK,
                     )
                 else:
                     self.assertContains(
                         response,
-                        '<body>косипС вотнемелэ</body>',
+                        '<div>косипС вотнемелэ</div>',
                         status_code=HTTPStatus.OK,
                     )
 
@@ -47,5 +47,5 @@ class StaticURLTests(TestCase):
             for count in range(1, 11):
                 response = client_self.get('/catalog/')
                 self.assertContains(
-                    response, '<body>Список элементов</body>', status_code=HTTPStatus.OK
+                    response, '<div>Список элементов</div>', status_code=HTTPStatus.OK
                 )
