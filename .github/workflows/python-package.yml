@@ -1,22 +1,25 @@
 # This workflow will install Python dependencies, run tests and lint with a variety of Python versions
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
-name: Django and Linter tests
+name: Python package
 
 on: [push, pull_request]
 
 jobs:
-  linter:
-    name: runner / black formatter and flake8
+  linter_name:
+    name: runner / black formatter
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: rickstaa/action-black@v1
         with:
           black_args: ". --check --skip-string-normalization"
-
+  flake8-lint:
+    runs-on: ubuntu-latest
+    name: Lint
+    steps:
       - name: Check out source repository
-      - uses: actions/checkout@v3
+        uses: actions/checkout@v3
       - name: Set up Python environment
         uses: actions/setup-python@v4
         with:
