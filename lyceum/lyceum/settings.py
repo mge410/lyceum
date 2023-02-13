@@ -18,18 +18,20 @@ DEBUG = str(env('DEBUG')).lower() in ['true', '1', 'y', 'yes']
 
 ALLOWED_HOSTS: list[str] = env('ALLOWED_HOSTS')
 
-
 INSTALLED_APPS = [
+    # Main apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sessions',
     'django.contrib.staticfiles',
+    # Other apps
+    'debug_toolbar',
+    # Our apps
     'about.apps.AboutConfig',
     'catalog.apps.CatalogConfig',
     'homepage.apps.HomepageConfig',
-    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -77,7 +79,6 @@ DATABASES = {
     }
 }
 
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.'
@@ -94,7 +95,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -105,8 +105,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 STATIC_URL = '/static/'
-
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
