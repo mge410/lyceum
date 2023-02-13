@@ -14,10 +14,7 @@ jobs:
       - uses: rickstaa/action-black@v1
         with:
           black_args: ". --check --skip-string-normalization"
-  flake8-lint:
-    runs-on: ubuntu-latest
-    name: Lint
-    steps:
+
       - name: Check out source repository
         uses: actions/checkout@v3
       - name: Set up Python environment
