@@ -4,9 +4,10 @@ from . import converters, views
 
 register_converter(converters.MyIntegerConverter, 'integer')
 
+app_name = 'catalog'
 urlpatterns = [
-    path('', views.item_list),
-    path('<int:id>', views.item_detail),
-    re_path(r're/(?P<id>\d+)', views.item_detail),
-    path(r'converter/<integer:id>', views.item_detail),
+    path('', views.item_list, name='index'),
+    path('<int:id>', views.item_detail, name='detail'),
+    re_path(r're/(?P<id>\d+)', views.item_detail, name='detail_re'),
+    path(r'converter/<integer:id>', views.item_detail, name='detail_converter'),
 ]
