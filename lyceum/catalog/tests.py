@@ -1,5 +1,6 @@
-from parameterized import parameterized
 from http import HTTPStatus
+
+from parameterized import parameterized
 
 from django.test import Client, TestCase
 
