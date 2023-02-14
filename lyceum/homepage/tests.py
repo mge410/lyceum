@@ -10,4 +10,6 @@ class StaticURLTests(TestCase):
 
     def test_coffee_endpoint(self):
         response = Client().get('/coffee/')
-        self.assertContains(response, 'Я чайник', status_code=HTTPStatus.IM_A_TEAPOT)
+        self.assertContains(
+            response, 'Я чайник', status_code=HTTPStatus.IM_A_TEAPOT
+        )

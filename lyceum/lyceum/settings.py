@@ -45,7 +45,12 @@ MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
-REVERSE_MIDDLEWARE = str(env('REVERSE_MIDDLEWARE')).lower() in ['true', '1', 'y', 'yes']
+REVERSE_MIDDLEWARE = str(env('REVERSE_MIDDLEWARE')).lower() in [
+    'true',
+    '1',
+    'y',
+    'yes',
+]
 
 if REVERSE_MIDDLEWARE:
     MIDDLEWARE.append('lyceum.middleware.middleware.ReverseMiddleware')
@@ -85,13 +90,16 @@ AUTH_PASSWORD_VALIDATORS = [
         'UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.' 'MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+        'MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.' 'CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+        'CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.' 'NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+        'NumericPasswordValidator',
     },
 ]
 
