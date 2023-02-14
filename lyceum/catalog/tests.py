@@ -64,7 +64,9 @@ class StaticURLTests(TestCase):
             ['12$', HTTPStatus.NOT_FOUND],
         ]
     )
-    def test_catalog_detail_converter_endpoint(self, test_case, status) -> None:
+    def test_catalog_detail_converter_endpoint(
+        self, test_case, status
+    ) -> None:
         response = Client().get(f'/catalog/converter/{test_case}')
         self.assertEqual(
             response.status_code,

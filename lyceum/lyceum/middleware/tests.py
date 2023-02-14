@@ -47,5 +47,7 @@ class StaticURLTests(TestCase):
             for count in range(1, 11):
                 response = client_self.get('/catalog/')
                 self.assertContains(
-                    response, '<div>Список элементов</div>', status_code=HTTPStatus.OK
+                    response,
+                    '<div>Список элементов</div>',
+                    status_code=HTTPStatus.OK,
                 )
