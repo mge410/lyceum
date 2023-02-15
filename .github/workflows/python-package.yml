@@ -26,7 +26,7 @@ jobs:
         with:
           flake8-version: "5.0.4"
           exclude: ".git,__pycache__,.env,venv/,*/migrations/"
-          ignore: "W503, E203"
+          ignore: "W503,E203"
           max-line-length: "79"
           per-file-ignores: "manage.py:Q000"
           import-order-style: "google"
