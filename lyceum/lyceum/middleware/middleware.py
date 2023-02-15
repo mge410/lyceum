@@ -1,7 +1,5 @@
 import re
 
-from django.http import HttpResponse
-
 
 class ReverseMiddleware:
     regular_split = r'\W|[0-9]'
@@ -11,7 +9,7 @@ class ReverseMiddleware:
         self.count = 0
         self.get_response = get_response
 
-    def __call__(self, request: HttpResponse) -> HttpResponse:
+    def __call__(self, request):
         self.count += 1
         response = self.get_response(request)
 
@@ -24,7 +22,7 @@ class ReverseMiddleware:
         return response
 
     @classmethod
-    def reverse_word_cyrillic(cls, text: str) -> str:
+    def reverse_word_cyrillic(cls, text):
         word_list = re.split(cls.regular_split, text)
 
         for word in word_list:

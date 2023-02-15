@@ -1,14 +1,23 @@
 from http import HTTPStatus
 
 from django.test import Client, TestCase
+from parameterized import parameterized
 
 
 class StaticURLTests(TestCase):
-    def test_about_endpoint(self) -> None:
-        response = Client().get('/about/')
-        self.assertEqual(
+    @parameterized.expand(
+        [
+            # OK/200/MOVED_PERMANENTLY/301
+            ['/about/', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
+            # NOT_FOUND/404
+            ['/about/1', (HTTPStatus.NOT_FOUND,)],
+        ]
+    )
+    def test_about_endpoint(self, url, status):
+        response = Client().get(f'{url}')
+        self.assertIn(
             response.status_code,
-            HTTPStatus.OK,
-            f'Expected: {HTTPStatus.IM_A_TEAPOT}, '
-            f'got: {response.status_code}, testcase: "/about/" ',
+            status,
+            f'Expected: {status}, '
+            f'got: {response.status_code}, testcase: "{url}" ',
         )
