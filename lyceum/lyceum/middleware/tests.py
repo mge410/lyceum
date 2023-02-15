@@ -1,5 +1,3 @@
-from http import HTTPStatus
-
 from django.test import Client, TestCase, override_settings
 from parameterized import parameterized
 
@@ -27,7 +25,8 @@ class StaticURLTests(TestCase):
             self.assertEqual(
                 response.content.decode('utf-8'),
                 f'{text}',
-                f'Expected: {text}, got: {response.content.decode("utf-8")}, testcase: {url}',
+                f'Expected: {text}, '
+                f'got: {response.content.decode("utf-8")}, testcase: {url}',
             )
 
     @parameterized.expand(
@@ -52,5 +51,6 @@ class StaticURLTests(TestCase):
             self.assertEqual(
                 response.content.decode('utf-8'),
                 f'{text}',
-                f'Expected: {text}, got: {response.content.decode("utf-8")}, testcase: {url}',
+                f'Expected: {text}, '
+                f'got: {response.content.decode("utf-8")}, testcase: {url}',
             )
