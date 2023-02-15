@@ -11,6 +11,7 @@ class StaticURLTests(TestCase):
 
     @parameterized.expand(
         [
+            # OK/200/MOVED_PERMANENTLY/301
             ['1', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
             ['9', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
             ['0', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
@@ -20,6 +21,7 @@ class StaticURLTests(TestCase):
             ['010', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
             ['100', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
             ['10', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
+            # 404/NOT_FOUND
             ['-0', (HTTPStatus.NOT_FOUND,)],
             ['-1', (HTTPStatus.NOT_FOUND,)],
             ['10.5', (HTTPStatus.NOT_FOUND,)],
@@ -46,11 +48,13 @@ class StaticURLTests(TestCase):
 
     @parameterized.expand(
         [
+            # OK/200/MOVED_PERMANENTLY/301
             ['1', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
             ['12', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
             ['999239', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
             ['100', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
             ['10', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
+            # 404/NOT_FOUND
             ['-0', (HTTPStatus.NOT_FOUND,)],
             ['-1', (HTTPStatus.NOT_FOUND,)],
             ['01', (HTTPStatus.NOT_FOUND,)],
@@ -80,11 +84,13 @@ class StaticURLTests(TestCase):
 
     @parameterized.expand(
         [
+            # OK/200/MOVED_PERMANENTLY/301
             ['1', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
             ['1', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
             ['999239', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
             ['100', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
             ['10', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
+            # 404/NOT_FOUND
             ['-0', (HTTPStatus.NOT_FOUND,)],
             ['-1', (HTTPStatus.NOT_FOUND,)],
             ['01', (HTTPStatus.NOT_FOUND,)],
