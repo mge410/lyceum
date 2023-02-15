@@ -5,7 +5,7 @@ from parameterized import parameterized
 
 
 class StaticURLTests(TestCase):
-    def test_catalog_list_endpoint(self):
+    def test_catalog_list_endpoint(self) -> None:
         response = Client().get('/catalog/')
         self.assertEqual(response.status_code, HTTPStatus.OK)
 
