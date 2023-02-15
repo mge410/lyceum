@@ -4,12 +4,12 @@ from django.test import Client, TestCase
 
 
 class StaticURLTests(TestCase):
-    def test_homepage_endpoint(self) -> None:
+    def test_homepage_endpoint_status(self) -> None:
         response = Client().get('/')
         self.assertEqual(
             response.status_code,
             HTTPStatus.OK,
-            f'Expected: {HTTPStatus.IM_A_TEAPOT}, '
+            f'Expected: {HTTPStatus.OK}, '
             f'got: {response.status_code}, testcase: "/" ',
         )
 
