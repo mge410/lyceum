@@ -4,7 +4,8 @@ from django.http import HttpResponse
 
 
 class ReverseMiddleware:
-    regular = r'[а-яА-Я]'
+    regular_split = r'\W|[0-9]'
+    regular_check = r'^[А-ЯЁа-яё]*$'
 
     def __init__(self, get_response):
         self.count = 0
@@ -18,37 +19,16 @@ class ReverseMiddleware:
             return response
 
         response.content = self.reverse_word_cyrillic(
-            list(response.content.decode('utf-8'))
+            response.content.decode('utf-8')
         )
         return response
 
     @classmethod
-    def reverse_word_cyrillic(cls, text: list) -> str:
-        letter_cyrillic_flag = False
-        letter_cyrillic_index = 0
+    def reverse_word_cyrillic(cls, text: str) -> str:
+        word_list = re.split(cls.regular_split, text)
 
-        for index, letter in enumerate(text):
-            if (
-                letter_cyrillic_flag is False
-                and re.match(cls.regular, letter) is not None
-            ):
-                letter_cyrillic_flag = True
-                letter_cyrillic_index = index
-            elif (
-                letter_cyrillic_flag is True
-                and re.match(cls.regular, letter) is None
-            ):
-                text[letter_cyrillic_index:index] = text[
-                    letter_cyrillic_index:index:
-                ][::-1]
-                letter_cyrillic_flag = False
-            elif index + 1 == len(text) and letter_cyrillic_flag is True:
-                if re.match(cls.regular, letter) is None:
-                    text[letter_cyrillic_index:index] = text[
-                        letter_cyrillic_index:index:
-                    ][::-1]
-                else:
-                    text[letter_cyrillic_index : index + 1] = text[
-                        letter_cyrillic_index : index + 1 :
-                    ][::-1]
-        return ''.join(text)
+        for word in word_list:
+            if re.fullmatch(cls.regular_check, word):
+                text = text.replace(word, word[::-1], 2)
+
+        return text
