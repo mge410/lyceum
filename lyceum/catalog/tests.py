@@ -27,7 +27,8 @@ class StaticURLTests(TestCase):
         self.assertEqual(
             response.status_code,
             status,
-            f'Expected: {status}, got: {response.status_code}, testcase: {test_case}',
+            f'Expected: {status}, '
+            f'got: {response.status_code}, testcase: {test_case}',
         )
 
     @parameterized.expand(
@@ -48,7 +49,8 @@ class StaticURLTests(TestCase):
         self.assertEqual(
             response.status_code,
             status,
-            f'Expected: {status}, got: {response.status_code}, testcase: {test_case}',
+            f'Expected: {status}, '
+            f'got: {response.status_code}, testcase: {test_case}',
         )
 
     @parameterized.expand(
@@ -71,5 +73,6 @@ class StaticURLTests(TestCase):
         self.assertEqual(
             response.status_code,
             status,
-            f'Expected: {status}, got: {response.status_code}, testcase: {test_case}',
+            f'Expected: {status}, '
+            f'got: {response.status_code}, testcase: {test_case}',
         )
