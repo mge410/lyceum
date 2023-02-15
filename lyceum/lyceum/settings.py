@@ -3,10 +3,10 @@ from pathlib import Path
 import environ
 
 env = environ.Env(
-    DEBUG=(str, 'True'),
+    DEBUG=(bool, True),
     SECRET_KEY=(str, 'secret_key'),
     ALLOWED_HOSTS=(list, ['*']),
-    REVERSE_MIDDLEWARE=(str, 'true'),
+    REVERSE_MIDDLEWARE=(bool, False),
 )
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -14,7 +14,7 @@ environ.Env.read_env(BASE_DIR / '.env')
 
 SECRET_KEY = env('SECRET_KEY')
 
-DEBUG = str(env('DEBUG')).lower() in ['true', '1', 'y', 'yes']
+DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS: list[str] = env('ALLOWED_HOSTS')
 
@@ -45,12 +45,7 @@ MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
-REVERSE_MIDDLEWARE = str(env('REVERSE_MIDDLEWARE')).lower() in [
-    'true',
-    '1',
-    'y',
-    'yes',
-]
+REVERSE_MIDDLEWARE = env('REVERSE_MIDDLEWARE')
 
 if REVERSE_MIDDLEWARE:
     MIDDLEWARE.append('lyceum.middleware.middleware.ReverseMiddleware')
