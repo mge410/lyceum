@@ -8,7 +8,7 @@ class StaticURLTests(TestCase):
     @parameterized.expand(
         [
             # OK/200/MOVED_PERMANENTLY/301
-            ['/catalog/', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
+            ['/catalog/', (HTTPStatus.OK,)],
         ]
     )
     def test_catalog_list_endpoint(self, url, status):
@@ -18,15 +18,15 @@ class StaticURLTests(TestCase):
     @parameterized.expand(
         [
             # OK/200/MOVED_PERMANENTLY/301
-            ['1', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
-            ['9', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
-            ['0', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
-            ['999239', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
-            ['012', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
-            ['01', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
-            ['010', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
-            ['100', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
-            ['10', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
+            ['1', (HTTPStatus.OK,)],
+            ['9', (HTTPStatus.OK,)],
+            ['0', (HTTPStatus.OK,)],
+            ['999239', (HTTPStatus.OK,)],
+            ['012', (HTTPStatus.OK,)],
+            ['01', (HTTPStatus.OK,)],
+            ['010', (HTTPStatus.OK,)],
+            ['100', (HTTPStatus.OK,)],
+            ['10', (HTTPStatus.OK,)],
             # 404/NOT_FOUND
             ['-0', (HTTPStatus.NOT_FOUND,)],
             ['-1', (HTTPStatus.NOT_FOUND,)],
@@ -55,11 +55,11 @@ class StaticURLTests(TestCase):
     @parameterized.expand(
         [
             # OK/200/MOVED_PERMANENTLY/301
-            ['1', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
-            ['12', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
-            ['999239', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
-            ['100', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
-            ['10', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
+            ['1', (HTTPStatus.OK,)],
+            ['12', (HTTPStatus.OK,)],
+            ['999239', (HTTPStatus.OK,)],
+            ['100', (HTTPStatus.OK,)],
+            ['10', (HTTPStatus.OK,)],
             # 404/NOT_FOUND
             ['-0', (HTTPStatus.NOT_FOUND,)],
             ['-1', (HTTPStatus.NOT_FOUND,)],
@@ -80,7 +80,7 @@ class StaticURLTests(TestCase):
         ]
     )
     def test_catalog_detail_re_endpoint(self, test_case, status):
-        response = Client().get(f'/catalog/re/{test_case}')
+        response = Client().get(f'/catalog/re/{test_case}/')
         self.assertIn(
             response.status_code,
             status,
@@ -91,11 +91,11 @@ class StaticURLTests(TestCase):
     @parameterized.expand(
         [
             # OK/200/MOVED_PERMANENTLY/301
-            ['1', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
-            ['1', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
-            ['999239', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
-            ['100', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
-            ['10', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
+            ['1', (HTTPStatus.OK,)],
+            ['1', (HTTPStatus.OK,)],
+            ['999239', (HTTPStatus.OK,)],
+            ['100', (HTTPStatus.OK, )],
+            ['10', (HTTPStatus.OK, )],
             # 404/NOT_FOUND
             ['-0', (HTTPStatus.NOT_FOUND,)],
             ['-1', (HTTPStatus.NOT_FOUND,)],
@@ -112,7 +112,7 @@ class StaticURLTests(TestCase):
         ]
     )
     def test_catalog_detail_converter_endpoint(self, test_case, status):
-        response = Client().get(f'/catalog/converter/{test_case}')
+        response = Client().get(f'/catalog/converter/{test_case}/')
         self.assertIn(
             response.status_code,
             status,
