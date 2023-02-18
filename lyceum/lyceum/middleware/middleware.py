@@ -8,7 +8,7 @@ class ReverseMiddleware:
     regular_split = r'\W|[0-9]'
     regular_check = r'^[А-ЯЁа-яё]*$'
 
-    def __init__(self, get_response: Any) -> None:
+    def __init__(self, get_response: Any):
         self.count = 0
         self.get_response = get_response
 
