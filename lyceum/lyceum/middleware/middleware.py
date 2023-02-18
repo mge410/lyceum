@@ -1,18 +1,18 @@
 import re
 from typing import Any
 
-from django.http import HttpRequest
+from django.http import HttpRequest, HttpResponse
 
 
 class ReverseMiddleware:
     regular_split = r'\W|[0-9]'
     regular_check = r'^[А-ЯЁа-яё]*$'
 
-    def __init__(self, get_response: Any):
+    def __init__(self, get_response: Any) -> None:
         self.count = 0
         self.get_response = get_response
 
-    def __call__(self, request: HttpRequest):
+    def __call__(self, request: HttpRequest) -> HttpResponse:
         self.count += 1
         response = self.get_response(request)
 
