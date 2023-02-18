@@ -5,7 +5,7 @@ from parameterized import parameterized
 
 
 class StaticURLTests(TestCase):
-    def test_catalog_list_endpoint(self):
+    def test_catalog_list_endpoint(self) -> None:
         response = Client().get('/catalog/')
         self.assertEqual(response.status_code, HTTPStatus.OK)
 
@@ -37,7 +37,9 @@ class StaticURLTests(TestCase):
             ['12 %', (HTTPStatus.NOT_FOUND,)],
         ]
     )
-    def test_catalog_detail_endpoint(self, test_case, status):
+    def test_catalog_detail_endpoint(
+        self, test_case: str, status: tuple
+    ) -> None:
         response = Client().get(f'/catalog/{test_case}/')
         self.assertIn(
             response.status_code,
@@ -73,7 +75,9 @@ class StaticURLTests(TestCase):
             ['12 %', (HTTPStatus.NOT_FOUND,)],
         ]
     )
-    def test_catalog_detail_re_endpoint(self, test_case, status):
+    def test_catalog_detail_re_endpoint(
+        self, test_case: str, status: tuple
+    ) -> None:
         response = Client().get(f'/catalog/re/{test_case}/')
         self.assertIn(
             response.status_code,
@@ -105,7 +109,9 @@ class StaticURLTests(TestCase):
             ['12 %', (HTTPStatus.NOT_FOUND,)],
         ]
     )
-    def test_catalog_detail_converter_endpoint(self, test_case, status):
+    def test_catalog_detail_converter_endpoint(
+        self, test_case: str, status: tuple
+    ) -> None:
         response = Client().get(f'/catalog/converter/{test_case}/')
         self.assertIn(
             response.status_code,

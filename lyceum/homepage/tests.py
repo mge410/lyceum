@@ -5,7 +5,7 @@ from parameterized import parameterized
 
 
 class StaticURLTests(TestCase):
-    def test_homepage_endpoint_status(self):
+    def test_homepage_endpoint_status(self) -> None:
         response = Client().get('/')
         self.assertEqual(
             response.status_code,
@@ -14,7 +14,7 @@ class StaticURLTests(TestCase):
             f'got: {response.status_code}, testcase: / ',
         )
 
-    def test_home_coffee_endpoint_status(self):
+    def test_home_coffee_endpoint_status(self) -> None:
         response = Client().get('/coffee/')
         self.assertEqual(
             response.status_code,
@@ -29,7 +29,7 @@ class StaticURLTests(TestCase):
             ['/coffee/', '<div>Я чайник</div>'],
         ]
     )
-    def test_coffee_endpoint_text(self, url, text):
+    def test_coffee_endpoint_text(self, url: str, text: str) -> None:
         response = Client().get(f'{url}')
         self.assertEqual(
             response.content.decode('utf-8'),
