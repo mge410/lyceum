@@ -1,9 +1,6 @@
-name: Lint
+name: mypy
 
-on:
-  push:
-    paths:
-      - '*.py'
+on: [push, pull_request]
 
 jobs:
   mypy:
@@ -12,7 +9,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v1
         with:
-          python-version: 3.11.1
+          python-version: 3.11
           architecture: x64
       - name: Checkout
         uses: actions/checkout@v1
