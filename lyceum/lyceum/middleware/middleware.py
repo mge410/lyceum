@@ -1,7 +1,7 @@
 import re
 from typing import Any
 
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpRequest
 
 
 class ReverseMiddleware:
@@ -12,7 +12,7 @@ class ReverseMiddleware:
         self.count = 0
         self.get_response = get_response
 
-    def __call__(self, request: HttpRequest) -> HttpResponse:
+    def __call__(self, request: HttpRequest):
         self.count += 1
         response = self.get_response(request)
 
