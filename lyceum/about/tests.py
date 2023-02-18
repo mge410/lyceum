@@ -13,7 +13,7 @@ class StaticURLTests(TestCase):
             ['/about/1', (HTTPStatus.NOT_FOUND,)],
         ]
     )
-    def test_about_endpoint(self, url, status):
+    def test_about_endpoint(self, url: str, status: tuple) -> None:
         response = Client().get(f'{url}')
         self.assertIn(
             response.status_code,

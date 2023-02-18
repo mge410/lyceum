@@ -12,7 +12,7 @@ class StaticURLTests(TestCase):
         ]
     )
     @override_settings(REVERSE_MIDDLEWARE='True')
-    def test_middlevare_reverse_on_homepage(self, url, text):
+    def test_middlevare_reverse_on_homepage(self, url: str, text: str) -> None:
         with self.modify_settings(
             MIDDLEWARE={
                 'append': 'lyceum.middleware.middleware.ReverseMiddleware',
@@ -38,7 +38,9 @@ class StaticURLTests(TestCase):
         ]
     )
     @override_settings(REVERSE_MIDDLEWARE='False')
-    def test_off_middlevare_reverse_on_catalog(self, url, text):
+    def test_off_middlevare_reverse_on_catalog(
+        self, url: str, text: str
+    ) -> None:
         with self.modify_settings(
             MIDDLEWARE={
                 'remove': 'lyceum.middleware.middleware.ReverseMiddleware',
