@@ -5,25 +5,27 @@ from parameterized import parameterized
 
 
 class StaticURLTests(TestCase):
-    @parameterized.expand(
-        [
-            # OK/200/MOVED_PERMANENTLY/301
-            ['/', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
-            ['/coffee/', (HTTPStatus.IM_A_TEAPOT,)],
-        ]
-    )
-    def test_homepage_endpoint_status(self, url, status):
-        response = Client().get(f'{url}')
-        self.assertIn(
+    def test_homepage_endpoint_status(self):
+        response = Client().get('/')
+        self.assertEqual(
             response.status_code,
-            status,
-            f'Expected: {status}, '
-            f'got: {response.status_code}, testcase: {url} ',
+            HTTPStatus.OK,
+            f'Expected: {HTTPStatus.OK}, '
+            f'got: {response.status_code}, testcase: / ',
+        )
+
+    def test_home_coffee_endpoint_status(self):
+        response = Client().get('/coffee/')
+        self.assertEqual(
+            response.status_code,
+            HTTPStatus.IM_A_TEAPOT,
+            f'Expected: {HTTPStatus.IM_A_TEAPOT}, '
+            f'got: {response.status_code}, testcase: /coffee/ ',
         )
 
     @parameterized.expand(
         [
-            # OK/200/MOVED_PERMANENTLY/301
+            # OK/200
             ['/coffee/', '<div>Я чайник</div>'],
         ]
     )
