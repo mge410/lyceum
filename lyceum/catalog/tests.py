@@ -5,19 +5,13 @@ from parameterized import parameterized
 
 
 class StaticURLTests(TestCase):
-    @parameterized.expand(
-        [
-            # OK/200/MOVED_PERMANENTLY/301
-            ['/catalog/', (HTTPStatus.OK,)],
-        ]
-    )
-    def test_catalog_list_endpoint(self, url, status):
-        response = Client().get(f'{url}')
-        self.assertIn(response.status_code, status)
+    def test_catalog_list_endpoint(self):
+        response = Client().get('/catalog/')
+        self.assertEqual(response.status_code, HTTPStatus.OK)
 
     @parameterized.expand(
         [
-            # OK/200/MOVED_PERMANENTLY/301
+            # OK/200
             ['1', (HTTPStatus.OK,)],
             ['9', (HTTPStatus.OK,)],
             ['0', (HTTPStatus.OK,)],
@@ -54,7 +48,7 @@ class StaticURLTests(TestCase):
 
     @parameterized.expand(
         [
-            # OK/200/MOVED_PERMANENTLY/301
+            # OK/200
             ['1', (HTTPStatus.OK,)],
             ['12', (HTTPStatus.OK,)],
             ['999239', (HTTPStatus.OK,)],
@@ -90,7 +84,7 @@ class StaticURLTests(TestCase):
 
     @parameterized.expand(
         [
-            # OK/200/MOVED_PERMANENTLY/301
+            # OK/200
             ['1', (HTTPStatus.OK,)],
             ['1', (HTTPStatus.OK,)],
             ['999239', (HTTPStatus.OK,)],
