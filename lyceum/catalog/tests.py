@@ -94,8 +94,8 @@ class StaticURLTests(TestCase):
             ['1', (HTTPStatus.OK,)],
             ['1', (HTTPStatus.OK,)],
             ['999239', (HTTPStatus.OK,)],
-            ['100', (HTTPStatus.OK, )],
-            ['10', (HTTPStatus.OK, )],
+            ['100', (HTTPStatus.OK,)],
+            ['10', (HTTPStatus.OK,)],
             # 404/NOT_FOUND
             ['-0', (HTTPStatus.NOT_FOUND,)],
             ['-1', (HTTPStatus.NOT_FOUND,)],
