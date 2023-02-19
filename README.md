@@ -40,3 +40,6 @@ __Для linux__
 
 Зависимости для тестирования   
 ``` pip install -r requirements_test.txt```
+
+Схема Database на проекте
+https://app.quickdatabasediagrams.com/#/d/sPuckN
