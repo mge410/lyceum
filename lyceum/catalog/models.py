@@ -17,7 +17,7 @@ class Category(AbstractModel):
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name[:15]
 
 
@@ -35,7 +35,7 @@ class Tag(AbstractModel):
         verbose_name = 'Тэг'
         verbose_name_plural = 'Тэги'
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name[:15]
 
 
@@ -60,5 +60,5 @@ class Item(AbstractModel):
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.text[:15]
