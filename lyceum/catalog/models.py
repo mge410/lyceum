@@ -1,6 +1,7 @@
-from Core.models import AbstractModel, perfect_validate
 from django.core import validators
 from django.db import models
+
+from Core.models import AbstractModel, perfect_validate
 
 
 class Category(AbstractModel):
@@ -10,7 +11,7 @@ class Category(AbstractModel):
         unique=True,
         validators=[validators.validate_slug],
     )
-    weight = models.SmallIntegerField('Вес')
+    weight = models.SmallIntegerField('Вес', default=100)
 
     class Meta:
         verbose_name = 'Категория'
