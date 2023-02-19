@@ -1,10 +1,10 @@
-from typing import Callable
+from typing import Any, Callable
 
 from django.core import exceptions
 from django.db import models
 
 
-def perfect_validate(*args) -> Callable:
+def perfect_validate(*args: Any) -> Callable:
     def perfect_validator(value: str) -> None:
         for word in args:
             if str(word) in value.lower():
