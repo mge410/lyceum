@@ -40,7 +40,9 @@ class Tag(AbstractModel):
 
 class Item(AbstractModel):
     text = models.TextField(
-        'Описание', help_text='Опишите товар', validators=[perfect_validate]
+        'Описание',
+        help_text='Опишите товар',
+        validators=[perfect_validate('роскошно', 'превосходно')],
     )
 
     category = models.ForeignKey(
