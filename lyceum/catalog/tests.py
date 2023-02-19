@@ -211,8 +211,6 @@ class ModelTagTests(TestCase):
         self.assertEqual(
             Tag.objects.count(),
             tag_count,
-            f'slug: {slug} Значение должно состоять только '
-            f'из латинских букв, цифр, знаков подчеркивания или дефиса.',
         )
 
     @parameterized.expand(
@@ -234,8 +232,6 @@ class ModelTagTests(TestCase):
         self.assertEqual(
             Tag.objects.count(),
             tag_count + 1,
-            f'slug: {slug} Значение должно состоять только '
-            f'из латинских букв, цифр, знаков подчеркивания или дефиса.',
         )
 
 
@@ -264,9 +260,6 @@ class ModelCategoryTests(TestCase):
         self.assertEqual(
             Category.objects.count(),
             tag_count,
-            f'slug: {slug} Значение должно состоять '
-            f'только из латинских букв, цифр, знаков '
-            f'подчеркивания или дефиса.',
         )
 
     @parameterized.expand(
@@ -288,6 +281,4 @@ class ModelCategoryTests(TestCase):
         self.assertEqual(
             Category.objects.count(),
             tag_count + 1,
-            f'slug: {slug} Значение должно состоять только '
-            f'из латинских букв, цифр, знаков подчеркивания или дефиса.',
         )
