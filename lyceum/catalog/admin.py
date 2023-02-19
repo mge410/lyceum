@@ -1,6 +1,5 @@
-from django.contrib import admin
-
 from catalog import models
+from django.contrib import admin
 
 
 @admin.register(models.Item)
