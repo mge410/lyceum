@@ -14,7 +14,8 @@ def perfect_validator(*check_word_list: Any) -> Callable:
                 if check_word.lower() == word.lower():
                     return
         raise exceptions.ValidationError(
-            f'В текста должно быть одно из слов: {check_word_list}, текст: {value}',
+            f'В текста должно быть одно из слов:'
+            f' {check_word_list}, текст: {value}',
             params={'value': value},
         )
 

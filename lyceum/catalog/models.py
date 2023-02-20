@@ -1,12 +1,19 @@
+from django.core import validators
+from django.db import models
+
 from catalog.validators import perfect_validator
 from core.models import NamedBaseModel, PublishedBaseModel, SluggedBaseModel
-from django.db import models
 
 
 class Category(NamedBaseModel, PublishedBaseModel, SluggedBaseModel):
     weight = models.PositiveSmallIntegerField(
         default=100,
         verbose_name='вес',
+        validators=[
+            validators.MaxValueValidator(
+                32767, 'Максимальное число для ввода 32767'
+            )
+        ],
     )
 
     class Meta:
