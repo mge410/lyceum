@@ -4,8 +4,9 @@ import re
 
 import django.core.validators
 import django.db.models.deletion
-from catalog.validators import perfect_validator
 from django.db import migrations, models
+
+from catalog.validators import perfect_validator
 
 
 class Migration(migrations.Migration):
