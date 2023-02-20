@@ -2,7 +2,7 @@ from django.db import models
 
 
 class NamedBaseModel(models.Model):
-    name = models.CharField('Имя', max_length=150, unique=True)
+    name = models.CharField('название', max_length=150, unique=True)
 
     class Meta:
         abstract = True
@@ -12,7 +12,7 @@ class NamedBaseModel(models.Model):
 
 
 class PublishedBaseModel(models.Model):
-    is_published = models.BooleanField('Опубликовано', default=True)
+    is_published = models.BooleanField('опубликовано', default=True)
 
     class Meta:
         abstract = True
@@ -20,9 +20,9 @@ class PublishedBaseModel(models.Model):
 
 class SluggedBaseModel(models.Model):
     slug = models.SlugField(
-        'Символьный код',
         max_length=200,
         unique=True,
+        verbose_name='символьный код',
     )
 
     class Meta:
