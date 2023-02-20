@@ -1,17 +1,20 @@
+import re
 from functools import wraps
 from typing import Any, Callable
 
 from django.core import exceptions
 
 
-def perfect_validator(*args: Any) -> Callable:
+def perfect_validator(*check_word_list: Any) -> Callable:
     @wraps(perfect_validator)
     def validate(value: str) -> None:
-        for word in args:
-            if str(word) in value.lower():
-                return
+        value_word_list = re.split(r'\W|[0-9]', value)
+        for word in value_word_list:
+            for check_word in check_word_list:
+                if check_word.lower() == word.lower():
+                    return
         raise exceptions.ValidationError(
-            f'В текста должно быть одно из слов {args}',
+            f'В текста должно быть одно из слов: {check_word_list}, текст: {value}',
             params={'value': value},
         )
 

@@ -1,126 +1,7 @@
-from http import HTTPStatus
-
 from catalog.models import Category, Item, Tag
 from django.core import exceptions
-from django.test import Client, TestCase
+from django.test import TestCase
 from parameterized import parameterized
-
-
-class StaticURLTests(TestCase):
-    def test_catalog_list_endpoint(self) -> None:
-        response = Client().get('/catalog/')
-        self.assertEqual(response.status_code, HTTPStatus.OK)
-
-    @parameterized.expand(
-        [
-            # OK/200
-            ['1', (HTTPStatus.OK,)],
-            ['9', (HTTPStatus.OK,)],
-            ['0', (HTTPStatus.OK,)],
-            ['999239', (HTTPStatus.OK,)],
-            ['012', (HTTPStatus.OK,)],
-            ['01', (HTTPStatus.OK,)],
-            ['010', (HTTPStatus.OK,)],
-            ['100', (HTTPStatus.OK,)],
-            ['10', (HTTPStatus.OK,)],
-            # 404/NOT_FOUND
-            ['-0', (HTTPStatus.NOT_FOUND,)],
-            ['-1', (HTTPStatus.NOT_FOUND,)],
-            ['10.5', (HTTPStatus.NOT_FOUND,)],
-            ['aboba', (HTTPStatus.NOT_FOUND,)],
-            ['1C_CALL', (HTTPStatus.NOT_FOUND,)],
-            ['sd12', (HTTPStatus.NOT_FOUND,)],
-            ['^...1', (HTTPStatus.NOT_FOUND,)],
-            ['1^...', (HTTPStatus.NOT_FOUND,)],
-            ['1^', (HTTPStatus.NOT_FOUND,)],
-            ['11.0', (HTTPStatus.NOT_FOUND,)],
-            ['12$', (HTTPStatus.NOT_FOUND,)],
-            ['%12', (HTTPStatus.NOT_FOUND,)],
-            ['12 %', (HTTPStatus.NOT_FOUND,)],
-        ]
-    )
-    def test_catalog_detail_endpoint(
-        self, test_case: str, status: tuple
-    ) -> None:
-        response = Client().get(f'/catalog/{test_case}/')
-        self.assertIn(
-            response.status_code,
-            status,
-            f'Expected: {status}, '
-            f'got: {response.status_code}, testcase: {test_case}',
-        )
-
-    @parameterized.expand(
-        [
-            # OK/200
-            ['1', (HTTPStatus.OK,)],
-            ['12', (HTTPStatus.OK,)],
-            ['999239', (HTTPStatus.OK,)],
-            ['100', (HTTPStatus.OK,)],
-            ['10', (HTTPStatus.OK,)],
-            # 404/NOT_FOUND
-            ['-0', (HTTPStatus.NOT_FOUND,)],
-            ['-1', (HTTPStatus.NOT_FOUND,)],
-            ['01', (HTTPStatus.NOT_FOUND,)],
-            ['010', (HTTPStatus.NOT_FOUND,)],
-            ['0', (HTTPStatus.NOT_FOUND,)],
-            ['012', (HTTPStatus.NOT_FOUND,)],
-            ['aboba', (HTTPStatus.NOT_FOUND,)],
-            ['1C_CALL', (HTTPStatus.NOT_FOUND,)],
-            ['sd12', (HTTPStatus.NOT_FOUND,)],
-            ['^...1', (HTTPStatus.NOT_FOUND,)],
-            ['1^...', (HTTPStatus.NOT_FOUND,)],
-            ['1^', (HTTPStatus.NOT_FOUND,)],
-            ['11.0', (HTTPStatus.NOT_FOUND,)],
-            ['12$', (HTTPStatus.NOT_FOUND,)],
-            ['%12', (HTTPStatus.NOT_FOUND,)],
-            ['12 %', (HTTPStatus.NOT_FOUND,)],
-        ]
-    )
-    def test_catalog_detail_re_endpoint(
-        self, test_case: str, status: tuple
-    ) -> None:
-        response = Client().get(f'/catalog/re/{test_case}/')
-        self.assertIn(
-            response.status_code,
-            status,
-            f'Expected: {status}, '
-            f'got: {response.status_code}, testcase: {test_case}',
-        )
-
-    @parameterized.expand(
-        [
-            # OK/200
-            ['1', (HTTPStatus.OK,)],
-            ['1', (HTTPStatus.OK,)],
-            ['999239', (HTTPStatus.OK,)],
-            ['100', (HTTPStatus.OK,)],
-            ['10', (HTTPStatus.OK,)],
-            # 404/NOT_FOUND
-            ['-0', (HTTPStatus.NOT_FOUND,)],
-            ['-1', (HTTPStatus.NOT_FOUND,)],
-            ['01', (HTTPStatus.NOT_FOUND,)],
-            ['010', (HTTPStatus.NOT_FOUND,)],
-            ['0', (HTTPStatus.NOT_FOUND,)],
-            ['012', (HTTPStatus.NOT_FOUND,)],
-            ['aboba', (HTTPStatus.NOT_FOUND,)],
-            ['1C_CALL', (HTTPStatus.NOT_FOUND,)],
-            ['sd12', (HTTPStatus.NOT_FOUND,)],
-            ['12$', (HTTPStatus.NOT_FOUND,)],
-            ['%12', (HTTPStatus.NOT_FOUND,)],
-            ['12 %', (HTTPStatus.NOT_FOUND,)],
-        ]
-    )
-    def test_catalog_detail_converter_endpoint(
-        self, test_case: str, status: tuple
-    ) -> None:
-        response = Client().get(f'/catalog/converter/{test_case}/')
-        self.assertIn(
-            response.status_code,
-            status,
-            f'Expected: {status}, '
-            f'got: {response.status_code}, testcase: {test_case}',
-        )
 
 
 class ModelItemTests(TestCase):
@@ -143,7 +24,7 @@ class ModelItemTests(TestCase):
             ['GроGскGошноG'],
             ['прево_схо-дно'],
             ['!! пре1восх-одно !!'],
-            ['GGРоСкООООшНоGG!!'],
+            ['GG1РоСкООООшНоGG!!'],
         ]
     )
     def test_unable_create_to_text(self, text: str) -> None:
@@ -160,6 +41,7 @@ class ModelItemTests(TestCase):
         self.assertEqual(
             Item.objects.count(),
             item_count,
+            f'{text}',
         )
 
     @parameterized.expand(
@@ -167,7 +49,7 @@ class ModelItemTests(TestCase):
             ['роскошно'],
             ['превосходно '],
             ['!! превосходно !!'],
-            ['GGРоСкОшНоGG!!'],
+            ['G РоСкОшНо GG!!'],
         ]
     )
     def test_create_items_to_text(self, text: str) -> None:
