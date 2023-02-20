@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Category(NamedBaseModel, PublishedBaseModel, SluggedBaseModel):
-    weight = models.SmallIntegerField(
+    weight = models.PositiveSmallIntegerField(
         default=100,
         verbose_name='вес',
     )
@@ -30,8 +30,7 @@ class Item(NamedBaseModel, PublishedBaseModel):
     category = models.ForeignKey(
         'category',
         on_delete=models.PROTECT,
-        related_name='catalog_items',
-        help_text='У предмета должна быть категория',
+        help_text='У предмета должна быть категория.',
         verbose_name='категория',
     )
 
@@ -44,6 +43,7 @@ class Item(NamedBaseModel, PublishedBaseModel):
     class Meta:
         verbose_name = 'товар'
         verbose_name_plural = 'товары'
+        default_related_name = 'items'
 
     def __str__(self) -> str:
         return self.name[:20]
