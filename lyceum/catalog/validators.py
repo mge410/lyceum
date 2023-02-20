@@ -8,7 +8,7 @@ from django.core import exceptions
 def perfect_validator(*check_word_list: Any) -> Callable:
     @wraps(perfect_validator)
     def validate(value: str) -> None:
-        value_word_list = re.split(r'\W|[0-9]', value)
+        value_word_list = re.split(r'\W', value)
         for word in value_word_list:
             for check_word in check_word_list:
                 if check_word.lower() == word.lower():
