@@ -2,7 +2,7 @@ from django.db import models
 
 
 class NamedBaseModel(models.Model):
-    name = models.CharField('Имя', max_length=150)
+    name = models.CharField('Имя', max_length=150, unique=True)
 
     class Meta:
         abstract = True
