@@ -1,4 +1,3 @@
-from django.core import validators
 from django.db import models
 
 
@@ -20,13 +19,10 @@ class PublishedBaseModel(models.Model):
 
 
 class SluggedBaseModel(models.Model):
-    slug = models.CharField(
+    slug = models.SlugField(
         'Символьный код',
         max_length=200,
         unique=True,
-        validators=[
-            validators.validate_slug,
-        ],
     )
 
     class Meta:
