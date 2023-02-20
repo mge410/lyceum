@@ -1,8 +1,7 @@
-from django.core import validators
-from django.db import models
-
 from catalog.validators import perfect_validator
 from core.models import NamedBaseModel, PublishedBaseModel, SluggedBaseModel
+from django.core import validators
+from django.db import models
 
 
 class Category(NamedBaseModel, PublishedBaseModel, SluggedBaseModel):
