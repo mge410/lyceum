@@ -3,7 +3,7 @@ from django.contrib import admin
 
 
 @admin.register(Item)
-class CatalogAdmin(admin.ModelAdmin):
+class ItemAdmin(admin.ModelAdmin):
     list_display = (
         Item.name.field.name,
         Item.is_published.field.name,
