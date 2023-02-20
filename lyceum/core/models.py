@@ -2,7 +2,13 @@ from django.db import models
 
 
 class NamedBaseModel(models.Model):
-    name = models.CharField('название', max_length=150, unique=True)
+    name = models.CharField(
+        max_length=150,
+        unique=True,
+        help_text='Максимум 200 символов. Можно использовать'
+        ' только буквы цифры и знаки подчеркивания и тире.',
+        verbose_name='название',
+    )
 
     class Meta:
         abstract = True
@@ -22,6 +28,8 @@ class SluggedBaseModel(models.Model):
     slug = models.SlugField(
         max_length=200,
         unique=True,
+        help_text='Максимум 200 символов. Можно использовать'
+        ' только буквы цифры и знаки подчеркивания и тире.',
         verbose_name='символьный код',
     )
 

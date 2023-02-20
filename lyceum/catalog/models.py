@@ -1,7 +1,6 @@
-from django.db import models
-
 from catalog.validators import perfect_validator
 from core.models import NamedBaseModel, PublishedBaseModel, SluggedBaseModel
+from django.db import models
 
 
 class Category(NamedBaseModel, PublishedBaseModel, SluggedBaseModel):
@@ -23,8 +22,8 @@ class Tag(NamedBaseModel, PublishedBaseModel, SluggedBaseModel):
 
 class Item(NamedBaseModel, PublishedBaseModel):
     text = models.TextField(
-        help_text='опишите товар',
         validators=[perfect_validator('роскошно', 'превосходно')],
+        help_text='В тексте должно быть одно из слов: роскошно, превосходно.',
         verbose_name='описание',
     )
 
@@ -32,11 +31,13 @@ class Item(NamedBaseModel, PublishedBaseModel):
         'category',
         on_delete=models.PROTECT,
         related_name='catalog_items',
+        help_text='У предмета должна быть категория',
         verbose_name='категория',
     )
 
     tags = models.ManyToManyField(
         Tag,
+        help_text='У предмета должн быть хотя бы 1 тэг.',
         verbose_name='тэги',
     )
 
