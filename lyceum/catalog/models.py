@@ -1,65 +1,55 @@
-from Core.models import AbstractModel, perfect_validate
+from catalog.validators import perfect_validator
+from core.models import NamedBaseModel, PublishedBaseModel, SluggedBaseModel
 from django.core import validators
 from django.db import models
 
 
-class Category(AbstractModel):
-    slug = models.CharField(
-        'Символьный код',
-        max_length=200,
-        unique=True,
-        validators=[validators.validate_slug],
-    )
-    weight = models.SmallIntegerField('Вес', default=100)
-
-    class Meta:
-        verbose_name = 'Категория'
-        verbose_name_plural = 'Категории'
-
-    def __str__(self) -> str:
-        return self.name[:15]
-
-
-class Tag(AbstractModel):
-    slug = models.CharField(
-        'Символьный код',
-        max_length=200,
-        unique=True,
+class Category(NamedBaseModel, PublishedBaseModel, SluggedBaseModel):
+    weight = models.PositiveSmallIntegerField(
+        default=100,
+        verbose_name='вес',
         validators=[
-            validators.validate_slug,
+            validators.MaxValueValidator(
+                32767, 'Максимальное число для ввода 32767'
+            )
         ],
     )
 
     class Meta:
-        verbose_name = 'Тэг'
-        verbose_name_plural = 'Тэги'
-
-    def __str__(self) -> str:
-        return self.name[:15]
+        verbose_name = 'категория'
+        verbose_name_plural = 'категории'
 
 
-class Item(AbstractModel):
+class Tag(NamedBaseModel, PublishedBaseModel, SluggedBaseModel):
+    class Meta:
+        verbose_name = 'тэг'
+        verbose_name_plural = 'тэги'
+
+
+class Item(NamedBaseModel, PublishedBaseModel):
     text = models.TextField(
-        'Описание',
-        help_text='Опишите товар',
-        validators=[perfect_validate('роскошно', 'превосходно')],
+        validators=[perfect_validator('роскошно', 'превосходно')],
+        help_text='В тексте должно быть одно из слов: роскошно, превосходно.',
+        verbose_name='описание',
     )
 
     category = models.ForeignKey(
         'category',
         on_delete=models.PROTECT,
-        related_name='catalog_items',
-        verbose_name='Категория',
+        help_text='У предмета должна быть категория.',
+        verbose_name='категория',
     )
 
     tags = models.ManyToManyField(
         Tag,
-        verbose_name='Тэги',
+        help_text='У предмета должн быть хотя бы 1 тэг.',
+        verbose_name='тэги',
     )
 
     class Meta:
-        verbose_name = 'Товар'
-        verbose_name_plural = 'Товары'
+        verbose_name = 'товар'
+        verbose_name_plural = 'товары'
+        default_related_name = 'items'
 
     def __str__(self) -> str:
-        return self.text[:15]
+        return self.name[:20]

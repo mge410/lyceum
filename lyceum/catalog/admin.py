@@ -1,43 +1,43 @@
-from catalog import models
+from catalog.models import Category, Item, Tag
 from django.contrib import admin
 
 
-@admin.register(models.Item)
-class CatalogAdmin(admin.ModelAdmin):
+@admin.register(Item)
+class ItemAdmin(admin.ModelAdmin):
     list_display = (
-        models.Item.name.field.name,
-        models.Item.is_published.field.name,
+        Item.name.field.name,
+        Item.is_published.field.name,
     )
-    list_editable = (models.Item.is_published.field.name,)
-    list_display_links = (models.Item.name.field.name,)
-    filter_horizontal = (models.Item.tags.field.name,)
+    list_editable = (Item.is_published.field.name,)
+    list_display_links = (Item.name.field.name,)
+    filter_horizontal = (Item.tags.field.name,)
 
 
-@admin.register(models.Category)
+@admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = (
-        models.Category.name.field.name,
-        models.Category.is_published.field.name,
-        models.Category.slug.field.name,
-        models.Category.weight.field.name,
+        Category.name.field.name,
+        Category.is_published.field.name,
+        Category.slug.field.name,
+        Category.weight.field.name,
     )
     list_editable = (
-        models.Category.is_published.field.name,
-        models.Category.slug.field.name,
-        models.Category.weight.field.name,
+        Category.is_published.field.name,
+        Category.slug.field.name,
+        Category.weight.field.name,
     )
-    list_display_links = (models.Category.name.field.name,)
+    list_display_links = (Category.name.field.name,)
 
 
-@admin.register(models.Tag)
+@admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
     list_display = (
-        models.Tag.name.field.name,
-        models.Tag.is_published.field.name,
-        models.Tag.slug.field.name,
+        Tag.name.field.name,
+        Tag.is_published.field.name,
+        Tag.slug.field.name,
     )
     list_editable = (
-        models.Tag.is_published.field.name,
-        models.Tag.slug.field.name,
+        Tag.is_published.field.name,
+        Tag.slug.field.name,
     )
-    list_display_links = (models.Tag.name.field.name,)
+    list_display_links = (Tag.name.field.name,)
