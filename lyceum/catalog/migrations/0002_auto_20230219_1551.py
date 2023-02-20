@@ -2,10 +2,11 @@
 
 import re
 
-import core.models
 import django.core.validators
 import django.db.models.deletion
 from django.db import migrations, models
+
+from catalog.validators import perfect_validator
 
 
 class Migration(migrations.Migration):
@@ -96,7 +97,7 @@ class Migration(migrations.Migration):
             name='text',
             field=models.TextField(
                 help_text='Опишите товар',
-                validators=[core.models.perfect_validate],
+                validators=[perfect_validator],
                 verbose_name='Описание',
             ),
         ),

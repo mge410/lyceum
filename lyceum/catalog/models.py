@@ -1,6 +1,8 @@
-from core.models import AbstractModel, perfect_validate
 from django.core import validators
 from django.db import models
+
+from catalog.validators import perfect_validator
+from core.models import AbstractModel
 
 
 class Category(AbstractModel):
@@ -42,7 +44,7 @@ class Item(AbstractModel):
     text = models.TextField(
         'Описание',
         help_text='Опишите товар',
-        validators=[perfect_validate('роскошно', 'превосходно')],
+        validators=[perfect_validator('роскошно', 'превосходно')],
     )
 
     category = models.ForeignKey(
