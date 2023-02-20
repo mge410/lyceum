@@ -1,4 +1,4 @@
-from Core.models import AbstractModel, perfect_validate
+from core.models import AbstractModel, perfect_validate
 from django.core import validators
 from django.db import models
 
