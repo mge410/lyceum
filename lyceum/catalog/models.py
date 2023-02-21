@@ -9,6 +9,9 @@ class Category(NamedBaseModel, PublishedBaseModel, SluggedBaseModel):
         default=100,
         verbose_name='вес',
         validators=[
+            validators.MinValueValidator(
+                0, 'Минимальное число для ввода 0'
+            ),
             validators.MaxValueValidator(
                 32767, 'Максимальное число для ввода 32767'
             )
