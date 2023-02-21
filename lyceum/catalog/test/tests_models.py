@@ -82,7 +82,7 @@ class ModelItemTests(TestCase):
             '32767',
         ]
     )
-    def test_category_slug_validator(self, weight: str) -> None:
+    def test_category_weight_validator(self, weight: str) -> None:
         category_count = Category.objects.count()
         self.category = Category(
             name='Тестов категорияУК',
@@ -107,7 +107,7 @@ class ModelItemTests(TestCase):
             'sdfsdf',
         ]
     )
-    def test_tag_slug_negative_validator(self, weight: str) -> None:
+    def test_category_weight_negative_validator(self, weight: str) -> None:
         category_count = Category.objects.count()
         with self.assertRaises(exceptions.ValidationError):
             self.category = Category(
