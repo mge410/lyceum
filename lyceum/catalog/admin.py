@@ -11,6 +11,13 @@ class ItemAdmin(admin.ModelAdmin):
     list_editable = (Item.is_published.field.name,)
     list_display_links = (Item.name.field.name,)
     filter_horizontal = (Item.tags.field.name,)
+    fields = (
+        Item.is_published.field.name,
+        Item.name.field.name,
+        Item.category.field.name,
+        Item.tags.field.name,
+        Item.text.field.name,
+    )
 
 
 @admin.register(Category)
