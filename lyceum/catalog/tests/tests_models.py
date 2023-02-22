@@ -4,20 +4,18 @@ from django.test import TestCase
 from parameterized import parameterized
 
 
-class ModelTests(TestCase):
-    @classmethod
-    def setUpClass(cls) -> None:
-        super().setUpClass()
-
-        cls.category = Category.objects.create(
+class ModelsTests(TestCase):
+    def setUp(self) -> None:
+        self.base_category = Category.objects.create(
             name='Тестовая категория',
             slug='test-category-slug',
         )
 
-        cls.tag = Tag.objects.create(
+        self.base_tag = Tag.objects.create(
             name='Тестовый тэг',
             slug='test-tag-slug',
         )
+        super(ModelsTests, self).setUp()
 
     @parameterized.expand(
         [
@@ -34,12 +32,12 @@ class ModelTests(TestCase):
         item_count = Item.objects.count()
         self.item = Item(
             name='Тестовый товар',
-            category=self.category,
+            category=self.base_category,
             text=f'{text}',
         )
         self.item.full_clean()
         self.item.save()
-        self.item.tags.add(ModelTests.tag)
+        self.item.tags.add(self.base_tag)
         self.assertEqual(
             Item.objects.count(),
             item_count + 1,
@@ -62,7 +60,7 @@ class ModelTests(TestCase):
         with self.assertRaises(exceptions.ValidationError):
             self.item = Item(
                 name='Тестовый товар',
-                category=self.category,
+                category=self.base_category,
                 text=f'{text}',
             )
             self.item.full_clean()
@@ -229,3 +227,10 @@ class ModelTests(TestCase):
             tag_count + 1,
             f'{name}',
         )
+
+    def tearDown(self) -> None:
+        Item.objects.all().delete()
+        Tag.objects.all().delete()
+        Category.objects.all().delete()
+
+        super(ModelsTests, self).tearDown()
