@@ -85,7 +85,7 @@ class ModelTests(TestCase):
     def test_category_weight_validator(self, weight: str) -> None:
         category_count = Category.objects.count()
         self.category = Category(
-            name='Тестов категорияУК',
+            name='Тестов категория',
             weight=f'{weight}',
             slug='test',
         )
@@ -111,7 +111,7 @@ class ModelTests(TestCase):
         category_count = Category.objects.count()
         with self.assertRaises(exceptions.ValidationError):
             self.category = Category(
-                name='Тестов категорияУКР',
+                name='Тестов категория',
                 weight=f'{weight}',
                 slug='testS',
             )
@@ -122,4 +122,104 @@ class ModelTests(TestCase):
             Category.objects.count(),
             category_count,
             f'{weight}',
+        )
+
+    @parameterized.expand(
+        [
+            ['cat', 'сat1'],
+            ['cat', 'Cats'],
+            ['cat', 'Cat and dog'],
+            ['cat', 'Tac '],
+            ['cat', 'My cats'],
+            ['cat', 'cAAt'],
+            ['cat', 'Ccat'],
+        ]
+    )
+    def test_category_keywords_validator(self, name: str, second_name: str) -> None:
+        category_count = Category.objects.count()
+        self.category = Category(
+            name=f'{name}',
+            slug='testS',
+        )
+        self.category.full_clean()
+        self.category.save()
+        self.category = Category(
+            name=f'{second_name}',
+            slug='testS2',
+        )
+        self.category.full_clean()
+        self.category.save()
+
+        self.assertEqual(
+            Category.objects.count(),
+            category_count + 2,
+            f'{name}',
+        )
+
+    @parameterized.expand(
+        [
+            ['cat', 'сat'],
+            ['cat', 'cat'],
+            ['cat', 'Cat'],
+            ['cat', 'cat '],
+            ['cat', 'cat '],
+            ['cat', 'cat !!'],
+            ['cat', 'cat !!'],
+        ]
+    )
+    def test_category_keywords_negative_validator(self, name: str, second_name: str) -> None:
+        category_count = Category.objects.count()
+        with self.assertRaises(exceptions.ValidationError):
+            self.category = Category(
+                name=f'{name}',
+                slug='testS',
+            )
+            self.category.full_clean()
+            self.category.save()
+
+            self.category = Category(
+                name=f'{second_name}',
+                slug='testS2',
+            )
+            self.category.full_clean()
+            self.category.save()
+
+        self.assertEqual(
+            Category.objects.count(),
+            category_count + 1,
+            f'{name}',
+        )
+
+    @parameterized.expand(
+        [
+            ['cat', 'сat'],
+            ['cat', 'cat'],
+            ['cat', 'Cat'],
+            ['cat', 'cat '],
+            ['cat', 'cat '],
+            ['cat', 'cat !!'],
+            ['cat', 'cat !!'],
+        ]
+    )
+    def test_tag_keywords_negative_validator(self, name: str, second_name: str) -> None:
+        tag_count = Tag.objects.count()
+        with self.assertRaises(exceptions.ValidationError):
+            self.tag = Tag(
+                name=f'{name}',
+                slug='testS',
+            )
+            self.tag.full_clean()
+            self.tag.save()
+
+            self.tag = Tag(
+                name=f'{second_name}',
+                slug='testS2',
+            )
+            self.tag.full_clean()
+            self.tag.save()
+
+        self.assertEqual(
+            Tag.objects.count(),
+            tag_count + 1,
+            f'{name}',
         )
