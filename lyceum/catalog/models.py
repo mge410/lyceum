@@ -1,10 +1,15 @@
+import core.models as core
 from catalog.validators import ValidateMustContain
-from core.models import NamedBaseModel, PublishedBaseModel, SluggedBaseModel
 from django.core import validators
 from django.db import models
 
 
-class Category(NamedBaseModel, PublishedBaseModel, SluggedBaseModel):
+class Category(
+    core.NamedBaseModel,
+    core.PublishedBaseModel,
+    core.SluggedBaseModel,
+    core.KeywordsBaseModel,
+):
     weight = models.PositiveSmallIntegerField(
         default=100,
         verbose_name='вес',
@@ -21,14 +26,19 @@ class Category(NamedBaseModel, PublishedBaseModel, SluggedBaseModel):
         verbose_name_plural = 'категории'
 
 
-class Tag(NamedBaseModel, PublishedBaseModel, SluggedBaseModel):
+class Tag(
+    core.NamedBaseModel,
+    core.PublishedBaseModel,
+    core.SluggedBaseModel,
+    core.KeywordsBaseModel,
+):
     class Meta:
         verbose_name = 'тэг'
         verbose_name_plural = 'тэги'
         default_related_name = 'tags'
 
 
-class Item(NamedBaseModel, PublishedBaseModel):
+class Item(core.NamedBaseModel, core.PublishedBaseModel):
     text = models.TextField(
         validators=[ValidateMustContain('роскошно', 'превосходно')],
         help_text='В тексте должно быть одно из слов: роскошно, превосходно.',
