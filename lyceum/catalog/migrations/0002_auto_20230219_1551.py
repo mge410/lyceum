@@ -4,7 +4,7 @@ import re
 
 import django.core.validators
 import django.db.models.deletion
-from catalog.validators import perfect_validator
+from catalog.validators import ValidateMustContain
 from django.db import migrations, models
 
 
@@ -96,7 +96,7 @@ class Migration(migrations.Migration):
             name='text',
             field=models.TextField(
                 help_text='Опишите товар',
-                validators=[perfect_validator],
+                validators=[ValidateMustContain],
                 verbose_name='Описание',
             ),
         ),

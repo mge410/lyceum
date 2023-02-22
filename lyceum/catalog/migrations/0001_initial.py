@@ -4,7 +4,7 @@ import re
 
 import django.core.validators
 import django.db.models.deletion
-from catalog.validators import perfect_validator
+from catalog.validators import ValidateMustContain
 from django.db import migrations, models
 
 
@@ -39,7 +39,7 @@ class Migration(migrations.Migration):
                                 'Enter a valid “slug” consisting of letters, numbers, underscores or hyphens.',
                                 'invalid',
                             ),
-                            perfect_validator,
+                            ValidateMustContain,
                         ],
                     ),
                 ),
