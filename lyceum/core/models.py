@@ -5,7 +5,7 @@ class NamedBaseModel(models.Model):
     name = models.CharField(
         max_length=150,
         unique=True,
-        help_text='Максимум 200 символов. Можно использовать'
+        help_text='Максимум 150 символов. Можно использовать'
         ' только буквы цифры и знаки подчеркивания и тире.',
         verbose_name='название',
     )
