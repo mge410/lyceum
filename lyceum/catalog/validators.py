@@ -1,6 +1,6 @@
 import re
-
 from typing import Any
+
 from django.core import exceptions
 from django.utils.deconstruct import deconstructible
 
@@ -8,7 +8,9 @@ from django.utils.deconstruct import deconstructible
 @deconstructible
 class ValidateMustContain:
     def __init__(self, *check_word_list: Any) -> None:
-        self.check_word_list = list(map(lambda x: str(x).lower(), check_word_list))
+        self.check_word_list = list(
+            map(lambda x: str(x).lower(), check_word_list)
+        )
 
     def __call__(self, text: str) -> None:
         value_word_list = re.split(r'\W', text)
