@@ -1,10 +1,13 @@
 from catalog.validators import ValidateMustContain
-from core.models import NamedBaseModel, PublishedBaseModel, SluggedBaseModel
+from core.models import (KeywordsBaseModel, NamedBaseModel, PublishedBaseModel,
+                         SluggedBaseModel)
 from django.core import validators
 from django.db import models
 
 
-class Category(NamedBaseModel, PublishedBaseModel, SluggedBaseModel):
+class Category(
+    NamedBaseModel, PublishedBaseModel, SluggedBaseModel, KeywordsBaseModel
+):
     weight = models.PositiveSmallIntegerField(
         default=100,
         verbose_name='вес',
@@ -21,7 +24,9 @@ class Category(NamedBaseModel, PublishedBaseModel, SluggedBaseModel):
         verbose_name_plural = 'категории'
 
 
-class Tag(NamedBaseModel, PublishedBaseModel, SluggedBaseModel):
+class Tag(
+    NamedBaseModel, PublishedBaseModel, SluggedBaseModel, KeywordsBaseModel
+):
     class Meta:
         verbose_name = 'тэг'
         verbose_name_plural = 'тэги'
