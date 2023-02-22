@@ -135,7 +135,9 @@ class ModelTests(TestCase):
             ['cat', 'Ccat'],
         ]
     )
-    def test_category_keywords_validator(self, name: str, second_name: str) -> None:
+    def test_category_keywords_validator(
+        self, name: str, second_name: str
+    ) -> None:
         category_count = Category.objects.count()
         self.category = Category(
             name=f'{name}',
@@ -167,7 +169,9 @@ class ModelTests(TestCase):
             ['cat', 'cat !!'],
         ]
     )
-    def test_category_keywords_negative_validator(self, name: str, second_name: str) -> None:
+    def test_category_keywords_negative_validator(
+        self, name: str, second_name: str
+    ) -> None:
         category_count = Category.objects.count()
         with self.assertRaises(exceptions.ValidationError):
             self.category = Category(
@@ -201,7 +205,9 @@ class ModelTests(TestCase):
             ['cat', 'cat !!'],
         ]
     )
-    def test_tag_keywords_negative_validator(self, name: str, second_name: str) -> None:
+    def test_tag_keywords_negative_validator(
+        self, name: str, second_name: str
+    ) -> None:
         tag_count = Tag.objects.count()
         with self.assertRaises(exceptions.ValidationError):
             self.tag = Tag(

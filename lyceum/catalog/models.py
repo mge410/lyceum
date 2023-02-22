@@ -1,6 +1,10 @@
 from catalog.validators import ValidateMustContain
-from core.models import (KeywordsBaseModel, NamedBaseModel, PublishedBaseModel,
-                         SluggedBaseModel)
+from core.models import (
+    KeywordsBaseModel,
+    NamedBaseModel,
+    PublishedBaseModel,
+    SluggedBaseModel,
+)
 from django.core import validators
 from django.db import models
 

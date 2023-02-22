@@ -1,4 +1,5 @@
 import re
+from typing import Any
 
 from django.core.exceptions import ValidationError
 from django.db import models
@@ -44,7 +45,7 @@ class KeywordsBaseModel(models.Model):
     class Meta:
         abstract = True
 
-    def clean(self, *args, **kwargs):
+    def clean(self, *args: Any, **kwargs: Any) -> None:
         keywords = self.get_keywords(self.name.lower())
         keywords_list = [
             item.keywords for item in self.__class__.objects.all()
