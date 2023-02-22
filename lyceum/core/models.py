@@ -42,6 +42,13 @@ class SluggedBaseModel(models.Model):
 
 
 class KeywordsBaseModel(models.Model):
+    keywords = models.CharField(
+        max_length=150,
+        help_text='Ключевые слова',
+        verbose_name='ключевые слова',
+        editable=False,
+    )
+
     class Meta:
         abstract = True
 
@@ -57,13 +64,6 @@ class KeywordsBaseModel(models.Model):
             )
         self.keywords = keywords
         super(KeywordsBaseModel, self).clean()
-
-    keywords = models.CharField(
-        max_length=150,
-        help_text='Ключевые слова',
-        verbose_name='ключевые слова',
-        editable=False,
-    )
 
     def get_keywords(self, text: str) -> str:
         replace_letters = {
