@@ -1,4 +1,4 @@
-from catalog.validators import perfect_validator
+from catalog.validators import ValidateMustContain
 from core.models import NamedBaseModel, PublishedBaseModel, SluggedBaseModel
 from django.core import validators
 from django.db import models
@@ -30,7 +30,7 @@ class Tag(NamedBaseModel, PublishedBaseModel, SluggedBaseModel):
 
 class Item(NamedBaseModel, PublishedBaseModel):
     text = models.TextField(
-        validators=[perfect_validator('роскошно', 'превосходно')],
+        validators=[ValidateMustContain('роскошно', 'превосходно')],
         help_text='В тексте должно быть одно из слов: роскошно, превосходно.',
         verbose_name='описание',
     )

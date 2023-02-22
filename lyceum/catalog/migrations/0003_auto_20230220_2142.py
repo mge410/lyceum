@@ -107,7 +107,7 @@ class Migration(migrations.Migration):
             name='text',
             field=models.TextField(
                 help_text='В тексте должно быть одно из слов: роскошно, превосходно.',
-                validators=[catalog.validators.perfect_validator],
+                validators=[catalog.validators.ValidateMustContain],
                 verbose_name='описание',
             ),
         ),
