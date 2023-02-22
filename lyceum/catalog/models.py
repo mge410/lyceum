@@ -25,6 +25,7 @@ class Tag(NamedBaseModel, PublishedBaseModel, SluggedBaseModel):
     class Meta:
         verbose_name = 'тэг'
         verbose_name_plural = 'тэги'
+        default_related_name = 'tags'
 
 
 class Item(NamedBaseModel, PublishedBaseModel):

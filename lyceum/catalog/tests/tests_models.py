@@ -4,7 +4,7 @@ from django.test import TestCase
 from parameterized import parameterized
 
 
-class ModelItemTests(TestCase):
+class ModelTests(TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         super().setUpClass()
@@ -39,7 +39,7 @@ class ModelItemTests(TestCase):
         )
         self.item.full_clean()
         self.item.save()
-        self.item.tags.add(ModelItemTests.tag)
+        self.item.tags.add(ModelTests.tag)
         self.assertEqual(
             Item.objects.count(),
             item_count + 1,
