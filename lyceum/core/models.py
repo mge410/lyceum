@@ -54,7 +54,7 @@ class KeywordsBaseModel(models.Model):
         abstract = True
 
     def clean(self, *args: Any, **kwargs: Any) -> None:
-        normalized_name = self.get_normalized_name(self.name.lower())
+        normalized_name = self.get_normalized_name(self.name)
         normalized_name_list = [
             item.normalized_name for item in self.__class__.objects.all()
         ]
@@ -75,12 +75,19 @@ class KeywordsBaseModel(models.Model):
             'a': 'а',
             'p': 'р',
             'y': 'у',
-            't': 'т',
-            'm': 'м',
-            'k': 'к',
-            'b': 'в',
+            'A': 'А',
+            'P': 'Р',
+            'C': 'С',
+            'E': 'Е',
+            'O': 'О',
+            'X': 'Х',
+            'T': 'Т',
+            'M': 'М',
+            'K': 'К',
+            'B': 'В',
+            'H': 'Н',
         }
         for key in replace_letters.keys():
             text = text.replace(key, replace_letters[key])
-            normalized_name = re.sub(r'\W', '', text)
+            normalized_name = re.sub(r'\W', '', text).lower()
         return normalized_name
