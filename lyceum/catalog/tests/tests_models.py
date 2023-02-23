@@ -201,6 +201,14 @@ class ModelsTests(TestCase):
             ['cat', 'cat '],
             ['cat', 'cat !!'],
             ['cat', 'cat !!'],
+            ['орех', 'opex'],
+            ['xayc', 'хаус'],
+            ['суаре', 'cyaрe'],
+            ['Суаре', 'cyАрe'],
+            ['Тима', 'Tима'],
+            ['Тима', 'Tима'],
+            ['Ти#ма', 'Tи@ма'],
+            ['Key', 'кеy'],
         ]
     )
     def test_tag_keywords_negative_validator(
