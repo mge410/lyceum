@@ -1,7 +1,8 @@
-from catalog.models import Category, Item, Tag
 from django.core import exceptions
 from django.test import TestCase
 from parameterized import parameterized
+
+from catalog.models import Category, Item, Tag
 
 
 class ModelsTests(TestCase):
@@ -201,6 +202,14 @@ class ModelsTests(TestCase):
             ['cat', 'cat '],
             ['cat', 'cat !!'],
             ['cat', 'cat !!'],
+            ['орех', 'opex'],
+            ['xayc', 'хаус'],
+            ['суаре', 'cyaрe'],
+            ['Суаре', 'cyАрe'],
+            ['Тима', 'Tима'],
+            ['Тима', 'Tима'],
+            ['Ти#ма', 'Tи@ма'],
+            ['Key', 'кеy'],
         ]
     )
     def test_tag_keywords_negative_validator(

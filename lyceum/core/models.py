@@ -72,6 +72,12 @@ class KeywordsBaseModel(models.Model):
             'c': 'с',
             'x': 'х',
             'a': 'а',
+            'p': 'р',
+            'y': 'у',
+            't': 'т',
+            'm': 'м',
+            'k': 'к',
+            'b': 'в',
         }
         for key in replace_letters.keys():
             text = text.replace(key, replace_letters[key])
