@@ -1,34 +1,23 @@
 [
 {
   "model": "catalog.category",
-  "pk": 4,
-  "fields": {
-    "name": "test",
-    "is_published": true,
-    "slug": "test",
-    "keywords": "tеst",
-    "weight": 100
-  }
-},
-{
-  "model": "catalog.category",
-  "pk": 5,
-  "fields": {
-    "name": "test2",
-    "is_published": true,
-    "slug": "test2",
-    "keywords": "tеst2",
-    "weight": 100
-  }
-},
-{
-  "model": "catalog.category",
-  "pk": 9,
+  "pk": 1,
   "fields": {
     "name": "cats",
     "is_published": true,
     "slug": "cats",
-    "keywords": "саts",
+    "normalized_name": "сатs",
+    "weight": 30000
+  }
+},
+{
+  "model": "catalog.category",
+  "pk": 2,
+  "fields": {
+    "name": "dogs",
+    "is_published": true,
+    "slug": "dogs",
+    "normalized_name": "dоgs",
     "weight": 100
   }
 },
@@ -36,50 +25,50 @@
   "model": "catalog.tag",
   "pk": 1,
   "fields": {
-    "name": "Test",
+    "name": "''тest'' если у нас уже есть тэг ''test''",
     "is_published": true,
-    "slug": "tests",
-    "keywords": "tеst"
+    "slug": "test",
+    "normalized_name": "теsтеслиунасужеестьтэгтеsт"
   }
 },
 {
   "model": "catalog.tag",
   "pk": 2,
   "fields": {
-    "name": "test1",
+    "name": "кинотеатр-выставка",
     "is_published": true,
-    "slug": "test1",
-    "keywords": "tеst1"
+    "slug": "test2",
+    "normalized_name": "кинотеатрвыставка"
   }
 },
 {
   "model": "catalog.tag",
   "pk": 3,
   "fields": {
-    "name": "test2",
+    "name": "cats",
     "is_published": true,
-    "slug": "test2",
-    "keywords": "tеst2"
+    "slug": "test123",
+    "normalized_name": "сатs"
   }
 },
 {
   "model": "catalog.tag",
   "pk": 4,
   "fields": {
-    "name": "test3",
+    "name": "h310h",
     "is_published": true,
-    "slug": "test3",
-    "keywords": "tеst3"
+    "slug": "hhhsd",
+    "normalized_name": "h310h"
   }
 },
 {
   "model": "catalog.tag",
   "pk": 5,
   "fields": {
-    "name": "test5",
+    "name": "python",
     "is_published": true,
-    "slug": "test5",
-    "keywords": "tеst5"
+    "slug": "test2123",
+    "normalized_name": "рутhоn"
   }
 },
 {
@@ -88,12 +77,10 @@
   "fields": {
     "name": "php",
     "is_published": true,
-    "text": "роскошно !!!",
-    "category": 4,
+    "text": "превосходно",
+    "category": 1,
     "tags": [
-      1,
-      3,
-      4
+      3
     ]
   }
 },
@@ -101,13 +88,13 @@
   "model": "catalog.item",
   "pk": 2,
   "fields": {
-    "name": "test",
+    "name": "python",
     "is_published": true,
-    "text": "аыцауцуа превосходно ыапывп",
-    "category": 9,
+    "text": "роскошно",
+    "category": 2,
     "tags": [
       2,
-      3
+      4
     ]
   }
 },
@@ -115,13 +102,13 @@
   "model": "catalog.item",
   "pk": 3,
   "fields": {
-    "name": "java",
+    "name": "test123",
     "is_published": true,
-    "text": "НЕ роскошко =)и не Превосходно",
-    "category": 5,
+    "text": "dsgs превосходно",
+    "category": 2,
     "tags": [
-      2,
-      3
+      4,
+      5
     ]
   }
 },
@@ -129,12 +116,12 @@
   "model": "catalog.item",
   "pk": 4,
   "fields": {
-    "name": "python",
+    "name": "cats123",
     "is_published": true,
-    "text": "превосходно роскошно роскошнороскошно",
-    "category": 9,
+    "text": "eeetwe t роскошно",
+    "category": 1,
     "tags": [
-      1,
+      3,
       4
     ]
   }
@@ -143,12 +130,12 @@
   "model": "catalog.item",
   "pk": 5,
   "fields": {
-    "name": "cats",
+    "name": "test401",
     "is_published": true,
-    "text": "роскошно",
-    "category": 5,
+    "text": "превосходно роскошно",
+    "category": 1,
     "tags": [
-      2,
+      3,
       5
     ]
   }

@@ -42,30 +42,31 @@ class SluggedBaseModel(models.Model):
 
 
 class KeywordsBaseModel(models.Model):
-    keywords = models.CharField(
+    normalized_name = models.CharField(
         max_length=150,
-        help_text='Ключевые слова',
-        verbose_name='ключевые слова',
+        help_text='Нормализированное имя',
+        verbose_name='Нормализированное имя',
         editable=False,
+        null=True,
     )
 
     class Meta:
         abstract = True
 
     def clean(self, *args: Any, **kwargs: Any) -> None:
-        keywords = self.get_keywords(self.name.lower())
-        keywords_list = [
-            item.keywords for item in self.__class__.objects.all()
+        normalized_name = self.get_normalized_name(self.name.lower())
+        normalized_name_list = [
+            item.normalized_name for item in self.__class__.objects.all()
         ]
-        if keywords in keywords_list:
+        if normalized_name in normalized_name_list:
             raise ValidationError(
                 'Уже есть обьект с похожем названием.'
                 ' Перефразируйте ваш обьект или воспользуйтесь существующим'
             )
-        self.keywords = keywords
+        self.normalized_name = normalized_name
         super(KeywordsBaseModel, self).clean()
 
-    def get_keywords(self, text: str) -> str:
+    def get_normalized_name(self, text: str) -> str:
         replace_letters = {
             'e': 'е',
             'o': 'о',
@@ -81,5 +82,5 @@ class KeywordsBaseModel(models.Model):
         }
         for key in replace_letters.keys():
             text = text.replace(key, replace_letters[key])
-            keyword_list = sorted(filter(None, re.split(r'\W', text)))
-        return ','.join(keyword_list)
+            normalized_name = re.sub(r'\W', '', text)
+        return normalized_name
