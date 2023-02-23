@@ -197,9 +197,9 @@ class ModelsTests(TestCase):
             ['cat', 'сat'],
             ['cat', 'cat'],
             ['cat', 'Cat'],
+            ['ca t', 'cat '],
             ['cat', 'cat '],
-            ['cat', 'cat '],
-            ['cat', 'cat !!'],
+            ['c  at', 'c at !!'],
             ['cat', 'cat !!'],
             ['орех', 'opex'],
             ['xayc', 'хаус'],
@@ -209,6 +209,10 @@ class ModelsTests(TestCase):
             ['Тима', 'Tима'],
             ['Ти#ма', 'Tи@ма'],
             ['Key', 'кеy'],
+            ['кинотеатр', 'кино  театр'],
+            ['кино@#@театр', 'ки@#@#но  театр'],
+            ['тest', 'test'],
+            ['кинотеатр-выставка', 'кинo тeaтр! ВЫСТAВКA'],
         ]
     )
     def test_tag_keywords_negative_validator(
