@@ -1,8 +1,7 @@
-from django.core import validators
-from django.db import models
-
 import core.models as core
 from catalog.validators import ValidateMustContain
+from django.core import validators
+from django.db import models
 
 
 class Category(
