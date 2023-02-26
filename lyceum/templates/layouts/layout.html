@@ -35,13 +35,13 @@
                 </button>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                    {% with request.resolver_match.view_name as view_name %}
                     <ul class="nav navbar-nav menu_nav justify-content-center">
-                        <li class="nav-item active"><a class="nav-link" href=" {% url 'homepage:index' %} ">Домашняя</a>
-                        </li>
-                        <li class="nav-item"><a class="nav-link" href=" {% url 'homepage:index' %} ">Каталог</a>
-                        <li class="nav-item"><a class="nav-link" href=" {% url 'homepage:index' %} ">О нас</a></li>
-                        <li class="nav-item"><a class="nav-link" href=" {% url 'homepage:index' %} ">Контакты</a></li>
+                        <li class="nav-item {% if view_name == 'homepage:index' %}active{% endif %}"><a class="nav-link" href=" {% url 'homepage:index' %} ">Домашняя</a></li>
+                        <li class="nav-item {% if view_name == 'catalog:index' %}active{% endif %} "><a class="nav-link" href=" {% url 'catalog:index' %} ">Каталог</a>
+                        <li class="nav-item {% if view_name == 'about:index' %}active{% endif %}   "><a class="nav-link" href=" {% url 'about:index' %} ">О нас</a></li>
                     </ul>
+                    {% endwith %}
                     <ul class="nav navbar-nav navbar-right navbar-social">
                         <li><a href="https://vk.com/vvoronkov4"><img src=" {% static  'layuots/img/icons-discord.svg'%} " width="30px" alt=""></a></li>
                         <li><a href="https://t.me/mge410"><img src=" {% static  'layuots/img/icons-tg.svg'%} " width="30px" alt=""></a></li>
@@ -53,7 +53,9 @@
     </div>
 </header>
 
-{% block content %}Контент не подгрузился =({% endblock %}
+<main class="main">
+    {% block content %}Контент не подгрузился =({% endblock %}
+</main>
 
 <footer class="footer-area section-padding">
     <div class="container">

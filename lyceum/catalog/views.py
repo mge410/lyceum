@@ -1,9 +1,14 @@
 from django.http import HttpRequest, HttpResponse
+from django.shortcuts import render
 
 
 def index(request: HttpRequest) -> HttpResponse:
-    return HttpResponse('<div>Список элементов</div>')
+    template = 'catalog/index.html'
+    context = {}
+    return render(request, template, context)
 
 
 def show(request: HttpRequest, id: int) -> HttpResponse:
-    return HttpResponse(f'<div>Подробно элемент id: {id}</div>')
+    template = 'catalog/show.html'
+    context = {}
+    return render(request, template, context)

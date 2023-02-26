@@ -1,5 +1,8 @@
 from django.http import HttpRequest, HttpResponse
+from django.shortcuts import render
 
 
 def index(request: HttpRequest) -> HttpResponse:
-    return HttpResponse('<div>О проекте</div>')
+    template = 'about/index.html'
+    context = {}
+    return render(request, template, context)

@@ -1,4 +1,4 @@
-from catalog.models import Category, Item, Tag
+from catalog.models import Category, Item, Tag, MainImageItem
 from django.contrib import admin
 
 
@@ -14,6 +14,7 @@ class ItemAdmin(admin.ModelAdmin):
     fields = (
         Item.is_published.field.name,
         Item.name.field.name,
+        Item.main_image.field.name,
         Item.category.field.name,
         Item.tags.field.name,
         Item.text.field.name,
