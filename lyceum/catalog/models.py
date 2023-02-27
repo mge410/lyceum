@@ -40,72 +40,12 @@ class Tag(
         default_related_name = 'tags'
 
 
-class MainImageItem(core.NamedBaseModel):
-    image = models.ImageField('Будут приведены к 300px',
-                              upload_to='catalog/',
-                              )
-
-    def get_image_300x300(self):
-        return get_thumbnail(self.image, '300x300', crop='center', quality=51).name
-
-    def image_tmb(self):
-        if self.image:
-            return mark_safe(
-                f'<img src="{self.image.url}" width="50">'
-            )
-        return 'Нет изображения'
-
-    image_tmb.short_description = 'Main'
-    image_tmb.allow_tags = True
-
-    class Meta:
-        verbose_name = 'главная картинка'
-        verbose_name_plural = 'главные изображения'
-        default_related_name = 'items'
-
-    def save(self, *args, **kwargs):
-        super(MainImageItem, self).save(*args, **kwargs)
-        self.image = self.get_image_300x300()
-        super(MainImageItem, self).save(*args, **kwargs)
-
-
-class GalleryImagesItem(core.NamedBaseModel):
-    image = models.ImageField('Будут приведены к 300px',
-                              upload_to='catalog/',
-                              )
-
-    def get_image_300x300(self):
-        return get_thumbnail(self.image, '300x300', crop='center', quality=51).name
-
-    def image_tmb(self):
-        if self.image:
-            return mark_safe(
-                f'<img src="{self.image.url}" width="50">'
-            )
-        return 'Нет изображения'
-
-    image_tmb.short_description = 'Main'
-    image_tmb.allow_tags = True
-
-    class Meta:
-        verbose_name = 'главная картинка'
-        verbose_name_plural = 'главные изображения'
-        default_related_name = 'items'
-
-    def save(self, *args, **kwargs):
-        super(MainImageItem, self).save(*args, **kwargs)
-        self.image = self.get_image_300x300()
-        super(MainImageItem, self).save(*args, **kwargs)
-
-
 class Item(core.NamedBaseModel, core.PublishedBaseModel):
     text = models.TextField(
         validators=[ValidateMustContain('роскошно', 'превосходно')],
         help_text='В тексте должно быть одно из слов: роскошно, превосходно.',
         verbose_name='описание',
     )
-
-    main_image = models.OneToOneField(MainImageItem, on_delete=models.CASCADE, null=True, blank=True, verbose_name='Главное изображение', related_name='item')
 
     category = models.ForeignKey(
         Category,
@@ -127,3 +67,25 @@ class Item(core.NamedBaseModel, core.PublishedBaseModel):
 
     def __str__(self) -> str:
         return self.name[:20]
+
+
+class MainImageItem(core.NamedBaseModel, core.ImageBaseModel):
+    items = models.OneToOneField(Item, on_delete=models.CASCADE,
+                                 null=True, blank=True,
+                                 verbose_name='галерея изображение')
+
+    class Meta:
+        verbose_name = 'главная картинка'
+        verbose_name_plural = 'главные изображения'
+        default_related_name = 'main_image'
+
+
+class GalleryImagesItem(core.NamedBaseModel, core.ImageBaseModel):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE,
+                             null=True, blank=True,
+                             verbose_name='главное изображение')
+
+    class Meta:
+        verbose_name = 'изображение'
+        verbose_name_plural = 'галерея изображений'
+        default_related_name = 'gallery_images'

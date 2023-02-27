@@ -1,12 +1,19 @@
-from catalog.models import Category, Item, Tag, MainImageItem
+from catalog.models import Category, Item, Tag, MainImageItem, GalleryImagesItem
 from django.contrib import admin
 
 
-@admin.register(MainImageItem)
-class MainImageItemAdmin(admin.ModelAdmin):
-    list_display = (
-        MainImageItem.image_tmb,
-    )
+class MainImageAdmin(admin.TabularInline):
+    model = MainImageItem
+    extra = 1
+
+    readonly_fields = (model.image_tmb, )
+
+
+class GalleryImageAdmin(admin.TabularInline):
+    model = GalleryImagesItem
+    extra = 1
+
+    readonly_fields = (model.image_tmb, )
 
 
 @admin.register(Item)
@@ -14,15 +21,14 @@ class ItemAdmin(admin.ModelAdmin):
     list_display = (
         Item.name.field.name,
         Item.is_published.field.name,
-        Item.main_image.field.name,
     )
+    inlines = [MainImageAdmin, GalleryImageAdmin]
     list_editable = (Item.is_published.field.name,)
     list_display_links = (Item.name.field.name,)
     filter_horizontal = (Item.tags.field.name,)
     fields = (
         Item.is_published.field.name,
         Item.name.field.name,
-        Item.main_image.field.name,
         Item.category.field.name,
         Item.tags.field.name,
         Item.text.field.name,
