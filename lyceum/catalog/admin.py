@@ -25,6 +25,7 @@ class ItemAdmin(admin.ModelAdmin):
     list_display = (
         Item.name.field.name,
         Item.is_published.field.name,
+        'get_image',
     )
     inlines = [MainImageAdmin, GalleryImageAdmin]
     list_editable = (Item.is_published.field.name,)
@@ -37,6 +38,10 @@ class ItemAdmin(admin.ModelAdmin):
         Item.tags.field.name,
         Item.text.field.name,
     )
+
+    @admin.display(ordering='main_image', description='Фото товара')
+    def get_image(self, obj):
+        return obj.main_image.image_tmb()
 
 
 @admin.register(Category)
