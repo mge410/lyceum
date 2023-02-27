@@ -10,5 +10,5 @@ def item_list(request: HttpRequest) -> HttpResponse:
 
 def item_detail(request: HttpRequest, id: int) -> HttpResponse:
     template = 'catalog/item_detail.html'
-    context = {}
+    context = {'id': id}
     return render(request, template, context)
