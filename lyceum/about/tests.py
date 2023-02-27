@@ -8,8 +8,8 @@ from parameterized import parameterized
 class StaticURLTests(TestCase):
     @parameterized.expand(
         [
-            # OK/200/MOVED_PERMANENTLY/301
-            ['/about/', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
+            # OK/200/
+            ['/about/', (HTTPStatus.OK,)],
             # NOT_FOUND/404
             ['/about/1', (HTTPStatus.NOT_FOUND,)],
         ]
