@@ -1,18 +1,22 @@
-from django.test import Client, TestCase, override_settings
+import re
+
+from django.test import Client
+from django.test import override_settings
+from django.test import TestCase
 from parameterized import parameterized
 
 
 class StaticURLTests(TestCase):
     @parameterized.expand(
         [
-            ['/', '<div>яанвалГ ацинартс</div>'],
-            ['/catalog/', '<div>косипС вотнемелэ</div>'],
-            ['/catalog/2/', '<div>онбордоП тнемелэ id: 2</div>'],
-            ['/about/', '<div>О еткеорп</div>'],
+            ['/'],
+            ['/catalog/'],
+            ['/catalog/2/'],
+            ['/about/'],
         ]
     )
     @override_settings(REVERSE_MIDDLEWARE='True')
-    def test_middlevare_reverse_on_homepage(self, url: str, text: str) -> None:
+    def test_middlevare_reverse_on_homepage(self, url: str) -> None:
         with self.modify_settings(
             MIDDLEWARE={
                 'append': 'lyceum.middleware.middleware.ReverseMiddleware',
@@ -20,27 +24,34 @@ class StaticURLTests(TestCase):
         ):
             client_self = Client()
             for count in range(1, 10):
-                client_self.get(f'{url}')
-            response = client_self.get(f'{url}')
+                response = client_self.get(f'{url}')
+
+            text = response.content.decode('utf-8')
+            word_list = re.split(r'\W|[0-9]', response.content.decode('utf-8'))
+
+            for word in word_list:
+                if re.fullmatch(r'^[А-ЯЁа-яё]*$', word):
+                    text = text.replace(word, word[::-1], 2)
+
+            response_reverse = client_self.get(f'{url}')
             self.assertEqual(
-                response.content.decode('utf-8'),
+                response_reverse.content.decode('utf-8'),
                 f'{text}',
                 f'Expected: {text}, '
-                f'got: {response.content.decode("utf-8")}, testcase: {url}',
+                f'got: {response_reverse.content.decode("utf-8")},'
+                f' testcase: {url}',
             )
 
     @parameterized.expand(
         [
-            ['/', '<div>Главная страница</div>'],
-            ['/catalog/', '<div>Список элементов</div>'],
-            ['/catalog/2/', '<div>Подробно элемент id: 2</div>'],
-            ['/about/', '<div>О проекте</div>'],
+            ['/'],
+            ['/catalog/'],
+            ['/catalog/2/'],
+            ['/about/'],
         ]
     )
     @override_settings(REVERSE_MIDDLEWARE='False')
-    def test_off_middlevare_reverse_on_catalog(
-        self, url: str, text: str
-    ) -> None:
+    def test_off_middlevare_reverse_on_catalog(self, url: str) -> None:
         with self.modify_settings(
             MIDDLEWARE={
                 'remove': 'lyceum.middleware.middleware.ReverseMiddleware',
@@ -48,11 +59,12 @@ class StaticURLTests(TestCase):
         ):
             client_self = Client()
             for count in range(1, 10):
-                client_self.get(f'{url}')
-            response = client_self.get(f'{url}')
+                response = client_self.get(f'{url}')
+            response_reverse = client_self.get(f'{url}')
             self.assertEqual(
-                response.content.decode('utf-8'),
-                f'{text}',
-                f'Expected: {text}, '
-                f'got: {response.content.decode("utf-8")}, testcase: {url}',
+                response_reverse.content.decode('utf-8'),
+                f'{response.content.decode("utf-8")}',
+                f'Expected: {response.content.decode("utf-8")}, '
+                f'got: {response_reverse.content.decode("utf-8")},'
+                f' testcase: {url}',
             )

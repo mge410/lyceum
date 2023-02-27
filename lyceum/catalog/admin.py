@@ -1,5 +1,25 @@
-from catalog.models import Category, Item, Tag
+from typing import Any
+
+from catalog.models import Category
+from catalog.models import GalleryImagesItem
+from catalog.models import Item
+from catalog.models import MainImageItem
+from catalog.models import Tag
 from django.contrib import admin
+
+
+class MainImageAdmin(admin.TabularInline):
+    model = MainImageItem
+    extra = 1
+
+    readonly_fields = (model.image_tmb,)
+
+
+class GalleryImageAdmin(admin.TabularInline):
+    model = GalleryImagesItem
+    extra = 1
+
+    readonly_fields = (model.image_tmb,)
 
 
 @admin.register(Item)
@@ -7,7 +27,9 @@ class ItemAdmin(admin.ModelAdmin):
     list_display = (
         Item.name.field.name,
         Item.is_published.field.name,
+        'get_image',
     )
+    inlines = [MainImageAdmin, GalleryImageAdmin]
     list_editable = (Item.is_published.field.name,)
     list_display_links = (Item.name.field.name,)
     filter_horizontal = (Item.tags.field.name,)
@@ -18,6 +40,10 @@ class ItemAdmin(admin.ModelAdmin):
         Item.tags.field.name,
         Item.text.field.name,
     )
+
+    @admin.display(ordering='main_image', description='Фото товара')
+    def get_image(self, obj: Any) -> str:
+        return obj.main_image.image_tmb()
 
 
 @admin.register(Category)

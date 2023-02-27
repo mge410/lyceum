@@ -1,5 +1,5 @@
-import core.models as core
 from catalog.validators import ValidateMustContain
+import core.models as core
 from django.core import validators
 from django.db import models
 
@@ -46,7 +46,7 @@ class Item(core.NamedBaseModel, core.PublishedBaseModel):
     )
 
     category = models.ForeignKey(
-        'category',
+        Category,
         on_delete=models.PROTECT,
         help_text='У предмета должна быть категория.',
         verbose_name='категория',
@@ -65,3 +65,33 @@ class Item(core.NamedBaseModel, core.PublishedBaseModel):
 
     def __str__(self) -> str:
         return self.name[:20]
+
+
+class MainImageItem(core.NamedBaseModel, core.ImageBaseModel):
+    items = models.OneToOneField(
+        Item,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        verbose_name='галерея изображение',
+    )
+
+    class Meta:
+        verbose_name = 'главная картинка'
+        verbose_name_plural = 'главные изображения'
+        default_related_name = 'main_image'
+
+
+class GalleryImagesItem(core.NamedBaseModel, core.ImageBaseModel):
+    item = models.ForeignKey(
+        Item,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        verbose_name='главное изображение',
+    )
+
+    class Meta:
+        verbose_name = 'изображение'
+        verbose_name_plural = 'галерея изображений'
+        default_related_name = 'gallery_images'

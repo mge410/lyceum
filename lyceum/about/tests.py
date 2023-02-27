@@ -1,14 +1,15 @@
 from http import HTTPStatus
 
-from django.test import Client, TestCase
+from django.test import Client
+from django.test import TestCase
 from parameterized import parameterized
 
 
 class StaticURLTests(TestCase):
     @parameterized.expand(
         [
-            # OK/200/MOVED_PERMANENTLY/301
-            ['/about/', (HTTPStatus.OK, HTTPStatus.MOVED_PERMANENTLY)],
+            # OK/200/
+            ['/about/', (HTTPStatus.OK,)],
             # NOT_FOUND/404
             ['/about/1', (HTTPStatus.NOT_FOUND,)],
         ]

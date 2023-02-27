@@ -1,8 +1,10 @@
 import re
-from typing import Any
+from typing import Any, Callable
 
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.utils.safestring import mark_safe
+from sorl.thumbnail import get_thumbnail
 
 
 class NamedBaseModel(models.Model):
@@ -39,6 +41,30 @@ class SluggedBaseModel(models.Model):
 
     class Meta:
         abstract = True
+
+
+class ImageBaseModel(models.Model):
+    image = models.ImageField(
+        'Будут приведены к 300px',
+        upload_to='catalog/',
+    )
+
+    class Meta:
+        abstract = True
+
+    def get_image_300x300(self) -> str:
+        return get_thumbnail(self.image, '300x300', crop='center', quality=51)
+
+    def image_tmb(self) -> Callable | str:
+        if self.image:
+            return mark_safe(f'<img src="{self.image.url}" width="50">')
+        return 'Нет изображения'
+
+    def save(self, *args: Any, **kwargs: Any) -> None:
+        super().save(*args, **kwargs)
+        self.image = self.get_image_300x300()
+
+    image_tmb.short_description = 'Изображение'
 
 
 class KeywordsBaseModel(models.Model):

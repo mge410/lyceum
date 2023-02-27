@@ -1,10 +1,14 @@
 from http import HTTPStatus
 
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpRequest
+from django.http import HttpResponse
+from django.shortcuts import render
 
 
 def home(request: HttpRequest) -> HttpResponse:
-    return HttpResponse('<div>Главная страница</div>')
+    template = 'homepage/home.html'
+    context = {}
+    return render(request, template, context)
 
 
 def coffee(request: HttpRequest) -> HttpResponse:
