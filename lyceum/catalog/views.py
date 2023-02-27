@@ -2,13 +2,13 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
 
-def index(request: HttpRequest) -> HttpResponse:
-    template = 'catalog/index.html'
+def item_list(request: HttpRequest) -> HttpResponse:
+    template = 'catalog/item_list.html'
     context = {}
     return render(request, template, context)
 
 
-def show(request: HttpRequest, id: int) -> HttpResponse:
-    template = 'catalog/show.html'
+def item_detail(request: HttpRequest, id: int) -> HttpResponse:
+    template = 'catalog/item_detail.html'
     context = {}
     return render(request, template, context)
