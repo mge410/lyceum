@@ -1,3 +1,5 @@
+from typing import Any
+
 from catalog.models import Category
 from catalog.models import GalleryImagesItem
 from catalog.models import Item
@@ -40,7 +42,7 @@ class ItemAdmin(admin.ModelAdmin):
     )
 
     @admin.display(ordering='main_image', description='Фото товара')
-    def get_image(self, obj):
+    def get_image(self, obj: Any) -> str:
         return obj.main_image.image_tmb()
 
 
