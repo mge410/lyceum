@@ -44,28 +44,26 @@ class SluggedBaseModel(models.Model):
 
 
 class ImageBaseModel(models.Model):
-    image = models.ImageField('Будут приведены к 300px',
-                              upload_to='catalog/',
-                              )
+    image = models.ImageField(
+        'Будут приведены к 300px',
+        upload_to='catalog/',
+    )
 
     class Meta:
         abstract = True
 
     def get_image_300x300(self):
-        return get_thumbnail(self.image, '300x300', crop='center', quality=51).name
+        return get_thumbnail(self.image, '300x300', crop='center', quality=51)
 
     def image_tmb(self):
         if self.image:
-            return mark_safe(
-                f'<img src="{self.image.url}" width="50">'
-            )
+            return mark_safe(f'<img src="{self.image.url}" width="50">')
         self.image_tmb.short_description = 'Изображение'
         return 'Нет изображения'
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         self.image = self.get_image_300x300()
-        super().save(*args, **kwargs)
 
 
 class KeywordsBaseModel(models.Model):

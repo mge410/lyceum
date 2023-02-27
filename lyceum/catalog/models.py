@@ -1,9 +1,7 @@
-import core.models as core
 from catalog.validators import ValidateMustContain
+import core.models as core
 from django.core import validators
 from django.db import models
-from sorl.thumbnail import get_thumbnail
-from django.utils.safestring import mark_safe
 
 
 class Category(
@@ -70,9 +68,13 @@ class Item(core.NamedBaseModel, core.PublishedBaseModel):
 
 
 class MainImageItem(core.NamedBaseModel, core.ImageBaseModel):
-    items = models.OneToOneField(Item, on_delete=models.CASCADE,
-                                 null=True, blank=True,
-                                 verbose_name='галерея изображение')
+    items = models.OneToOneField(
+        Item,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        verbose_name='галерея изображение',
+    )
 
     class Meta:
         verbose_name = 'главная картинка'
@@ -81,9 +83,13 @@ class MainImageItem(core.NamedBaseModel, core.ImageBaseModel):
 
 
 class GalleryImagesItem(core.NamedBaseModel, core.ImageBaseModel):
-    item = models.ForeignKey(Item, on_delete=models.CASCADE,
-                             null=True, blank=True,
-                             verbose_name='главное изображение')
+    item = models.ForeignKey(
+        Item,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        verbose_name='главное изображение',
+    )
 
     class Meta:
         verbose_name = 'изображение'

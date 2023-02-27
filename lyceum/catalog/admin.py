@@ -1,4 +1,8 @@
-from catalog.models import Category, Item, Tag, MainImageItem, GalleryImagesItem
+from catalog.models import Category
+from catalog.models import GalleryImagesItem
+from catalog.models import Item
+from catalog.models import MainImageItem
+from catalog.models import Tag
 from django.contrib import admin
 
 
@@ -6,14 +10,14 @@ class MainImageAdmin(admin.TabularInline):
     model = MainImageItem
     extra = 1
 
-    readonly_fields = (model.image_tmb, )
+    readonly_fields = (model.image_tmb,)
 
 
 class GalleryImageAdmin(admin.TabularInline):
     model = GalleryImagesItem
     extra = 1
 
-    readonly_fields = (model.image_tmb, )
+    readonly_fields = (model.image_tmb,)
 
 
 @admin.register(Item)
