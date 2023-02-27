@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     # Our apps
     'about.apps.AboutConfig',
     'catalog.apps.CatalogConfig',
+    'core.apps.CoreConfig',
     'homepage.apps.HomepageConfig',
 ]
 
