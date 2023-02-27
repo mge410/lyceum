@@ -46,7 +46,7 @@ class MainImageItem(core.NamedBaseModel):
                               )
 
     def get_image_300x300(self):
-        return get_thumbnail(self.image, '300x300', crop='center', quality=51)
+        return get_thumbnail(self.image, '300x300', crop='center', quality=51).name
 
     def image_tmb(self):
         if self.image:
@@ -63,6 +63,40 @@ class MainImageItem(core.NamedBaseModel):
         verbose_name_plural = 'главные изображения'
         default_related_name = 'items'
 
+    def save(self, *args, **kwargs):
+        super(MainImageItem, self).save(*args, **kwargs)
+        self.image = self.get_image_300x300()
+        super(MainImageItem, self).save(*args, **kwargs)
+
+
+class GalleryImagesItem(core.NamedBaseModel):
+    image = models.ImageField('Будут приведены к 300px',
+                              upload_to='catalog/',
+                              )
+
+    def get_image_300x300(self):
+        return get_thumbnail(self.image, '300x300', crop='center', quality=51).name
+
+    def image_tmb(self):
+        if self.image:
+            return mark_safe(
+                f'<img src="{self.image.url}" width="50">'
+            )
+        return 'Нет изображения'
+
+    image_tmb.short_description = 'Main'
+    image_tmb.allow_tags = True
+
+    class Meta:
+        verbose_name = 'главная картинка'
+        verbose_name_plural = 'главные изображения'
+        default_related_name = 'items'
+
+    def save(self, *args, **kwargs):
+        super(MainImageItem, self).save(*args, **kwargs)
+        self.image = self.get_image_300x300()
+        super(MainImageItem, self).save(*args, **kwargs)
+
 
 class Item(core.NamedBaseModel, core.PublishedBaseModel):
     text = models.TextField(
@@ -74,7 +108,7 @@ class Item(core.NamedBaseModel, core.PublishedBaseModel):
     main_image = models.OneToOneField(MainImageItem, on_delete=models.CASCADE, null=True, blank=True, verbose_name='Главное изображение', related_name='item')
 
     category = models.ForeignKey(
-        'category',
+        Category,
         on_delete=models.PROTECT,
         help_text='У предмета должна быть категория.',
         verbose_name='категория',

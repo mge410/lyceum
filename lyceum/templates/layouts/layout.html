@@ -1,7 +1,7 @@
 <!doctype html>
-{% load static %}
 <html lang="ru">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -11,8 +11,6 @@
     <link rel="stylesheet" href="{% static 'vendors/fontawesome/css/all.min.css' %}">
     <link rel="stylesheet" href="{% static 'vendors/themify-icons/themify-icons.css' %}">
     <link rel="stylesheet" href="{% static 'vendors/linericon/style.css' %}">
-    <link rel="stylesheet" href="{% static 'vendors/owl-carousel/owl.theme.default.min.css' %}">
-    <link rel="stylesheet" href="{% static 'vendors/owl-carousel/owl.carousel.min.css' %}">
 
     <link rel="stylesheet" href=" {% static 'css/style.css' %} ">
     <link rel="icon" href="{% static 'layuots/img/icons8.png' %}" type="image/png">
@@ -25,7 +23,8 @@
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container box_1620">
                 <!-- Brand and toggle get grouped for better mobile display -->
-                <a class="navbar-brand logo_h" href=" {% url 'homepage:index' %} "><img src="{% static  'layuots/img/cat-logo.svg'%} " width="88px" alt=""></a>
+                <a class="navbar-brand logo_h" href=" {% url 'homepage:index' %} "><img
+                        src="{% static  'layuots/img/cat-logo.svg'%} " width="88px" alt=""></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -37,15 +36,23 @@
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                     {% with request.resolver_match.view_name as view_name %}
                     <ul class="nav navbar-nav menu_nav justify-content-center">
-                        <li class="nav-item {% if view_name == 'homepage:index' %}active{% endif %}"><a class="nav-link" href=" {% url 'homepage:index' %} ">Домашняя</a></li>
-                        <li class="nav-item {% if view_name == 'catalog:index' %}active{% endif %} "><a class="nav-link" href=" {% url 'catalog:index' %} ">Каталог</a>
-                        <li class="nav-item {% if view_name == 'about:index' %}active{% endif %}   "><a class="nav-link" href=" {% url 'about:index' %} ">О нас</a></li>
+                        <li class="nav-item {% if view_name == 'homepage:index' %}active{% endif %}"><a class="nav-link"
+                                                                                                        href=" {% url 'homepage:index' %} ">Домашняя</a>
+                        </li>
+                        <li class="nav-item {% if view_name == 'catalog:index' %}active{% endif %} "><a class="nav-link"
+                                                                                                        href=" {% url 'catalog:index' %} ">Каталог</a>
+                        <li class="nav-item {% if view_name == 'about:index' %}active{% endif %}   "><a class="nav-link"
+                                                                                                        href=" {% url 'about:index' %} ">О
+                            нас</a></li>
                     </ul>
                     {% endwith %}
                     <ul class="nav navbar-nav navbar-right navbar-social">
-                        <li><a href="https://vk.com/vvoronkov4"><img src=" {% static  'layuots/img/icons-discord.svg'%} " width="30px" alt=""></a></li>
-                        <li><a href="https://t.me/mge410"><img src=" {% static  'layuots/img/icons-tg.svg'%} " width="30px" alt=""></a></li>
-                        <li><a href="https://discord.gg/GHu9e7et"><img src=" {% static  'layuots/img/icons-vk.svg'%} " width="30px" alt=""></a></li>
+                        <li><a href="https://vk.com/vvoronkov4"><img
+                                src=" {% static  'layuots/img/icons-discord.svg'%} " width="30px" alt=""></a></li>
+                        <li><a href="https://t.me/mge410"><img src=" {% static  'layuots/img/icons-tg.svg'%} "
+                                                               width="30px" alt=""></a></li>
+                        <li><a href="https://discord.gg/GHu9e7et"><img src=" {% static  'layuots/img/icons-vk.svg'%} "
+                                                                       width="30px" alt=""></a></li>
                     </ul>
                 </div>
             </div>
@@ -123,12 +130,11 @@
     </div>
 </footer>
 
-  <script src="{% static 'vendors/jquery/jquery-3.2.1.min.js' %}"></script>
-  <script src="{% static 'vendors/bootstrap/bootstrap.bundle.min.js' }%"></script>
-  <script src="{% static 'vendors/owl-carousel/owl.carousel.min.js' %}"></script>
-  <script src="{% static 'js/jquery.ajaxchimp.min.js' %}"></script>
-  <script src="{% static 'js/mail-script.js' %}"></script>
-  <script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'vendors/jquery/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'vendors/bootstrap/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/jquery.ajaxchimp.min.js' %}"></script>
+<script src="{% static 'js/mail-script.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
 
 </body>
 </html>
