@@ -7,7 +7,7 @@ from django.shortcuts import render
 
 def item_list(request: HttpRequest) -> HttpResponse:
     template = 'catalog/item_list.html'
-    context = {'date': datetime.now().strftime('%Y %m %d %H:%M')}
+    context = {}
     return render(request, template, context)
 
 

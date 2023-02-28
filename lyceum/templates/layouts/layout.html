@@ -126,7 +126,7 @@
                     <h6>Ждём вас !</h6>
                     <p>Адрес:</p>
                     <p>Тула - ул. Волшебная д39</p>
-                    <p id="date">{{ date }}</p>
+                    <p id="date">2023 =)</p>
                 </div>
             </div>
         </div>
@@ -140,14 +140,29 @@
 <script src="{% static 'js/main.js' %}"></script>
 
 <script>
-    dateElement = document.getElementById('date')
-    let now = new Date($.ajax({async: false}).getResponseHeader("Date"));
-    let serverDate = new Date("{{ date }}")
+    function srvTime() {
+        let xmlHttp
+        try {
+            xmlHttp = new XMLHttpRequest();
+        } catch (err1) {
+            alert("AJAX not supported");
+        }
+        xmlHttp.open('HEAD', window.location.href.toString(), false);
+        xmlHttp.setRequestHeader("Content-Type", "text/html");
+        xmlHttp.send('');
+        console.log(xmlHttp)
+        return xmlHttp.getResponseHeader("Date");
+    }
+
+    let serverTimeResponse = srvTime();
+    let serverDate = new Date(serverTimeResponse);
     let userDate = new Date()
+
     distinctionTime = Math.abs(serverDate - userDate)
 
-    if (distinctionTime < 86400000 * 24){
-        let dateRezult = (userDate) => {
+    if (distinctionTime < 86400000 * 24) {
+        dateElement = document.getElementById('date')
+        const dateRezult = (userDate) => {
             const year = userDate.getFullYear()
             const month = userDate.getMonth().toString().padStart(2, '0')
             const date = userDate.getDate().toString().padStart(2, '0')
@@ -159,6 +174,5 @@
         dateElement.innerHTML = dateRezult(userDate)
     }
 </script>
-
 </body>
 </html>

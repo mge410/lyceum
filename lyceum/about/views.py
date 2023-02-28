@@ -7,5 +7,5 @@ from django.shortcuts import render
 
 def description(request: HttpRequest) -> HttpResponse:
     template = 'about/description.html'
-    context = {'date': datetime.now().strftime('%Y %m %d %H:%M')}
+    context = {}
     return render(request, template, context)
