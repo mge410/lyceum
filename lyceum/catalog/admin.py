@@ -5,7 +5,17 @@ from catalog.models import GalleryImagesItem
 from catalog.models import Item
 from catalog.models import MainImageItem
 from catalog.models import Tag
+from ckeditor.widgets import CKEditorWidget
+from django import forms
 from django.contrib import admin
+
+
+class ItemTextAdminForm(forms.ModelForm):
+    text = forms.CharField(widget=CKEditorWidget())
+
+    class Meta:
+        model = Item
+        fields = '__all__'
 
 
 class MainImageAdmin(admin.TabularInline):
@@ -29,6 +39,7 @@ class ItemAdmin(admin.ModelAdmin):
         Item.is_published.field.name,
         'get_image',
     )
+    form = ItemTextAdminForm
     inlines = [MainImageAdmin, GalleryImageAdmin]
     list_editable = (Item.is_published.field.name,)
     list_display_links = (Item.name.field.name,)
