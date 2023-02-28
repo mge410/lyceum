@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.http import HttpRequest
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -5,7 +7,7 @@ from django.shortcuts import render
 
 def item_list(request: HttpRequest) -> HttpResponse:
     template = 'catalog/item_list.html'
-    context = {}
+    context = {'date': datetime.now().strftime('%Y %m %d %H:%M')}
     return render(request, template, context)
 
 

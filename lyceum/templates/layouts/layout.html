@@ -37,12 +37,14 @@
                     {% with request.resolver_match.view_name as view_name %}
                     <ul class="nav navbar-nav menu_nav justify-content-center">
                         <li class="nav-item {% if view_name == 'homepage:home' %}active{% endif %}"><a class="nav-link"
-                                                                                                        href=" {% url 'homepage:home' %} ">Домашняя</a>
+                                                                                                       href=" {% url 'homepage:home' %} ">Домашняя</a>
                         </li>
-                        <li class="nav-item {% if view_name == 'catalog:item_list' %}active{% endif %} "><a class="nav-link"
-                                                                                                        href=" {% url 'catalog:item_list' %} ">Каталог</a>
-                        <li class="nav-item {% if view_name == 'about:description' %}active{% endif %}   "><a class="nav-link"
-                                                                                                        href=" {% url 'about:description' %} ">О
+                        <li class="nav-item {% if view_name == 'catalog:item_list' %}active{% endif %} "><a
+                                class="nav-link"
+                                href=" {% url 'catalog:item_list' %} ">Каталог</a>
+                        <li class="nav-item {% if view_name == 'about:description' %}active{% endif %}   "><a
+                                class="nav-link"
+                                href=" {% url 'about:description' %} ">О
                             нас</a></li>
                     </ul>
                     {% endwith %}
@@ -124,6 +126,7 @@
                     <h6>Ждём вас !</h6>
                     <p>Адрес:</p>
                     <p>Тула - ул. Волшебная д39</p>
+                    <p id="date">{{ date }}</p>
                 </div>
             </div>
         </div>
@@ -135,6 +138,27 @@
 <script src="{% static 'js/jquery.ajaxchimp.min.js' %}"></script>
 <script src="{% static 'js/mail-script.js' %}"></script>
 <script src="{% static 'js/main.js' %}"></script>
+
+<script>
+    dateElement = document.getElementById('date')
+    let now = new Date($.ajax({async: false}).getResponseHeader("Date"));
+    let serverDate = new Date("{{ date }}")
+    let userDate = new Date()
+    distinctionTime = Math.abs(serverDate - userDate)
+
+    if (distinctionTime < 86400000 * 24){
+        let dateRezult = (userDate) => {
+            const year = userDate.getFullYear()
+            const month = userDate.getMonth().toString().padStart(2, '0')
+            const date = userDate.getDate().toString().padStart(2, '0')
+            const hours = userDate.getHours().toString().padStart(2, '0')
+            const minuts = userDate.getMinutes().toString().padStart(2, '0')
+
+            return `${year} ${month} ${date} ${hours}:${minuts}`
+        }
+        dateElement.innerHTML = dateRezult(userDate)
+    }
+</script>
 
 </body>
 </html>
