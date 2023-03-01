@@ -26,32 +26,14 @@
   <script src="{% static 'js/main.js' %}"></script>
 
   <script>
-    function srvTime() {
-      let xmlHttp
-      try {
-        xmlHttp = new XMLHttpRequest();
-      } catch (err1) {
-        alert("AJAX not supported");
-      }
-      xmlHttp.open('HEAD', window.location.href.toString(), false);
-      xmlHttp.setRequestHeader("Content-Type", "text/html");
-      xmlHttp.send('');
-      console.log(xmlHttp)
-      return xmlHttp.getResponseHeader("Date");
-    }
-    let serverTimeResponse = srvTime();
-    let serverDate = new Date(serverTimeResponse);
+    let serverDate = new Date(' {% now "Y m d H:i" %} ');
     let userDate = new Date()
     distinctionTime = Math.abs(serverDate - userDate)
-    if (distinctionTime < 86400000 * 24) {
+    if (distinctionTime < 86400000) {
       dateElement = document.getElementById('date')
       const dateRezult = (userDate) => {
         const year = userDate.getFullYear()
-        const month = userDate.getMonth().toString().padStart(2, '0')
-        const date = userDate.getDate().toString().padStart(2, '0')
-        const hours = userDate.getHours().toString().padStart(2, '0')
-        const minuts = userDate.getMinutes().toString().padStart(2, '0')
-        return `${year} ${month} ${date} ${hours}:${minuts}`
+        return `${year}`
       }
       dateElement.innerHTML = dateRezult(userDate)
     }
