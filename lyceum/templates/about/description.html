@@ -1,9 +1,13 @@
 {% extends 'layouts/layout.html' %}
 
+{% block title %}
+    <title>Пушистики о нас</title>
+{% endblock %}
+
 {% block content %}
 {% load static %}
 
-<main class="main">
+<div class="main__conteiner">
     <section class="mb-30px">
         <div class="container">
             <div class="hero-banner-about hero-banner--sm">
@@ -14,7 +18,7 @@
         </div>
     </section>
     <!--================ Start Blog Post Area =================-->
-    <section class="blog-post-area section-margin">
+    <div class="blog-post-area section-margin">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -25,6 +29,6 @@
                 </div>
             </div>
         </div>
-    </section>
-</main>
+    </div>
+</div>
 {% endblock %}

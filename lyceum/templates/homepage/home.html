@@ -1,5 +1,9 @@
 {% extends 'layouts/layout.html' %}
 
+{% block title %}
+    <title>Пушистики дом</title>
+{% endblock %}
+
 {% block content %}
 {% load static %}
 <section class="mb-30px">
@@ -15,7 +19,7 @@
 
 
 <!--================ Start Blog Post Area =================-->
-<section class="blog-post-area section-margin mt-4">
+<div class="blog-post-area section-margin mt-4">
     <div class="container">
         <section class="row">
             <div class="col-lg-8">
@@ -32,9 +36,11 @@
                         <a href="#">
                             <h3>ТУТ должен быть список из каталога чтобы сразу завлечь юзера сайтиком =) .</h3>
                         </a>
-                        <p class="tag-list-inline">Тэги: <a href="#">travel</a>, <a href="#">life style</a>, <a href="#">technology</a>,
+                        <p class="tag-list-inline">Тэги: <a href="#">travel</a>, <a href="#">life style</a>, <a
+                                href="#">technology</a>,
                             <a href="#">fashion</a></p>
-                        <p>ТУТ ОПИСАНИЕ Over yielding doesn't so moved green saw meat hath fish he him from given yielding lesser
+                        <p>ТУТ ОПИСАНИЕ Over yielding doesn't so moved green saw meat hath fish he him from given
+                            yielding lesser
                             cattle were fruitful lights. Given let have, lesser their made him above gathered dominion
                             sixth. Creeping deep said can't called second. Air created seed heaven sixth created
                             living</p>
@@ -45,5 +51,5 @@
             {% include 'include/sidebar.html' %}
         </section>
     </div>
-</section>
+</div>
 {% endblock %}
