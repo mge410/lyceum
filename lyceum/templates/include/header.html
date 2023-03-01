@@ -1,40 +1,32 @@
 {% load static %}
-
 <header class="header_area">
-    <div class="main_menu">
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="container box_1620">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                {% with request.resolver_match.view_name as view_name %}
-                <div class="nav-item {% if view_name == 'homepage:home' %}active{% endif %}">
-                    <a class="navbar-brand logo_h" href=" {% url 'homepage:home' %} "><img
-                        src="{% static 'img/svg/cat-logo.svg'%}" width="88" alt=""></a>
-                </div>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+  <div class="main_menu">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container box_1620">
+        <!-- Brand and toggle get grouped for better mobile display -->{% with request.resolver_match.view_name as view_name %}
+        <div class="nav-item {% if view_name == 'homepage:home' %}active{% endif %}"> <a class="navbar-brand logo_h" href=" {% url 'homepage:home' %} "><img
+                        src="{% static 'img/svg/cat-logo.svg'%}" width="88" alt=""></a> </div> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-                    <ul class="nav navbar-nav menu_nav justify-content-center">
-                        <li class="nav-item {% if view_name == 'homepage:home' %}active{% endif %}"><a class="nav-link" href=" {% url 'homepage:home' %} "><span>Домашняя</span></a></li>
-                        <li class="nav-item {% if view_name == 'catalog:item_list' %}active{% endif %} "><a class="nav-link" href=" {% url 'catalog:item_list' %} "><span>Каталог</span></a>
-                        <li class="nav-item {% if view_name == 'about:description' %}active {% endif %}"><a class="nav-link" href=" {% url 'about:description' %} "><span>О нас</span></a></li>
-                    </ul>
-                    {% endwith %}
-                    <ul class="nav navbar-nav navbar-right navbar-social">
-                        <li><a href="https://discord.gg/GHu9e7et"><img
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+          <ul class="nav navbar-nav menu_nav justify-content-center">
+            <li class="nav-item {% if view_name == 'homepage:home' %}active{% endif %}"><a class="nav-link" href=" {% url 'homepage:home' %} "><span>Домашняя</span></a></li>
+            <li class="nav-item {% if view_name == 'catalog:item_list' %}active{% endif %} "><a class="nav-link" href=" {% url 'catalog:item_list' %} "><span>Каталог</span></a>
+              <li class="nav-item {% if view_name == 'about:description' %}active {% endif %}"><a class="nav-link" href=" {% url 'about:description' %} "><span>О нас</span></a></li>
+          </ul> {% endwith %}
+          <ul class="nav navbar-nav navbar-right navbar-social">
+            <li><a href="https://discord.gg/GHu9e7et"><img
                                 src=" {% static 'img/svg/icons-discord.svg'%} " width="30" alt=""></a></li>
-                        <li><a href="https://t.me/mge410"><img src=" {% static 'img/svg/icons-tg.svg'%} "
+            <li><a href="https://t.me/mge410"><img src=" {% static 'img/svg/icons-tg.svg'%} "
                                                                width="30" alt=""></a></li>
-                        <li><a href="https://vk.com/vvoronkov4"><img src=" {% static 'img/svg/icons-vk.svg'%} "
+            <li><a href="https://vk.com/vvoronkov4"><img src=" {% static 'img/svg/icons-vk.svg'%} "
                                                                        width="30" alt=""></a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </div>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
 </header>
