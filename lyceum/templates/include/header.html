@@ -1,4 +1,7 @@
 {% load static %}
+{% load i18n %}
+{% get_current_language as LANCODE %}
+{% language LANCODE%}
 <header class="header_area">
   <div class="main_menu">
     <nav class="navbar navbar-expand-lg navbar-light">
@@ -13,9 +16,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
           <ul class="nav navbar-nav menu_nav justify-content-center">
-            <li class="nav-item {% if view_name == 'homepage:home' %}active{% endif %}"><a class="nav-link" href=" {% url 'homepage:home' %} "><span>Домашняя</span></a></li>
-            <li class="nav-item {% if view_name == 'catalog:item_list' %}active{% endif %} "><a class="nav-link" href=" {% url 'catalog:item_list' %} "><span>Каталог</span></a>
-              <li class="nav-item {% if view_name == 'about:description' %}active {% endif %}"><a class="nav-link" href=" {% url 'about:description' %} "><span>О нас</span></a></li>
+            <li class="nav-item {% if view_name == 'homepage:home' %}active{% endif %}"><a class="nav-link" href=" {% url 'homepage:home' %} "><span>{% translate 'Домашняя' %}</span></a></li>
+            <li class="nav-item {% if view_name == 'catalog:item_list' %}active{% endif %} "><a class="nav-link" href=" {% url 'catalog:item_list' %} "><span>{% translate 'Каталог' %}</span></a>
+              <li class="nav-item {% if view_name == 'about:description' %}active {% endif %}"><a class="nav-link" href=" {% url 'about:description' %} "><span>{% translate 'О нас' %}</span></a></li>
           </ul> {% endwith %}
           <ul class="nav navbar-nav navbar-right navbar-social">
             <li><a href="https://discord.gg/GHu9e7et"><img
@@ -30,3 +33,4 @@
     </nav>
   </div>
 </header>
+{% endlanguage %}

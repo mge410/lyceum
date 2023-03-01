@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 import environ
@@ -103,7 +104,15 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+LANGUAGES = (
+    ('en', ('English',)),
+    ('ru', ('Russian',)),
+)
+
 LANGUAGE_CODE = 'ru'
+
+LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale/')]
 
 TIME_ZONE = 'UTC'
 
