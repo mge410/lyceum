@@ -171,11 +171,18 @@ a {
     display: inline-block
 }
 
-.header_area .navbar .nav .nav-item .nav-link:after {
-    display: none
+.nav-item.active a{
+    pointer-events: none;
+}
+.nav-item.active span{
+    color: #ff9907;
 }
 
-.header_area .navbar .nav .nav-item:hover .nav-link, .header_area .navbar .nav .nav-item.active .nav-link {
+.header_area .navbar .nav .nav-item .nav-link:after {
+    display: none;
+}
+
+.header_area .navbar .nav .nav-item:hover .nav-link, .header_area .navbar .nav .nav-link {
     color: #ff9907
 }
 
@@ -747,7 +754,7 @@ a {
 
 .hero-banner-main {
     position: relative;
-    background: url(../homegage/img/background.jpg) left center no-repeat;
+    background: url(../img/background/background.jpg) left center no-repeat;
     background-size: cover;
     height: 400px;
     z-index: 1
@@ -755,7 +762,7 @@ a {
 
 .hero-banner-about {
     position: relative;
-    background: url(../about/img/background.jpg) left center no-repeat;
+    background: url(../img/background/about-background.jpg) left center no-repeat;
     background-size: cover;
     height: 400px;
     z-index: 1;
