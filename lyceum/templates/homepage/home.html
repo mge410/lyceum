@@ -1,5 +1,11 @@
-{% extends 'layouts/layout.html' %} {% block title %}
-<title>Пушистики дом</title> {% endblock %} {% block content %} {% load static %}
+{% extends 'layouts/layout.html' %}
+{% load static %}
+
+{% block title %}
+<title>Пушистики дом</title>
+{% endblock %}
+
+{% block content %}
 <section class="mb-30px">
   <div class="container">
     <div class="hero-banner-main">
@@ -16,7 +22,7 @@
     <section class="row">
       <div class="col-lg-8">
         <div class="single-recent-blog-post">
-          <div class="thumb"> <img class="img-fluid" src="#" alt="">
+          <div class="thumb"> <img class="img-fluid" src="{% static 'img/plug.jpg'%}" height="330" width="730" alt="">
             <ul class="thumb-info">
               <li><a href="#"><i class="ti-user"></i>Admin</a></li>
               <li><a href="#"><i class="ti-notepad"></i>January 12,2019</a></li>
