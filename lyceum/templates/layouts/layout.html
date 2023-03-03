@@ -1,4 +1,5 @@
-<!doctype html> {% load static %}
+<!DOCTYPE html>
+{% load static %}
 <html lang="ru">
 
 <head>
@@ -26,16 +27,13 @@
   <script src="{% static 'js/main.js' %}"></script>
 
   <script>
-    let serverDate = new Date(' {% now "Y m d H:i" %} ');
+    let serverDate = new Date(' {% now "Y m d H:i" %} ')
     let userDate = new Date()
     distinctionTime = Math.abs(serverDate - userDate)
+
     if (distinctionTime < 86400000) {
       dateElement = document.getElementById('date')
-      const dateRezult = (userDate) => {
-        const year = userDate.getFullYear()
-        return `${year}`
-      }
-      dateElement.innerHTML = dateRezult(userDate)
+      dateElement.innerHTML = `now ${userDate.getFullYear()}`
     }
   </script>
 </body>

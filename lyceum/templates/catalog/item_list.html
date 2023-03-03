@@ -1,5 +1,11 @@
-{% extends 'layouts/layout.html' %} {% block title %}
-<title>Пушистики каталог</title> {% endblock %} {% block content %} {% load static %}
+{% extends 'layouts/layout.html' %}
+{% load static %}
+
+{% block title %}
+<title>Пушистики каталог</title>
+{% endblock %}
+
+{% block content %}
 <section class="blog-post-area section-margin">
   <div class="container">
     <div class="row">
@@ -84,8 +90,8 @@
             <div class="single-recent-blog-post card-view">
               <div class="thumb"> <img class="card-img rounded-0" src="{% static 'img/svg/cat-logo.svg'%}" alt="">
                 <ul class="thumb-info">
-                  <li><a href="1"><i class="ti-user"></i>Admin</a></li>
-                  <li><a href="1"><i class="ti-themify-favicon"></i>2 Comments</a></li>
+                  <li><a href="#"><i class="ti-user"></i>Admin</a></li>
+                  <li><a href="#"><i class="ti-themify-favicon"></i>2 Comments</a></li>
                 </ul>
               </div>
               <div class="details mt-20">
