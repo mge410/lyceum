@@ -36,13 +36,13 @@
   <script src="{% static 'js/main.js' %}"></script>
 
   <script>
-    let serverDate = new Date(' {% now "Y m d H:i" %} ')
-    let userDate = new Date()
-    distinctionTime = Math.abs(serverDate - userDate)
+    let dateStr = '{% now "Y-m-d" %}T{% now "H:i:s" %}Z'
+    let serverDate = Date.parse(dateStr)
+    let distinctionTime = Math.abs(serverDate - new Date())
 
     if (distinctionTime < 86400000) {
       dateElement = document.getElementById('date')
-      dateElement.innerHTML = `now ${userDate.getFullYear()}`
+      dateElement.innerHTML = `now ${new Date().getFullYear()}`
     }
   </script>
 </body>
