@@ -1,16 +1,17 @@
 {% load static %}
+
 <div class="single-recent-blog-post card-view p-3">
-  <div class="thumb"><img class="card-img rounded-0" src="{{ item.main_image.get_image_300x300.url }}" alt="#">
+  <div class="thumb"><img class="card-img rounded-0" src="{{ item.main_image.image.url }}" alt="#">
   </div>
   <div class="details mt-20">
-    <a href="{% url 'catalog:item_detail' id=1 %}">
+    <a href="{% url 'catalog:item_detail' id=item.id %}">
       <h3>{{ item.name }}</h3>
     </a>
-    <p class="tag-list-inline">Category: <a href="#">{{ item.category }}</a></p>
+    <p class="tag-list-inline">Category: <a href="#">{{ item.category.name }}</a></p>
     <p>{{ item.text|safe|truncatewords:10 }}</p>
-    <p class="tag-list-inline">Tags: {% for tag in item.tags.all %}<a href="#">{{ tag.name }}</a>, {% endfor %}
+    <p class="tag-list-inline">Tags: {% for tag in item.tags.all %}{% if forloop.last %}<a href="#">{{ tag.name }}</a> {% else %} <a href="#">{{ tag.name }}</a>, {% endif %} {% endfor %}
     <div class="button__wrapper">
-    <a class="button" href="{% url 'catalog:item_detail' id=1 %}">Read More <i
+    <a class="button" href="{% url 'catalog:item_detail' id=item.id %}">Read More <i
             class="ti-arrow-right"></i></a></div>
   </div>
 </div>

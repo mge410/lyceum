@@ -11,96 +11,11 @@
     <div class="row">
       <div class="col-lg-12">
         <div class="row">
-          <div class="col-md-4">
-            <div class="single-recent-blog-post card-view">
-              <div class="thumb"> <img class="card-img rounded-0" src="{% static 'img/svg/cat-logo.svg'%}" alt="">
-                <ul class="thumb-info">
-                  <li><a href="{% url 'catalog:item_detail' id=1 %}"><i class="ti-user"></i>Admin</a></li>
-                  <li><a href="{% url 'catalog:item_detail' id=1 %}"><i class="ti-themify-favicon"></i>2 Comments</a></li>
-                </ul>
-              </div>
-              <div class="details mt-20">
-                <a href="{% url 'catalog:item_detail' id=1 %}">
-                  <h3>Тут будут списки товаров =)</h3>
-                </a>
-                <p>Тут будет описание товаров =)</p> <a class="button" href="{% url 'catalog:item_detail' id=1 %}">Read More <i class="ti-arrow-right"></i></a> </div>
+          {% for item in items %}
+            <div class="col-md-4">
+              {% include 'include/item_card.html' %}
             </div>
-          </div>
-          <div class="col-md-4">
-            <div class="single-recent-blog-post card-view">
-              <div class="thumb"> <img class="card-img rounded-0" src="{% static 'img/svg/cat-logo.svg'%}" alt="">
-                <ul class="thumb-info">
-                  <li><a href="{% url 'catalog:item_detail' id=1 %}"><i class="ti-user"></i>Admin</a></li>
-                  <li><a href="{% url 'catalog:item_detail' id=1 %}"><i class="ti-themify-favicon"></i>2 Comments</a></li>
-                </ul>
-              </div>
-              <div class="details mt-20">
-                <a href="{% url 'catalog:item_detail' id=1 %}">
-                  <h3>Тут будут списки товаров =)</h3>
-                </a>
-                <p>Тут будет описание товаров =)</p> <a class="button" href="{% url 'catalog:item_detail' id=1 %}">Read More <i class="ti-arrow-right"></i></a> </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="single-recent-blog-post card-view">
-              <div class="thumb"> <img class="card-img rounded-0" src="{% static 'img/svg/cat-logo.svg'%}" alt="">
-                <ul class="thumb-info">
-                  <li><a href="{% url 'catalog:item_detail' id=1 %}"><i class="ti-user"></i>Admin</a></li>
-                  <li><a href="{% url 'catalog:item_detail' id=1 %}"><i class="ti-themify-favicon"></i>2 Comments</a></li>
-                </ul>
-              </div>
-              <div class="details mt-20">
-                <a href="{% url 'catalog:item_detail' id=1 %}">
-                  <h3>Тут будут списки товаров =)</h3>
-                </a>
-                <p>Тут будет описание товаров =)</p> <a class="button" href="{% url 'catalog:item_detail' id=1 %}">Read More <i class="ti-arrow-right"></i></a> </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="single-recent-blog-post card-view">
-              <div class="thumb"> <img class="card-img rounded-0" src="{% static 'img/svg/cat-logo.svg'%}" alt="">
-                <ul class="thumb-info">
-                  <li><a href="{% url 'catalog:item_detail' id=1 %}"><i class="ti-user"></i>Admin</a></li>
-                  <li><a href="{% url 'catalog:item_detail' id=1 %}"><i class="ti-themify-favicon"></i>2 Comments</a></li>
-                </ul>
-              </div>
-              <div class="details mt-20">
-                <a href="{% url 'catalog:item_detail' id=1 %}">
-                  <h3>Тут будут списки товаров =)</h3>
-                </a>
-                <p>Тут будет описание товаров =)</p> <a class="button" href="{% url 'catalog:item_detail' id=1 %}">Read More <i class="ti-arrow-right"></i></a> </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="single-recent-blog-post card-view">
-              <div class="thumb"> <img class="card-img rounded-0" src="{% static 'img/svg/cat-logo.svg'%}" alt="">
-                <ul class="thumb-info">
-                  <li><a href="{% url 'catalog:item_detail' id=1 %}"><i class="ti-user"></i>Admin</a></li>
-                  <li><a href="{% url 'catalog:item_detail' id=1 %}"><i class="ti-themify-favicon"></i>2 Comments</a></li>
-                </ul>
-              </div>
-              <div class="details mt-20">
-                <a href="{% url 'catalog:item_detail' id=1 %}">
-                  <h3>Тут будут списки товаров =)</h3>
-                </a>
-                <p>Тут будет описание товаров =)</p> <a class="button" href="{% url 'catalog:item_detail' id=1 %}">Read More <i class="ti-arrow-right"></i></a> </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="single-recent-blog-post card-view">
-              <div class="thumb"> <img class="card-img rounded-0" src="{% static 'img/svg/cat-logo.svg'%}" alt="">
-                <ul class="thumb-info">
-                  <li><a href="#"><i class="ti-user"></i>Admin</a></li>
-                  <li><a href="#"><i class="ti-themify-favicon"></i>2 Comments</a></li>
-                </ul>
-              </div>
-              <div class="details mt-20">
-                <a href="#">
-                  <h3>Тут будут списки товаров =)</h3>
-                </a>
-                <p>Тут будет описание товаров =)</p> <a class="button" href="#">Read More <i class="ti-arrow-right"></i></a> </div>
-            </div>
-          </div>
+          {% endfor %}
         </div>
         <div class="row">
           <div class="col-lg-12">
