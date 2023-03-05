@@ -1083,10 +1083,15 @@ a {
 }
 
 .single-recent-blog-post .details {
+    height: 360px;
     padding: 30px;
     padding-top: 5px;
     max-width: 370px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between
 }
+
 
 .single-recent-blog-post .details h3 {
     font-size: 21px
@@ -2159,7 +2164,12 @@ a {
     font-weight: 700;
     color: #3a414e;
     margin-bottom: 20px;
-    margin-top: 30px
+    margin-top: 30px;
+}
+
+.main_blog_details {
+    border: 5px pink solid;
+    border-radius: 30px;
 }
 
 .main_blog_details .user_details {
@@ -2662,4 +2672,40 @@ a {
 
 .card-img {
     width: 300px;
+    height: 300px;
+    object-fit: cover;
+    max-width: 100%;
+    -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+.card-img:hover img {
+    -moz-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.text {
+    border-bottom: 1px black solid;
+    padding: 30px;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.gallery__image {
+    border: 5px pink solid;
+}
+
+.detail__title {
+    padding: 0 30px;
+    text-align: center;
+}
+
+.gallery__name {
+    padding: 30px 0;
 }
