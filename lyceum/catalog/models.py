@@ -2,6 +2,7 @@ from catalog.validators import ValidateMustContain
 import core.models as core
 from django.core import validators
 from django.db import models
+from django.db.models import Prefetch
 
 
 class Category(
@@ -38,7 +39,82 @@ class Tag(
         default_related_name = 'tags'
 
 
+class ItemManager(models.Manager):
+    def homepage(self):
+        return (
+            self.get_queryset()
+            .filter(
+                is_published=True,
+                is_on_main=True,
+            )
+            .select_related('category', 'main_image', 'gallery_images')
+            .prefetch_related(
+                Prefetch(
+                    'tags',
+                    queryset=Tag.objects.filter(is_published=True).only(
+                        'name'
+                    ),
+                )
+            )
+            .only(
+                'name',
+                'text',
+                'main_image',
+                'category__name',
+                'main_image__image',
+            )
+        )
+
+    def catalog_list(self):
+        return (
+            self.select_related('category', 'main_image')
+            .prefetch_related(
+                Prefetch(
+                    'tags',
+                    queryset=Tag.objects.filter(is_published=True).only(
+                        'name'
+                    ),
+                )
+            )
+            .only(
+                'name',
+                'text',
+                'main_image',
+                'category__name',
+                'main_image__image',
+            )
+            .filter(
+                is_published=True,
+            )
+        )
+
+    def catalog_detail(self):
+        return (
+            self.select_related('category', 'main_image')
+            .prefetch_related(
+                Prefetch(
+                    'tags',
+                    queryset=Tag.objects.filter(is_published=True).only(
+                        'name'
+                    ),
+                )
+            )
+            .only(
+                'name',
+                'text',
+                'main_image',
+                'category__name',
+                'main_image__image',
+            )
+            .filter(
+                is_published=True,
+            )
+        )
+
+
 class Item(core.NamedBaseModel, core.PublishedBaseModel):
+    objects = ItemManager()
+
     is_on_main = models.BooleanField('Отображать на главной', default=False)
 
     text = models.TextField(
@@ -61,6 +137,7 @@ class Item(core.NamedBaseModel, core.PublishedBaseModel):
     )
 
     class Meta:
+        ordering = ('name',)
         verbose_name = 'товар'
         verbose_name_plural = 'товары'
         default_related_name = 'items'
