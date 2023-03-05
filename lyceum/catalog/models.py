@@ -47,7 +47,7 @@ class ItemManager(models.Manager):
                 is_published=True,
                 is_on_main=True,
             )
-            .select_related('category', 'main_image', 'gallery_images')
+            .select_related('category', 'main_image')
             .prefetch_related(
                 Prefetch(
                     'tags',
@@ -97,7 +97,8 @@ class ItemManager(models.Manager):
                     queryset=Tag.objects.filter(is_published=True).only(
                         'name'
                     ),
-                )
+                ),
+                'gallery_images',
             )
             .only(
                 'name',
