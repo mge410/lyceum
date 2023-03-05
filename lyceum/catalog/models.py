@@ -8,7 +8,7 @@ class Category(
     core.NamedBaseModel,
     core.PublishedBaseModel,
     core.SluggedBaseModel,
-    core.KeywordsBaseModel,
+    core.NormalizedNameBaseModel,
 ):
     weight = models.PositiveSmallIntegerField(
         default=100,
@@ -30,7 +30,7 @@ class Tag(
     core.NamedBaseModel,
     core.PublishedBaseModel,
     core.SluggedBaseModel,
-    core.KeywordsBaseModel,
+    core.NormalizedNameBaseModel,
 ):
     class Meta:
         verbose_name = 'тэг'
@@ -39,6 +39,8 @@ class Tag(
 
 
 class Item(core.NamedBaseModel, core.PublishedBaseModel):
+    is_on_main = models.BooleanField('Отображать на главной', default=False)
+
     text = models.TextField(
         validators=[ValidateMustContain('роскошно', 'превосходно')],
         help_text='В тексте должно быть одно из слов: роскошно, превосходно.',
