@@ -43,11 +43,11 @@ class ItemManager(models.Manager):
     def homepage(self):
         return (
             self.get_queryset()
-            .filter(
+            .select_related('category', 'main_image').filter(
                 is_published=True,
                 is_on_main=True,
+                category__is_published=True,
             )
-            .select_related('category', 'main_image')
             .prefetch_related(
                 Prefetch(
                     'tags',
@@ -85,6 +85,7 @@ class ItemManager(models.Manager):
             )
             .filter(
                 is_published=True,
+                category__is_published=True,
             )
         )
 
@@ -109,6 +110,7 @@ class ItemManager(models.Manager):
             )
             .filter(
                 is_published=True,
+                category__is_published=True,
             )
         )
 
