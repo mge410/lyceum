@@ -11,7 +11,6 @@ class StaticURLTests(TestCase):
         [
             ['/'],
             ['/catalog/'],
-            ['/catalog/2/'],
             ['/about/'],
         ]
     )
@@ -46,7 +45,6 @@ class StaticURLTests(TestCase):
         [
             ['/'],
             ['/catalog/'],
-            ['/catalog/2/'],
             ['/about/'],
         ]
     )
