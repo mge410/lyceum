@@ -1,11 +1,9 @@
-import django.urls
-
 from catalog.models import Category
 from catalog.models import Item
 from catalog.models import Tag
-from django.core import exceptions
-from django.test import TestCase, Client
-from parameterized import parameterized
+from django.test import Client
+from django.test import TestCase
+import django.urls
 
 
 class ModelsTests(TestCase):
@@ -70,7 +68,11 @@ class ModelsTests(TestCase):
         self.assertEqual(items.count(), 3)
 
     def test_catalog_detail_context(self):
-        response = Client().get(django.urls.reverse('catalog:item_detail', args=[self.item_published.id]))
+        response = Client().get(
+            django.urls.reverse(
+                'catalog:item_detail', args=[self.item_published.id]
+            )
+        )
         self.assertIn('item', response.context)
 
     def tearDown(self) -> None:

@@ -43,7 +43,8 @@ class ItemManager(models.Manager):
     def homepage(self):
         return (
             self.get_queryset()
-            .select_related('category', 'main_image').filter(
+            .select_related('category', 'main_image')
+            .filter(
                 is_published=True,
                 is_on_main=True,
                 category__is_published=True,

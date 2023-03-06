@@ -1,9 +1,9 @@
 from http import HTTPStatus
 
+from catalog.models import Item
 from django.http import HttpRequest
 from django.http import HttpResponse
 from django.shortcuts import render
-from catalog.models import Item, Tag
 
 
 def home(request: HttpRequest) -> HttpResponse:

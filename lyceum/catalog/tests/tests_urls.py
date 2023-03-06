@@ -1,10 +1,10 @@
 from http import HTTPStatus
 
+from catalog.models import Category
+from catalog.models import Item
 from django.test import Client
 from django.test import TestCase
 from parameterized import parameterized
-from catalog.models import Item
-from catalog.models import Category
 
 
 class StaticURLTests(TestCase):
