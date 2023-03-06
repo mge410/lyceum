@@ -10,19 +10,13 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8">
-        <div class="main_blog_details"> <img class="img-fluid card-img" src="{{ item.main_image.image.url }}" alt="">
-          <a href="#">
-            <h4 class="detail__title">{{ item.name }}</h4>
-          </a>
+        <div class="main_blog_details"> <div class="image__wrapper"><img class="img-fluid card-img" src="{{ item.main_image.image.url }}" alt=""></div>
+            <div class="card__name">
+                <h4 class="detail__title">{{ item.name }}</h4>
+            </div>
           <div class="user_details">
             <div class="float-left"> <a href="#">Get to know him better</a> <a href="#">Pick up a pet</a> </div>
             <div class="float-right mt-sm-0 mt-3">
-              <div class="media">
-                <div class="media-body">
-                  <p>12 Dec, 2017 11:21 am</p>
-                </div>
-                <div class="d-flex"> <img width="42" height="42" src="{% static 'img/plug.jpg'%}" alt=""> </div>
-              </div>
             </div>
           </div>
           <div class="text">

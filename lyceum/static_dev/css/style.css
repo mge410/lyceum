@@ -2168,13 +2168,25 @@ a {
 }
 
 .main_blog_details {
+    padding: 15px;
     border: 5px pink solid;
     border-radius: 30px;
+}
+
+.image__wrapper{
+    overflow: hidden;
+    cursor: pointer;
+    text-align: center;
 }
 
 .main_blog_details .user_details {
     overflow: hidden;
     margin-bottom: 30px
+}
+
+.user_details{
+    display: flex;
+    justify-content: center;
 }
 
 .main_blog_details .user_details .float-left a {
@@ -2680,7 +2692,7 @@ a {
     transition: all 0.5s;
 }
 
-.card-img:hover img {
+.card-img:hover {
     -moz-transform: scale(1.1);
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
@@ -2707,5 +2719,6 @@ a {
 }
 
 .gallery__name {
+    text-align: center;
     padding: 30px 0;
 }
