@@ -18,7 +18,7 @@ class StaticURLTests(TestCase):
             category=self.base_category,
             text='превосходно',
         )
-        self.item = Item.objects.create(
+        self.item_two = Item.objects.create(
             name='Тестовый тэг2',
             category=self.base_category,
             text='превосходно!',
