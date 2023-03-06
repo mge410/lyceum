@@ -37,15 +37,20 @@ class ItemAdmin(admin.ModelAdmin):
     list_display = (
         Item.name.field.name,
         Item.is_published.field.name,
+        Item.is_on_main.field.name,
         'get_image',
     )
     form = ItemTextAdminForm
     inlines = [MainImageAdmin, GalleryImageAdmin]
-    list_editable = (Item.is_published.field.name,)
+    list_editable = (
+        Item.is_published.field.name,
+        Item.is_on_main.field.name,
+    )
     list_display_links = (Item.name.field.name,)
     filter_horizontal = (Item.tags.field.name,)
     fields = (
         Item.is_published.field.name,
+        Item.is_on_main.field.name,
         Item.name.field.name,
         Item.category.field.name,
         Item.tags.field.name,

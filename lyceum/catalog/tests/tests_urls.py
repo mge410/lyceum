@@ -1,11 +1,30 @@
 from http import HTTPStatus
 
+from catalog.models import Category
+from catalog.models import Item
 from django.test import Client
 from django.test import TestCase
 from parameterized import parameterized
 
 
 class StaticURLTests(TestCase):
+    def setUp(self) -> None:
+        self.base_category = Category.objects.create(
+            name='Тестовая категория',
+            slug='test-category-slug',
+        )
+        self.item = Item.objects.create(
+            name='Тестовый тэг',
+            category=self.base_category,
+            text='превосходно',
+        )
+        self.item_two = Item.objects.create(
+            name='Тестовый тэг2',
+            category=self.base_category,
+            text='превосходно!',
+        )
+        super(StaticURLTests, self).setUp()
+
     def test_catalog_list_endpoint(self) -> None:
         response = Client().get('/catalog/')
         self.assertEqual(response.status_code, HTTPStatus.OK)
@@ -14,14 +33,7 @@ class StaticURLTests(TestCase):
         [
             # OK/200
             ['1', (HTTPStatus.OK,)],
-            ['9', (HTTPStatus.OK,)],
-            ['0', (HTTPStatus.OK,)],
-            ['999239', (HTTPStatus.OK,)],
-            ['012', (HTTPStatus.OK,)],
-            ['01', (HTTPStatus.OK,)],
-            ['010', (HTTPStatus.OK,)],
-            ['100', (HTTPStatus.OK,)],
-            ['10', (HTTPStatus.OK,)],
+            ['2', (HTTPStatus.OK,)],
             # 404/NOT_FOUND
             ['-0', (HTTPStatus.NOT_FOUND,)],
             ['-1', (HTTPStatus.NOT_FOUND,)],
@@ -53,10 +65,7 @@ class StaticURLTests(TestCase):
         [
             # OK/200
             ['1', (HTTPStatus.OK,)],
-            ['12', (HTTPStatus.OK,)],
-            ['999239', (HTTPStatus.OK,)],
-            ['100', (HTTPStatus.OK,)],
-            ['10', (HTTPStatus.OK,)],
+            ['2', (HTTPStatus.OK,)],
             # 404/NOT_FOUND
             ['-0', (HTTPStatus.NOT_FOUND,)],
             ['-1', (HTTPStatus.NOT_FOUND,)],
@@ -91,10 +100,7 @@ class StaticURLTests(TestCase):
         [
             # OK/200
             ['1', (HTTPStatus.OK,)],
-            ['1', (HTTPStatus.OK,)],
-            ['999239', (HTTPStatus.OK,)],
-            ['100', (HTTPStatus.OK,)],
-            ['10', (HTTPStatus.OK,)],
+            ['2', (HTTPStatus.OK,)],
             # 404/NOT_FOUND
             ['-0', (HTTPStatus.NOT_FOUND,)],
             ['-1', (HTTPStatus.NOT_FOUND,)],
@@ -120,3 +126,9 @@ class StaticURLTests(TestCase):
             f'Expected: {status}, '
             f'got: {response.status_code}, testcase: {test_case}',
         )
+
+    def tearDown(self) -> None:
+        Item.objects.all().delete()
+        Category.objects.all().delete()
+
+        super(StaticURLTests, self).tearDown()

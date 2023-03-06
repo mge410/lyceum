@@ -67,7 +67,7 @@ class ImageBaseModel(models.Model):
     image_tmb.short_description = 'Изображение'
 
 
-class KeywordsBaseModel(models.Model):
+class NormalizedNameBaseModel(models.Model):
     normalized_name = models.CharField(
         max_length=150,
         help_text='Нормализированное имя',
@@ -90,7 +90,7 @@ class KeywordsBaseModel(models.Model):
                 ' Перефразируйте ваш обьект или воспользуйтесь существующим'
             )
         self.normalized_name = normalized_name
-        super(KeywordsBaseModel, self).clean()
+        super(NormalizedNameBaseModel, self).clean()
 
     def get_normalized_name(self, text: str) -> str:
         replace_letters = {

@@ -2,13 +2,14 @@ from catalog.validators import ValidateMustContain
 import core.models as core
 from django.core import validators
 from django.db import models
+from django.db.models import Prefetch
 
 
 class Category(
     core.NamedBaseModel,
     core.PublishedBaseModel,
     core.SluggedBaseModel,
-    core.KeywordsBaseModel,
+    core.NormalizedNameBaseModel,
 ):
     weight = models.PositiveSmallIntegerField(
         default=100,
@@ -30,7 +31,7 @@ class Tag(
     core.NamedBaseModel,
     core.PublishedBaseModel,
     core.SluggedBaseModel,
-    core.KeywordsBaseModel,
+    core.NormalizedNameBaseModel,
 ):
     class Meta:
         verbose_name = 'тэг'
@@ -38,7 +39,88 @@ class Tag(
         default_related_name = 'tags'
 
 
+class ItemManager(models.Manager):
+    def homepage(self):
+        return (
+            self.get_queryset()
+            .select_related('category', 'main_image')
+            .filter(
+                is_published=True,
+                is_on_main=True,
+                category__is_published=True,
+            )
+            .prefetch_related(
+                Prefetch(
+                    'tags',
+                    queryset=Tag.objects.filter(is_published=True).only(
+                        'name'
+                    ),
+                )
+            )
+            .only(
+                'name',
+                'text',
+                'main_image',
+                'category__name',
+                'main_image__image',
+            )
+        )
+
+    def catalog_list(self):
+        return (
+            self.select_related('category', 'main_image')
+            .prefetch_related(
+                Prefetch(
+                    'tags',
+                    queryset=Tag.objects.filter(is_published=True).only(
+                        'name'
+                    ),
+                )
+            )
+            .only(
+                'name',
+                'text',
+                'main_image',
+                'category__name',
+                'main_image__image',
+            )
+            .filter(
+                is_published=True,
+                category__is_published=True,
+            )
+        )
+
+    def catalog_detail(self):
+        return (
+            self.select_related('category', 'main_image')
+            .prefetch_related(
+                Prefetch(
+                    'tags',
+                    queryset=Tag.objects.filter(is_published=True).only(
+                        'name'
+                    ),
+                ),
+                'gallery_images',
+            )
+            .only(
+                'name',
+                'text',
+                'main_image',
+                'category__name',
+                'main_image__image',
+            )
+            .filter(
+                is_published=True,
+                category__is_published=True,
+            )
+        )
+
+
 class Item(core.NamedBaseModel, core.PublishedBaseModel):
+    objects = ItemManager()
+
+    is_on_main = models.BooleanField('Отображать на главной', default=False)
+
     text = models.TextField(
         validators=[ValidateMustContain('роскошно', 'превосходно')],
         help_text='В тексте должно быть одно из слов: роскошно, превосходно.',
@@ -59,6 +141,7 @@ class Item(core.NamedBaseModel, core.PublishedBaseModel):
     )
 
     class Meta:
+        ordering = ('name',)
         verbose_name = 'товар'
         verbose_name_plural = 'товары'
         default_related_name = 'items'

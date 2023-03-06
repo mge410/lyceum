@@ -90,7 +90,7 @@ a {
     margin-right: 30px
 }
 
-.navbar-social{
+.navbar-social {
     flex-wrap: nowrap;
     position: relative;
     right: 10px;
@@ -171,10 +171,11 @@ a {
     display: inline-block
 }
 
-.nav-item.active a{
+.nav-item.active a {
     pointer-events: none;
 }
-.nav-item.active span{
+
+.nav-item.active span {
     color: #ff9907;
 }
 
@@ -1020,11 +1021,14 @@ a {
 }
 
 .single-recent-blog-post {
-    margin-bottom: 60px
+    margin-bottom: 60px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
+
 .single-recent-blog-post .thumb {
-    position: relative
+    position: relative;
 }
 
 .single-recent-blog-post .thumb-info {
@@ -1079,8 +1083,15 @@ a {
 }
 
 .single-recent-blog-post .details {
-    padding-top: 30px
+    height: 360px;
+    padding: 30px;
+    padding-top: 5px;
+    max-width: 370px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between
 }
+
 
 .single-recent-blog-post .details h3 {
     font-size: 21px
@@ -2153,12 +2164,29 @@ a {
     font-weight: 700;
     color: #3a414e;
     margin-bottom: 20px;
-    margin-top: 30px
+    margin-top: 30px;
+}
+
+.main_blog_details {
+    padding: 15px;
+    border: 5px pink solid;
+    border-radius: 30px;
+}
+
+.image__wrapper{
+    overflow: hidden;
+    cursor: pointer;
+    text-align: center;
 }
 
 .main_blog_details .user_details {
     overflow: hidden;
     margin-bottom: 30px
+}
+
+.user_details{
+    display: flex;
+    justify-content: center;
 }
 
 .main_blog_details .user_details .float-left a {
@@ -2652,4 +2680,45 @@ a {
 
 .footer-text a, .footer-text i {
     color: #ff9907
+}
+
+.card-img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    max-width: 100%;
+    -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+.card-img:hover {
+    -moz-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.text {
+    border-bottom: 1px black solid;
+    padding: 30px;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.gallery__image {
+    border: 5px pink solid;
+}
+
+.detail__title {
+    padding: 0 30px;
+    text-align: center;
+}
+
+.gallery__name {
+    text-align: center;
+    padding: 30px 0;
 }
