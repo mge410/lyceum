@@ -14,6 +14,15 @@ def item_list(request: HttpRequest) -> HttpResponse:
     return render(request, template, context)
 
 
+def new_item_list(request: HttpRequest) -> HttpResponse:
+    items = Item.objects.new_item_list()
+    template = 'catalog/item_list.html'
+    context = {
+        'items': items,
+    }
+    return render(request, template, context)
+
+
 def item_detail(request: HttpRequest, id: int) -> HttpResponse:
     item = django.shortcuts.get_object_or_404(
         Item.objects.catalog_detail(),
