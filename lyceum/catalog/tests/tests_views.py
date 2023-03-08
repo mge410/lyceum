@@ -101,10 +101,10 @@ class ModelsTests(TestCase):
             Client()
             .get(
                 django.urls.reverse(
-                    'catalog:item_list', args=[self.item_published.id]
+                    'catalog:item_list'
                 )
             )
-            .context[0]['item']
+            .context['items'][0]
         )
         self.assertIn(field, context_item.keys())
 
@@ -123,10 +123,10 @@ class ModelsTests(TestCase):
             Client()
             .get(
                 django.urls.reverse(
-                    'catalog:item_list', args=[self.item_published.id]
+                    'catalog:item_list'
                 )
             )
-            .context[0]['item']
+            .context['items'][0]
         )
         self.assertNotIn(field, context_item.keys())
 
