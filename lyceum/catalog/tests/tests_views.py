@@ -99,11 +99,7 @@ class ModelsTests(TestCase):
     def test_catalog_list_attributes(self, field):
         context_item = model_to_dict(
             Client()
-            .get(
-                django.urls.reverse(
-                    'catalog:item_list'
-                )
-            )
+            .get(django.urls.reverse('catalog:item_list'))
             .context['items'][0]
         )
         self.assertIn(field, context_item.keys())
@@ -121,11 +117,7 @@ class ModelsTests(TestCase):
     def test_catalog_detail_list_attributes(self, field):
         context_item = model_to_dict(
             Client()
-            .get(
-                django.urls.reverse(
-                    'catalog:item_list'
-                )
-            )
+            .get(django.urls.reverse('catalog:item_list'))
             .context['items'][0]
         )
         self.assertNotIn(field, context_item.keys())
