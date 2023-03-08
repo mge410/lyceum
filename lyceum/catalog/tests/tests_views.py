@@ -5,6 +5,7 @@ from django.forms.models import model_to_dict
 from django.test import Client
 from django.test import TestCase
 import django.urls
+from datetime import datetime
 from parameterized import parameterized
 
 
@@ -32,29 +33,39 @@ class ModelsTests(TestCase):
             name='Тестовый item1',
             category=self.base_category_published,
             text='превосходно',
+            created_at=datetime.now(),
+            updated_at=datetime.now(),
         )
         self.item_published_main = Item.objects.create(
             name='Тестовый item12',
             category=self.base_category_published,
             text='превосходно',
             is_on_main=True,
+            created_at=datetime.now(),
+            updated_at=datetime.now(),
         )
         self.item_unpublished = Item.objects.create(
             name='Тестовый item13',
             category=self.base_category_published,
             text='превосходно!',
             is_published=False,
+            created_at=datetime.now(),
+            updated_at=datetime.now(),
         )
         self.item_unpublished_category = Item.objects.create(
             name='Тестовый item14',
             category=self.base_category_unpublished,
             text='превосходно',
             is_on_main=True,
+            created_at=datetime.now(),
+            updated_at=datetime.now(),
         )
         self.item_unpublished_tag = Item.objects.create(
             name='Тестовый item15',
             category=self.base_category_published,
             text='превосходно!',
+            created_at=datetime.now(),
+            updated_at=datetime.now(),
         )
         self.item_unpublished_tag.tags.add(self.base_tag_unpublished.pk)
         super(ModelsTests, self).setUp()
