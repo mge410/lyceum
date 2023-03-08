@@ -96,6 +96,59 @@ class ModelsTests(TestCase):
             ],
         ]
     )
+    def test_catalog_list_attributes(self, field):
+        context_item = model_to_dict(
+            Client()
+            .get(
+                django.urls.reverse(
+                    'catalog:item_list', args=[self.item_published.id]
+                )
+            )
+            .context[0]['item']
+        )
+        self.assertIn(field, context_item.keys())
+
+    @parameterized.expand(
+        [
+            [
+                'created_at',
+            ],
+            [
+                'updated_at',
+            ],
+        ]
+    )
+    def test_catalog_detail_list_attributes(self, field):
+        context_item = model_to_dict(
+            Client()
+            .get(
+                django.urls.reverse(
+                    'catalog:item_list', args=[self.item_published.id]
+                )
+            )
+            .context[0]['item']
+        )
+        self.assertNotIn(field, context_item.keys())
+
+    @parameterized.expand(
+        [
+            [
+                'id',
+            ],
+            [
+                'name',
+            ],
+            [
+                'text',
+            ],
+            [
+                'category',
+            ],
+            [
+                'tags',
+            ],
+        ]
+    )
     def test_catalog_detail_attributes(self, field):
         context_item = model_to_dict(
             Client()
