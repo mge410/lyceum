@@ -60,7 +60,7 @@ class ItemManager(models.Manager):
                 is_published=True,
                 category__is_published=True,
             )
-            .order_by('updated_at')[:5]
+            .order_by('-created_at')[:5]
         )
 
     def unchecked_item_list(self):
