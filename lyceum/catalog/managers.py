@@ -50,7 +50,7 @@ class ItemManager(models.Manager):
             .only(
                 catalog.models.Item.name.field.name,
                 catalog.models.Item.text.field.name,
-                catalog.models.Item.category.field.name,
-                'main_image__image',
+                f'{catalog.models.Item.category.field.name}__{catalog.models.Category.name.field.name}',
+                f'main_image__{catalog.models.MainImageItem.image.field.name}',
             )
         )
