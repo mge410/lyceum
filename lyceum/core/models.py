@@ -43,6 +43,14 @@ class SluggedBaseModel(models.Model):
         abstract = True
 
 
+class DateBaseModel(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        abstract = True
+
+
 class ImageBaseModel(models.Model):
     image = models.ImageField(
         'Будут приведены к 300px',

@@ -2,6 +2,26 @@
 <!-- Start Blog Post Siddebar -->
 <div class="col-lg-4 sidebar-widgets">
   <div class="widget-wrap">
+    <div class="single-sidebar-widget post-category-widget">
+      <h4 class="single-sidebar-widget__title">Интересные предложения</h4>
+      <ul class="cat-list mt-20">
+        <li>
+          <a href="{% url 'catalog:new_item_list'%}" class="d-flex justify-content-between">
+            <p>Новинки</p>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'catalog:friday_item_list'%}" class="d-flex justify-content-between">
+            <p>Пятница</p>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'catalog:unchecked_item_list'%}" class="d-flex justify-content-between">
+            <p>Непроверенные</p>
+          </a>
+        </li>
+      </ul>
+    </div>
     <div class="single-sidebar-widget newsletter-widget">
       <h4 class="single-sidebar-widget__title">Новостная рассылка</h4>
       <div class="form-group mt-30">
