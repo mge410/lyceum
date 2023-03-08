@@ -39,7 +39,7 @@ class Tag(
         default_related_name = 'tags'
 
 
-class Item(core.NamedBaseModel, core.PublishedBaseModel):
+class Item(core.NamedBaseModel, core.PublishedBaseModel, core.DateBaseModel):
     objects = ItemManager()
 
     is_on_main = models.BooleanField('Отображать на главной', default=False)
