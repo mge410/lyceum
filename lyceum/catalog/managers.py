@@ -21,6 +21,16 @@ class ItemManager(models.Manager):
             .order_by('category__name')
         )
 
+    def new_item_list(self):
+        return (
+            self.prefetch_to_items()
+            .filter(
+                is_published=True,
+                category__is_published=True,
+            )
+            .order_by('category__name')
+        )
+
     def catalog_detail(self):
         return (
             self.prefetch_to_items()
@@ -50,7 +60,8 @@ class ItemManager(models.Manager):
             .only(
                 catalog.models.Item.name.field.name,
                 catalog.models.Item.text.field.name,
-                f'{catalog.models.Item.category.field.name}__{catalog.models.Category.name.field.name}',
+                f'{catalog.models.Item.category.field.name}'
+                f'__{catalog.models.Category.name.field.name}',
                 f'main_image__{catalog.models.MainImageItem.image.field.name}',
             )
         )
