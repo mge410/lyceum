@@ -1,5 +1,6 @@
 from datetime import datetime
 from datetime import timedelta
+from random import sample
 
 import catalog.models
 from django.db import models
@@ -26,9 +27,21 @@ class ItemManager(models.Manager):
         )
 
     def new_item_list(self):
+        my_ids = list(
+            catalog.models.Item.objects.filter(
+                is_published=True,
+                created_at__range=(
+                    datetime.now() - timedelta(days=7),
+                    datetime.now(),
+                ),
+            ).values_list('id', flat=True)
+        )
+        if my_ids is None:
+            return None
         return (
             self.prefetch_to_items()
             .filter(
+                id__in=sample(my_ids, 5),
                 created_at__range=(
                     datetime.now() - timedelta(days=7),
                     datetime.now(),
@@ -36,7 +49,7 @@ class ItemManager(models.Manager):
                 is_published=True,
                 category__is_published=True,
             )
-            .order_by('category__name')
+            .order_by('name')[:5]
         )
 
     def friday_item_list(self):
@@ -47,7 +60,7 @@ class ItemManager(models.Manager):
                 is_published=True,
                 category__is_published=True,
             )
-            .order_by('category__name')
+            .order_by('updated_at')[:5]
         )
 
     def unchecked_item_list(self):
