@@ -7,7 +7,9 @@
     <a href="{% url 'catalog:item_detail' id=item.id %}">
       <h3>{{ item.name }}</h3>
     </a>
-    <p class="tag-list-inline">Category: <a href="#">{{ item.category.name }}</a></p>
+    {% with request.resolver_match.view_name as view_name %}
+      {% if view_name != 'catalog:item_list' %}<p class="tag-list-inline">Category: <a href="#">{{ item.category.name }}</a></p>{% endif %}
+    {% endwith %}
     <div class="card-text">
       <p>{{ item.text|safe|truncatewords:10 }}</p>
     </div>
