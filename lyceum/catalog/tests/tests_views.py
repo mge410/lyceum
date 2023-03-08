@@ -1,9 +1,11 @@
 from catalog.models import Category
 from catalog.models import Item
 from catalog.models import Tag
+from django.forms.models import model_to_dict
 from django.test import Client
 from django.test import TestCase
 import django.urls
+from parameterized import parameterized
 
 
 class ModelsTests(TestCase):
@@ -74,6 +76,59 @@ class ModelsTests(TestCase):
             )
         )
         self.assertIn('item', response.context)
+
+    @parameterized.expand(
+        [
+            [
+                'id',
+            ],
+            [
+                'name',
+            ],
+            [
+                'text',
+            ],
+            [
+                'category',
+            ],
+            [
+                'tags',
+            ],
+        ]
+    )
+    def test_catalog_detail_attributes(self, field):
+        context_item = model_to_dict(
+            Client()
+            .get(
+                django.urls.reverse(
+                    'catalog:item_detail', args=[self.item_published.id]
+                )
+            )
+            .context[0]['item']
+        )
+        self.assertIn(field, context_item.keys())
+
+    @parameterized.expand(
+        [
+            [
+                'created_at',
+            ],
+            [
+                'updated_at',
+            ],
+        ]
+    )
+    def test_catalog_detail_bad_attributes(self, field):
+        context_item = model_to_dict(
+            Client()
+            .get(
+                django.urls.reverse(
+                    'catalog:item_detail', args=[self.item_published.id]
+                )
+            )
+            .context[0]['item']
+        )
+        self.assertNotIn(field, context_item.keys())
 
     def tearDown(self) -> None:
         Item.objects.all().delete()
