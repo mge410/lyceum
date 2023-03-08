@@ -11,11 +11,15 @@
     <div class="row">
       <div class="col-lg-12">
         <div class="row">
-          {% for item in items %}
-            <div class="col-md-4">
-              {% include 'include/item_card.html' %}
-            </div>
-          {% endfor %}
+          {% regroup items by category.name  as category_list %}
+            {% for category in category_list %}
+                <h2 class="col-md-12 text-center">{{category.grouper}}</h2>
+                {% for item in category.list %}
+                <div class="col-md-4">
+                  {% include 'include/item_card.html' %}
+                </div>
+              {% endfor %}
+            {% endfor %}
         </div>
         <div class="row">
           <div class="col-lg-12">
