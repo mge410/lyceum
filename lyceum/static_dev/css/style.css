@@ -2722,3 +2722,12 @@ a {
     text-align: center;
     padding: 30px 0;
 }
+
+.admin-btn{
+    color: deeppink !important;
+    font-weight: bold !important;
+}
+
+.admin-btn span{
+    border-bottom: 3px #5c2699 solid !important;
+}
