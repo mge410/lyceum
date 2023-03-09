@@ -23,7 +23,10 @@ class ItemManager(models.Manager):
                 is_published=True,
                 category__is_published=True,
             )
-            .order_by('category__name')
+            .order_by(
+                f'{catalog.models.Item.category.field.name}'
+                f'__{catalog.models.Category.name.field.name}'
+            )
         )
 
     def new_item_list(self):
@@ -34,7 +37,7 @@ class ItemManager(models.Manager):
                     datetime.now() - timedelta(days=7),
                     datetime.now(),
                 ),
-            ).values_list('id', flat=True)
+            ).values_list(f'{catalog.models.Item.id.field.name}', flat=True)
         )
         if my_ids is None:
             return None
@@ -49,7 +52,7 @@ class ItemManager(models.Manager):
                 is_published=True,
                 category__is_published=True,
             )
-            .order_by('name')[:5]
+            .order_by(f'{catalog.models.Item.name.field.name}')[:5]
         )
 
     def friday_item_list(self):
@@ -60,18 +63,21 @@ class ItemManager(models.Manager):
                 is_published=True,
                 category__is_published=True,
             )
-            .order_by('-created_at')[:5]
+            .order_by(f'-{catalog.models.Item.created_at.field.name}')[:5]
         )
 
     def unchecked_item_list(self):
         return (
             self.prefetch_to_items()
             .filter(
-                updated_at=F('created_at'),
+                updated_at=F(f'{catalog.models.Item.created_at.field.name}'),
                 is_published=True,
                 category__is_published=True,
             )
-            .order_by('category__name')
+            .order_by(
+                f'{catalog.models.Item.category.field.name}'
+                f'__{catalog.models.Category.name.field.name}'
+            )
         )
 
     def catalog_detail(self):
@@ -79,7 +85,7 @@ class ItemManager(models.Manager):
             self.prefetch_to_items()
             .prefetch_related(
                 Prefetch(
-                    'gallery_images',
+                    f'{catalog.models.Item.gallery_images.rel.related_name}',
                 )
             )
             .filter(
@@ -91,13 +97,16 @@ class ItemManager(models.Manager):
     def prefetch_to_items(self):
         return (
             self.get_queryset()
-            .select_related('category', 'main_image')
+            .select_related(
+                f'{catalog.models.Item.category.field.name}',
+                f'{catalog.models.Item.main_image.related.related_name}',
+            )
             .prefetch_related(
                 Prefetch(
-                    'tags',
+                    f'{catalog.models.Item.tags.field.name}',
                     queryset=catalog.models.Tag.objects.filter(
                         is_published=True
-                    ).only('name'),
+                    ).only(f'{catalog.models.Tag.name.field.name}'),
                 )
             )
             .only(
@@ -105,6 +114,7 @@ class ItemManager(models.Manager):
                 catalog.models.Item.text.field.name,
                 f'{catalog.models.Item.category.field.name}'
                 f'__{catalog.models.Category.name.field.name}',
-                f'main_image__{catalog.models.MainImageItem.image.field.name}',
+                f'{catalog.models.Item.main_image.related.related_name}'
+                f'__{catalog.models.MainImageItem.image.field.name}',
             )
         )
