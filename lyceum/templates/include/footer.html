@@ -1,17 +1,19 @@
 {% load static %}
+{% load i18n %}
+
 <footer class="footer-area section-padding">
   <div class="container">
     <div class="row">
       <div class="col-lg-3  col-md-6 col-sm-6">
         <div class="single-footer-widget">
-          <h6>О нас</h6>
-          <p> Мы заботимся о животных и помогает найти им лучших хозяев. Только самый милые котики для самых заботливых рук. </p>
+          <h6>{% translate 'About as' %}</h6>
+          <p>{% translate 'We take care of animals and help them find the best owners. Only the cutest cats for the most caring hands.' %} </p>
         </div>
       </div>
       <div class="col-lg-4  col-md-6 col-sm-6">
         <div class="single-footer-widget">
-          <h6>Новостная рассылка</h6>
-          <p>Будьте в курсе наших новостей</p>
+          <h6>{% translate 'Newsletter' %}</h6>
+          <p>{% translate 'Stay up to date with our news ' %}</p>
           <div class="" id="mc_embed_signup">
             <form target="_blank" class="form-inline">
               <div class="d-flex flex-row"> <input class="form-control" name="EMAIL" placeholder="Введите email " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '" required="" type="email"> <button class="click-btn btn btn-default"><span class="lnr lnr-arrow-right"></span>
@@ -23,7 +25,7 @@
       </div>
       <div class="col-lg-3  col-md-6 col-sm-6">
         <div class="single-footer-widget mail-chimp">
-          <h6 class="mb-20">Милые зверушки</h6>
+          <h6 class="mb-20">{% translate 'Cute animals' %}</h6>
           <ul class="instafeed d-flex flex-wrap">
             <li><img class="img-fluid" src=" {% static 'img/plug.jpg'%} " alt=""></li>
             <li><img class="img-fluid" src=" {% static 'img/plug.jpg'%} " alt=""></li>
@@ -38,10 +40,10 @@
       </div>
       <div class="col-lg-2 col-md-6 col-sm-6">
         <div class="single-footer-widget">
-          <h6>Ждём вас !</h6>
-          <p>Адрес:</p>
-          <p>Тула - ул. Волшебная д39</p>
-          <p id="date">now {% now "Y"%}</p>
+          <h6>{% translate 'Waiting for you !' %}</h6>
+          <p>{% translate 'Address' %}:</p>
+          <p>{% translate 'Tula - st. Magic d39 ' %}</p>
+          <p id="date">{% translate 'Now year' %} {% now "Y"%}</p>
         </div>
       </div>
     </div>

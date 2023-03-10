@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% load i18n %}
 <html lang="ru">
 
 <head>
@@ -19,7 +20,7 @@
   <meta name="theme-color" content="#ffffff">
 
   {% block title %}
-    <title>Пушистики</title>
+    <title>{% translate 'Fluffies house '%}</title>
   {% endblock %}
 </head>
 
@@ -27,7 +28,7 @@
 
   {% include 'include/header.html' %}
   <main class="main">
-    {% block content %}Контент не подгрузился =({% endblock %}
+    {% block content %}{% translate "Content didn't load "%} =({% endblock %}
   </main>
   {% include 'include/footer.html' %}
 
@@ -42,7 +43,7 @@
 
     if (distinctionTime < 86400000) {
       dateElement = document.getElementById('date')
-      dateElement.innerHTML = `now ${new Date().getFullYear()}`
+      dateElement.innerHTML = `Now year ${new Date().getFullYear()}`
     }
   </script>
 </body>

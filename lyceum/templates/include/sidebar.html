@@ -1,34 +1,36 @@
 {% load static %}
+{% load i18n %}
+
 <!-- Start Blog Post Siddebar -->
 <div class="col-lg-4 sidebar-widgets">
   <div class="widget-wrap">
     <div class="single-sidebar-widget post-category-widget">
-      <h4 class="single-sidebar-widget__title">Интересные предложения</h4>
+      <h4 class="single-sidebar-widget__title">{% translate 'Interesting offers ' %}</h4>
       <ul class="cat-list mt-20">
         <li>
           <a href="{% url 'catalog:new_item_list'%}" class="d-flex justify-content-between">
-            <p>Новинки</p>
+            <p>{% translate 'New' %}</p>
           </a>
         </li>
         <li>
           <a href="{% url 'catalog:friday_item_list'%}" class="d-flex justify-content-between">
-            <p>Пятница</p>
+            <p>{% translate 'Friday' %}</p>
           </a>
         </li>
         <li>
           <a href="{% url 'catalog:unchecked_item_list'%}" class="d-flex justify-content-between">
-            <p>Непроверенные</p>
+            <p>{% translate 'Unchecked' %}</p>
           </a>
         </li>
       </ul>
     </div>
     <div class="single-sidebar-widget newsletter-widget">
-      <h4 class="single-sidebar-widget__title">Новостная рассылка</h4>
+      <h4 class="single-sidebar-widget__title">{% translate 'Newsletter' %}</h4>
       <div class="form-group mt-30">
         <div class="col-autos"> <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Введите email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email'"> </div>
-      </div> <button class="bbtns d-block mt-20 w-100">Отпрпавить</button> </div>
+      </div> <button class="bbtns d-block mt-20 w-100">{% translate 'Send' %}</button> </div>
     <div class="single-sidebar-widget post-category-widget">
-      <h4 class="single-sidebar-widget__title">Категория</h4>
+      <h4 class="single-sidebar-widget__title">{% translate 'Category' %}</h4>
       <ul class="cat-list mt-20">
         <li>
           <a href="#" class="d-flex justify-content-between">
@@ -63,7 +65,7 @@
       </ul>
     </div>
     <div class="single-sidebar-widget popular-post-widget">
-      <h4 class="single-sidebar-widget__title">Наши любимчики</h4>
+      <h4 class="single-sidebar-widget__title">{% translate 'Our Favorites'%}</h4>
       <div class="popular-post-list">
         <div class="single-post-list">
           <div class="thumb"> <img class="card-img rounded-0" src="{% static 'img/plug.jpg'%}" alt="#">
@@ -94,7 +96,7 @@
       </div>
     </div>
     <div class="single-sidebar-widget tag_cloud_widget">
-      <h4 class="single-sidebar-widget__title">Популярные тэги</h4>
+      <h4 class="single-sidebar-widget__title">{% translate 'Popular tags'%}</h4>
       <ul class="list">
         <li> <a href="#">project</a> </li>
         <li> <a href="#">love</a> </li>
