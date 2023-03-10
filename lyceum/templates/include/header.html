@@ -15,11 +15,11 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
           <ul class="nav navbar-nav menu_nav justify-content-center">
-            <li class="nav-item {% if view_name == 'homepage:home' %}active{% endif %}"><a class="nav-link" href=" {% url 'homepage:home' %} "><span>{% translate 'Домашняя' %}</span></a></li>
-            <li class="nav-item {% if view_name == 'catalog:item_list' %}active{% endif %} "><a class="nav-link" href=" {% url 'catalog:item_list' %} "><span>{% translate 'Каталог' %}</span></a></li>
-            <li class="nav-item {% if view_name == 'about:description' %}active {% endif %}"><a class="nav-link" href=" {% url 'about:description' %} "><span>{% translate 'О нас' %}</span></a></li>
+            <li class="nav-item {% if view_name == 'homepage:home' %}active{% endif %}"><a class="nav-link" href=" {% url 'homepage:home' %} "><span>{% translate 'Home' %}</span></a></li>
+            <li class="nav-item {% if view_name == 'catalog:item_list' %}active{% endif %} "><a class="nav-link" href=" {% url 'catalog:item_list' %} "><span>{% translate 'Catalog' %}</span></a></li>
+            <li class="nav-item {% if view_name == 'about:description' %}active {% endif %}"><a class="nav-link" href=" {% url 'about:description' %} "><span>{% translate 'About' %}</span></a></li>
             {% if user.is_superuser %}
-            <li class="nav-item"><a href="{% url 'admin:index' %}" type="button" class="nav-link admin-btn"><span>АДМИНКА</span></a></li>
+            <li class="nav-item"><a href="{% url 'admin:index' %}" type="button" class="nav-link admin-btn"><span>{% translate 'Admin' %}</span></a></li>
               {% endif %}
           </ul> {% endwith %}
           <ul class="nav navbar-nav navbar-right navbar-social">

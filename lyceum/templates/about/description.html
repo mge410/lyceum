@@ -1,5 +1,6 @@
 {% extends 'layouts/layout.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block title %}
 <title>Пушистики о нас</title>
@@ -11,7 +12,7 @@
     <div class="container">
       <div class="hero-banner-about hero-banner--sm">
         <div class="hero-banner__content-about">
-          <h1>О нас</h1>
+          <h1>{% translate 'About as'%}</h1>
         </div>
       </div>
     </div>
@@ -22,7 +23,7 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="ro">
-            <p class="text-center fa-2x">Мы занимаемся приютом животных которые остались без дома. Так же мы помогаем найти им новых хозяев и сделать все чуть счастливее =)</p>
+            <p class="text-center fa-2x">{% translate 'We take care of animals that are homeless. We also help them find happy owners and make everything feel better. '%} =)</p>
           </div>
         </div>
       </div>

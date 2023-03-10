@@ -1,8 +1,9 @@
 {% extends 'layouts/layout.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block title %}
-<title>Пушистики дом</title>
+<title>{% translate 'Fluffies '%}</title>
 {% endblock %}
 
 {% block content %}
@@ -10,8 +11,8 @@
   <div class="container">
     <div class="hero-banner-main">
       <div class="hero-banner__content">
-        <h3>Забота & любовь</h3>
-        <h1>Для всех зверушек</h1>
+        <h3>{% translate 'Care & love'%}</h3>
+        <h1>{% translate 'For all animals'%}</h1>
       </div>
     </div>
   </div>
