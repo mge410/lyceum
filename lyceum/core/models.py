@@ -5,6 +5,7 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.html import mark_safe
 from sorl.thumbnail import get_thumbnail
+from pytils import translit
 
 
 class NamedBaseModel(models.Model):
@@ -69,6 +70,7 @@ class ImageBaseModel(models.Model):
         return 'Нет изображения'
 
     def save(self, *args: Any, **kwargs: Any) -> None:
+        self.image.name = '.'.join(list(map(lambda x: translit.slugify(x), self.image.name.split('.'))))
         super().save(*args, **kwargs)
         self.image = self.get_image_300x300()
 
