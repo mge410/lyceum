@@ -20,6 +20,14 @@
   <!--================ Start Blog Post Area =================-->
   <div class="blog-post-area section-margin">
     <div class="container">
+      {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          <li class="text-success font-weight-bold text-center display-6 m-4">{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
       <form id="contact-form" action="{% url 'feedback:feedback' %}" method="post" role="form">
         {% csrf_token %}
         <div class="controls text-center">

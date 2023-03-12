@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.shortcuts import render
 from feedback.forms import FeedbackForm
+from django.contrib import messages
 
 
 def feedback(request: HttpRequest) -> HttpResponse:
@@ -22,7 +23,9 @@ def feedback(request: HttpRequest) -> HttpResponse:
             [f'{form.cleaned_data["email"]}'],
             fail_silently=False,
         )
-        return redirect('catalog:item_list')
+
+        messages.success(request, 'Thank you for the confidential communication =)')
+        return redirect('feedback:feedback')
     if form is not None:
         context['errors'] = form.errors.as_data()
 
