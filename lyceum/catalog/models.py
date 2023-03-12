@@ -1,5 +1,4 @@
 from catalog.managers import ItemManager
-from catalog.validators import ValidateMustContain
 import core.models as core
 from django.core import validators
 from django.db import models
@@ -39,16 +38,16 @@ class Tag(
         default_related_name = 'tags'
 
 
-class Item(core.NamedBaseModel, core.PublishedBaseModel, core.DateBaseModel):
+class Item(
+    core.NamedBaseModel,
+    core.PublishedBaseModel,
+    core.CreatedDateBaseModel,
+    core.UpdatedDateBaseModel,
+    core.TextBaseModel,
+):
     objects = ItemManager()
 
     is_on_main = models.BooleanField('Отображать на главной', default=False)
-
-    text = models.TextField(
-        validators=[ValidateMustContain('роскошно', 'превосходно')],
-        help_text='В тексте должно быть одно из слов: роскошно, превосходно.',
-        verbose_name='описание',
-    )
 
     category = models.ForeignKey(
         Category,

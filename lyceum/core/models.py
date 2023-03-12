@@ -7,6 +7,8 @@ from django.utils.html import mark_safe
 from pytils import translit
 from sorl.thumbnail import get_thumbnail
 
+from core.validators import ValidateMustContain
+
 
 class NamedBaseModel(models.Model):
     name = models.CharField(
@@ -44,8 +46,25 @@ class SluggedBaseModel(models.Model):
         abstract = True
 
 
-class DateBaseModel(models.Model):
+class TextBaseModel(models.Model):
+    text = models.TextField(
+        validators=[ValidateMustContain('роскошно', 'превосходно')],
+        help_text='В тексте должно быть одно из слов: роскошно, превосходно.',
+        verbose_name='описание',
+    )
+
+    class Meta:
+        abstract = True
+
+
+class CreatedDateBaseModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        abstract = True
+
+
+class UpdatedDateBaseModel(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
