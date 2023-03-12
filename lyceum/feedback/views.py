@@ -9,7 +9,9 @@ from feedback.forms import FeedbackForm
 
 def feedback(request: HttpRequest) -> HttpResponse:
     template = 'feedback/feedback.html'
+
     form = FeedbackForm(request.POST or None)
+    context = {'form': form}
 
     if form.is_valid():
         send_mail(
@@ -21,5 +23,8 @@ def feedback(request: HttpRequest) -> HttpResponse:
             fail_silently=False,
         )
         return redirect('catalog:item_list')
-    context = {'form': form}
+    elif form is not None:
+        context['errors'] = form.errors.as_data()
+        return render(request, template, context)
+
     return render(request, template, context)

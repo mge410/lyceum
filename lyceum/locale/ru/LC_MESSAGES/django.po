@@ -129,3 +129,6 @@ msgstr "Пушистики дом"
 #: .\templates\layouts\layout.html:31
 msgid "Content didn't load "
 msgstr "Контент не подгрузился"
+
+msgid "Feedback"
+msgstr "Обратная связь"
