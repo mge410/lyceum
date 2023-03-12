@@ -132,3 +132,15 @@ msgstr "Контент не подгрузился"
 
 msgid "Feedback"
 msgstr "Обратная связь"
+
+msgid "Fluffies feedback"
+msgstr "Пушистики обратная связь"
+
+msgid "Fluffies catalog"
+msgstr "Пушистики каталог"
+
+msgid "Fluffy"
+msgstr "Пушистик"
+
+msgid "Fluffy about us"
+msgstr "Пушистики о нас"
