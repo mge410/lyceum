@@ -1,13 +1,12 @@
 import re
 from typing import Any, Callable
 
+from core.validators import ValidateMustContain
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.html import mark_safe
 from pytils import translit
 from sorl.thumbnail import get_thumbnail
-
-from core.validators import ValidateMustContain
 
 
 class NamedBaseModel(models.Model):
@@ -51,6 +50,16 @@ class TextBaseModel(models.Model):
         validators=[ValidateMustContain('роскошно', 'превосходно')],
         help_text='В тексте должно быть одно из слов: роскошно, превосходно.',
         verbose_name='описание',
+    )
+
+    class Meta:
+        abstract = True
+
+
+class TextMessageModel(models.Model):
+    text = models.TextField(
+        help_text='Сообщение для нас',
+        verbose_name='сообщение для нас',
     )
 
     class Meta:

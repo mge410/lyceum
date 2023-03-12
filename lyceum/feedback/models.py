@@ -2,16 +2,13 @@ import core.models as core
 from django.db import models
 
 
-class Feedback (
+class Feedback(
     core.CreatedDateBaseModel,
-    core.TextBaseModel,
+    core.TextMessageModel,
 ):
     email = models.EmailField()
 
     class Meta:
         ordering = ('created_at',)
-        verbose_name = 'Обратная связь'
-        verbose_name_plural = 'Обратная связь'
-
-    def __str__(self) -> str:
-        return self.email[:20]
+        verbose_name = 'обратная связь'
+        verbose_name_plural = 'обратная связь'

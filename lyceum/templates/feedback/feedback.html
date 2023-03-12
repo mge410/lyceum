@@ -20,13 +20,32 @@
   <!--================ Start Blog Post Area =================-->
   <div class="blog-post-area section-margin">
     <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="ro">
-            <p class="text-center fa-2x">{% translate 'We take care of animals that are homeless. We also help them find happy owners and make everything feel better. '%} =)</p>
+      <form id="contact-form" action="{% url 'feedback:feedback' %}" method="post" role="form">
+        {% csrf_token %}
+        <div class="controls text-center">
+          <div class="row justify-content-center">
+            <div class="col-md-6">
+              <div class="form-group"> <label for="form_email">Email *</label> <input id="form_email" type="email" name="email" class="form-control" placeholder="{{ form.fields.email.label }}" required="required" data-error="Valid email is required.">
+                <div class="help-block with-errors"></div>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-md-6">
+              <div class="form-group"> <label for="form_message">Message *</label> <textarea id="form_message" name="text" class="form-control" placeholder="{{ form.fields.text.label }}" rows="4" required="required" data-error="Please,leave us a message."></textarea>
+                <div class="help-block with-errors"></div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <!-- Replace data-sitekey with your own one, generated at https://www.google.com/recaptcha/admin -->
+                <div class="g-recaptcha" data-sitekey="6LfKURIUAAAAAO50vlwWZkyK_G2ywqE52NU7YO0S"></div>
+              </div>
+            </div>
+            <div class="col-md-12"> <input type="submit" class="btn btn-success btn-send" value="Send message"> </div>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 </div> {% endblock %}
