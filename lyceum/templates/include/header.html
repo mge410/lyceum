@@ -18,6 +18,7 @@
             <li class="nav-item {% if view_name == 'homepage:home' %}active{% endif %}"><a class="nav-link" href=" {% url 'homepage:home' %} "><span>{% translate 'Home' %}</span></a></li>
             <li class="nav-item {% if view_name == 'catalog:item_list' %}active{% endif %} "><a class="nav-link" href=" {% url 'catalog:item_list' %} "><span>{% translate 'Catalog' %}</span></a></li>
             <li class="nav-item {% if view_name == 'about:description' %}active {% endif %}"><a class="nav-link" href=" {% url 'about:description' %} "><span>{% translate 'About' %}</span></a></li>
+            <li class="nav-item {% if view_name == 'feedback:feedback' %}active {% endif %}"><a class="nav-link" href=" {% url 'feedback:feedback' %} "><span>{% translate 'Feedback' %}</span></a></li>
             {% if user.is_superuser %}
             <li class="nav-item"><a href="{% url 'admin:index' %}" type="button" class="nav-link admin-btn"><span>{% translate 'Admin' %}</span></a></li>
               {% endif %}

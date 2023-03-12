@@ -1,0 +1,59 @@
+{% extends 'layouts/layout.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+<title>{% translate 'Fluffies feedback'%}</title>
+{% endblock %}
+
+{% block content %}
+<div class="main__conteiner">
+  <section class="mb-30px">
+    <div class="container">
+      <div class="hero-banner-about hero-banner--sm">
+        <div class="hero-banner__content-about">
+          <h1>{% translate 'Feedback'%}</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--================ Start Blog Post Area =================-->
+  <div class="blog-post-area section-margin">
+    <div class="container">
+      {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          <li class="text-success font-weight-bold text-center display-6 m-4">{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      <form id="contact-form" action="{% url 'feedback:feedback' %}" method="post" role="form">
+        {% csrf_token %}
+        <div class="controls text-center">
+          <div class="row justify-content-center">
+            <div class="col-md-6">
+              <div class="form-group"> <label for="form_email">{{ form.fields.email.label }}</label> <input id="form_email" type="email" name="email" class="form-control" placeholder="{{ form.fields.email.help_text }}" required="required" data-error="Valid email is required.">
+                <div class="help-block with-errors text-danger">{{ form.email.errors }}</div>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-md-6">
+              <div class="form-group"> <label for="form_message">{{ form.fields.text.label }}</label> <textarea id="form_message" name="text" class="form-control" placeholder="{{ form.fields.text.help_text }}" rows="4" required="required" data-error="Please,leave us a message."></textarea>
+                <div class="help-block with-errors text-danger">{{ form.text.errors }}</div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <!-- Replace data-sitekey with your own one, generated at https://www.google.com/recaptcha/admin -->
+                <div class="g-recaptcha" data-sitekey="6LfKURIUAAAAAO50vlwWZkyK_G2ywqE52NU7YO0S"></div>
+              </div>
+            </div>
+            <div class="col-md-12"> <input type="submit" class="btn btn-success btn-send" value="Send message"> </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div> {% endblock %}

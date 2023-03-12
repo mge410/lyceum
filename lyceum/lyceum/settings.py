@@ -8,6 +8,7 @@ env = environ.Env(
     SECRET_KEY=(str, 'secret_key'),
     ALLOWED_HOSTS=(list, ['*']),
     REVERSE_MIDDLEWARE=(bool, False),
+    MAIL_SENDER=(str, 'v0v.voron2005@yandex.ru'),
 )
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -36,6 +37,8 @@ INSTALLED_APPS = [
     'about.apps.AboutConfig',
     'catalog.apps.CatalogConfig',
     'core.apps.CoreConfig',
+    'download.apps.DownloadConfig',
+    'feedback.apps.FeedbackConfig',
     'homepage.apps.HomepageConfig',
 ]
 
@@ -113,6 +116,12 @@ LANGUAGES = (
 LANGUAGE_CODE = 'en'
 
 LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale/')]
+
+MAIL_SENDER = env('MAIL_SENDER')
+
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
 
 TIME_ZONE = 'UTC'
 

@@ -1,8 +1,9 @@
 {% extends 'layouts/layout.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block title %}
-<title>Пушистик {{ item.id }}</title>
+<title>{% translate 'Fluffy'%} {{ item.name }}</title>
 {% endblock %}
 
 {% block content %}
