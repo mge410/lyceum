@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from catalog.models import Category
 from catalog.models import Item
 from catalog.models import Tag
@@ -11,80 +9,23 @@ from parameterized import parameterized
 
 
 class ModelsTests(TestCase):
-    def setUp(self) -> None:
-        self.base_category_published = Category.objects.create(
-            name='Тестовая категория',
-            slug='test-category-slug',
-        )
-        self.base_category_unpublished = Category.objects.create(
-            name='Тестовая категория2',
-            slug='test-category-slugg',
-            is_published=False,
-        )
-        self.base_tag_published = Tag.objects.create(
-            name='Тестовый тэг1',
-            slug='test-tag-slug',
-        )
-        self.base_tag_unpublished = Tag.objects.create(
-            name='Тестовый тэг2',
-            slug='test-tag-slug2',
-            is_published=False,
-        )
-        self.item_published = Item.objects.create(
-            name='Тестовый item1',
-            category=self.base_category_published,
-            text='превосходно',
-            created_at=datetime.now(),
-            updated_at=datetime.now(),
-        )
-        self.item_published_main = Item.objects.create(
-            name='Тестовый item12',
-            category=self.base_category_published,
-            text='превосходно',
-            is_on_main=True,
-            created_at=datetime.now(),
-            updated_at=datetime.now(),
-        )
-        self.item_unpublished = Item.objects.create(
-            name='Тестовый item13',
-            category=self.base_category_published,
-            text='превосходно!',
-            is_published=False,
-            created_at=datetime.now(),
-            updated_at=datetime.now(),
-        )
-        self.item_unpublished_category = Item.objects.create(
-            name='Тестовый item14',
-            category=self.base_category_unpublished,
-            text='превосходно',
-            is_on_main=True,
-            created_at=datetime.now(),
-            updated_at=datetime.now(),
-        )
-        self.item_unpublished_tag = Item.objects.create(
-            name='Тестовый item15',
-            category=self.base_category_published,
-            text='превосходно!',
-            created_at=datetime.now(),
-            updated_at=datetime.now(),
-        )
-        self.item_unpublished_tag.tags.add(self.base_tag_unpublished.pk)
-        super(ModelsTests, self).setUp()
+    fixtures = ['data.json']
 
     def test_homepage_correct_context(self):
         response = Client().get(django.urls.reverse('homepage:home'))
         items = response.context['items']
-        self.assertEqual(items.count(), 1)
+        self.assertEqual(items.count(), 4)
 
     def test_catalog_list_correct_context(self):
         response = Client().get(django.urls.reverse('catalog:item_list'))
         items = response.context['items']
-        self.assertEqual(items.count(), 3)
+        self.assertEqual(items.count(), 6)
 
     def test_catalog_detail_context(self):
         response = Client().get(
             django.urls.reverse(
-                'catalog:item_detail', args=[self.item_published.id]
+                'catalog:item_detail',
+                args=[Item.objects.filter(is_published=True)[:1][0].id],
             )
         )
         self.assertIn('item', response.context)
@@ -158,7 +99,8 @@ class ModelsTests(TestCase):
             Client()
             .get(
                 django.urls.reverse(
-                    'catalog:item_detail', args=[self.item_published.id]
+                    'catalog:item_detail',
+                    args=[Item.objects.filter(is_published=True)[:1][0].id],
                 )
             )
             .context[0]['item']
@@ -180,7 +122,8 @@ class ModelsTests(TestCase):
             Client()
             .get(
                 django.urls.reverse(
-                    'catalog:item_detail', args=[self.item_published.id]
+                    'catalog:item_detail',
+                    args=[Item.objects.filter(is_published=True)[:1][0].id],
                 )
             )
             .context[0]['item']

@@ -1024,6 +1024,7 @@ a {
     margin-bottom: 60px;
     display: flex;
     flex-wrap: wrap;
+    background-color: rgba(215, 213, 213, 0.16);
 }
 
 
