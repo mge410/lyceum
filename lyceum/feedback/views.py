@@ -1,11 +1,11 @@
 from django.conf import settings
+from django.contrib import messages
 from django.core.mail import send_mail
 from django.http import HttpRequest
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.shortcuts import render
 from feedback.forms import FeedbackForm
-from django.contrib import messages
 
 
 def feedback(request: HttpRequest) -> HttpResponse:
@@ -24,7 +24,9 @@ def feedback(request: HttpRequest) -> HttpResponse:
             fail_silently=False,
         )
 
-        messages.success(request, 'Thank you for the confidential communication =)')
+        messages.success(
+            request, 'Thank you for the confidential communication =)'
+        )
         return redirect('feedback:feedback')
     if form is not None:
         context['errors'] = form.errors.as_data()
