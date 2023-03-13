@@ -33,14 +33,14 @@
         <div class="controls text-center">
           <div class="row justify-content-center">
             <div class="col-md-6">
-              <div class="form-group"> <label for="form_email">{{ form.fields.email.label }}</label> <input id="form_email" type="email" name="email" class="form-control" placeholder="{{ form.fields.email.help_text }}" required="required" data-error="Valid email is required.">
+              <div class="form-group"> <label for="form_email">{{ form.fields.email.label }}</label> <input id="form_email" type="email" name="email" class="form-control" value="{{form.data.email}}" placeholder="{{ form.fields.email.help_text }}" required="required" data-error="Valid email is required.">
                 <div class="help-block with-errors text-danger">{{ form.email.errors }}</div>
               </div>
             </div>
           </div>
           <div class="row justify-content-center">
             <div class="col-md-6">
-              <div class="form-group"> <label for="form_message">{{ form.fields.text.label }}</label> <textarea id="form_message" name="text" class="form-control" placeholder="{{ form.fields.text.help_text }}" rows="4" required="required" data-error="Please,leave us a message."></textarea>
+              <div class="form-group"> <label for="form_message">{{ form.fields.text.label }}</label> <textarea id="form_message" name="text" class="form-control" placeholder="{{ form.fields.text.help_text }}" rows="4" required="required" data-error="Please,leave us a message.">{{form.data.text}}</textarea>
                 <div class="help-block with-errors text-danger">{{ form.text.errors }}</div>
               </div>
             </div>
