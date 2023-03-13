@@ -6,7 +6,11 @@ class Feedback(
     core.CreatedDateBaseModel,
     core.TextMessageModel,
 ):
-    email = models.EmailField()
+    email = models.EmailField(
+        max_length=254,
+        verbose_name='Почта',
+        help_text='Необходимо ввести корректную почту',
+    )
 
     class Meta:
         ordering = ('created_at',)
