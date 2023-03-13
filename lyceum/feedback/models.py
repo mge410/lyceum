@@ -12,6 +12,16 @@ class Feedback(
         help_text='Необходимо ввести корректную почту',
     )
 
+    status = models.TextField(
+        'статус',
+        default='получено',
+        choices=[
+            ('получено', 'получено'),
+            ('в обработке', 'в обработке'),
+            ('ответ дан', 'ответ дан'),
+        ],
+    )
+
     class Meta:
         ordering = ('created_at',)
         verbose_name = 'обратная связь'
