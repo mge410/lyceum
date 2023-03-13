@@ -13,8 +13,9 @@ def feedback(request: HttpRequest) -> HttpResponse:
 
     form = FeedbackForm(request.POST or None)
     context = {'form': form}
-
     if form.is_valid():
+        form.save()
+
         send_mail(
             'Feedback',
             f'Thanks for the feedback <br> Your message '
