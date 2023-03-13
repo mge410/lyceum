@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('feedback', '0002_alter_feedback_email'),
     ]
@@ -13,6 +12,14 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='feedback',
             name='status',
-            field=models.TextField(choices=[('получено', 'получено'), ('в обработке', 'в обработке'), ('ответ дан', 'ответ дан')], default='получено', verbose_name='статус'),
+            field=models.TextField(
+                choices=[
+                    ('получено', 'получено'),
+                    ('в обработке', 'в обработке'),
+                    ('ответ дан', 'ответ дан'),
+                ],
+                default='получено',
+                verbose_name='статус',
+            ),
         ),
     ]
