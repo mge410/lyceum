@@ -1,7 +1,7 @@
-from feedback.models import FeedbackFiles
+from django.contrib import admin
 from feedback.models import Feedback
 from feedback.models import FeedbackDataUser
-from django.contrib import admin
+from feedback.models import FeedbackFiles
 
 
 class FeedbackDataUserAdmin(admin.TabularInline):
@@ -18,7 +18,5 @@ class FeedbackFilesAdmin(admin.TabularInline):
 
 @admin.register(Feedback)
 class FeedbackAdmin(admin.ModelAdmin):
-    list_display = (
-        Feedback.id.field.name,
-    )
+    list_display = (Feedback.id.field.name,)
     inlines = [FeedbackDataUserAdmin, FeedbackFilesAdmin]

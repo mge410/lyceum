@@ -6,7 +6,6 @@ class Feedback(
     core.CreatedDateBaseModel,
     core.TextMessageModel,
 ):
-
     status = models.TextField(
         'статус',
         default='получено',
