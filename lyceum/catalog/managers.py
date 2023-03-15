@@ -39,12 +39,16 @@ class ItemManager(models.Manager):
                 ),
             ).values_list(f'{catalog.models.Item.id.field.name}', flat=True)
         )
+        if len(my_ids) < 5:
+            my_ids_count = len(my_ids)
+        else:
+            my_ids_count = 5
         if my_ids is None:
             return None
         return (
             self.prefetch_to_items()
             .filter(
-                id__in=sample(my_ids, 5),
+                id__in=sample(my_ids, my_ids_count),
                 created_at__range=(
                     datetime.now() - timedelta(days=7),
                     datetime.now(),
