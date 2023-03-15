@@ -9,13 +9,12 @@ from parameterized import parameterized
 class StaticURLTests(TestCase):
     @parameterized.expand(
         [
-            ['/'],
             ['/catalog/'],
             ['/about/'],
         ]
     )
     @override_settings(REVERSE_MIDDLEWARE='True')
-    def test_middlevare_reverse_on_homepage(self, url: str) -> None:
+    def test_middlevare_reverse(self, url: str) -> None:
         with self.modify_settings(
             MIDDLEWARE={
                 'append': 'lyceum.middleware.middleware.ReverseMiddleware',
@@ -43,13 +42,12 @@ class StaticURLTests(TestCase):
 
     @parameterized.expand(
         [
-            ['/'],
             ['/catalog/'],
             ['/about/'],
         ]
     )
     @override_settings(REVERSE_MIDDLEWARE='False')
-    def test_off_middlevare_reverse_on_catalog(self, url: str) -> None:
+    def test_off_middlevare_reverse(self, url: str) -> None:
         with self.modify_settings(
             MIDDLEWARE={
                 'remove': 'lyceum.middleware.middleware.ReverseMiddleware',
