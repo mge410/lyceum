@@ -1,22 +1,18 @@
 from django.conf import settings
 from django.contrib import messages
 from django.core.mail import send_mail
-from django.http import HttpRequest
-from django.http import HttpResponse
-from django.shortcuts import redirect
-from django.shortcuts import render
-from feedback.forms import FeedbackDataUserForm
-from feedback.forms import FeedbackFilesForm
-from feedback.forms import FeedbackForm
+import django.http
+import django.shortcuts
+import feedback.forms as forms
 from feedback.models import FeedbackFiles
 
 
-def feedback(request: HttpRequest) -> HttpResponse:
+def feedback(request: django.http.HttpRequest) -> django.http.HttpResponse:
     template = 'feedback/feedback.html'
 
-    feedback_form = FeedbackForm(request.POST or None)
-    feedback_user_data_form = FeedbackDataUserForm(request.POST or None)
-    feedback_files_form = FeedbackFilesForm(
+    feedback_form = forms.FeedbackForm(request.POST or None)
+    feedback_user_data_form = forms.FeedbackDataUserForm(request.POST or None)
+    feedback_files_form = forms.FeedbackFilesForm(
         request.POST, request.FILES or None
     )
 
@@ -54,6 +50,6 @@ def feedback(request: HttpRequest) -> HttpResponse:
                 )
                 feedback_files.save()
 
-        return redirect('feedback:feedback')
+        return django.shortcuts.redirect('feedback:feedback')
 
-    return render(request, template, context)
+    return django.shortcuts.render(request, template, context)
