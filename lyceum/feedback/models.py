@@ -15,12 +15,13 @@ class Feedback(
             ('в обработке', 'в обработке'),
             ('ответ дан', 'ответ дан'),
         ],
+        help_text='статус письма',
     )
 
     class Meta:
         ordering = ('created_at',)
-        verbose_name = 'обратная связь'
-        verbose_name_plural = 'обратная связь'
+        verbose_name = 'письмо'
+        verbose_name_plural = 'письма'
 
 
 class FeedbackDataUser(models.Model):
@@ -36,6 +37,7 @@ class FeedbackDataUser(models.Model):
         on_delete=models.CASCADE,
         null=True,
         blank=True,
+        help_text='обратная связь',
     )
 
     class Meta:
@@ -53,15 +55,16 @@ class FeedbackFiles(models.Model):
         upload_to=saving_path,
         null=True,
         default=None,
+        help_text='прикрепите файлы',
     )
 
     feedback = models.ForeignKey(
         Feedback,
         verbose_name='обратная связь',
         on_delete=models.CASCADE,
-        help_text='прикрепите файлы',
         default=None,
         related_name='files',
+        help_text='прикрепите файлы',
     )
 
     class Meta:
