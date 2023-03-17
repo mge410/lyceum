@@ -1,7 +1,7 @@
 from django import forms
 from feedback.models import Feedback
-from feedback.models import FeedbackUserData
 from feedback.models import FeedbackFiles
+from feedback.models import FeedbackUserData
 
 
 class FeedbackForm(forms.ModelForm):

@@ -7,9 +7,9 @@ class Feedback(
     core.TextMessageModel,
 ):
     class Status(models.TextChoices):
-        accepted = "c", "получено"
-        processing = "b", "в обработке"
-        completed = "a", "ответ дан"
+        accepted = 'c', 'получено'
+        processing = 'b', 'в обработке'
+        completed = 'a', 'ответ дан'
 
     status = models.CharField(
         'статус',
