@@ -6,14 +6,16 @@ class Feedback(
     core.CreatedDateBaseModel,
     core.TextMessageModel,
 ):
-    status = models.TextField(
+    class Status(models.TextChoices):
+        accepted = 'c', 'получено'
+        processing = 'b', 'в обработке'
+        completed = 'a', 'ответ дан'
+
+    status = models.CharField(
         'статус',
-        default='получено',
-        choices=[
-            ('получено', 'получено'),
-            ('в обработке', 'в обработке'),
-            ('ответ дан', 'ответ дан'),
-        ],
+        max_length=2,
+        default=Status.accepted,
+        choices=Status.choices,
         help_text='статус письма',
     )
 
@@ -23,7 +25,7 @@ class Feedback(
         verbose_name_plural = 'письма'
 
 
-class FeedbackDataUser(models.Model):
+class FeedbackUserData(models.Model):
     email = models.EmailField(
         'почта',
         max_length=254,

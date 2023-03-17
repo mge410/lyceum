@@ -1,11 +1,11 @@
 from django.contrib import admin
 from feedback.models import Feedback
-from feedback.models import FeedbackDataUser
 from feedback.models import FeedbackFiles
+from feedback.models import FeedbackUserData
 
 
 class FeedbackDataUserAdmin(admin.TabularInline):
-    model = FeedbackDataUser
+    model = FeedbackUserData
     extra = 1
 
     readonly_fields = (model.email.field.name,)

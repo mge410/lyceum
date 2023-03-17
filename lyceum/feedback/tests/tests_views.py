@@ -31,7 +31,7 @@ class ViewsTests(TestCase):
                 'feedback:feedback',
             )
         )
-        self.assertIn('feedback_form', response.context)
+        self.assertIn('form', response.context)
 
     def test_feedback_success_redirect_context(self):
         form_value = {

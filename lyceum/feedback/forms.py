@@ -1,58 +1,40 @@
-from django import forms
-from feedback.models import Feedback
-from feedback.models import FeedbackDataUser
-from feedback.models import FeedbackFiles
+import django.forms
+import feedback.models
 
 
-class FeedbackForm(forms.ModelForm):
-    class Meta:
-        model = Feedback
-        fields = [
-            Feedback.text.field.name,
-        ]
+class FeedbackForm(django.forms.Form):
+    email = django.forms.EmailField(
+        label='Email *', help_text='Enter your email'
+    )
+    text = django.forms.CharField(
+        label='Message *',
+        help_text='Write what you think about our company =)',
+    )
+    files = django.forms.FileField(
+        widget=django.forms.ClearableFileInput(
+            attrs={
+                'multiple': True,
+            },
+        ),
+        required=False,
+        label='Files',
+        help_text='Download file',
+    )
 
-        labels = {
-            Feedback.text.field.name: 'Message *',
-        }
+    def save(self, file_list):
+        data = self.cleaned_data
 
-        help_texts = {
-            Feedback.text.field.name: 'Write'
-            ' what you think about'
-            ' our company =)',
-        }
+        feedback_data = feedback.models.Feedback(text=data['text'])
+        data_user = feedback.models.FeedbackUserData(
+            email=data['email'], feedback=feedback_data
+        )
 
+        feedback_data.save()
+        data_user.save()
 
-class FeedbackFilesForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super(FeedbackFilesForm, self).__init__(*args, **kwargs)
-        self.fields[FeedbackFiles.files.field.name].required = False
-
-    class Meta:
-        model = FeedbackFiles
-        fields = [
-            FeedbackFiles.files.field.name,
-        ]
-
-        widgets = {
-            FeedbackFiles.files.field.name: forms.ClearableFileInput(
-                attrs={
-                    'multiple': True,
-                },
-            )
-        }
-
-
-class FeedbackDataUserForm(forms.ModelForm):
-    class Meta:
-        model = FeedbackDataUser
-        fields = [
-            FeedbackDataUser.email.field.name,
-        ]
-
-        labels = {
-            FeedbackDataUser.email.field.name: 'Email *',
-        }
-
-        help_texts = {
-            FeedbackDataUser.email.field.name: 'Enter your email',
-        }
+        if data['files'] is not None:
+            for file in file_list:
+                feedback_files = feedback.models.FeedbackFiles(
+                    files=file, feedback=feedback_data
+                )
+                feedback_files.save()
