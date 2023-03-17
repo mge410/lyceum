@@ -1,6 +1,6 @@
 from django import forms
 from feedback.models import Feedback
-from feedback.models import FeedbackDataUser
+from feedback.models import FeedbackUserData
 from feedback.models import FeedbackFiles
 
 
@@ -44,15 +44,15 @@ class FeedbackFilesForm(forms.ModelForm):
 
 class FeedbackDataUserForm(forms.ModelForm):
     class Meta:
-        model = FeedbackDataUser
+        model = FeedbackUserData
         fields = [
-            FeedbackDataUser.email.field.name,
+            FeedbackUserData.email.field.name,
         ]
 
         labels = {
-            FeedbackDataUser.email.field.name: 'Email *',
+            FeedbackUserData.email.field.name: 'Email *',
         }
 
         help_texts = {
-            FeedbackDataUser.email.field.name: 'Enter your email',
+            FeedbackUserData.email.field.name: 'Enter your email',
         }
