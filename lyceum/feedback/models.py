@@ -7,43 +7,43 @@ class Feedback(
     core.TextMessageModel,
 ):
     class Status(models.TextChoices):
-        accepted = 'c', 'получено'
-        processing = 'b', 'в обработке'
-        completed = 'a', 'ответ дан'
+        accepted = 'c', 'accepted'
+        processing = 'b', 'processing'
+        completed = 'a', 'completed'
 
     status = models.CharField(
-        'статус',
+        'status',
         max_length=2,
         default=Status.accepted,
         choices=Status.choices,
-        help_text='статус письма',
+        help_text='Mail status',
     )
 
     class Meta:
         ordering = ('created_at',)
-        verbose_name = 'письмо'
-        verbose_name_plural = 'письма'
+        verbose_name = 'mail'
+        verbose_name_plural = 'mails'
 
 
 class FeedbackUserData(models.Model):
     email = models.EmailField(
-        'почта',
+        'mail',
         max_length=254,
-        help_text='необходимо ввести корректную почту',
+        help_text='you need to enter a corrective email address',
     )
 
     feedback = models.OneToOneField(
         Feedback,
-        verbose_name='обратная связь',
         on_delete=models.CASCADE,
+        verbose_name='feedback',
         null=True,
         blank=True,
-        help_text='обратная связь',
+        help_text='Feedback',
     )
 
     class Meta:
-        verbose_name = 'данные пользователя'
-        verbose_name_plural = 'данные пользователя'
+        verbose_name = 'user data'
+        verbose_name_plural = 'users data'
         default_related_name = 'data_user'
 
 
@@ -52,23 +52,23 @@ class FeedbackFiles(models.Model):
         return f'uploads/{self.feedback.id}/{name}'
 
     files = models.FileField(
-        'файлы',
+        'files',
         upload_to=saving_path,
         null=True,
         default=None,
-        help_text='прикрепите файлы',
+        help_text='attach files',
     )
 
     feedback = models.ForeignKey(
         Feedback,
-        verbose_name='обратная связь',
         on_delete=models.CASCADE,
+        verbose_name='feedback',
         default=None,
         related_name='files',
-        help_text='прикрепите файлы',
+        help_text='Attach files',
     )
 
     class Meta:
-        verbose_name = 'файлы фидбека'
-        verbose_name_plural = 'файлы фидбека'
+        verbose_name = 'feedback files'
+        verbose_name_plural = 'feedback files'
         default_related_name = 'files'

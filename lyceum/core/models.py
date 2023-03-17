@@ -11,11 +11,12 @@ from sorl.thumbnail import get_thumbnail
 
 class NamedBaseModel(models.Model):
     name = models.CharField(
+        'name',
         max_length=150,
         unique=True,
-        help_text='Максимум 150 символов. Можно использовать'
-        ' только буквы цифры и знаки подчеркивания и тире.',
-        verbose_name='название',
+        help_text='Maximum 150 characters. '
+                  'Only letters, numbers, underscores,'
+                  ' and dashes can be used.',
     )
 
     class Meta:
@@ -26,7 +27,7 @@ class NamedBaseModel(models.Model):
 
 
 class PublishedBaseModel(models.Model):
-    is_published = models.BooleanField('опубликовано', default=True)
+    is_published = models.BooleanField('published', default=True)
 
     class Meta:
         abstract = True
@@ -34,11 +35,10 @@ class PublishedBaseModel(models.Model):
 
 class SluggedBaseModel(models.Model):
     slug = models.SlugField(
+        'slug',
         max_length=200,
         unique=True,
-        help_text='Максимум 200 символов. Можно использовать'
-        ' только буквы цифры и знаки подчеркивания и тире.',
-        verbose_name='символьный код',
+        help_text='Maximum 200 characters. Only letters, numbers, underscores, and dashes can be used.',
     )
 
     class Meta:
@@ -47,9 +47,9 @@ class SluggedBaseModel(models.Model):
 
 class TextBaseModel(models.Model):
     text = models.TextField(
-        validators=[ValidateMustContain('роскошно', 'превосходно')],
-        help_text='В тексте должно быть одно из слов: роскошно, превосходно.',
-        verbose_name='описание',
+        'description',
+        validators=[ValidateMustContain('luxuriously', 'excellent')],
+        help_text='The text should contain one of the words: luxurious, excellent.',
     )
 
     class Meta:
@@ -58,8 +58,8 @@ class TextBaseModel(models.Model):
 
 class TextMessageModel(models.Model):
     text = models.TextField(
-        help_text='Сообщение для нас',
-        verbose_name='сообщение для нас',
+        'message to us',
+        help_text='Message to us',
     )
 
     class Meta:
@@ -82,7 +82,7 @@ class UpdatedDateBaseModel(models.Model):
 
 class ImageBaseModel(models.Model):
     image = models.ImageField(
-        'Будут приведены к 300px',
+        'Will be rendered at 300px',
         upload_to='catalog/',
     )
 
@@ -95,7 +95,7 @@ class ImageBaseModel(models.Model):
     def image_tmb(self) -> Callable | str:
         if self.image:
             return mark_safe(f'<img src="{self.get_image_300x300().url}">')
-        return 'Нет изображения'
+        return 'No picture'
 
     def save(self, *args: Any, **kwargs: Any) -> None:
         self.image.name = '.'.join(
@@ -106,16 +106,16 @@ class ImageBaseModel(models.Model):
         super().save(*args, **kwargs)
         self.image = self.get_image_300x300()
 
-    image_tmb.short_description = 'Изображение'
+    image_tmb.short_description = 'Image'
 
 
 class NormalizedNameBaseModel(models.Model):
     normalized_name = models.CharField(
+        'normalized name',
         max_length=150,
-        help_text='Нормализированное имя',
-        verbose_name='Нормализированное имя',
         editable=False,
         null=True,
+        help_text='Normalized name',
     )
 
     class Meta:
@@ -128,32 +128,31 @@ class NormalizedNameBaseModel(models.Model):
         ]
         if normalized_name in normalized_name_list:
             raise ValidationError(
-                'Уже есть обьект с похожем названием.'
-                ' Перефразируйте ваш обьект или воспользуйтесь существующим'
+                'An object with the same name already exists. Rephrase your object or use an existing one'
             )
         self.normalized_name = normalized_name
         super(NormalizedNameBaseModel, self).clean()
 
     def get_normalized_name(self, text: str) -> str:
         replace_letters = {
-            'e': 'е',
-            'o': 'о',
-            'c': 'с',
-            'x': 'х',
-            'a': 'а',
-            'p': 'р',
-            'y': 'у',
-            'A': 'А',
-            'P': 'Р',
-            'C': 'С',
-            'E': 'Е',
-            'O': 'О',
-            'X': 'Х',
-            'T': 'Т',
-            'M': 'М',
-            'K': 'К',
-            'B': 'В',
-            'H': 'Н',
+            'е': 'e',
+            'о': 'o',
+            'с': 'c',
+            'х': 'x',
+            'а': 'a',
+            'р': 'p',
+            'у': 'y',
+            'А': 'A',
+            'Р': 'P',
+            'С': 'C',
+            'Е': 'E',
+            'О': 'O',
+            'Х': 'X',
+            'Т': 'T',
+            'М': 'M',
+            'К': 'K',
+            'В': 'B',
+            'Н': 'H',
         }
         for key in replace_letters.keys():
             text = text.replace(key, replace_letters[key])
