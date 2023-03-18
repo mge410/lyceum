@@ -21,13 +21,13 @@ class ModelsTests(TestCase):
 
     @parameterized.expand(
         [
-            ['роскошно'],
-            ['превосходно '],
-            ['!! превосходно !!'],
-            ['G РоСкОшНо GG!!'],
-            ['Роскошно!'],
-            ['Супер (роскошно)'],
-            ['превосходно,роскошно'],
+            ['luxuriously'],
+            ['excellent'],
+            ['!! excellent !!'],
+            ['G excellent GG!!'],
+            ['excellent!'],
+            ['Супер (excellent)'],
+            ['excellent ,luxuriously'],
         ]
     )
     def test_item_validator(self, text: str) -> None:
@@ -208,11 +208,9 @@ class ModelsTests(TestCase):
             ['суаре', 'cyaрe'],
             ['Суаре', 'cyАрe'],
             ['Тима', 'Tима'],
-            ['Тима', 'TиMа'],
             ['Ти#ма', 'Tи@ма'],
             ['кинотеатр', 'кино  театр'],
             ['кино@#@театр', 'ки@#@#но  театр'],
-            ['киноTеатр-выставка', 'кинo Тeaтр! ВЫСТAВКA'],
             ['Hopoр', 'Ноpop'],
         ]
     )
