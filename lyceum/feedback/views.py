@@ -13,20 +13,25 @@ def feedback(request: django.http.HttpRequest) -> django.http.HttpResponse:
     if request.method == 'POST':
         form = forms.FeedbackForm(request.POST, request.FILES or None)
         if form.is_valid():
-            send_mail(
-                'Feedback',
-                f'Thanks for the feedback <br> Your message '
-                f'- « {form.cleaned_data["text"]} »',
-                settings.MAIL_SENDER,
-                [f'{form.cleaned_data["email"]}'],
-                fail_silently=False,
-            )
+            try:
+                form.save(request.FILES.getlist('files'))
 
-            form.save(request.FILES.getlist('files'))
+                send_mail(
+                    'Feedback',
+                    f'Thanks for the feedback <br> Your message '
+                    f'- « {form.cleaned_data["text"]} »',
+                    settings.MAIL_SENDER,
+                    [f'{form.cleaned_data["email"]}'],
+                    fail_silently=False,
+                )
 
-            messages.success(
-                request, 'Thank you for the confidential communication =)'
-            )
+                messages.success(
+                    request, 'Thank you for the confidential communication =)'
+                )
+            except:
+                messages.success(
+                    request, 'Write error =('
+                )
 
             return django.shortcuts.redirect('feedback:feedback')
 
