@@ -15,8 +15,8 @@ class NamedBaseModel(models.Model):
         max_length=150,
         unique=True,
         help_text='Maximum 150 characters. '
-                  'Only letters, numbers, underscores,'
-                  ' and dashes can be used.',
+        'Only letters, numbers, underscores,'
+        ' and dashes can be used.',
     )
 
     class Meta:
@@ -38,7 +38,9 @@ class SluggedBaseModel(models.Model):
         'slug',
         max_length=200,
         unique=True,
-        help_text='Maximum 200 characters. Only letters, numbers, underscores, and dashes can be used.',
+        help_text='Maximum 200 characters. '
+        'Only letters, numbers, underscores,'
+        ' and dashes can be used.',
     )
 
     class Meta:
@@ -49,7 +51,9 @@ class TextBaseModel(models.Model):
     text = models.TextField(
         'description',
         validators=[ValidateMustContain('luxuriously', 'excellent')],
-        help_text='The text should contain one of the words: luxurious, excellent.',
+        help_text='The text should contain '
+        'one of the words: luxurious,'
+        ' excellent.',
     )
 
     class Meta:
@@ -128,7 +132,9 @@ class NormalizedNameBaseModel(models.Model):
         ]
         if normalized_name in normalized_name_list:
             raise ValidationError(
-                'An object with the same name already exists. Rephrase your object or use an existing one'
+                'An object with the same name '
+                'already exists. Rephrase your '
+                'object or use an existing one'
             )
         self.normalized_name = normalized_name
         super(NormalizedNameBaseModel, self).clean()
