@@ -11,19 +11,19 @@ class Category(
     core.NormalizedNameBaseModel,
 ):
     weight = models.PositiveSmallIntegerField(
+        'weight',
         default=100,
-        verbose_name='вес',
         validators=[
-            validators.MinValueValidator(0, 'Минимальное число для ввода 0'),
+            validators.MinValueValidator(0, 'Minimum number to enter 0'),
             validators.MaxValueValidator(
-                32767, 'Максимальное число для ввода 32767'
+                32767, 'The maximum number to enter is 32767'
             ),
         ],
     )
 
     class Meta:
-        verbose_name = 'категория'
-        verbose_name_plural = 'категории'
+        verbose_name = 'category'
+        verbose_name_plural = 'categories'
 
 
 class Tag(
@@ -33,8 +33,8 @@ class Tag(
     core.NormalizedNameBaseModel,
 ):
     class Meta:
-        verbose_name = 'тэг'
-        verbose_name_plural = 'тэги'
+        verbose_name = 'tag'
+        verbose_name_plural = 'tags'
         default_related_name = 'tags'
 
 
@@ -47,25 +47,25 @@ class Item(
 ):
     objects = ItemManager()
 
-    is_on_main = models.BooleanField('Отображать на главной', default=False)
+    is_on_main = models.BooleanField('Show on home page', default=False)
 
     category = models.ForeignKey(
         Category,
         on_delete=models.PROTECT,
-        help_text='У предмета должна быть категория.',
-        verbose_name='категория',
+        verbose_name='category',
+        help_text='The product must have a category.',
     )
 
     tags = models.ManyToManyField(
         Tag,
-        help_text='У предмета должн быть хотя бы 1 тэг.',
-        verbose_name='тэги',
+        verbose_name='tags',
+        help_text='The element must have at least 1 tag.',
     )
 
     class Meta:
         ordering = ('name',)
-        verbose_name = 'товар'
-        verbose_name_plural = 'товары'
+        verbose_name = 'product'
+        verbose_name_plural = 'products'
         default_related_name = 'items'
 
     def __str__(self) -> str:
@@ -75,15 +75,16 @@ class Item(
 class MainImageItem(core.NamedBaseModel, core.ImageBaseModel):
     items = models.OneToOneField(
         Item,
+        verbose_name='main image',
         on_delete=models.CASCADE,
         null=True,
         blank=True,
-        verbose_name='галерея изображение',
+        help_text='main image',
     )
 
     class Meta:
-        verbose_name = 'главная картинка'
-        verbose_name_plural = 'главные изображения'
+        verbose_name = 'main image'
+        verbose_name_plural = 'main images'
         default_related_name = 'main_image'
 
 
@@ -93,10 +94,11 @@ class GalleryImagesItem(core.NamedBaseModel, core.ImageBaseModel):
         on_delete=models.CASCADE,
         null=True,
         blank=True,
-        verbose_name='главное изображение',
+        verbose_name='gallery images',
+        help_text='gallery images',
     )
 
     class Meta:
-        verbose_name = 'изображение'
-        verbose_name_plural = 'галерея изображений'
+        verbose_name = 'image'
+        verbose_name_plural = 'image gallery'
         default_related_name = 'gallery_images'
