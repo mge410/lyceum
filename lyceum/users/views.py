@@ -1,12 +1,11 @@
+from django.conf import settings
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
 from django.core.mail import send_mail
-
-from users.forms import UserCreationForm
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.views import View
-from django.conf import settings
+from users.forms import UserCreationForm
 
 
 class Register(View):
@@ -29,7 +28,8 @@ class Register(View):
                     'Email verification',
                     f'Thank you for registering on our website! <br>'
                     f'Profile activation link! <br>'
-                    f'- « http://127.0.0.1:8000/auth/activate/{form.cleaned_data["username"]} »',
+                    f'- « http://127.0.0.1:8000/auth/activate/'
+                    f'{form.cleaned_data["username"]} »',
                     settings.MAIL_SENDER,
                     [f'{form.cleaned_data["email"]}'],
                     fail_silently=False,
