@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'download.apps.DownloadConfig',
     'feedback.apps.FeedbackConfig',
     'homepage.apps.HomepageConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
@@ -107,6 +108,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGIN_URL = 'auth/login/'
+LOGIN_REDIRECT_URL = '/'
 
 LANGUAGES = (
     ('en', ('English',)),
