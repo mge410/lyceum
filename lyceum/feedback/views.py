@@ -28,10 +28,8 @@ def feedback(request: django.http.HttpRequest) -> django.http.HttpResponse:
                 messages.success(
                     request, 'Thank you for the confidential communication =)'
                 )
-            except:
-                messages.success(
-                    request, 'Write error =('
-                )
+            except Exception:
+                messages.success(request, 'Write error =(')
 
             return django.shortcuts.redirect('feedback:feedback')
 
