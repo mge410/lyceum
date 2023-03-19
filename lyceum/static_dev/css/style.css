@@ -8,6 +8,10 @@ body {
     line-height: 1.625
 }
 
+main{
+    min-height: 500px;
+}
+
 ul {
     list-style-type: none;
     margin: 0;
