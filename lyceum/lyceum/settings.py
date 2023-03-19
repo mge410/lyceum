@@ -7,6 +7,7 @@ env = environ.Env(
     DEBUG=(bool, True),
     SECRET_KEY=(str, 'secret_key'),
     ALLOWED_HOSTS=(list, ['*']),
+    DEFAULT_USER_ACTIVITY=(bool, False),
     REVERSE_MIDDLEWARE=(bool, False),
     MAIL_SENDER=(str, 'v0v.voron2005@yandex.ru'),
 )
@@ -107,6 +108,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NumericPasswordValidator',
     },
 ]
+
+DEFAULT_USER_ACTIVITY = env('DEFAULT_USER_ACTIVITY')
 
 LOGIN_URL = 'auth/login/'
 LOGIN_REDIRECT_URL = '/'

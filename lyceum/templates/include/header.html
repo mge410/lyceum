@@ -25,6 +25,7 @@
           </ul> {% endwith %}
           <ul class="nav navbar-nav navbar-right navbar-social">
             <li><a class="btn btn-primary" href="{% url 'users:login' %}">{% translate 'Login' %}</a></li>
+            <li><a class="btn btn-primary" href="{% url 'users:register' %}">{% translate 'Register' %}</a></li>
             <li><a class="btn btn-primary" href="{% url 'users:logout' %}">{% translate 'Logout' %}</a></li>
           </ul>
         </div>

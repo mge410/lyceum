@@ -1,8 +1,14 @@
 import django.contrib.auth.views
 import django.urls
+import users.views
 
 app_name = 'users'
 urlpatterns = [
+    django.urls.path(
+        'register/',
+        users.views.Register.as_view(),
+        name='register',
+    ),
     django.urls.path(
         'login/',
         django.contrib.auth.views.LoginView.as_view(
