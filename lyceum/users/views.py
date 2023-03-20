@@ -1,11 +1,15 @@
+from datetime import timedelta
+
 from django.conf import settings
+from django.contrib import messages
+from django.contrib.auth.models import User
 from django.core.mail import send_mail
+from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.shortcuts import render
+from django.utils import timezone
 from django.views import View
 from users.forms import UserCreationForm
-from django.contrib.auth.models import User
-from django.contrib import messages
 
 
 class Register(View):
@@ -45,20 +49,19 @@ class ActivateUsers(View):
 
     def get(self, request, name):
         context = {}
-        try:
-            user = User.objects.get(username=name)
-            if user.is_active is False:
-                user.is_active = True
-                user.save()
-                messages.success(
-                    request, 'KO!'
-                )
-            else:
-                messages.success(
-                    request, 'KO!!!'
-                )
-        except Exception:
-            messages.error(
-                request, 'User does not exist =('
-            )
+
+        user = get_object_or_404(User, username=name)
+        if (
+            user.date_joined < timezone.now() - timedelta(hours=12)
+            and user.is_active is False
+        ):
+            user.delete()
+            messages.error(request, 'Activation expired =(')
+        elif user.is_active is False:
+            user.is_active = True
+            user.save()
+            messages.success(request, 'Activation was successful!')
+        else:
+            messages.success(request, 'User already activated!!!')
+
         return render(request, self.template_name, context)
