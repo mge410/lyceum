@@ -17,7 +17,7 @@ urlpatterns = [
     django.urls.path(
         'user_list/',
         users.views.UsersList.as_view(),
-        name='user_list',
+        name='users_list',
     ),
     django.urls.path(
         'user_detail/<int:id>/',
