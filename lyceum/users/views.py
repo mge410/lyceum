@@ -77,5 +77,6 @@ class UsersList(View):
         users = User.objects.filter(is_active=True)
 
         context = {
+            'users': users
         }
         return render(request, self.template_name, context)
