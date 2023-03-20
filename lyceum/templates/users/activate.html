@@ -1,0 +1,22 @@
+{% extends 'layouts/layout.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+<title>{% translate 'Fluffies '%}</title>
+{% endblock %}
+
+{% block content %}
+<section class="mb-3">
+  <div class="container">
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          <li class="text-success font-weight-bold text-center display-4 m-4">{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+  </div>
+</section>
+<!--================ Start Blog Post Area =================-->
+{% endblock %}

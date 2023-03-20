@@ -21,12 +21,14 @@
             <li class="nav-item {% if view_name == 'feedback:feedback' %}active {% endif %}"><a class="nav-link" href=" {% url 'feedback:feedback' %} "><span>{% translate 'Feedback' %}</span></a></li>
             {% if user.is_superuser %}
             <li class="nav-item"><a href="{% url 'admin:index' %}" type="button" class="nav-link admin-btn"><span>{% translate 'Admin' %}</span></a></li>
-              {% endif %}
+            {% endif %}
           </ul> {% endwith %}
           <ul class="nav navbar-nav navbar-right navbar-social">
-            <li><a class="btn btn-primary" href="{% url 'users:login' %}">{% translate 'Login' %}</a></li>
-            <li><a class="btn btn-primary" href="{% url 'users:register' %}">{% translate 'Register' %}</a></li>
-            <li><a class="btn btn-primary" href="{% url 'users:logout' %}">{% translate 'Logout' %}</a></li>
+            {% if request.user.is_authenticated %}
+              <li><a class="btn btn-primary" href="{% url 'users:logout' %}">{% translate 'Logout' %}</a></li>
+            {% else %}
+              <li><a class="btn btn-primary" href="{% url 'users:login' %}">{% translate 'Login' %}</a></li>
+            {% endif %}
           </ul>
         </div>
       </div>

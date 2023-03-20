@@ -2736,3 +2736,7 @@ a {
 .admin-btn span{
     border-bottom: 3px #5c2699 solid !important;
 }
+
+label{
+    min-width: 150px;
+}
