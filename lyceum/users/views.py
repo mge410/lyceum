@@ -10,6 +10,7 @@ from django.shortcuts import render
 from django.utils import timezone
 from django.views import View
 from users.forms import UserCreationForm
+from users.models import Profile
 
 
 class Register(View):
@@ -26,6 +27,8 @@ class Register(View):
             user = form.save(commit=False)
             user.is_active = settings.DEFAULT_USER_ACTIVITY
             user.save()
+            profile = Profile(user=user)
+            profile.save()
 
             if not settings.DEFAULT_USER_ACTIVITY:
                 send_mail(
