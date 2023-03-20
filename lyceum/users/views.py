@@ -56,7 +56,7 @@ class ActivateUsers(View):
         user = get_object_or_404(User, username=name)
         if (
             user.date_joined < timezone.now() - timedelta(hours=12)
-            and user.is_active is False
+            and not user.is_active
         ):
             user.delete()
             messages.error(request, 'Activation expired =(')
@@ -76,7 +76,28 @@ class UsersList(View):
     def get(self, request):
         users = User.objects.filter(is_active=True)
 
-        context = {
-            'users': users
-        }
+        context = {'users': users}
+        return render(request, self.template_name, context)
+
+
+class UsersDetail(View):
+    template_name = 'users/user_detail.html'
+
+    def get(self, request, id):
+        user = get_object_or_404(
+            User.objects.get_queryset()
+            .select_related('profile')
+            .only(
+                User.username.field.name,
+                User.email.field.name,
+                User.first_name.field.name,
+                User.last_name.field.name,
+                f'{User.profile.related.related_name}__{Profile.image.field.name}',
+                f'{User.profile.related.related_name}__{Profile.birthday.field.name}',
+                f'{User.profile.related.related_name}__{Profile.coffee_count.field.name}',
+            ),
+            pk=id,
+            is_active=True,
+        )
+        context = {'user': user}
         return render(request, self.template_name, context)
