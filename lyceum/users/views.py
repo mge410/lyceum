@@ -1,15 +1,15 @@
 from django.conf import settings
-from django.contrib.auth import authenticate
-from django.contrib.auth import login
 from django.core.mail import send_mail
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.views import View
 from users.forms import UserCreationForm
+from django.contrib.auth.models import User
+from django.contrib import messages
 
 
 class Register(View):
-    template_name = 'users/register.html'
+    template_name = 'users/signup.html'
 
     def get(self, request):
         context = {'form': UserCreationForm()}
@@ -35,11 +35,30 @@ class Register(View):
                     fail_silently=False,
                 )
 
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=password)
-            login(request, user)
-
             return redirect('homepage:home')
         context = {'form': form}
+        return render(request, self.template_name, context)
+
+
+class ActivateUsers(View):
+    template_name = 'users/activate.html'
+
+    def get(self, request, name):
+        context = {}
+        try:
+            user = User.objects.get(username=name)
+            if user.is_active is False:
+                user.is_active = True
+                user.save()
+                messages.success(
+                    request, 'KO!'
+                )
+            else:
+                messages.success(
+                    request, 'KO!!!'
+                )
+        except Exception:
+            messages.error(
+                request, 'User does not exist =('
+            )
         return render(request, self.template_name, context)

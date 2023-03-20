@@ -9,6 +9,12 @@ urlpatterns = [
         users.views.Register.as_view(),
         name='register',
     ),
+
+    django.urls.path(
+        'activate/<str:name>/',
+        users.views.ActivateUsers.as_view(),
+        name='activate',
+    ),
     django.urls.path(
         'login/',
         django.contrib.auth.views.LoginView.as_view(
