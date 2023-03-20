@@ -68,3 +68,14 @@ class ActivateUsers(View):
             messages.success(request, 'User already activated!!!')
 
         return render(request, self.template_name, context)
+
+
+class UsersList(View):
+    template_name = 'users/user_list.html'
+
+    def get(self, request):
+        users = User.objects.filter(is_active=True)
+
+        context = {
+        }
+        return render(request, self.template_name, context)

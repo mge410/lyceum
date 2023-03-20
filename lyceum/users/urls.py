@@ -15,6 +15,12 @@ urlpatterns = [
         users.views.ActivateUsers.as_view(),
         name='activate',
     ),
+
+    django.urls.path(
+        'user_list/',
+        users.views.UsersList.as_view(),
+        name='activate',
+    ),
     django.urls.path(
         'login/',
         django.contrib.auth.views.LoginView.as_view(
