@@ -9,17 +9,20 @@ urlpatterns = [
         users.views.Register.as_view(),
         name='register',
     ),
-
     django.urls.path(
         'activate/<str:name>/',
         users.views.ActivateUsers.as_view(),
         name='activate',
     ),
-
     django.urls.path(
         'user_list/',
         users.views.UsersList.as_view(),
-        name='activate',
+        name='user_list',
+    ),
+    django.urls.path(
+        'user_detail/<int:id>/',
+        users.views.UsersDetail.as_view(),
+        name='user_detail',
     ),
     django.urls.path(
         'login/',
