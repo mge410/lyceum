@@ -23,8 +23,9 @@ class Migration(migrations.Migration):
 
         with transaction.atomic():
             for user in User.objects.using(db_alias).all():
-                profile = Profile.objects.get(user=user)
-                profile.delete()
+                if hasattr(user, 'profile'):
+                    profile = Profile.objects.get(user=user)
+                    profile.delete()
 
     operations = [
         migrations.RunPython(

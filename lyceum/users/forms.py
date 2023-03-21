@@ -37,10 +37,6 @@ class CustomUserChangeForm(UserChangeForm):
 
 
 class ProfileForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super(ProfileForm, self).__init__(*args, **kwargs)
-        print(self.fields['coffee_count'].__dict__)
-
     class Meta:
         model = Profile
         fields = [
