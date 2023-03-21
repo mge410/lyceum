@@ -1,0 +1,39 @@
+{% extends 'layouts/layout.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+<title>{% translate 'List of users'%}</title>
+{% endblock %}
+
+{% block content %}
+<section class="mb-3">
+  <div class="container">
+    <table class="table m-3">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Username</th>
+          <th scope="col">Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+        <tr>
+          <th scope="row"><a href="{% url 'users:user_detail' id=user.id %}">{{user.id}}</a></th>
+          <td><a href="{% url 'users:user_detail' id=user.id %}">{{user.username}}</a></td>
+          <td>{{user.email}}</td>
+        </tr>
+        {% empty %}
+        <tr>
+          <th scope="row">Скорее всего</th>
+          <td>Ты единственный</td>
+          <td>Кто сюда зашёл</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+<!--================ Start Blog Post Area =================-->
+{% endblock %}

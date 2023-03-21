@@ -1,8 +1,6 @@
 $(function() {
   "use strict";
 
-
-
   // //------- Sticky Header -------//
   // $(".sticky-header").sticky();
 
@@ -41,7 +39,6 @@ $(function() {
         };
     };
     navbarFixed();
-
 });
 
 

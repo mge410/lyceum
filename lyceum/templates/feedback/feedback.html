@@ -28,7 +28,7 @@
       </ul>
       {% endif %}
 
-      <form id="contact-form" action="{% url 'feedback:feedback' %}" method="post" role="form" enctype="multipart/form-data">
+      <form class="basic-form" id="contact-form" action="{% url 'feedback:feedback' %}" method="post" role="form" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="controls text-center">
           <div class="row justify-content-center">
@@ -49,12 +49,6 @@
             <div class="col-md-6 mb-1">
               <div class="form-group">
                 <label class="m-3" for="id_files">{{ form.fields.files.label }}</label><input type="file" name="files" multiple id="id_files"><br><span class="helptext">{{ form.fields.files.help_text }}</span>
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="form-group">
-                <!-- Replace data-sitekey with your own one, generated at https://www.google.com/recaptcha/admin -->
-                <div class="g-recaptcha" data-sitekey="6LfKURIUAAAAAO50vlwWZkyK_G2ywqE52NU7YO0S"></div>
               </div>
             </div>
             <div class="col-md-12"> <input type="submit" class="btn btn-success btn-send" value="Send message"> </div>

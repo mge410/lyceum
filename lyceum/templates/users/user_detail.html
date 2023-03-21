@@ -1,0 +1,52 @@
+{% extends 'layouts/layout.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+<title>{% translate 'User'%} {{user.username}}</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="container rounded bg-white mb-1">
+  <h1 class="text-center mb-5 border-bottom">{% translate 'Profile user'%}</h1>
+  <div class="row justify-content-center">
+    <div class="col-6 p-3">
+      <div class="m-3 text-center"><img class="card-img" src="{% if user.profile.image %} {{user.profile.get_image_300x300.url}} {% else %} {% static 'img/plug.jpg' %}{% endif %}" alt="">
+      </div>
+      <div class="text-center">
+        <h2>{% translate 'Username'%} - <span class="font-italic">{{user.username}}</span></h2>
+      </div>
+      <div class="row flex-nowrap mb-1">
+        <div class="text-center col-6 border">
+        <h2>{% translate 'First name'%}</h2>
+        {% if user.first_name %} {{user.first_name}} {% else %} <p class="font-italic">no information</p> {% endif %}
+        </div>
+        <div class="text-center col-6 border">
+          <h2>{% translate 'Last name'%}</h2>
+          {% if user.last_name %} {{user.last_name}} {% else %} <p class="font-italic">no information</p> {% endif %}
+        </div>
+      </div>
+      <div class="row flex-nowrap mb-1">
+        <div class="text-center col-6 border">
+        <h2>Email</h2>
+        {% if user.email %} {{user.email}} {% else %} <p class="font-italic">no information</p> {% endif %}
+        </div>
+        <div class="text-center col-6 border">
+          <h2>{% translate 'Coffee count'%}</h2>
+          {% if user.profile.coffee_count %} {{user.profile.coffee_count}} {% else %} <p class="font-italic">no information</p> {% endif %}
+        </div>
+      </div>
+      <div class="row flex-nowrap mb-1 justify-content-center">
+        <div class="text-center col-6 border">
+        <h2>{% translate 'Birthday'%}</h2>
+        {% if user.profile.birthday %} {{user.profile.birthday}} {% else %} <p class="font-italic">no information</p> {% endif %}
+        </div>
+      </div>
+      <div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--================ Start Blog Post Area =================-->
+{% endblock %}

@@ -102,13 +102,19 @@ class ImageBaseModel(models.Model):
         return 'No picture'
 
     def save(self, *args: Any, **kwargs: Any) -> None:
-        self.image.name = '.'.join(
-            list(
-                map(lambda x: translit.slugify(x), self.image.name.split('.'))
+        if self.image is None:
+            self.image.name = '.'.join(
+                list(
+                    map(
+                        lambda x: translit.slugify(x),
+                        self.image.name.split('.'),
+                    )
+                )
             )
-        )
-        super().save(*args, **kwargs)
-        self.image = self.get_image_300x300()
+            super().save(*args, **kwargs)
+            self.image = self.get_image_300x300()
+        else:
+            super().save(*args, **kwargs)
 
     image_tmb.short_description = 'Image'
 

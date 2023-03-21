@@ -7,6 +7,7 @@ env = environ.Env(
     DEBUG=(bool, True),
     SECRET_KEY=(str, 'secret_key'),
     ALLOWED_HOSTS=(list, ['*']),
+    DEFAULT_USER_ACTIVITY=(bool, False),
     REVERSE_MIDDLEWARE=(bool, False),
     MAIL_SENDER=(str, 'v0v.voron2005@yandex.ru'),
 )
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'download.apps.DownloadConfig',
     'feedback.apps.FeedbackConfig',
     'homepage.apps.HomepageConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
@@ -107,6 +109,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+DEFAULT_USER_ACTIVITY = env('DEFAULT_USER_ACTIVITY')
+
+LOGIN_URL = 'auth/login/'
+LOGIN_REDIRECT_URL = '/'
 
 LANGUAGES = (
     ('en', ('English',)),

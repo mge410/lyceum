@@ -11,11 +11,6 @@ class FeedbackForm(django.forms.Form):
         help_text='Write what you think about our company =)',
     )
     files = django.forms.FileField(
-        widget=django.forms.ClearableFileInput(
-            attrs={
-                'multiple': True,
-            },
-        ),
         required=False,
         label='Files',
         help_text='Download file',

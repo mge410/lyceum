@@ -8,6 +8,10 @@ body {
     line-height: 1.625
 }
 
+main{
+    min-height: 500px;
+}
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -2731,4 +2735,17 @@ a {
 
 .admin-btn span{
     border-bottom: 3px #5c2699 solid !important;
+}
+
+label{
+    min-width: 150px;
+}
+
+.basic-form{
+    border: 2px #5d5db1 solid;
+    padding: 20px;
+    background-color: antiquewhite;
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 30px;
 }

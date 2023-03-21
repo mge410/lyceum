@@ -40,6 +40,75 @@ msgstr "Забота & любовь"
 msgid "For all animals"
 msgstr "Для всех зверюшек"
 
+msgid "Profile activation"
+msgstr "Активация профиля"
+
+msgid "Login"
+msgstr "Авторизация"
+
+msgid "Logout"
+msgstr "Выйти"
+
+msgid "Password change"
+msgstr "Смена пароля"
+
+msgid "Password recovery"
+msgstr "Восстановление пароля"
+
+msgid "Your profile"
+msgstr "Ваш профиль"
+
+msgid "Registration"
+msgstr "Регистрация"
+
+msgid "User"
+msgstr "Пользователь"
+
+msgid "List of users"
+msgstr "Cписок пользователей"
+
+msgid "Username"
+msgstr "Ник пользователя"
+
+msgid "First name"
+msgstr "Имя пользователя"
+
+msgid "Last name"
+msgstr "Фамилия пользователя"
+
+msgid "Coffee count"
+msgstr "Кол-во кофе"
+
+msgid "Birthday"
+msgstr "День рождения"
+
+msgid "Profile user"
+msgstr "Профиль пользователя"
+
+msgid "My Profile"
+msgstr "Мой профиль"
+
+msgid "To drink coffee"
+msgstr "Выпить кофе"
+
+msgid "Update your profile"
+msgstr "Обновить ваш профиль"
+
+msgid "Сhange password"
+msgstr "Изменить пароль"
+
+msgid "Register"
+msgstr "Зарегистрироваться"
+
+msgid "Forgot your password"
+msgstr "Забыли пароль"
+
+msgid "Register to your account"
+msgstr "Зарегистрируйте свой аккаунт"
+
+msgid "Login to your account"
+msgstr "Войдите в свой аккаунт"
+
 #: .\templates\include\footer.html:10
 msgid ""
 "We take care of animals and help them find the best owners. Only the cutest "

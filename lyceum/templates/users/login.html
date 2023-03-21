@@ -1,0 +1,52 @@
+{% extends 'layouts/layout.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+<title>{% translate 'Login'%}</title>
+{% endblock %}
+
+{% block content %}
+<section class="mb-3">
+  <div class="container">
+    <h1 class="text-center">
+      {% translate 'Login to your account'%}
+    </h1>
+  </div>
+</section>
+<!--================ Start Blog Post Area =================-->
+<div class="blog-post-area section-margin mt-4">
+  <div class="container">
+    <section class="row justify-content-center">
+      <div class="col-lg-12">
+        <form class="basic-form" method="post" role="form">
+        {% csrf_token %}
+          <div class="text-center text-danger m-3">{{ form.non_field_errors }}</div>
+        <div class="controls text-center">
+          {% for field in form %}
+          <div class="row justify-content-center">
+            <div class="col-md-4 mb-4">
+              <div class="form-group"> <label class="mr-3" for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}
+                {% for error in field.errors %}
+                  <div class="help-block with-errors text-danger">{{ error|safe }}</div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          <div class="row justify-content-center">
+            <div class="col-md-12"> <input type="submit" class="btn btn-success btn-send" value="{% translate 'Login'%}"> </div>
+          </div>
+        </div>
+      </form>
+      </div>
+      <div class="col-md-12 row justify-content-center">
+        <a class="btn btn-primary m-3" href="{% url 'users:register' %}">{% translate 'Register' %}</a>
+      </div>
+      <div class="col-md-12 row justify-content-center">
+        <a class="btn btn-primary" href="{% url 'users:password_reset' %}">{% translate 'Forgot your password' %}</a>
+      </div>
+    </section>
+  </div>
+</div>
+{% endblock %}
