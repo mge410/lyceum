@@ -6,10 +6,11 @@ from django.test import TestCase
 from django.urls import reverse
 from django.utils import timezone
 import mock
+from parameterized import parameterized
 import pytz
 
 
-class ViewsTests(TestCase):
+class RegisterViewsTests(TestCase):
     user_register_data = {
         'username': 'ABEBRA',
         'email': 'aboba@ma.ru',
@@ -109,3 +110,34 @@ class ViewsTests(TestCase):
 
         with self.assertRaises(exceptions.ObjectDoesNotExist):
             User.objects.get(username=self.user_register_data['username'])
+
+    @parameterized.expand(
+        [
+            [
+                user_register_data['username'],
+                user_register_data['password1'],
+                True,
+            ],
+        ],
+    )
+    def test_user_login_username(self, username, password, expected):
+        Client().post(
+            reverse('users:register'),
+            self.user_register_data,
+            follow=True,
+        )
+
+        user = User.objects.get(username=username)
+        last_login = user.last_login
+
+        Client().post(
+            reverse('users:login'),
+            {
+                'username': username,
+                'password': password,
+            },
+            follow=True,
+        )
+
+        now_login = user.last_login
+        self.assertFalse(last_login != now_login)
