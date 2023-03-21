@@ -28,7 +28,7 @@
       </ul>
       {% endif %}
 
-      <form id="contact-form" action="{% url 'feedback:feedback' %}" method="post" role="form" enctype="multipart/form-data">
+      <form class="basic-form" id="contact-form" action="{% url 'feedback:feedback' %}" method="post" role="form" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="controls text-center">
           <div class="row justify-content-center">
