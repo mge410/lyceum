@@ -3,7 +3,9 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import UsernameField
+from django.db.models import Q
 from users.models import Profile
+from users.models import UserProfileProxy
 
 User = get_user_model()
 
@@ -17,6 +19,17 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = User
         fields = ('username', 'email')
+
+    def clean(self):
+        cleaned_data = super().clean()
+        is_email_unique = UserProfileProxy.objects.filter(
+            email=cleaned_data['email']
+        ).exists()
+        if is_email_unique:
+            self.add_error(
+                UserProfileProxy.email.field.name,
+                'User with this email address is registered',
+            )
 
 
 class CustomUserChangeForm(UserChangeForm):
@@ -34,6 +47,17 @@ class CustomUserChangeForm(UserChangeForm):
             User.first_name.field.name,
             User.last_name.field.name,
         ]
+
+    def clean(self):
+        cleaned_data = super().clean()
+        is_email_unique = UserProfileProxy.objects.filter(
+            ~Q(pk=self.instance.id), email=cleaned_data['email']
+        ).exists()
+        if is_email_unique:
+            self.add_error(
+                UserProfileProxy.email.field.name,
+                'User with this email address is registered',
+            )
 
 
 class ProfileForm(forms.ModelForm):
