@@ -105,7 +105,10 @@ class ImageBaseModel(models.Model):
         if self.image is None:
             self.image.name = '.'.join(
                 list(
-                    map(lambda x: translit.slugify(x), self.image.name.split('.'))
+                    map(
+                        lambda x: translit.slugify(x),
+                        self.image.name.split('.'),
+                    )
                 )
             )
             super().save(*args, **kwargs)

@@ -1,6 +1,6 @@
+import core.models
 from django.contrib.auth.models import User
 from django.db import models
-import core.models
 
 
 class Profile(core.models.ImageBaseModel):
