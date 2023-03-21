@@ -3,7 +3,6 @@ from django.core import exceptions
 from django.test import Client
 from django.test import override_settings
 from django.test import TestCase
-import django.urls
 from django.urls import reverse
 from django.utils import timezone
 import mock
@@ -22,7 +21,7 @@ class ViewsTests(TestCase):
 
     def test_user_register_context(self):
         response = Client().get(
-            django.urls.reverse(
+            reverse(
                 'users:register',
             )
         )
@@ -35,7 +34,7 @@ class ViewsTests(TestCase):
             follow=True,
         )
 
-        self.assertRedirects(response, django.urls.reverse('homepage:home'))
+        self.assertRedirects(response, reverse('homepage:home'))
 
     def test_user_register_success(self):
         mail_count = User.objects.count()
