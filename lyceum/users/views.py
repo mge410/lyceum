@@ -9,7 +9,9 @@ from django.shortcuts import redirect
 from django.shortcuts import render
 from django.utils import timezone
 from django.views import View
-from users.forms import UserCreationForm
+from users.forms import CustomUserChangeForm
+from users.forms import CustomUserCreationForm
+from users.forms import ProfileForm
 from users.models import Profile
 
 
@@ -17,11 +19,11 @@ class Register(View):
     template_name = 'users/signup.html'
 
     def get(self, request):
-        context = {'form': UserCreationForm()}
+        context = {'form': CustomUserCreationForm()}
         return render(request, self.template_name, context)
 
     def post(self, request):
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
 
         if form.is_valid():
             user = form.save(commit=False)
@@ -92,12 +94,41 @@ class UsersDetail(View):
                 User.email.field.name,
                 User.first_name.field.name,
                 User.last_name.field.name,
-                f'{User.profile.related.related_name}__{Profile.image.field.name}',
-                f'{User.profile.related.related_name}__{Profile.birthday.field.name}',
-                f'{User.profile.related.related_name}__{Profile.coffee_count.field.name}',
+                f'{User.profile.related.related_name}'
+                f'__{Profile.image.field.name}',
+                f'{User.profile.related.related_name}'
+                f'__{Profile.birthday.field.name}',
+                f'{User.profile.related.related_name}'
+                f'__{Profile.coffee_count.field.name}',
             ),
             pk=id,
             is_active=True,
         )
         context = {'user': user}
+        return render(request, self.template_name, context)
+
+
+class UsersProfile(View):
+    template_name = 'users/profile.html'
+
+    def get(self, request):
+        user = request.user
+        form = CustomUserChangeForm(instance=user)
+        profile_form = ProfileForm(instance=user.profile)
+        context = {'form': form, 'profile_form': profile_form}
+        return render(request, self.template_name, context)
+
+    def post(self, request):
+        user = request.user
+
+        form = CustomUserChangeForm(request.POST, instance=user)
+        profile_form = ProfileForm(
+            request.POST, request.FILES, instance=user.profile
+        )
+
+        if form.is_valid() and profile_form.is_valid():
+            form.save()
+            profile_form.save()
+
+        context = {'form': form, 'profile_form': profile_form}
         return render(request, self.template_name, context)

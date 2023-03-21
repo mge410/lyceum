@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 import django.contrib.auth.views
 import django.urls
 import users.views
@@ -23,6 +24,11 @@ urlpatterns = [
         'user_detail/<int:id>/',
         users.views.UsersDetail.as_view(),
         name='user_detail',
+    ),
+    django.urls.path(
+        'profile/',
+        login_required(users.views.UsersProfile.as_view()),
+        name='profile',
     ),
     django.urls.path(
         'login/',
