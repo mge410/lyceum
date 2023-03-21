@@ -3,14 +3,14 @@
 {% load i18n %}
 
 {% block title %}
-<title>{% translate 'Fluffies '%}</title>
+<title>{% translate 'Your profile'%}</title>
 {% endblock %}
 
 {% block content %}
 <section class="mb-3">
   <div class="container">
     <h1 class="text-center">
-      Your profile
+      {% translate 'Your profile' %}
     </h1>
   </div>
 </section>
@@ -47,13 +47,13 @@
           </div>
           {% endfor %}
           <div class="row justify-content-center">
-            <div class="col-md-12"> <input type="submit" class="btn btn-success btn-send" value="Update your profile"> </div>
+            <div class="col-md-12"> <input type="submit" class="btn btn-success btn-send" value="{% translate 'Update your profile' %}"> </div>
           </div>
         </div>
       </form>
       </div>
       <div class="col-md-12 row justify-content-center m-1">
-        <button class="btn btn-primary m-3" type="button" id="coffee_count">{% translate 'To drink coffee ' %}</button>
+        <button class="btn btn-primary m-3" type="button" id="coffee_count">{% translate 'To drink coffee' %}</button>
       </div>
       <div class="col-md-12 row justify-content-center m-1">
         <a class="btn btn-primary" href="{% url 'users:logout' %}">{% translate 'Logout' %}</a>

@@ -3,14 +3,14 @@
 {% load i18n %}
 
 {% block title %}
-<title>{% translate 'Fluffies '%}</title>
+<title>{% translate 'Login'%}</title>
 {% endblock %}
 
 {% block content %}
 <section class="mb-3">
   <div class="container">
     <h1 class="text-center">
-      Login to your account
+      {% translate 'Login to your account'%}
     </h1>
   </div>
 </section>
@@ -35,7 +35,7 @@
           </div>
           {% endfor %}
           <div class="row justify-content-center">
-            <div class="col-md-12"> <input type="submit" class="btn btn-success btn-send" value="Login"> </div>
+            <div class="col-md-12"> <input type="submit" class="btn btn-success btn-send" value="{% translate 'Login'%}"> </div>
           </div>
         </div>
       </form>
