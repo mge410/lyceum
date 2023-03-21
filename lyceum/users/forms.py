@@ -43,7 +43,13 @@ class ProfileForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = ['coffee_count', 'birthday', 'image']
+        fields = [
+            Profile.coffee_count.field.name,
+            Profile.birthday.field.name,
+            Profile.image.field.name,
+        ]
         widgets = {
-            'coffee_count': forms.TextInput(attrs={'readonly': 'readonly'}),
+            Profile.coffee_count.field.name: forms.TextInput(
+                attrs={'readonly': 'readonly'}
+            ),
         }
