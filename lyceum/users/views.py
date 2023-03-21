@@ -13,6 +13,7 @@ from users.forms import CustomUserChangeForm
 from users.forms import CustomUserCreationForm
 from users.forms import ProfileForm
 from users.models import Profile
+from users.models import UserProfileProxy
 
 
 class Register(View):
@@ -76,7 +77,7 @@ class UsersList(View):
     template_name = 'users/user_list.html'
 
     def get(self, request):
-        users = User.objects.filter(is_active=True)
+        users = UserProfileProxy.objects.all()
 
         context = {'users': users}
         return render(request, self.template_name, context)
@@ -86,24 +87,7 @@ class UsersDetail(View):
     template_name = 'users/user_detail.html'
 
     def get(self, request, id):
-        user = get_object_or_404(
-            User.objects.get_queryset()
-            .select_related('profile')
-            .only(
-                User.username.field.name,
-                User.email.field.name,
-                User.first_name.field.name,
-                User.last_name.field.name,
-                f'{User.profile.related.related_name}'
-                f'__{Profile.image.field.name}',
-                f'{User.profile.related.related_name}'
-                f'__{Profile.birthday.field.name}',
-                f'{User.profile.related.related_name}'
-                f'__{Profile.coffee_count.field.name}',
-            ),
-            pk=id,
-            is_active=True,
-        )
+        user = get_object_or_404(UserProfileProxy.objects.all(), pk=id)
         context = {'user': user}
         return render(request, self.template_name, context)
 

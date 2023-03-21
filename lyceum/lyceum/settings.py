@@ -109,6 +109,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'users.backends.AuthBackend',
+]
+
 DEFAULT_USER_ACTIVITY = env('DEFAULT_USER_ACTIVITY')
 
 LOGIN_URL = 'auth/login/'

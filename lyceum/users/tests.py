@@ -3,26 +3,24 @@ from django.core import exceptions
 from django.test import Client
 from django.test import override_settings
 from django.test import TestCase
-import django.urls
 from django.urls import reverse
 from django.utils import timezone
 import mock
+from parameterized import parameterized
 import pytz
 
 
-class ViewsTests(TestCase):
-    def setUp(self):
-        self.user_register_data = {
-            'username': 'ABEBRA',
-            'email': 'aboba@ma.ru',
-            'password1': '123123123g',
-            'password2': '123123123g',
-        }
-        super(ViewsTests, self).setUp()
+class RegisterViewsTests(TestCase):
+    user_register_data = {
+        'username': 'ABEBRA',
+        'email': 'aboba@ma.ru',
+        'password1': '123123123g',
+        'password2': '123123123g',
+    }
 
     def test_user_register_context(self):
         response = Client().get(
-            django.urls.reverse(
+            reverse(
                 'users:register',
             )
         )
@@ -35,10 +33,10 @@ class ViewsTests(TestCase):
             follow=True,
         )
 
-        self.assertRedirects(response, django.urls.reverse('homepage:home'))
+        self.assertRedirects(response, reverse('homepage:home'))
 
     def test_user_register_success(self):
-        mail_count = User.objects.count()
+        user_count = User.objects.count()
 
         Client().post(
             reverse('users:register'),
@@ -46,7 +44,7 @@ class ViewsTests(TestCase):
             follow=True,
         )
 
-        self.assertEqual(User.objects.count(), mail_count + 1)
+        self.assertEqual(User.objects.count(), user_count + 1)
 
     @override_settings(DEFAULT_USER_ACTIVITY='False')
     def test_register_is_active_false(self):
@@ -58,7 +56,7 @@ class ViewsTests(TestCase):
 
         user = User.objects.get(username=self.user_register_data['username'])
 
-        self.assertEqual(user.is_active, False)
+        self.assertFalse(user.is_active)
 
     @override_settings(DEFAULT_USER_ACTIVITY='True')
     def test_register_is_active_true(self):
@@ -70,7 +68,7 @@ class ViewsTests(TestCase):
 
         user = User.objects.get(username=self.user_register_data['username'])
 
-        self.assertEqual(user.is_active, True)
+        self.assertTrue(user.is_active)
 
     @override_settings(DEFAULT_USER_ACTIVITY='False')
     def test_user_activate_success(self):
@@ -89,7 +87,7 @@ class ViewsTests(TestCase):
 
         user = User.objects.get(username=self.user_register_data['username'])
 
-        self.assertEqual(user.is_active, True)
+        self.assertTrue(user.is_active)
 
     @override_settings(DEFAULT_USER_ACTIVITY='False')
     @mock.patch('django.utils.timezone.now')
@@ -113,5 +111,33 @@ class ViewsTests(TestCase):
         with self.assertRaises(exceptions.ObjectDoesNotExist):
             User.objects.get(username=self.user_register_data['username'])
 
-    def tearDown(self):
-        super(ViewsTests, self).tearDown()
+    @parameterized.expand(
+        [
+            [
+                user_register_data['username'],
+                user_register_data['password1'],
+                True,
+            ],
+        ],
+    )
+    def test_user_login_username(self, username, password, expected):
+        Client().post(
+            reverse('users:register'),
+            self.user_register_data,
+            follow=True,
+        )
+
+        user = User.objects.get(username=username)
+        last_login = user.last_login
+
+        Client().post(
+            reverse('users:login'),
+            {
+                'username': username,
+                'password': password,
+            },
+            follow=True,
+        )
+
+        now_login = user.last_login
+        self.assertFalse(last_login != now_login)

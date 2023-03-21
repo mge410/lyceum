@@ -1,6 +1,7 @@
 import core.models
 from django.contrib.auth.models import User
 from django.db import models
+from users.managers import UserProfileManager
 
 
 class Profile(core.models.ImageBaseModel):
@@ -28,3 +29,11 @@ class Profile(core.models.ImageBaseModel):
         verbose_name = 'additional field'
         verbose_name_plural = 'additional fields'
         default_related_name = 'profile'
+
+
+class UserProfileProxy(User):
+    objects = UserProfileManager()
+
+    class Meta:
+        proxy = True
+        ordering = (User.date_joined.field.name,)
