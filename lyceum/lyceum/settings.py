@@ -9,6 +9,7 @@ env = environ.Env(
     ALLOWED_HOSTS=(list, ['*']),
     DEFAULT_USER_ACTIVITY=(bool, None),
     REVERSE_MIDDLEWARE=(bool, False),
+    NUMBER_OF_LOGIN_ATTEMPTS=(int, 5),
     MAIL_SENDER=(str, 'v0v.voron2005@yandex.ru'),
 )
 
@@ -133,6 +134,8 @@ LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale/')]
 MAIL_SENDER = env('MAIL_SENDER')
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+
+NUMBER_OF_LOGIN_ATTEMPTS = env('NUMBER_OF_LOGIN_ATTEMPTS')
 
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
 
