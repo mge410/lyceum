@@ -1,3 +1,5 @@
+import datetime
+
 from django.contrib.auth.models import User
 from django.core import exceptions
 from django.test import Client
@@ -101,7 +103,7 @@ class RegisterViewsTests(TestCase):
         user = User.objects.get(username=self.user_register_data['username'])
 
         utc = pytz.UTC
-        mock_now.return_value = utc.localize(timezone.datetime(2025, 1, 3))
+        mock_now.return_value = utc.localize(timezone.datetime.now() + datetime.timedelta(hours=12))
 
         Client().get(
             reverse('users:activate', args=(user.username,)),
@@ -116,11 +118,10 @@ class RegisterViewsTests(TestCase):
             [
                 user_register_data['username'],
                 user_register_data['password1'],
-                True,
             ],
         ],
     )
-    def test_user_login_username(self, username, password, expected):
+    def test_user_login_username(self, username, password):
         Client().post(
             reverse('users:register'),
             self.user_register_data,
