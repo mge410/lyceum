@@ -73,6 +73,9 @@ class Item(
 
 
 class MainImageItem(core.NamedBaseModel, core.ImageBaseModel):
+    def saving_path(self, name):
+        return f'uploads/main_image/{self.items.id}/{name}'
+
     items = models.OneToOneField(
         Item,
         verbose_name='main image',
@@ -82,6 +85,11 @@ class MainImageItem(core.NamedBaseModel, core.ImageBaseModel):
         help_text='main image',
     )
 
+    image = models.ImageField(
+        'Will be rendered at 300px',
+        upload_to=saving_path,
+    )
+
     class Meta:
         verbose_name = 'main image'
         verbose_name_plural = 'main images'
@@ -89,6 +97,14 @@ class MainImageItem(core.NamedBaseModel, core.ImageBaseModel):
 
 
 class GalleryImagesItem(core.NamedBaseModel, core.ImageBaseModel):
+    def saving_path(self, name):
+        return f'uploads/gallery_images/{self.item.id}/{name}'
+
+    image = models.ImageField(
+        'Will be rendered at 300px',
+        upload_to=saving_path,
+    )
+
     item = models.ForeignKey(
         Item,
         on_delete=models.CASCADE,

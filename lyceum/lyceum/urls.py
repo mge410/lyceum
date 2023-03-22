@@ -19,9 +19,14 @@ urlpatterns = [
     django.urls.path('admin/', django.contrib.admin.site.urls),
     django.urls.path('auth/', django.urls.include(users.urls)),
     django.urls.path('auth/', django.urls.include(django.contrib.auth.urls)),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+
 
 if settings.DEBUG:
+    urlpatterns += static(
+        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
+    )
+
     import debug_toolbar
 
     urlpatterns.append(

@@ -5,7 +5,15 @@ from users.managers import UserProfileManager
 
 
 class Profile(core.models.ImageBaseModel):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    def saving_path(self, name):
+        return f'uploads/user_image/{self.user.id}/{name}'
+
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        verbose_name='user',
+        help_text='user',
+    )
 
     birthday = models.DateField(
         'birthday', blank=True, null=True, help_text='Enter date of birth'
@@ -13,13 +21,13 @@ class Profile(core.models.ImageBaseModel):
 
     image = models.ImageField(
         'profile picture',
-        upload_to='uploads/user_image/',
+        upload_to=saving_path,
         blank=True,
         null=True,
         help_text='Enter profile picture',
     )
 
-    coffee_count = models.BigIntegerField(
+    coffee_count = models.PositiveSmallIntegerField(
         'coffee count',
         default=0,
         help_text='Number of user requests for coffee',

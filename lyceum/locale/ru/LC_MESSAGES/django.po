@@ -109,6 +109,9 @@ msgstr "Зарегистрируйте свой аккаунт"
 msgid "Login to your account"
 msgstr "Войдите в свой аккаунт"
 
+msgid "You are logged out!"
+msgstr "Вы успешно вышли из учётной записи"
+
 #: .\templates\include\footer.html:10
 msgid ""
 "We take care of animals and help them find the best owners. Only the cutest "
