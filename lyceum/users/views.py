@@ -62,13 +62,13 @@ class ActivateUsers(View):
             and not user.is_active
         ):
             user.delete()
-            messages.error(request, 'Activation expired =(')
+            messages.error(request, 'Overdue =(')
         elif user.is_active is False:
             user.is_active = True
             user.save()
-            messages.success(request, 'Activation was successful!')
+            messages.success(request, 'Your account has been successfully activated')
         else:
-            messages.success(request, 'User already activated!!!')
+            messages.success(request, 'This user is already activated')
 
         return render(request, self.template_name, context)
 
