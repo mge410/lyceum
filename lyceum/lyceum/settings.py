@@ -7,7 +7,7 @@ env = environ.Env(
     DEBUG=(bool, True),
     SECRET_KEY=(str, 'secret_key'),
     ALLOWED_HOSTS=(list, ['*']),
-    DEFAULT_USER_ACTIVITY=(bool, False),
+    DEFAULT_USER_ACTIVITY=(bool, None),
     REVERSE_MIDDLEWARE=(bool, False),
     MAIL_SENDER=(str, 'v0v.voron2005@yandex.ru'),
 )
@@ -18,6 +18,11 @@ environ.Env.read_env(BASE_DIR / '.env')
 SECRET_KEY = env('SECRET_KEY')
 
 DEBUG = env('DEBUG')
+
+DEFAULT_USER_ACTIVITY = env('DEFAULT_USER_ACTIVITY')
+
+if DEFAULT_USER_ACTIVITY is None:
+    DEFAULT_USER_ACTIVITY = True if DEBUG else False
 
 ALLOWED_HOSTS: list[str] = env('ALLOWED_HOSTS')
 
@@ -112,8 +117,6 @@ AUTH_PASSWORD_VALIDATORS = [
 AUTHENTICATION_BACKENDS = [
     'users.backends.AuthBackend',
 ]
-
-DEFAULT_USER_ACTIVITY = env('DEFAULT_USER_ACTIVITY')
 
 LOGIN_URL = 'auth/login/'
 LOGIN_REDIRECT_URL = '/'
