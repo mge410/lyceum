@@ -66,7 +66,9 @@ class ActivateUsers(View):
         elif user.is_active is False:
             user.is_active = True
             user.save()
-            messages.success(request, 'Your account has been successfully activated')
+            messages.success(
+                request, 'Your account has been' ' successfully activated'
+            )
         else:
             messages.success(request, 'This user is already activated')
 
