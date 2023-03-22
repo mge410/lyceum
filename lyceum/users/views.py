@@ -94,7 +94,9 @@ class UsersDetail(View):
     template_name = 'users/user_detail.html'
 
     def get(self, request, id):
-        user = get_object_or_404(UserProfileProxy.objects.get_user_detail(), pk=id)
+        user = get_object_or_404(
+            UserProfileProxy.objects.get_user_detail(), pk=id
+        )
         context = {'current_user': user}
         return render(request, self.template_name, context)
 
@@ -123,3 +125,29 @@ class UsersProfile(View):
 
         context = {'form': form, 'profile_form': profile_form}
         return render(request, self.template_name, context)
+
+
+class UserRecovery(View):
+    template_name = 'users/recovery.html'
+
+    def get(self, request, name):
+        user = get_object_or_404(User, username=name)
+        if (
+            user.profile.account_blocking_date is not None
+            and user.profile.account_blocking_date
+            > timezone.now() + timedelta(days=7)
+            and not user.is_active
+        ):
+            user.delete()
+            messages.error(request, 'User deleted')
+        elif user.is_active is False:
+            user.is_active = True
+            user.profile.login_failed_count = 0
+            user.profile.account_blocking_date = None
+            user.profile.save()
+            user.save()
+            messages.success(request, 'Account restored!')
+        else:
+            messages.success(request, 'Account does not require recovery')
+
+        return render(request, self.template_name)

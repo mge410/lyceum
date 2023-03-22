@@ -16,6 +16,11 @@ urlpatterns = [
         name='activate',
     ),
     django.urls.path(
+        'recovery/<str:name>/',
+        users.views.UserRecovery.as_view(),
+        name='recovery',
+    ),
+    django.urls.path(
         'user_list/',
         users.views.UsersList.as_view(),
         name='users_list',

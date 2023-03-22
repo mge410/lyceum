@@ -1,10 +1,9 @@
 from django.contrib.auth.models import User
-from django.db import models
-
+from django.contrib.auth.models import UserManager
 import users.models
 
 
-class UserProfileManager(models.Manager):
+class UserProfileManager(UserManager):
     def get_queryset(self):
         return (
             super(UserProfileManager, self)
@@ -21,7 +20,32 @@ class UserProfileManager(models.Manager):
 
     def get_user_detail(self):
         return self.get_queryset().only(
-            'username', 'email', 'profile__image',
-            'first_name', 'last_name',
-            'profile__coffee_count', 'profile__birthday'
+            User.username.field.name,
+            User.email.field.name,
+            User.first_name.field.name,
+            User.last_name.field.name,
+            f'{User.profile.related.related_name}'
+            f'__{users.models.Profile.image.field.name}',
+            f'{User.profile.related.related_name}'
+            f'__{users.models.Profile.birthday.field.name}',
+            f'{User.profile.related.related_name}'
+            f'__{users.models.Profile.coffee_count.field.name}',
         )
+
+    @classmethod
+    def normalize_email(cls, email):
+        if not email:
+            return ''
+        try:
+            email_user, email_domain = email.strip().rsplit('@', 1)
+        except ValueError:
+            pass
+        else:
+            email_user_no_tags = email_user.split('+')[0].lower()
+            if email_domain.lower() in ['yandex.ru', 'ya.ru']:
+                email_user_no_tags = email_user_no_tags.replace('.', '-')
+                email_domain = 'yandex.ru'
+            if email_domain.lower() == 'gmail.com':
+                email_user_no_tags = email_user_no_tags.replace('.', '')
+            email = '@'.join([email_user_no_tags, email_domain.lower()])
+        return email

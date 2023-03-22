@@ -103,7 +103,9 @@ class RegisterViewsTests(TestCase):
         user = User.objects.get(username=self.user_register_data['username'])
 
         utc = pytz.UTC
-        mock_now.return_value = utc.localize(timezone.datetime.now() + datetime.timedelta(hours=12))
+        mock_now.return_value = utc.localize(
+            timezone.datetime.now() + datetime.timedelta(hours=12)
+        )
 
         Client().get(
             reverse('users:activate', args=(user.username,)),
@@ -142,3 +144,88 @@ class RegisterViewsTests(TestCase):
 
         now_login = user.last_login
         self.assertFalse(last_login != now_login)
+
+    @parameterized.expand(
+        [
+            ['aboba@ya.ru', 'aboba@yandex.ru'],
+            ['ABOBA@yA.ru', 'aboba@yandex.ru'],
+            ['abo.ba.+ger@gmail.com', 'aboba@gmail.com'],
+            ['ABo.ba.+ger@gmail.com', 'aboba@gmail.com'],
+        ]
+    )
+    def test_user_normalize_email(self, email: str, expected: str) -> None:
+        """тестируем блокировку пользователя"""
+        Client().post(
+            reverse('users:register'),
+            {
+                'username': self.user_register_data['username'],
+                'email': email,
+                'password1': self.user_register_data['password1'],
+                'password2': self.user_register_data['password2'],
+            },
+            follow=True,
+        )
+        user = User.objects.get(pk=1)
+        self.assertEqual(user.email, expected)
+
+    @override_settings(DEFAULT_USER_ACTIVITY='True')
+    def test_user_to_success_block(self) -> None:
+        """тестируем валидацию почты"""
+
+        Client().post(
+            reverse('users:register'),
+            {
+                'username': self.user_register_data['username'],
+                'email': self.user_register_data['email'],
+                'password1': self.user_register_data['password1'],
+                'password2': self.user_register_data['password2'],
+            },
+            follow=True,
+        )
+
+        for i in range(5):
+            Client().post(
+                reverse('users:login'),
+                {
+                    'username': self.user_register_data['username'],
+                    'password': '1',
+                },
+                follow=True,
+            )
+
+        user = User.objects.get(username=self.user_register_data['username'])
+        self.assertFalse(user.is_active)
+
+    @override_settings(DEFAULT_USER_ACTIVITY='True')
+    def test_user_to_success_recovery(self) -> None:
+        """тестируем восстановление пользователя"""
+        Client().post(
+            reverse('users:register'),
+            {
+                'username': self.user_register_data['username'],
+                'email': self.user_register_data['email'],
+                'password1': self.user_register_data['password1'],
+                'password2': self.user_register_data['password2'],
+            },
+            follow=True,
+        )
+
+        for i in range(5):
+            Client().post(
+                reverse('users:login'),
+                {
+                    'username': self.user_register_data['username'],
+                    'password': '1',
+                },
+                follow=True,
+            )
+
+        Client().get(
+            reverse(
+                'users:recovery',
+                kwargs={'name': self.user_register_data['username']},
+            ),
+        )
+
+        user = User.objects.get(username=self.user_register_data['username'])
+        self.assertTrue(user.is_active)
