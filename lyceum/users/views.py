@@ -85,8 +85,7 @@ class UsersList(View):
     template_name = 'users/user_list.html'
 
     def get(self, request):
-        users = UserProfileProxy.objects.all()
-
+        users = UserProfileProxy.objects.get_user_list()
         context = {'users': users}
         return render(request, self.template_name, context)
 
@@ -95,8 +94,8 @@ class UsersDetail(View):
     template_name = 'users/user_detail.html'
 
     def get(self, request, id):
-        user = get_object_or_404(UserProfileProxy.objects.all(), pk=id)
-        context = {'user': user}
+        user = get_object_or_404(UserProfileProxy.objects.get_user_detail(), pk=id)
+        context = {'current_user': user}
         return render(request, self.template_name, context)
 
 
