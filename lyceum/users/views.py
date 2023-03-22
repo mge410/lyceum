@@ -7,6 +7,7 @@ from django.core.mail import send_mail
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.utils import timezone
 from django.views import View
 from users.forms import CustomUserChangeForm
@@ -34,12 +35,17 @@ class Register(View):
             profile.save()
 
             if not settings.DEFAULT_USER_ACTIVITY:
+                absolute_url = self.request.build_absolute_uri(
+                    reverse_lazy(
+                        'users:activate',
+                        args=[user.username],
+                    )
+                )
                 send_mail(
                     'Email verification',
                     f'Thank you for registering on our website! <br>'
                     f'Profile activation link! <br>'
-                    f'- « http://127.0.0.1:8000/auth/activate/'
-                    f'{form.cleaned_data["username"]} »',
+                    f'- « {absolute_url}',
                     settings.MAIL_SENDER,
                     [f'{form.cleaned_data["email"]}'],
                     fail_silently=False,
