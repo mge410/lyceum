@@ -86,8 +86,9 @@ class MainImageItem(core.NamedBaseModel, core.ImageBaseModel):
     )
 
     image = models.ImageField(
-        'Will be rendered at 300px',
+        'main image',
         upload_to=saving_path,
+        help_text='Will be rendered at 300px',
     )
 
     class Meta:
@@ -101,8 +102,9 @@ class GalleryImagesItem(core.NamedBaseModel, core.ImageBaseModel):
         return f'uploads/gallery_images/{self.item.id}/{name}'
 
     image = models.ImageField(
-        'Will be rendered at 300px',
+        'main image',
         upload_to=saving_path,
+        help_text='Will be rendered at 300px',
     )
 
     item = models.ForeignKey(
