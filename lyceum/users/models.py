@@ -58,16 +58,3 @@ class UserProfileProxy(User):
     class Meta:
         proxy = True
         ordering = (User.date_joined.field.name,)
-
-    @classmethod
-    def get_normalized_email(cls, email):
-        email_user, email_domain = email.lower().split('@')
-        if '+' in email_user:
-            email_user = email_user[: email_user.find('+')]
-
-        if email_domain in ('yandex.ru', 'ya.ru'):
-            email_domain = 'yandex-ru'
-        elif email_domain == 'gmail.com':
-            email_user = email_user.replace('.', '')
-
-        return f'{email_user}@{email_domain}'
