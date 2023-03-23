@@ -123,6 +123,7 @@ class RegisterViewsTests(TestCase):
             ],
         ],
     )
+    @override_settings(DEFAULT_USER_ACTIVITY='True')
     def test_user_login_username(self, username, password):
         Client().post(
             reverse('users:register'),
@@ -142,8 +143,9 @@ class RegisterViewsTests(TestCase):
             follow=True,
         )
 
+        user = User.objects.get(username=username)
         now_login = user.last_login
-        self.assertFalse(last_login != now_login)
+        self.assertTrue(last_login != now_login)
 
     @parameterized.expand(
         [
@@ -153,8 +155,7 @@ class RegisterViewsTests(TestCase):
             ['ABo.ba.+ger@gmail.com', 'aboba@gmail.com'],
         ]
     )
-    def test_user_normalize_email(self, email: str, expected: str) -> None:
-        """тестируем блокировку пользователя"""
+    def test_user_normalize_email(self, email, expected):
         Client().post(
             reverse('users:register'),
             {
@@ -169,9 +170,7 @@ class RegisterViewsTests(TestCase):
         self.assertEqual(user.email, expected)
 
     @override_settings(DEFAULT_USER_ACTIVITY='True')
-    def test_user_to_success_block(self) -> None:
-        """тестируем валидацию почты"""
-
+    def test_user_to_success_block(self):
         Client().post(
             reverse('users:register'),
             {
@@ -197,8 +196,7 @@ class RegisterViewsTests(TestCase):
         self.assertFalse(user.is_active)
 
     @override_settings(DEFAULT_USER_ACTIVITY='True')
-    def test_user_to_success_recovery(self) -> None:
-        """тестируем восстановление пользователя"""
+    def test_user_to_success_recovery(self):
         Client().post(
             reverse('users:register'),
             {

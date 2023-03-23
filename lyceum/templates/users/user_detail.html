@@ -15,32 +15,32 @@
       <div class="m-3 text-center"><img class="card-img" src="{% if current_user.profile.image %} {{current_user.profile.get_image_300x300.url}} {% else %} {% static 'img/plug.jpg' %}{% endif %}" alt="">
       </div>
       <div class="text-center">
-        <h2>{% translate 'Username'%} - <span class="font-italic">{{current_user.username}}</span></h2>
+        <h2>{% translate 'Username'%} - <span>{{current_user.username}}</span></h2>
       </div>
       <div class="row flex-nowrap mb-1">
         <div class="text-center col-6 border">
         <h2>{% translate 'First name'%}</h2>
-        {% if current_user.first_name %} {{current_user.first_name}} {% else %} <p class="font-italic">no information</p> {% endif %}
+        {% if current_user.first_name %} {{current_user.first_name}} {% else %} <p class="no-info">no information</p> {% endif %}
         </div>
         <div class="text-center col-6 border">
           <h2>{% translate 'Last name'%}</h2>
-          {% if current_user.last_name %} {{current_user.last_name}} {% else %} <p class="font-italic">no information</p> {% endif %}
+          {% if current_user.last_name %} {{current_user.last_name}} {% else %} <p class="no-info">no information</p> {% endif %}
         </div>
       </div>
       <div class="row flex-nowrap mb-1">
         <div class="text-center col-6 border">
         <h2>Email</h2>
-        {% if current_user.email %} {{current_user.email}} {% else %} <p class="font-italic">no information</p> {% endif %}
+        {% if current_user.email %} {{current_user.email}} {% else %} <p class="no-info">no information</p> {% endif %}
         </div>
         <div class="text-center col-6 border">
           <h2>{% translate 'Coffee count'%}</h2>
-          {% if current_user.profile.coffee_count %} {{current_user.profile.coffee_count}} {% else %} <p class="font-italic">no information</p> {% endif %}
+          {% if current_user.profile.coffee_count %} {{current_user.profile.coffee_count}} {% else %} <p class="no-info">no information</p> {% endif %}
         </div>
       </div>
       <div class="row flex-nowrap mb-1 justify-content-center">
         <div class="text-center col-6 border">
         <h2>{% translate 'Birthday'%}</h2>
-        {% if current_user.profile.birthday %} {{current_user.profile.birthday}} {% else %} <p class="font-italic">no information</p> {% endif %}
+        {% if current_user.profile.birthday %} {{current_user.profile.birthday}} {% else %} <p class="no-info">no information</p> {% endif %}
         </div>
       </div>
       <div>

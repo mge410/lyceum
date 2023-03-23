@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro");
 @import url("https://fonts.googleapis.com/css?family=Lora:400,700");
+@import url('https://fonts.googleapis.com/css2?family=Delicious+Handrawn&display=swap');
 
 body {
     color: #797979;
@@ -2748,4 +2749,14 @@ label{
     max-width: 800px;
     margin: 0 auto;
     border-radius: 30px;
+}
+
+.no-info{
+    font-family: 'Delicious Handrawn', cursive;
+    font-size: 18px;
+}
+
+.profile-image{
+    border: #5c2699 3px solid;
+    border-radius: 15px;
 }

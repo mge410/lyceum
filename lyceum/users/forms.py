@@ -20,16 +20,20 @@ class CustomUserCreationForm(UserCreationForm):
         model = UserProfileProxy
         fields = ('username', 'email')
 
-    def clean(self):
-        cleaned_data = super().clean()
+    def clean_email(self):
+        normalized_email = UserProfileProxy.objects.__class__.normalize_email(
+            self.cleaned_data.get('email')
+        )
         is_email_unique = UserProfileProxy.objects.filter(
-            email=cleaned_data['email']
+            ~Q(pk=self.instance.id),
+            email=normalized_email,
         ).exists()
         if is_email_unique:
             self.add_error(
                 UserProfileProxy.email.field.name,
                 'User with this email address is registered',
             )
+        return normalized_email
 
 
 class CustomUserChangeForm(UserChangeForm):
@@ -48,20 +52,20 @@ class CustomUserChangeForm(UserChangeForm):
             UserProfileProxy.last_name.field.name,
         ]
 
-    def clean(self):
-        cleaned_data = super().clean()
+    def clean_email(self):
+        normalized_email = UserProfileProxy.objects.__class__.normalize_email(
+            self.cleaned_data.get('email')
+        )
         is_email_unique = UserProfileProxy.objects.filter(
             ~Q(pk=self.instance.id),
-            email=UserProfileProxy.get_normalized_email(cleaned_data['email']),
+            email=normalized_email,
         ).exists()
         if is_email_unique:
             self.add_error(
                 UserProfileProxy.email.field.name,
                 'User with this email address is registered',
             )
-        cleaned_data['email'] = UserProfileProxy.get_normalized_email(
-            cleaned_data['email']
-        )
+        return normalized_email
 
 
 class ProfileForm(forms.ModelForm):
