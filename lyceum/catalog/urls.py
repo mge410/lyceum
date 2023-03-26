@@ -9,7 +9,7 @@ urlpatterns = [
     path('new/', views.new_item_list, name='new_item_list'),
     path('friday/', views.friday_item_list, name='friday_item_list'),
     path('unchecked/', views.unchecked_item_list, name='unchecked_item_list'),
-    path('<int:id>/', views.item_detail, name='item_detail'),
+    path('<int:pk>/', views.ItemDetailView.as_view(), name='item_detail'),
     re_path(r're/(?P<id>[1-9][0-9]*)/', views.item_detail, name='detail_re'),
     path(
         r'converter/<integer:id>/', views.item_detail, name='detail_converter'

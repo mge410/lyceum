@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-
+from typing import List
 import environ
 
 env = environ.Env(
@@ -25,7 +25,7 @@ DEFAULT_USER_ACTIVITY = env('DEFAULT_USER_ACTIVITY')
 if DEFAULT_USER_ACTIVITY is None:
     DEFAULT_USER_ACTIVITY = True if DEBUG else False
 
-ALLOWED_HOSTS: list[str] = env('ALLOWED_HOSTS')
+ALLOWED_HOSTS: List[str] = env('ALLOWED_HOSTS')
 
 INSTALLED_APPS = [
     # Main apps
