@@ -1,13 +1,12 @@
 import re
 from typing import Any, Callable
 
+from core.validators import ValidateMustContain
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.html import mark_safe
 from pytils import translit
 from sorl.thumbnail import get_thumbnail
-
-from core.validators import ValidateMustContain
 
 
 class NamedBaseModel(models.Model):

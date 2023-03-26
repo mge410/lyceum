@@ -1,8 +1,7 @@
-from django.core import validators
-from django.db import models
-
 import core.models as core
 from catalog.managers import ItemManager
+from django.core import validators
+from django.db import models
 
 
 class Category(

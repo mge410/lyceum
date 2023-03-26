@@ -1,8 +1,7 @@
 import django.contrib.auth.views
 import django.urls
-from django.contrib.auth.decorators import login_required
-
 import users.views
+from django.contrib.auth.decorators import login_required
 
 app_name = 'users'
 urlpatterns = [

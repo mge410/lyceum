@@ -2,7 +2,6 @@ import django.contrib.auth.forms
 from django import forms
 from django.contrib.auth import get_user_model
 from django.db.models import Q
-
 from users.models import Profile, UserProfileProxy
 
 User = get_user_model()

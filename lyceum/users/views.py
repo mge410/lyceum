@@ -1,5 +1,6 @@
 from datetime import timedelta
 
+import users.forms
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -8,8 +9,6 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.utils import timezone
 from django.views import View
-
-import users.forms
 from users.models import Profile, UserProfileProxy
 
 
