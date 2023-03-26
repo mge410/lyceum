@@ -1,18 +1,18 @@
 from http import HTTPStatus
 
 from catalog.models import Item
-from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render
+from django.views.generic import ListView, TemplateView
 
 
-def home(request: HttpRequest) -> HttpResponse:
-    items = Item.objects.homepage()
-    template = 'homepage/home.html'
-    context = {
-        'items': items,
-    }
-    return render(request, template, context)
+class HomeView(ListView):
+    template_name = 'homepage/home.html'
+    context_object_name = 'items'
+    queryset = Item.objects.homepage()
 
 
-def coffee(request: HttpRequest) -> HttpResponse:
-    return HttpResponse('<div>Я чайник</div>', status=HTTPStatus.IM_A_TEAPOT)
+class CoffeeView(TemplateView):
+    template_name = 'homepage/coffee.html'
+
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+        return self.render_to_response(context, status=HTTPStatus.IM_A_TEAPOT)

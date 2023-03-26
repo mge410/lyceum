@@ -1,8 +1,5 @@
-from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render
+from django.views.generic import TemplateView
 
 
-def description(request: HttpRequest) -> HttpResponse:
-    template = 'about/description.html'
-    context = {}
-    return render(request, template, context)
+class DescriptionView(TemplateView):
+    template_name = 'about/description.html'

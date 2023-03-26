@@ -1,50 +1,33 @@
-import django.shortcuts
 from catalog.models import Item
-from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render
+from django.views.generic import ListView, DetailView
 
 
-def item_list(request: HttpRequest) -> HttpResponse:
-    items = Item.objects.catalog_list()
-    template = 'catalog/item_list.html'
-    context = {
-        'items': items,
-    }
-    return render(request, template, context)
+class ItemListView(ListView):
+    template_name = 'catalog/item_list.html'
+    context_object_name = 'items'
+    queryset = Item.objects.catalog_list()
 
 
-def new_item_list(request: HttpRequest) -> HttpResponse:
-    items = Item.objects.new_item_list()
-    template = 'catalog/item_list.html'
-    context = {
-        'items': items,
-    }
-    return render(request, template, context)
+class NewItemListView(ListView):
+    template_name = 'catalog/item_list.html'
+    context_object_name = 'items'
+    queryset = Item.objects.new_item_list()
 
 
-def friday_item_list(request: HttpRequest) -> HttpResponse:
-    items = Item.objects.friday_item_list()
-    template = 'catalog/item_list.html'
-    context = {
-        'items': items,
-    }
-    return render(request, template, context)
+class FridayItemListView(ListView):
+    template_name = 'catalog/item_list.html'
+    context_object_name = 'items'
+    queryset = Item.objects.friday_item_list()
 
 
-def unchecked_item_list(request: HttpRequest) -> HttpResponse:
-    items = Item.objects.unchecked_item_list()
-    template = 'catalog/item_list.html'
-    context = {
-        'items': items,
-    }
-    return render(request, template, context)
+class UncheckedItemListView(ListView):
+    template_name = 'catalog/item_list.html'
+    context_object_name = 'items'
+    queryset = Item.objects.unchecked_item_list()
 
 
-def item_detail(request: HttpRequest, id: int) -> HttpResponse:
-    item = django.shortcuts.get_object_or_404(
-        Item.objects.catalog_detail(),
-        pk=id,
-    )
-    template = 'catalog/item_detail.html'
-    context = {'item': item}
-    return render(request, template, context)
+class ItemDetailView(DetailView):
+    template_name = 'catalog/item_detail.html'
+    context_object_name = 'item'
+    pk_url_kwarg = 'id'
+    queryset = Item.objects.catalog_detail()

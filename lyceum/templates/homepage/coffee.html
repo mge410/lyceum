@@ -1,0 +1,16 @@
+{% extends 'layouts/layout.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+<title>{% translate 'Fluffy about us'%}</title>
+{% endblock %}
+
+{% block content %}
+<div class="container text-center">
+  <section class="mb-30px">
+    <img src="{% static 'img/coffee/shout_teapot.jpg' %}" alt="" width="600">
+    <h1>{% translate 'I am a teapot' %}</h1>
+  </section>
+</div>
+{% endblock %}
