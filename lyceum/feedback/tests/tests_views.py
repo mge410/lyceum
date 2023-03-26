@@ -1,15 +1,12 @@
 import os
 import shutil
 
+import django.urls
 from django.conf import settings
 from django.core.files.uploadedfile import SimpleUploadedFile
-from django.test import Client
-from django.test import override_settings
-from django.test import TestCase
-import django.urls
+from django.test import Client, TestCase, override_settings
 from django.urls import reverse
-from feedback.models import Feedback
-from feedback.models import FeedbackFiles
+from feedback.models import Feedback, FeedbackFiles
 
 
 @override_settings(MEDIA_ROOT=os.path.join(settings.MEDIA_ROOT, 'test_media'))

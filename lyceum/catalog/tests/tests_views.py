@@ -1,10 +1,7 @@
-from catalog.models import Category
-from catalog.models import Item
-from catalog.models import Tag
-from django.forms.models import model_to_dict
-from django.test import Client
-from django.test import TestCase
 import django.urls
+from catalog.models import Category, Item, Tag
+from django.forms.models import model_to_dict
+from django.test import Client, TestCase
 from parameterized import parameterized
 
 

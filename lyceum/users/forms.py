@@ -1,22 +1,19 @@
+import django.contrib.auth.forms
 from django import forms
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import UserChangeForm
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.forms import UsernameField
 from django.db.models import Q
-from users.models import Profile
-from users.models import UserProfileProxy
+from users.models import Profile, UserProfileProxy
 
 User = get_user_model()
 
 
-class CustomUserCreationForm(UserCreationForm):
+class CustomUserCreationForm(django.contrib.auth.forms.UserCreationForm):
     email = forms.EmailField(
         label='Email',
         max_length=254,
     )
 
-    class Meta(UserCreationForm.Meta):
+    class Meta(django.contrib.auth.forms.UserCreationForm.Meta):
         model = UserProfileProxy
         fields = ('username', 'email')
 
@@ -36,7 +33,7 @@ class CustomUserCreationForm(UserCreationForm):
         return normalized_email
 
 
-class CustomUserChangeForm(UserChangeForm):
+class CustomUserChangeForm(django.contrib.auth.forms.UserChangeForm):
     def __init__(self, *args, **kwargs):
         super(CustomUserChangeForm, self).__init__(*args, **kwargs)
 
@@ -44,7 +41,7 @@ class CustomUserChangeForm(UserChangeForm):
 
     class Meta:
         model = UserProfileProxy
-        field_classes = {'username': UsernameField}
+        field_classes = {'username': django.contrib.auth.forms.UsernameField}
         fields = [
             UserProfileProxy.email.field.name,
             UserProfileProxy.username.field.name,

@@ -1,31 +1,26 @@
 from datetime import timedelta
 
+import users.forms
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
-from django.shortcuts import get_object_or_404
-from django.shortcuts import redirect
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.utils import timezone
 from django.views import View
-from users.forms import CustomUserChangeForm
-from users.forms import CustomUserCreationForm
-from users.forms import ProfileForm
-from users.models import Profile
-from users.models import UserProfileProxy
+from users.models import Profile, UserProfileProxy
 
 
 class Register(View):
     template_name = 'users/signup.html'
 
     def get(self, request):
-        context = {'form': CustomUserCreationForm()}
+        context = {'form': users.forms.CustomUserCreationForm()}
         return render(request, self.template_name, context)
 
     def post(self, request):
-        form = CustomUserCreationForm(request.POST)
+        form = users.forms.CustomUserCreationForm(request.POST)
 
         if form.is_valid():
             user = form.save(commit=False)
@@ -106,16 +101,16 @@ class UsersProfile(View):
 
     def get(self, request):
         user = request.user
-        form = CustomUserChangeForm(instance=user)
-        profile_form = ProfileForm(instance=user.profile)
+        form = users.forms.CustomUserChangeForm(instance=user)
+        profile_form = users.forms.ProfileForm(instance=user.profile)
         context = {'form': form, 'profile_form': profile_form}
         return render(request, self.template_name, context)
 
     def post(self, request):
         user = request.user
 
-        form = CustomUserChangeForm(request.POST, instance=user)
-        profile_form = ProfileForm(
+        form = users.forms.CustomUserChangeForm(request.POST, instance=user)
+        profile_form = users.forms.ProfileForm(
             request.POST, request.FILES, instance=user.profile
         )
 

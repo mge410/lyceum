@@ -1,9 +1,9 @@
-from django.conf import settings
-from django.contrib import messages
-from django.core.mail import send_mail
 import django.http
 import django.shortcuts
 import feedback.forms as forms
+from django.conf import settings
+from django.contrib import messages
+from django.core.mail import send_mail
 
 
 def feedback(request: django.http.HttpRequest) -> django.http.HttpResponse:

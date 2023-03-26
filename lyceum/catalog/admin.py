@@ -1,10 +1,6 @@
 from typing import Any
 
-from catalog.models import Category
-from catalog.models import GalleryImagesItem
-from catalog.models import Item
-from catalog.models import MainImageItem
-from catalog.models import Tag
+import catalog.models
 from ckeditor.widgets import CKEditorWidget
 from django import forms
 from django.contrib import admin
@@ -14,47 +10,47 @@ class ItemTextAdminForm(forms.ModelForm):
     text = forms.CharField(widget=CKEditorWidget())
 
     class Meta:
-        model = Item
+        model = catalog.models.Item
         fields = '__all__'
 
 
 class MainImageAdmin(admin.TabularInline):
-    model = MainImageItem
+    model = catalog.models.MainImageItem
     extra = 1
 
     readonly_fields = (model.image_tmb,)
 
 
 class GalleryImageAdmin(admin.TabularInline):
-    model = GalleryImagesItem
+    model = catalog.models.GalleryImagesItem
     extra = 1
 
     readonly_fields = (model.image_tmb,)
 
 
-@admin.register(Item)
+@admin.register(catalog.models.Item)
 class ItemAdmin(admin.ModelAdmin):
     list_display = (
-        Item.name.field.name,
-        Item.is_published.field.name,
-        Item.is_on_main.field.name,
+        catalog.models.Item.name.field.name,
+        catalog.models.Item.is_published.field.name,
+        catalog.models.Item.is_on_main.field.name,
         'get_image',
     )
     form = ItemTextAdminForm
     inlines = [MainImageAdmin, GalleryImageAdmin]
     list_editable = (
-        Item.is_published.field.name,
-        Item.is_on_main.field.name,
+        catalog.models.Item.is_published.field.name,
+        catalog.models.Item.is_on_main.field.name,
     )
-    list_display_links = (Item.name.field.name,)
-    filter_horizontal = (Item.tags.field.name,)
+    list_display_links = (catalog.models.Item.name.field.name,)
+    filter_horizontal = (catalog.models.Item.tags.field.name,)
     fields = (
-        Item.is_published.field.name,
-        Item.is_on_main.field.name,
-        Item.name.field.name,
-        Item.category.field.name,
-        Item.tags.field.name,
-        Item.text.field.name,
+        catalog.models.Item.is_published.field.name,
+        catalog.models.Item.is_on_main.field.name,
+        catalog.models.Item.name.field.name,
+        catalog.models.Item.category.field.name,
+        catalog.models.Item.tags.field.name,
+        catalog.models.Item.text.field.name,
     )
 
     @admin.display(ordering='main_image', description='Фото товара')
@@ -62,31 +58,31 @@ class ItemAdmin(admin.ModelAdmin):
         return obj.main_image.image_tmb()
 
 
-@admin.register(Category)
+@admin.register(catalog.models.Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = (
-        Category.name.field.name,
-        Category.is_published.field.name,
-        Category.slug.field.name,
-        Category.weight.field.name,
+        catalog.models.Category.name.field.name,
+        catalog.models.Category.is_published.field.name,
+        catalog.models.Category.slug.field.name,
+        catalog.models.Category.weight.field.name,
     )
     list_editable = (
-        Category.is_published.field.name,
-        Category.slug.field.name,
-        Category.weight.field.name,
+        catalog.models.Category.is_published.field.name,
+        catalog.models.Category.slug.field.name,
+        catalog.models.Category.weight.field.name,
     )
-    list_display_links = (Category.name.field.name,)
+    list_display_links = (catalog.models.Category.name.field.name,)
 
 
-@admin.register(Tag)
+@admin.register(catalog.models.Tag)
 class TagAdmin(admin.ModelAdmin):
     list_display = (
-        Tag.name.field.name,
-        Tag.is_published.field.name,
-        Tag.slug.field.name,
+        catalog.models.Tag.name.field.name,
+        catalog.models.Tag.is_published.field.name,
+        catalog.models.Tag.slug.field.name,
     )
     list_editable = (
-        Tag.is_published.field.name,
-        Tag.slug.field.name,
+        catalog.models.Tag.is_published.field.name,
+        catalog.models.Tag.slug.field.name,
     )
-    list_display_links = (Tag.name.field.name,)
+    list_display_links = (catalog.models.Tag.name.field.name,)

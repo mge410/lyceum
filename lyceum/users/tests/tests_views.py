@@ -1,15 +1,13 @@
 import datetime
 
+import mock
+import pytz
 from django.contrib.auth.models import User
 from django.core import exceptions
-from django.test import Client
-from django.test import override_settings
-from django.test import TestCase
+from django.test import Client, TestCase, override_settings
 from django.urls import reverse
 from django.utils import timezone
-import mock
 from parameterized import parameterized
-import pytz
 
 
 class RegisterViewsTests(TestCase):

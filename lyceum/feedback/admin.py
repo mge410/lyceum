@@ -1,7 +1,5 @@
 from django.contrib import admin
-from feedback.models import Feedback
-from feedback.models import FeedbackFiles
-from feedback.models import FeedbackUserData
+from feedback.models import Feedback, FeedbackFiles, FeedbackUserData
 
 
 class FeedbackDataUserAdmin(admin.TabularInline):
