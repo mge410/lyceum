@@ -9,49 +9,49 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('catalog', '0017_auto_20230322_1620'),
+        ("catalog", "0017_auto_20230322_1620"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Grade',
+            name="Grade",
             fields=[
                 (
-                    'id',
+                    "id",
                     models.BigAutoField(
                         auto_created=True,
                         primary_key=True,
                         serialize=False,
-                        verbose_name='ID',
+                        verbose_name="ID",
                     ),
                 ),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
                 (
-                    'rating',
+                    "rating",
                     models.CharField(
                         choices=[
-                            ('1', 'hatred'),
-                            ('2', 'dislike'),
-                            ('3', 'neutrally'),
-                            ('4', 'adore'),
-                            ('5', 'love'),
+                            ("1", "hatred"),
+                            ("2", "dislike"),
+                            ("3", "neutrally"),
+                            ("4", "adore"),
+                            ("5", "love"),
                         ],
-                        default='3',
-                        help_text='Items rating',
+                        default="3",
+                        help_text="Items rating",
                         max_length=1,
-                        verbose_name='rating',
+                        verbose_name="rating",
                     ),
                 ),
                 (
-                    'item',
+                    "item",
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
-                        to='catalog.item',
+                        to="catalog.item",
                     ),
                 ),
                 (
-                    'user',
+                    "user",
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
                         to=settings.AUTH_USER_MODEL,
@@ -59,7 +59,7 @@ class Migration(migrations.Migration):
                 ),
             ],
             options={
-                'unique_together': {('user', 'item')},
+                "unique_together": {("user", "item")},
             },
         ),
     ]
