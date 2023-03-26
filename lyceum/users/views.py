@@ -9,8 +9,7 @@ from django.urls import reverse_lazy
 from django.utils import timezone
 from django.views import View
 
-from users.forms import (CustomUserChangeForm, CustomUserCreationForm,
-                         ProfileForm)
+import users.forms
 from users.models import Profile, UserProfileProxy
 
 
@@ -18,11 +17,11 @@ class Register(View):
     template_name = 'users/signup.html'
 
     def get(self, request):
-        context = {'form': CustomUserCreationForm()}
+        context = {'form': users.forms.CustomUserCreationForm()}
         return render(request, self.template_name, context)
 
     def post(self, request):
-        form = CustomUserCreationForm(request.POST)
+        form = users.forms.CustomUserCreationForm(request.POST)
 
         if form.is_valid():
             user = form.save(commit=False)
@@ -103,16 +102,16 @@ class UsersProfile(View):
 
     def get(self, request):
         user = request.user
-        form = CustomUserChangeForm(instance=user)
-        profile_form = ProfileForm(instance=user.profile)
+        form = users.forms.CustomUserChangeForm(instance=user)
+        profile_form = users.forms.ProfileForm(instance=user.profile)
         context = {'form': form, 'profile_form': profile_form}
         return render(request, self.template_name, context)
 
     def post(self, request):
         user = request.user
 
-        form = CustomUserChangeForm(request.POST, instance=user)
-        profile_form = ProfileForm(
+        form = users.forms.CustomUserChangeForm(request.POST, instance=user)
+        profile_form = users.forms.ProfileForm(
             request.POST, request.FILES, instance=user.profile
         )
 
