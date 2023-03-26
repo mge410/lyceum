@@ -1,5 +1,5 @@
 from catalog.models import Item
-from django.views.generic import ListView, DetailView
+from django.views.generic import DetailView, ListView
 
 
 class ItemListView(ListView):
