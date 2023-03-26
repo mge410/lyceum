@@ -23,9 +23,8 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: flake8 Lint
         uses: py-actions/flake8@v2
-        run: |
-          cd lyceum
         with:
+          path: lyceum
           flake8-version: "5.0.4"
           exclude: ".git,__pycache__,.env,venv/,*/migrations/"
           ignore: "W503,E203"
