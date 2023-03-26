@@ -39,10 +39,45 @@
               </div>
             {% endfor %}
           </div>
-          <div class="news_d_footer flex-column flex-sm-row"> <a href="#"><span class="align-middle mr-2"><i class="ti-heart"></i></span>Lily and 4 people
-                            like this</a> <a class="justify-content-sm-center ml-sm-auto mt-sm-0 mt-2" href="#"><span
-                                class="align-middle mr-2"><i class="ti-themify-favicon"></i></span>06 Comments</a> </div>
         </div>
+          <div class="rating row col-12 mt-4">
+            <div class="h4 d-inline col-6">
+              {% translate "Average user rating:" %}
+              {{ average_rate }}<br>{{ beautiful_rate }}<br>
+              <br>
+              {% translate "Number of ratings:" %}
+              {{ count_grades }}
+            </div>
+            <div class="d-inline col-6">
+            <form method="post" class="block">
+              {% csrf_token %}
+              <div>
+                {% for field in form %}
+                <div class="form-group">
+                  <label class="font-weight-bold"
+                         for="{{ field.id_for_label }}">
+                    {{ field.label }}</label>
+                  {{ field }}
+                  {% if field.errors %}
+                  <div class="text-danger">
+                    {% translate 'Errors' %}
+                    {{ field.errors|safe }}
+                  </div>
+                  {% endif %}
+
+                  <div>{{ field.help_text }}</div>
+                </div>
+                {% endfor %}
+              </div>
+
+              <div class="col-12 text-center">
+                <input type="submit" value="{% translate 'Save' %}"
+                       class="btn btn-primary">
+              </div>
+            </form>
+            </div>
+          </div>
+
         <div class="comments-area">
           <h4>05 Comments</h4>
           <div class="comment-list">
