@@ -1,11 +1,10 @@
 from django import forms
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import UserChangeForm
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.forms import UsernameField
+from django.contrib.auth.forms import (UserChangeForm, UserCreationForm,
+                                       UsernameField)
 from django.db.models import Q
-from users.models import Profile
-from users.models import UserProfileProxy
+
+from users.models import Profile, UserProfileProxy
 
 User = get_user_model()
 

@@ -1,8 +1,9 @@
+import django.http
+import django.shortcuts
 from django.conf import settings
 from django.contrib import messages
 from django.core.mail import send_mail
-import django.http
-import django.shortcuts
+
 import feedback.forms as forms
 
 

@@ -1,13 +1,11 @@
 from typing import Any
 
-from catalog.models import Category
-from catalog.models import GalleryImagesItem
-from catalog.models import Item
-from catalog.models import MainImageItem
-from catalog.models import Tag
 from ckeditor.widgets import CKEditorWidget
 from django import forms
 from django.contrib import admin
+
+from catalog.models import (Category, GalleryImagesItem, Item, MainImageItem,
+                            Tag)
 
 
 class ItemTextAdminForm(forms.ModelForm):

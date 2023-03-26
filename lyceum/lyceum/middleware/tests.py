@@ -1,8 +1,6 @@
 import re
 
-from django.test import Client
-from django.test import override_settings
-from django.test import TestCase
+from django.test import Client, TestCase, override_settings
 from parameterized import parameterized
 
 

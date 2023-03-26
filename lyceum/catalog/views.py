@@ -1,8 +1,8 @@
-from catalog.models import Item
-from django.http import HttpRequest
-from django.http import HttpResponse
 import django.shortcuts
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
+
+from catalog.models import Item
 
 
 def item_list(request: HttpRequest) -> HttpResponse:

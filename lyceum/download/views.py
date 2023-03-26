@@ -1,6 +1,5 @@
 from django.conf import settings
-from django.http import FileResponse
-from django.http import HttpRequest
+from django.http import FileResponse, HttpRequest
 
 
 def download_image(request: HttpRequest, file_name: str) -> FileResponse:

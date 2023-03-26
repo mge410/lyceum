@@ -1,5 +1,5 @@
-from django.contrib.auth.models import User
-from django.contrib.auth.models import UserManager
+from django.contrib.auth.models import User, UserManager
+
 import users.models
 
 
