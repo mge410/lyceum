@@ -2,9 +2,12 @@ from catalog.models import Item
 from core.models import CreatedDateBaseModel
 from django.contrib.auth.models import User
 from django.db import models
+from rating.managers import GradeManager
 
 
 class Grade(CreatedDateBaseModel):
+    objects = GradeManager()
+
     class Rating(models.TextChoices):
         hatred = '1', 'hatred'
         dislike = '2', 'dislike'

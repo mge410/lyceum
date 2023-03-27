@@ -48,6 +48,8 @@
               {% translate "Number of ratings:" %}
               {{ count_grades }}
             </div>
+
+            {% if user.is_authenticated %}
             <div class="d-inline col-6">
             <form method="post" class="block">
               {% csrf_token %}
@@ -76,6 +78,7 @@
               </div>
             </form>
             </div>
+            {% endif %}
           </div>
 
         <div class="comments-area">

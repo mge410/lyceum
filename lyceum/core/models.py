@@ -1,5 +1,5 @@
 import re
-from typing import Any, Callable
+from typing import Any
 
 from core.validators import ValidateMustContain
 from django.core.exceptions import ValidationError
