@@ -17,6 +17,18 @@ class UserProfileManager(UserManager):
             User.email.field.name,
         )
 
+    def get_birthday_list(self, today):
+        return (
+            self.get_queryset()
+            .only(
+                User.username.field.name,
+                User.email.field.name,
+                f'{User.profile.related.related_name}'
+                f'__{users.models.Profile.birthday.field.name}',
+            )
+            .filter(profile__birthday=today)
+        )
+
     def get_user_detail(self):
         return self.get_queryset().only(
             User.username.field.name,

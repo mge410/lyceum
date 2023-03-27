@@ -25,10 +25,20 @@
 </head>
 
 <body>
-
   {% include 'include/header.html' %}
   <main class="main">
     {% block content %}{% translate "Content didn't load "%} =({% endblock %}
+
+
+    <div class="row align-items-center m-3 flex-column">
+      <h2 class="text-center">Birthday people</h2>
+      <ul class="list-group col-6 ">
+        {% for man in birthday_users %}
+        <li class="list-group-item">{{man.username}} - {{man.email}}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
   </main>
   {% include 'include/footer.html' %}
 
@@ -36,6 +46,7 @@
   <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
   <script src="{% static 'js/main.js' %}"></script>
   <script src="{% static 'js/coffee.js' %}"></script>
+  <script src="{% static 'js/birthday.js' %}"></script>
 
   <script>
     let dateStr = '{% now "Y-m-d" %}T{% now "H:i:s" %}Z'
