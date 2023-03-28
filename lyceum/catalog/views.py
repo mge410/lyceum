@@ -103,6 +103,7 @@ class ItemDetailView(
         if form.is_valid():
             delete_grade = form.cleaned_data.get('delete_grade')
             if delete_grade:
+                form.instance.delete()
                 return super(
                     django.views.generic.edit.ModelFormMixin, self
                 ).form_valid(form)
