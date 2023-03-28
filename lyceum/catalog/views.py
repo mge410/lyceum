@@ -44,39 +44,46 @@ class ItemDetailView(
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         item_id = self.kwargs[self.pk_url_kwarg]
+        user = self.request.user
 
-        average = rating.models.Grade.objects.get_item_grades(
-            item_id
-        ).aggregate(
-            count=django.db.models.Count('rating'),
-            average=django.db.models.Avg('rating'),
-        )
+        grades = rating.models.Grade.objects.get_item_grades(item_id)
+        sum_rating = 0
+        user_grade = None
+        for grade in grades:
+            if user.id == grade.user.id:
+                user_grade = grade
+            sum_rating += int(grade.rating)
+        count = len(grades)
 
         rating_value_choices = {
             choice.value: choice.name for choice in rating.models.Grade.Rating
         }
 
-        if average['average']:
-            average_rating_name = rating_value_choices[
-                str(round(average['average']))
-            ]
+        if count:
+            average = sum_rating / count
+            average_rating_name = rating_value_choices[str(round(average))]
         else:
             average_rating_name = _('No rating information')
-            average['average'] = ''
+            average = ''
 
         context['average_rating_name'] = average_rating_name
-        context['average_rate_value'] = average['average']
-        context['count_grades'] = average['count']
+        context['average_rate_value'] = average
+        context['count_grades'] = count
 
-        if self.request.user.is_authenticated:
-            try:
-                grade = rating.models.Grade.objects.get(
-                    item__id=self.get_object().id,
-                    user__id=self.request.user.id,
-                )
-                context['form'].fields['rating'].initial = grade.rating
-            except rating.models.Grade.DoesNotExist:
-                context['form'].fields['rating'].initial = '3'
+        if user.is_authenticated:
+            if user_grade is None:
+                context['form'].fields[
+                    rating.models.Grade.rating.field.name
+                ].initial = '3'
+                context['form'].fields['delete_grade'].disabled = True
+                context['form'].fields['delete_grade'].widget.attrs[
+                    'hidden'
+                ] = '1'
+            else:
+                context['form'].fields[
+                    rating.models.Grade.rating.field.name
+                ].initial = user_grade.rating
+
         return context
 
     def get(self, request, *args, **kwargs):
@@ -94,15 +101,22 @@ class ItemDetailView(
 
     def form_valid(self, form):
         if form.is_valid():
-            grade = form.save(commit=False)
+            delete_grade = form.cleaned_data.get('delete_grade')
+            if delete_grade:
+                return super(
+                    django.views.generic.edit.ModelFormMixin, self
+                ).form_valid(form)
 
+            grade = form.save(commit=False)
             rate = form.cleaned_data.get(
                 rating.models.Grade.rating.field.name,
             )
             grade.rating = rate
             grade.save()
 
-        return super().form_valid(form)
+        return super(
+            django.views.generic.edit.ModelFormMixin, self
+        ).form_valid(form)
 
     def get_success_url(self):
         return django.urls.reverse_lazy(

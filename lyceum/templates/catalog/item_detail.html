@@ -55,6 +55,8 @@
               {% csrf_token %}
               <div>
                 {% for field in form %}
+                {{ field.widget.attrs }}
+                {% if not field.field.disabled  %}
                 <div class="form-group">
                   <label class="font-weight-bold"
                          for="{{ field.id_for_label }}">
@@ -68,6 +70,7 @@
                   {% endif %}
 
                   <div>{{ field.help_text }}</div>
+                  {% endif %}
                 </div>
                 {% endfor %}
               </div>
