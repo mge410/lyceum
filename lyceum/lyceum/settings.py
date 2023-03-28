@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'download.apps.DownloadConfig',
     'feedback.apps.FeedbackConfig',
     'homepage.apps.HomepageConfig',
+    'rating.apps.RatingConfig',
     'users.apps.UsersConfig',
 ]
 
@@ -82,6 +83,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'lyceum.context_processors.birthday.birthday_people',
             ],
         },
     },

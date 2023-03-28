@@ -4,7 +4,7 @@ from django.test import Client, TestCase, override_settings
 from parameterized import parameterized
 
 
-class StaticURLTests(TestCase):
+class ReverseMiddlewareTests(TestCase):
     @parameterized.expand(
         [
             ['/catalog/'],
