@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import users.models
 from django.contrib.auth.models import User, UserManager
 
@@ -17,7 +19,7 @@ class UserProfileManager(UserManager):
             User.email.field.name,
         )
 
-    def get_birthday_list(self, today):
+    def get_birthday_list(self, today_user_datetime: datetime):
         return (
             self.get_queryset()
             .only(
@@ -26,7 +28,11 @@ class UserProfileManager(UserManager):
                 f'{User.profile.related.related_name}'
                 f'__{users.models.Profile.birthday.field.name}',
             )
-            .filter(profile__birthday=today)
+            .filter(
+                profile__birthday__day=today_user_datetime.day,
+                profile__birthday__month=today_user_datetime.month,
+                profile__birthday__year__lte=today_user_datetime.year,
+            )
         )
 
     def get_user_detail(self):
