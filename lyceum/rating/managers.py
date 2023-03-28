@@ -19,3 +19,10 @@ class GradeManager(django.db.models.Manager):
                 f'__{User.id.field.name}',
             )
         )
+
+    def get_filtered_items(self, user_id):
+        return (
+            rating.models.Grade.objects.filter(user_id=user_id)
+            .select_related(rating.models.Grade.item.field.name)
+            .order_by(rating.models.Grade.rating.field.name)
+        )

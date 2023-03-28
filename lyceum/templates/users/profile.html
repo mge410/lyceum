@@ -67,6 +67,9 @@
       <div class="col-md-12 row justify-content-center m-1">
         <a class="btn btn-primary" href="{% url 'users:password_change' %}">{% translate 'Change password' %}</a>
       </div>
+      <div class="col-md-12 row justify-content-center m-1">
+        <a class="btn btn-primary" href="{% url 'userstats:userstatsview' id=user.id %}">{% translate 'Check review stats' %}</a>
+      </div>
     </section>
   </div>
 </div>
