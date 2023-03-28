@@ -52,7 +52,7 @@ class TextBaseModel(models.Model):
         'description',
         validators=[ValidateMustContain('luxuriously', 'excellent')],
         help_text='The text should contain '
-        'one of the words: luxurious,'
+        'one of the words: luxuriously,'
         ' excellent.',
     )
 
