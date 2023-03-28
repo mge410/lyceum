@@ -55,7 +55,6 @@
               {% csrf_token %}
               <div>
                 {% for field in form %}
-                {{ field.widget.attrs }}
                 {% if not field.field.disabled  %}
                 <div class="form-group">
                   <label class="font-weight-bold"
