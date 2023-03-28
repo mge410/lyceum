@@ -58,6 +58,20 @@
         </div>
       </form>
       </div>
+      <div class="col-12  m-1">
+          <h3 class="text-center">{% translate 'Your statistic' %}</h3>
+        <div class="row  justify-content-center mx-auto">
+          <a class="btn btn-primary m-3 d-inline" id="stat_user"
+             href="{% url 'statistic:user_item_list' %}">
+              {% translate 'Most favourite' %}</a>
+          <a class="btn btn-primary m-3 d-inline" id="stat_items"
+             href="{% url 'statistic:user_item_list' %}">
+              {% translate 'List rated items' %}</a>
+          <a class="btn btn-primary m-3 d-inline" id="stat_grades"
+             href="{% url 'statistic:user_item_list' %}">
+              {% translate 'Averages' %}</a>
+        </div>
+      </div>
       <div class="col-md-12 row justify-content-center m-1">
         <button class="btn btn-primary m-3" type="button" id="coffee_count">{% translate 'To drink coffee' %}</button>
       </div>
