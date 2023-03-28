@@ -1,10 +1,10 @@
-from django.views.generic import View
 from django.shortcuts import render
+from django.views.generic import View
 from rating.models import Grade
 
 
 class UserStatsView(View):
-    '''View to get information about rating statistics with user_id'''
+    """View to get information about rating statistics with user_id"""
 
     template_name = 'stats/userstats.html'
 
