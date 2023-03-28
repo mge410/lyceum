@@ -34,6 +34,7 @@ class Grade(CreatedDateBaseModel):
         on_delete=models.CASCADE,
         verbose_name='item',
         help_text='Product that has been rated',
+        related_name='grades'
     )
 
     class Meta:

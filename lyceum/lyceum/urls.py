@@ -7,6 +7,7 @@ import download.urls
 import feedback.urls
 import homepage.urls
 import users.urls
+import statistic.urls
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -16,6 +17,7 @@ urlpatterns = [
     django.urls.path('feedback/', django.urls.include(feedback.urls)),
     django.urls.path('catalog/', django.urls.include(catalog.urls)),
     django.urls.path('download/', django.urls.include(download.urls)),
+    django.urls.path('statistic/', django.urls.include(statistic.urls)),
     django.urls.path('admin/', django.contrib.admin.site.urls),
     django.urls.path('auth/', django.urls.include(users.urls)),
     django.urls.path('auth/', django.urls.include(django.contrib.auth.urls)),
