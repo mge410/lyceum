@@ -6,8 +6,8 @@ import django.urls
 import download.urls
 import feedback.urls
 import homepage.urls
-import users.urls
 import statistic.urls
+import users.urls
 from django.conf import settings
 from django.conf.urls.static import static
 
