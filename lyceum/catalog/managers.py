@@ -28,34 +28,39 @@ class ItemManager(models.Manager):
         )
 
     def new_item_list(self):
-        my_ids = list(
-            catalog.models.Item.objects.filter(
-                is_published=True,
-                created_at__range=(
-                    datetime.now() - timedelta(days=7),
-                    datetime.now(),
-                ),
-            ).values_list(f'{catalog.models.Item.id.field.name}', flat=True)
-        )
-        if len(my_ids) < 5:
-            my_ids_count = len(my_ids)
-        else:
-            my_ids_count = 5
-        if my_ids is None:
-            return None
-        return (
-            self.prefetch_to_items()
-            .filter(
-                id__in=sample(my_ids, my_ids_count),
-                created_at__range=(
-                    datetime.now() - timedelta(days=7),
-                    datetime.now(),
-                ),
-                is_published=True,
-                category__is_published=True,
+        try:
+            my_ids = list(
+                catalog.models.Item.objects.filter(
+                    is_published=True,
+                    created_at__range=(
+                        datetime.now() - timedelta(days=7),
+                        datetime.now(),
+                    ),
+                ).values_list(
+                    f'{catalog.models.Item.id.field.name}', flat=True
+                )
             )
-            .order_by(f'{catalog.models.Item.name.field.name}')[:5]
-        )
+            if len(my_ids) < 5:
+                my_ids_count = len(my_ids)
+            else:
+                my_ids_count = 5
+            if my_ids is None:
+                return None
+            return (
+                self.prefetch_to_items()
+                .filter(
+                    id__in=sample(my_ids, my_ids_count),
+                    created_at__range=(
+                        datetime.now() - timedelta(days=7),
+                        datetime.now(),
+                    ),
+                    is_published=True,
+                    category__is_published=True,
+                )
+                .order_by(f'{catalog.models.Item.name.field.name}')[:5]
+            )
+        except Exception:
+            return None
 
     def friday_item_list(self):
         return (
