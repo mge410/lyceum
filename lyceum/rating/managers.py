@@ -10,6 +10,9 @@ class GradeManager(django.db.models.Manager):
             .select_related(
                 rating.models.Grade.item.field.name,
             )
+            .select_related(
+                rating.models.Grade.user.field.name,
+            )
             .filter(item__id=item_id)
             .only(
                 rating.models.Grade.rating.field.name,
