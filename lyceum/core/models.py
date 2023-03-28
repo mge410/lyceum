@@ -1,5 +1,5 @@
 import re
-from typing import Any, Callable
+from typing import Any
 
 from core.validators import ValidateMustContain
 from django.core.exceptions import ValidationError
@@ -52,7 +52,7 @@ class TextBaseModel(models.Model):
         'description',
         validators=[ValidateMustContain('luxuriously', 'excellent')],
         help_text='The text should contain '
-        'one of the words: luxurious,'
+        'one of the words: luxuriously,'
         ' excellent.',
     )
 
@@ -96,7 +96,7 @@ class ImageBaseModel(models.Model):
     def get_image_300x300(self) -> str:
         return get_thumbnail(self.image, '300x300', crop='center', quality=51)
 
-    def image_tmb(self) -> Callable | str:
+    def image_tmb(self) -> str:
         if self.image:
             return mark_safe(f'<img src="{self.get_image_300x300().url}">')
         return 'No picture'

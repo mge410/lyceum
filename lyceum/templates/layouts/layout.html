@@ -31,10 +31,12 @@
 
 
     <div class="row align-items-center m-3 flex-column">
-      <h2 class="text-center">Birthday people</h2>
+      <h2 class="text-center">{% translate "Birthday people"%}</h2>
       <ul class="list-group col-6 ">
         {% for man in birthday_users %}
         <li class="list-group-item">{{man.username}} - {{man.email}}</li>
+        {% empty %}
+        <li class="list-group-item text-center">{% translate "There are no users whose birthday is today"%} =(</li>
         {% endfor %}
       </ul>
     </div>

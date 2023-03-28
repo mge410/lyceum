@@ -39,88 +39,48 @@
               </div>
             {% endfor %}
           </div>
-          <div class="news_d_footer flex-column flex-sm-row"> <a href="#"><span class="align-middle mr-2"><i class="ti-heart"></i></span>Lily and 4 people
-                            like this</a> <a class="justify-content-sm-center ml-sm-auto mt-sm-0 mt-2" href="#"><span
-                                class="align-middle mr-2"><i class="ti-themify-favicon"></i></span>06 Comments</a> </div>
         </div>
-        <div class="comments-area">
-          <h4>05 Comments</h4>
-          <div class="comment-list">
-            <div class="single-comment justify-content-between d-flex">
-              <div class="user justify-content-between d-flex">
-                <div class="thumb"> <img src="{% static 'img/plug.jpg'%}" width="42" height="42" alt=""> </div>
-                <div class="desc">
-                  <h5><a href="#">Emilly Blunt</a></h5>
-                  <p class="date">December 4, 2017 at 3:12 pm </p>
-                  <p class="comment"> Never say goodbye till the end comes! </p>
+          <div class="rating row col-12 mt-4">
+            <div class="h4 d-inline col-6">
+              {% translate "Average user rating:" %}
+              {{ average_rate_value }}<br>{{ average_rating_name }}<br>
+              <br>
+              {% translate "Number of ratings:" %}
+              {{ count_grades }}
+            </div>
+
+            {% if user.is_authenticated %}
+            <div class="d-inline col-6">
+            <form method="post" class="block">
+              {% csrf_token %}
+              <div>
+                {% for field in form %}
+                <div class="form-group">
+                  <label class="font-weight-bold"
+                         for="{{ field.id_for_label }}">
+                    {{ field.label }}</label>
+                  {{ field }}
+                  {% if field.errors %}
+                  <div class="text-danger">
+                    {% translate 'Errors' %}
+                    {{ field.errors|safe }}
+                  </div>
+                  {% endif %}
+
+                  <div>{{ field.help_text }}</div>
                 </div>
+                {% endfor %}
               </div>
-              <div class="reply-btn"> <a href="" class="btn-reply text-uppercase">reply</a> </div>
-            </div>
-          </div>
-          <div class="comment-list left-padding">
-            <div class="single-comment justify-content-between d-flex">
-              <div class="user justify-content-between d-flex">
-                <div class="thumb"> <img src="{% static 'img/plug.jpg'%}" width="42" height="42" alt=""> </div>
-                <div class="desc">
-                  <h5><a href="#">Elsie Cunningham</a></h5>
-                  <p class="date">December 4, 2017 at 3:12 pm </p>
-                  <p class="comment"> Never say goodbye till the end comes! </p>
-                </div>
+
+              <div class="col-12 text-center">
+                <input type="submit" value="{% translate 'Save' %}"
+                       class="btn btn-primary">
               </div>
-              <div class="reply-btn"> <a href="" class="btn-reply text-uppercase">reply</a> </div>
+            </form>
             </div>
+            {% endif %}
           </div>
-          <div class="comment-list left-padding">
-            <div class="single-comment justify-content-between d-flex">
-              <div class="user justify-content-between d-flex">
-                <div class="thumb"> <img src="{% static 'img/plug.jpg'%}" width="42" height="42" alt=""> </div>
-                <div class="desc">
-                  <h5><a href="#">Annie Stephens</a></h5>
-                  <p class="date">December 4, 2017 at 3:12 pm </p>
-                  <p class="comment"> Never say goodbye till the end comes! </p>
-                </div>
-              </div>
-              <div class="reply-btn"> <a href="" class="btn-reply text-uppercase">reply</a> </div>
-            </div>
-          </div>
-          <div class="comment-list">
-            <div class="single-comment justify-content-between d-flex">
-              <div class="user justify-content-between d-flex">
-                <div class="thumb"> <img src="{% static 'img/plug.jpg'%}" width="42" height="42" alt=""> </div>
-                <div class="desc">
-                  <h5><a href="#">Maria Luna</a></h5>
-                  <p class="date">December 4, 2017 at 3:12 pm </p>
-                  <p class="comment"> Never say goodbye till the end comes! </p>
-                </div>
-              </div>
-              <div class="reply-btn"> <a href="" class="btn-reply text-uppercase">reply</a> </div>
-            </div>
-          </div>
-          <div class="comment-list">
-            <div class="single-comment justify-content-between d-flex">
-              <div class="user justify-content-between d-flex">
-                <div class="thumb"> <img src="{% static 'img/plug.jpg'%}" width="42" height="42" alt=""> </div>
-                <div class="desc">
-                  <h5><a href="#">Ina Hayes</a></h5>
-                  <p class="date">December 4, 2017 at 3:12 pm </p>
-                  <p class="comment"> Never say goodbye till the end comes! </p>
-                </div>
-              </div>
-              <div class="reply-btn"> <a href="" class="btn-reply text-uppercase">reply</a> </div>
-            </div>
-          </div>
-        </div>
-        <div class="comment-form">
-          <h4>Напишите комментарий если знакомы с питомцем =)</h4>
-          <form>
-            <div class="form-group form-inline">
-              <div class="form-group col-lg-6 col-md-6 name"> <input type="text" class="form-control" id="name" placeholder="Enter Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Name'"> </div>
-              <div class="form-group col-lg-6 col-md-6 email"> <input type="email" class="form-control" id="email" placeholder="Enter email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'"> </div>
-            </div>
-            <div class="form-group"> <input type="text" class="form-control" id="subject" placeholder="Subject" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Subject'"> </div>
-            <div class="form-group"> <textarea class="form-control mb-10" rows="5" name="message" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea> </div> <a href="#" class="button submit_btn">Post Comment</a> </form>
-        </div>
+
       </div>
       <!-- Start Blog Post Siddebar -->{% include 'include/sidebar.html' %}
       <!-- End Blog Post Siddebar -->
