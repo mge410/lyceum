@@ -36,7 +36,9 @@ class ItemManager(models.Manager):
                         datetime.now() - timedelta(days=7),
                         datetime.now(),
                     ),
-                ).values_list(f'{catalog.models.Item.id.field.name}', flat=True)
+                ).values_list(
+                    f'{catalog.models.Item.id.field.name}', flat=True
+                )
             )
             if len(my_ids) < 5:
                 my_ids_count = len(my_ids)
