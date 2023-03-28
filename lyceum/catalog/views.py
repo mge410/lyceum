@@ -45,7 +45,6 @@ class ItemDetailView(
         context = super().get_context_data(**kwargs)
         item_id = self.kwargs[self.pk_url_kwarg]
 
-        # print(rating.models.Grade.objects.get(user__id=58)) 58
         average = rating.models.Grade.objects.get_item_grades(
             item_id
         ).aggregate(
@@ -53,15 +52,20 @@ class ItemDetailView(
             average=django.db.models.Avg('rating'),
         )
 
-        num2word = {i.value: i.name for i in rating.models.Grade.Rating}
+        rating_value_choices = {
+            choice.value: choice.name for choice in rating.models.Grade.Rating
+        }
 
         if average['average']:
-            beautiful_rate = num2word[str(round(average['average']))]
+            average_rating_name = rating_value_choices[
+                str(round(average['average']))
+            ]
         else:
-            beautiful_rate = _('No rating information')
+            average_rating_name = _('No rating information')
             average['average'] = ''
-        context['beautiful_rate'] = beautiful_rate
-        context['average_rate'] = average['average']
+
+        context['average_rating_name'] = average_rating_name
+        context['average_rate_value'] = average['average']
         context['count_grades'] = average['count']
 
         if self.request.user.is_authenticated:

@@ -1,4 +1,6 @@
 import django.db.models
+import rating.models
+from django.contrib.auth.models import User
 
 
 class GradeManager(django.db.models.Manager):
@@ -6,8 +8,14 @@ class GradeManager(django.db.models.Manager):
         return (
             self.get_queryset()
             .select_related(
-                'item',
+                rating.models.Grade.item.field.name,
             )
             .filter(item__id=item_id)
-            .only('rating', 'item__id', 'user__id')
+            .only(
+                rating.models.Grade.rating.field.name,
+                f'{rating.models.Grade.item.field.name}'
+                f'__{User.id.field.name}',
+                f'{rating.models.Grade.user.field.name}'
+                f'__{User.id.field.name}',
+            )
         )
