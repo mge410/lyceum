@@ -22,6 +22,18 @@ msgstr ""
 msgid "About as"
 msgstr "О нас"
 
+msgid "No rating information"
+msgstr "Нет информации о рейтинге"
+
+msgid "Look"
+msgstr "Смотреть"
+
+msgid "There are no users whose birthday is today"
+msgstr "Нет пользователей, день рождения которых сегодня"
+
+msgid "Birthday people"
+msgstr "Именинники"
+
 #: .\templates\about\description.html:26
 msgid ""
 "We take care of animals that are homeless. We also help them find happy "
