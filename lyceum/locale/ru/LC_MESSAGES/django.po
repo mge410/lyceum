@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-10 17:01+0300\n"
+"POT-Creation-Date: 2023-03-28 21:11+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,27 +18,86 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\templates\about\description.html:15 .\templates\include\footer.html:9
-msgid "About as"
-msgstr "О нас"
-
+#: .\catalog\views.py:64
 msgid "No rating information"
 msgstr "Нет информации о рейтинге"
 
-msgid "Look"
-msgstr "Смотреть"
+#: .\rating\forms.py:17
+#, fuzzy
+#| msgid "Your profile"
+msgid "Your rating"
+msgstr "Ваш профиль"
 
-msgid "There are no users whose birthday is today"
-msgstr "Нет пользователей, день рождения которых сегодня"
+msgid "User ratings"
+msgstr "Оценки пользователя"
 
-msgid "Birthday people"
-msgstr "Именинники"
+#: .\rating\forms.py:19
+msgid "Add your rating"
+msgstr ""
+
+#: .\templates\about\description.html:6 .\templates\homepage\coffee.html:6
+msgid "Fluffy about us"
+msgstr "Пушистики о нас"
+
+msgid "Actions"
+msgstr "Действия"
+
+msgid "The user who left the most positive rating:"
+msgstr "Пользователь, оставивший самую положительную оценку:"
+
+msgid "The user who left the most negative rating:"
+msgstr "Пользователь, оставивший самую отрицательную оценку:"
+
+msgid "Your profile photo"
+msgstr "Фото вашего профиля"
+
+#: .\templates\about\description.html:15 .\templates\include\footer.html:9
+msgid "About as"
+msgstr "О нас"
 
 #: .\templates\about\description.html:26
 msgid ""
 "We take care of animals that are homeless. We also help them find happy "
 "owners and make everything feel better. "
-msgstr "Мы занимаемся приютом животных, которые остались без дома. Так же мы помогаем найти им счастливых хозяев и сделать все чуть счастливее"
+msgstr ""
+"Мы занимаемся приютом животных, которые остались без дома. Так же мы "
+"помогаем найти им счастливых хозяев и сделать все чуть счастливее"
+
+#: .\templates\catalog\item_detail.html:6
+msgid "Fluffy"
+msgstr "Пушистик"
+
+#: .\templates\catalog\item_detail.html:45
+msgid "Average user rating:"
+msgstr ""
+
+#: .\templates\catalog\item_detail.html:48
+msgid "Number of ratings:"
+msgstr ""
+
+#: .\templates\catalog\item_detail.html:65
+msgid "Errors"
+msgstr ""
+
+#: .\templates\catalog\item_detail.html:76
+msgid "Save"
+msgstr ""
+
+#: .\templates\catalog\item_list.html:6
+msgid "Fluffies catalog"
+msgstr "Пушистики каталог"
+
+#: .\templates\feedback\feedback.html:6
+msgid "Fluffies feedback"
+msgstr "Пушистики обратная связь"
+
+#: .\templates\feedback\feedback.html:15 .\templates\include\header.html:21
+msgid "Feedback"
+msgstr "Обратная связь"
+
+#: .\templates\homepage\coffee.html:13
+msgid "I am a teapot"
+msgstr ""
 
 #: .\templates\homepage\home.html:6
 msgid "Fluffies "
@@ -52,85 +111,15 @@ msgstr "Забота & любовь"
 msgid "For all animals"
 msgstr "Для всех зверюшек"
 
-msgid "Profile activation"
-msgstr "Активация профиля"
-
-msgid "Login"
-msgstr "Авторизация"
-
-msgid "Logout"
-msgstr "Выйти"
-
-msgid "Password change"
-msgstr "Смена пароля"
-
-msgid "Password recovery"
-msgstr "Восстановление пароля"
-
-msgid "Your profile"
-msgstr "Ваш профиль"
-
-msgid "Registration"
-msgstr "Регистрация"
-
-msgid "User"
-msgstr "Пользователь"
-
-msgid "List of users"
-msgstr "Cписок пользователей"
-
-msgid "Username"
-msgstr "Ник пользователя"
-
-msgid "First name"
-msgstr "Имя пользователя"
-
-msgid "Last name"
-msgstr "Фамилия пользователя"
-
-msgid "Coffee count"
-msgstr "Кол-во кофе"
-
-msgid "Birthday"
-msgstr "День рождения"
-
-msgid "Profile user"
-msgstr "Профиль пользователя"
-
-msgid "My Profile"
-msgstr "Мой профиль"
-
-msgid "To drink coffee"
-msgstr "Выпить кофе"
-
-msgid "Update your profile"
-msgstr "Обновить ваш профиль"
-
-msgid "Сhange password"
-msgstr "Изменить пароль"
-
-msgid "Register"
-msgstr "Зарегистрироваться"
-
-msgid "Forgot your password"
-msgstr "Забыли пароль"
-
-msgid "Register to your account"
-msgstr "Зарегистрируйте свой аккаунт"
-
-msgid "Login to your account"
-msgstr "Войдите в свой аккаунт"
-
-msgid "You are logged out!"
-msgstr "Вы успешно вышли из учётной записи"
-
 #: .\templates\include\footer.html:10
 msgid ""
 "We take care of animals and help them find the best owners. Only the cutest "
 "cats for the most caring hands."
-msgstr "Мы заботимся о животных и помогает найти им лучших хозяев. Только самый милые котики для самых заботливых рук."
+msgstr ""
+"Мы заботимся о животных и помогает найти им лучших хозяев. Только самый "
+"милые котики для самых заботливых рук."
 
-#: .\templates\include\footer.html:15 .\templates\include\sidebar.html:28
+#: .\templates\include\footer.html:15
 msgid "Newsletter"
 msgstr "Новостная рассылка"
 
@@ -158,6 +147,10 @@ msgstr "Тула - ул. Волшебная д39"
 msgid "Now year"
 msgstr "Сейчас год"
 
+#: .\templates\include\form.html:19
+msgid "Send"
+msgstr "Отправить"
+
 #: .\templates\include\header.html:18
 msgid "Home"
 msgstr "Домашняя"
@@ -170,9 +163,22 @@ msgstr "Каталог"
 msgid "About"
 msgstr "О нас"
 
-#: .\templates\include\header.html:22
+#: .\templates\include\header.html:23
 msgid "Admin"
 msgstr "Админка"
+
+#: .\templates\include\header.html:28
+msgid "My Profile"
+msgstr "Мой профиль"
+
+#: .\templates\include\header.html:29 .\templates\users\logout.html:6
+#: .\templates\users\profile.html:79
+msgid "Logout"
+msgstr "Выйти"
+
+#: .\templates\include\header.html:31 .\templates\users\login.html:6
+msgid "Login"
+msgstr "Авторизация"
 
 #: .\templates\include\sidebar.html:8
 msgid "Interesting offers "
@@ -190,41 +196,142 @@ msgstr "Пятница"
 msgid "Unchecked"
 msgstr "Непроверенные"
 
-#: .\templates\include\sidebar.html:31
-msgid "Send"
-msgstr "Отправить"
+#: .\templates\include\sidebar.html:28 .\templates\users\user_list.html:6
+msgid "List of users"
+msgstr "Cписок пользователей"
 
-#: .\templates\include\sidebar.html:33
-msgid "Category"
-msgstr "Категория"
+#: .\templates\include\sidebar.html:30
+msgid "Look"
+msgstr "Смотреть"
 
-#: .\templates\include\sidebar.html:68
+#: .\templates\include\sidebar.html:34
 msgid "Our Favorites"
 msgstr "Наши любимчики"
-
-#: .\templates\include\sidebar.html:99
-msgid "Popular tags"
-msgstr "Популярные тэги"
 
 #: .\templates\layouts\layout.html:23
 msgid "Fluffies house "
 msgstr "Пушистики дом"
 
-#: .\templates\layouts\layout.html:31
+#: .\templates\layouts\layout.html:30
 msgid "Content didn't load "
 msgstr "Контент не подгрузился"
 
-msgid "Feedback"
-msgstr "Обратная связь"
+#: .\templates\layouts\layout.html:34
+msgid "Birthday people"
+msgstr "Именинники"
 
-msgid "Fluffies feedback"
-msgstr "Пушистики обратная связь"
+#: .\templates\layouts\layout.html:39
+msgid "There are no users whose birthday is today"
+msgstr "Нет пользователей, день рождения которых сегодня"
 
-msgid "Fluffies catalog"
-msgstr "Пушистики каталог"
+#: .\templates\users\activate.html:6 .\templates\users\recovery.html:6
+msgid "Profile activation"
+msgstr "Активация профиля"
 
-msgid "Fluffy"
-msgstr "Пушистик"
+#: .\templates\users\login.html:13
+msgid "Login to your account"
+msgstr "Войдите в свой аккаунт"
 
-msgid "Fluffy about us"
-msgstr "Пушистики о нас"
+#: .\templates\users\login.html:25
+msgid "Register"
+msgstr "Зарегистрироваться"
+
+#: .\templates\users\login.html:28
+msgid "Forgot your password"
+msgstr "Забыли пароль"
+
+#: .\templates\users\logout.html:13
+msgid "You are logged out!"
+msgstr "Вы успешно вышли из учётной записи"
+
+#: .\templates\users\password_change_done.html:6
+#: .\templates\users\password_change_form.html:6
+msgid "Password change"
+msgstr "Смена пароля"
+
+#: .\templates\users\password_change_form.html:13
+msgid "Сhange password"
+msgstr "Изменить пароль"
+
+#: .\templates\users\password_reset.html:6
+#: .\templates\users\password_reset_complete.html:6
+#: .\templates\users\password_reset_confirm.html:6
+#: .\templates\users\password_reset_done.html:6
+msgid "Password recovery"
+msgstr "Восстановление пароля"
+
+#: .\templates\users\profile.html:6 .\templates\users\profile.html:13
+msgid "Your profile"
+msgstr "Ваш профиль"
+
+#: .\templates\users\profile.html:56
+msgid "Update your profile"
+msgstr "Обновить ваш профиль"
+
+#: .\templates\users\profile.html:62
+msgid "Your statistic"
+msgstr "Ваша статистика"
+
+#: .\templates\users\profile.html:66
+msgid "Most favourite"
+msgstr "Самый понравившийся/нет товар"
+
+#: .\templates\users\profile.html:69
+msgid "List rated items"
+msgstr "Список оценнёных товаров"
+
+#: .\templates\users\profile.html:72
+msgid "Averages"
+msgstr "Средние показатели"
+
+#: .\templates\users\profile.html:76
+msgid "To drink coffee"
+msgstr "Выпить кофе"
+
+#: .\templates\users\profile.html:82
+#, fuzzy
+#| msgid "Сhange password"
+msgid "Change password"
+msgstr "Изменить пароль"
+
+#: .\templates\users\signup.html:6
+msgid "Registration"
+msgstr "Регистрация"
+
+#: .\templates\users\signup.html:13
+msgid "Register to your account"
+msgstr "Зарегистрируйте свой аккаунт"
+
+#: .\templates\users\user_detail.html:6
+msgid "User"
+msgstr "Пользователь"
+
+#: .\templates\users\user_detail.html:12
+msgid "Profile user"
+msgstr "Профиль пользователя"
+
+#: .\templates\users\user_detail.html:18
+msgid "Username"
+msgstr "Ник пользователя"
+
+#: .\templates\users\user_detail.html:22
+msgid "First name"
+msgstr "Имя пользователя"
+
+#: .\templates\users\user_detail.html:26
+msgid "Last name"
+msgstr "Фамилия пользователя"
+
+#: .\templates\users\user_detail.html:36
+msgid "Coffee count"
+msgstr "Кол-во кофе"
+
+#: .\templates\users\user_detail.html:42
+msgid "Birthday"
+msgstr "День рождения"
+
+#~ msgid "Category"
+#~ msgstr "Категория"
+
+#~ msgid "Popular tags"
+#~ msgstr "Популярные тэги"

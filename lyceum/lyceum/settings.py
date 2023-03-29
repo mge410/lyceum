@@ -49,8 +49,8 @@ INSTALLED_APPS = [
     'feedback.apps.FeedbackConfig',
     'homepage.apps.HomepageConfig',
     'rating.apps.RatingConfig',
-    'users.apps.UsersConfig',
     'statistic.apps.StatisticConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [

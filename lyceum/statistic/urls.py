@@ -1,11 +1,16 @@
-import statistic.views
 from django.urls import path
+from statistic import views
 
-app_name = 'userstats'
+app_name = 'statistic'
 urlpatterns = [
     path(
+        'chosen/',
+        views.UserItemListView.as_view(),
+        name='user_item_list',
+    ),
+    path(
         '<int:id>',
-        statistic.views.UserStatsView.as_view(),
-        name='userstatsview',
+        views.UserStatisticView.as_view(),
+        name='user_detail_statistics',
     ),
 ]
