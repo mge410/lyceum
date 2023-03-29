@@ -42,11 +42,22 @@
         </div>
           <div class="rating row col-12 mt-4">
             <div class="h4 d-inline col-6">
+              <p class="mb-4 border-bottom">
               {% translate "Average user rating:" %}
               {{ average_rate_value }}<br>{{ average_rating_name }}<br>
-              <br>
+              </p>
+              <p class="mb-4 border-bottom">
               {% translate "Number of ratings:" %}
               {{ count_grades }}
+              </p>
+              <p class="mb-4 border-bottom">
+              {% translate "The user who left the most positive rating:" %}
+              {{ user_max_rating }}
+              </p>
+              <p class="mb-4 border-bottom">
+              {% translate "The user who left the most negative rating:" %}
+              {{ user_min_rating }}
+              </p>
             </div>
 
             {% if user.is_authenticated %}

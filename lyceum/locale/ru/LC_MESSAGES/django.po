@@ -28,6 +28,9 @@ msgstr "Нет информации о рейтинге"
 msgid "Your rating"
 msgstr "Ваш профиль"
 
+msgid "User ratings"
+msgstr "Оценки пользователя"
+
 #: .\rating\forms.py:19
 msgid "Add your rating"
 msgstr ""
@@ -35,6 +38,18 @@ msgstr ""
 #: .\templates\about\description.html:6 .\templates\homepage\coffee.html:6
 msgid "Fluffy about us"
 msgstr "Пушистики о нас"
+
+msgid "Actions"
+msgstr "Действия"
+
+msgid "The user who left the most positive rating:"
+msgstr "Пользователь, оставивший самую положительную оценку:"
+
+msgid "The user who left the most negative rating:"
+msgstr "Пользователь, оставивший самую отрицательную оценку:"
+
+msgid "Your profile photo"
+msgstr "Фото вашего профиля"
 
 #: .\templates\about\description.html:15 .\templates\include\footer.html:9
 msgid "About as"

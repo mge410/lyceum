@@ -15,6 +15,7 @@
           <th scope="col">ID</th>
           <th scope="col">Username</th>
           <th scope="col">Email</th>
+          <th scope="col">Ratings</th>
         </tr>
       </thead>
       <tbody>
@@ -23,12 +24,14 @@
           <th scope="row"><a href="{% url 'users:user_detail' id=user.id %}">{{user.id}}</a></th>
           <td><a href="{% url 'users:user_detail' id=user.id %}">{{user.username}}</a></td>
           <td>{{user.email}}</td>
+          <td><a href="{% url 'statistic:user_detail_statistics' id=user.id%}">{% translate 'User ratings'%}</a></td>
         </tr>
         {% empty %}
         <tr>
           <th scope="row">Скорее всего</th>
           <td>Ты единственный</td>
           <td>Кто сюда зашёл</td>
+          <td>=(</td>
         </tr>
         {% endfor %}
       </tbody>

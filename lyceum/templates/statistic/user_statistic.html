@@ -1,0 +1,31 @@
+{% extends 'layouts/layout.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+<title>{% translate 'Fluffies stats'%}</title>
+{% endblock %}
+
+{% block content %}
+<div class="container text-center mb-5 mt-3">
+  <h1 class="display-5 fw-bold lh-1 mb-3">{% translate 'User review stats' %}</h1>
+  {% if is_successful == 0 %}
+    <h4 class="lead">
+      {% translate 'There are no reviews made by this user yet' %}
+    </h4>
+  {% else %}
+    <h4 class="lead">
+      {% translate 'Last worst rated item: ' %}<a href="{% url 'catalog:item_detail' id=worst_rated_item.id %}"><em><b>{{ worst_rated_item.name }}</b></em></a>
+    </h4>
+    <h4 class="lead">
+      {% translate 'Last best rated item: ' %}<a href="{% url 'catalog:item_detail' id=best_rated_item.id %}"><em><b>{{ best_rated_item.name }}</b></em></a>
+    </h4>
+    <h4 class="lead">
+      {% translate 'Total reviews made: ' %}{{ count_rates }}
+    </h4>
+    <h4 class="lead">
+      {% translate 'Average review rate: ' %}{{ average_rate }}
+    </h4>
+  {% endif %}
+</div>
+{% endblock %}

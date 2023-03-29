@@ -43,6 +43,9 @@
         {% if current_user.profile.birthday %} {{current_user.profile.birthday}} {% else %} <p class="no-info">no information</p> {% endif %}
         </div>
       </div>
+      <div class="row justify-content-center m-2">
+        <h2 class="text-center"><a href="{% url 'statistic:user_detail_statistics' id=user.id%}">{% translate 'User ratings'%}</a></h2>
+      </div>
       <div>
       </div>
     </div>

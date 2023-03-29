@@ -2760,3 +2760,12 @@ label{
     border: #5c2699 3px solid;
     border-radius: 15px;
 }
+
+.row-item{
+    width: calc(( 100% - 64px ) / 2);
+    min-width: calc(( 100% - 64px ) / 2);
+}
+
+.actions{
+    min-width: 560px;
+}

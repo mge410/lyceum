@@ -8,4 +8,9 @@ urlpatterns = [
         views.UserItemListView.as_view(),
         name='user_item_list',
     ),
+    path(
+        '<int:id>',
+        views.UserStatisticView.as_view(),
+        name='user_detail_statistics',
+    ),
 ]

@@ -25,8 +25,8 @@
           </ul> {% endwith %}
           <ul class="nav navbar-nav navbar-right navbar-social">
             {% if request.user.is_authenticated %}
-              <li><a class="btn btn-primary" href="{% url 'users:profile' %}">{% translate 'My Profile' %}</a></li>
-              <li><a class="btn btn-primary" href="{% url 'users:logout' %}">{% translate 'Logout' %}</a></li>
+              <li><a class="btn btn-success" href="{% url 'users:profile' %}">{% translate 'My Profile' %}</a></li>
+              <li><a class="btn btn-dark" href="{% url 'users:logout' %}">{% translate 'Logout' %}</a></li>
             {% else %}
               <li><a class="btn btn-primary" href="{% url 'users:login' %}">{% translate 'Login' %}</a></li>
             {% endif %}
