@@ -6,8 +6,6 @@ from django.urls import reverse_lazy
 from django.views.generic import FormView
 import feedback.forms as forms
 
-import feedback.forms as forms
-
 
 class FeedbackView(FormView):
     form_class = forms.FeedbackForm

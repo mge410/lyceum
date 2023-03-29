@@ -1,8 +1,6 @@
 from django.contrib import admin
 import rating.models
 
-import rating.models
-
 
 @admin.register(rating.models.Grade)
 class GradeAdmin(admin.ModelAdmin):

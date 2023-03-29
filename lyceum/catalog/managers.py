@@ -2,12 +2,11 @@ from datetime import datetime
 from datetime import timedelta
 from random import sample
 
+import catalog.models
 from django.db import models
 from django.db.models import F
 from django.db.models import Prefetch
 from django.db.models.query import QuerySet
-
-import catalog.models
 
 
 class ItemManager(models.Manager):

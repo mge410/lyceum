@@ -1,6 +1,5 @@
-from django.db import models
-
 import core.models as core
+from django.db import models
 
 
 class Feedback(

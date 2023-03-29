@@ -3,8 +3,6 @@ from django.forms import ModelForm
 from django.utils.translation import gettext as _
 import rating.models
 
-import rating.models
-
 
 class GradeForm(ModelForm):
     delete_grade = django.forms.BooleanField(initial=False, required=False)
