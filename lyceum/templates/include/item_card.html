@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <div class="single-recent-blog-post card-view p-3">
   <div class="thumb"><img class="card-img rounded-0" src="{{ item.main_image.image.url }}" alt="#">
@@ -13,7 +14,7 @@
     <div class="card-text">
       <p>{{ item.text|safe|truncatewords:10 }}</p>
     </div>
-    <p class="tag-list-inline">Tags: {% for tag in item.tags.all %}{% if forloop.last %}<a href="#">{{ tag.name }}</a> {% else %} <a href="#">{{ tag.name }}</a>, {% endif %} {% endfor %}
+    <p class="tag-list-inline">{% translate 'Tags' %}: {% for tag in item.tags.all %}{% if forloop.last %}<a href="#">{{ tag.name }}</a> {% else %} <a href="#">{{ tag.name }}</a>, {% endif %} {% endfor %}
     <div class="button__wrapper">
     <a class="button" href="{% url 'catalog:item_detail' id=item.id %}">Read More <i class="ti-arrow-right"></i></a></div>
   </div>

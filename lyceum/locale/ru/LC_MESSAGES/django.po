@@ -33,7 +33,7 @@ msgstr "Оценки пользователя"
 
 #: .\rating\forms.py:19
 msgid "Add your rating"
-msgstr ""
+msgstr "Опубликовать рейтинг"
 
 #: .\templates\about\description.html:6 .\templates\homepage\coffee.html:6
 msgid "Fluffy about us"
@@ -52,7 +52,7 @@ msgid "Your profile photo"
 msgstr "Фото вашего профиля"
 
 #: .\templates\about\description.html:15 .\templates\include\footer.html:9
-msgid "About as"
+msgid "About us"
 msgstr "О нас"
 
 #: .\templates\about\description.html:26
@@ -134,6 +134,10 @@ msgstr "Милые зверюшки"
 #: .\templates\include\footer.html:43
 msgid "Waiting for you !"
 msgstr "Ждем Вас !"
+
+#: .\templates\include\item_card.html:17
+msgid "Tags"
+msgstr "Теги"
 
 #: .\templates\include\footer.html:44
 msgid "Address"
@@ -273,11 +277,11 @@ msgid "Your statistic"
 msgstr "Ваша статистика"
 
 #: .\templates\users\profile.html:66
-msgid "Most favourite"
+msgid "Most favorite"
 msgstr "Самый понравившийся/нет товар"
 
 #: .\templates\users\profile.html:69
-msgid "List rated items"
+msgid "List of rated items"
 msgstr "Список оценнёных товаров"
 
 #: .\templates\users\profile.html:72
