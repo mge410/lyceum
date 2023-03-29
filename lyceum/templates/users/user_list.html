@@ -23,6 +23,7 @@
           <th scope="row"><a href="{% url 'users:user_detail' id=user.id %}">{{user.id}}</a></th>
           <td><a href="{% url 'users:user_detail' id=user.id %}">{{user.username}}</a></td>
           <td>{{user.email}}</td>
+          <td><a href="{% url 'userstats:userstatsview' id=user.id%}">Оценки пользователя<a></td>
         </tr>
         {% empty %}
         <tr>
