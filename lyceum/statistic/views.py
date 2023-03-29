@@ -8,9 +8,4 @@ class UserItemListView(django.views.generic.ListView, LoginRequiredMixin):
     context_object_name = 'items'
 
     def get_queryset(self):
-        return (
-            Item.objects.catalog_list()
-            .filter(grades__user__id=self.request.user.id)
-            .order_by('-grades__rating')
-            .all()
-        )
+        return Item.objects.user_rated_list(self.request.user.id)
