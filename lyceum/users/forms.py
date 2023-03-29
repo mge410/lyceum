@@ -18,7 +18,7 @@ class CustomUserCreationForm(django.contrib.auth.forms.UserCreationForm):
 
     def clean_email(self) -> str:
         normalized_email = UserProfileProxy.objects.__class__.normalize_email(
-            self.cleaned_data.get('email')
+            self.cleaned_data.get(UserProfileProxy.email.field.name)
         )
         is_email_unique = UserProfileProxy.objects.filter(
             ~Q(pk=self.instance.id),
@@ -50,7 +50,7 @@ class CustomUserChangeForm(django.contrib.auth.forms.UserChangeForm):
 
     def clean_email(self) -> str:
         normalized_email = UserProfileProxy.objects.__class__.normalize_email(
-            self.cleaned_data.get('email')
+            self.cleaned_data.get(UserProfileProxy.email.field.name)
         )
         is_email_unique = UserProfileProxy.objects.filter(
             ~Q(pk=self.instance.id),

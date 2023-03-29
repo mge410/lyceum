@@ -33,7 +33,7 @@ msgstr "Оценки пользователя"
 
 #: .\rating\forms.py:19
 msgid "Add your rating"
-msgstr ""
+msgstr "Опубликовать рейтинг"
 
 #: .\templates\about\description.html:6 .\templates\homepage\coffee.html:6
 msgid "Fluffy about us"
@@ -52,36 +52,44 @@ msgid "Your profile photo"
 msgstr "Фото вашего профиля"
 
 #: .\templates\about\description.html:15 .\templates\include\footer.html:9
-msgid "About as"
+msgid "About us"
 msgstr "О нас"
 
 #: .\templates\about\description.html:26
 msgid ""
 "We take care of animals that are homeless. We also help them find happy "
-"owners and make everything feel better. "
+"owners and make everyone feel better. "
 msgstr ""
 "Мы занимаемся приютом животных, которые остались без дома. Так же мы "
-"помогаем найти им счастливых хозяев и сделать все чуть счастливее"
+"помогаем найти им счастливых хозяев и сделать всех чуть счастливее"
 
 #: .\templates\catalog\item_detail.html:6
 msgid "Fluffy"
 msgstr "Пушистик"
 
+#: .\templates\catalog\item_detail.html:19
+msgid "Get to know him better"
+msgstr "Узнать получше"
+
+#: .\templates\catalog\item_detail.html:19
+msgid "Pick up this pet"
+msgstr "Забрать его"
+
 #: .\templates\catalog\item_detail.html:45
 msgid "Average user rating:"
-msgstr ""
+msgstr "Средний рейтинг пользователя"
 
 #: .\templates\catalog\item_detail.html:48
 msgid "Number of ratings:"
-msgstr ""
+msgstr "Количество ревью"
 
 #: .\templates\catalog\item_detail.html:65
 msgid "Errors"
-msgstr ""
+msgstr "Ошибки"
 
 #: .\templates\catalog\item_detail.html:76
 msgid "Save"
-msgstr ""
+msgstr "Сохранить"
 
 #: .\templates\catalog\item_list.html:6
 msgid "Fluffies catalog"
@@ -134,6 +142,10 @@ msgstr "Милые зверюшки"
 #: .\templates\include\footer.html:43
 msgid "Waiting for you !"
 msgstr "Ждем Вас !"
+
+#: .\templates\include\item_card.html:17
+msgid "Tags"
+msgstr "Теги"
 
 #: .\templates\include\footer.html:44
 msgid "Address"
@@ -273,11 +285,11 @@ msgid "Your statistic"
 msgstr "Ваша статистика"
 
 #: .\templates\users\profile.html:66
-msgid "Most favourite"
+msgid "Most favorite"
 msgstr "Самый понравившийся/нет товар"
 
 #: .\templates\users\profile.html:69
-msgid "List rated items"
+msgid "List of rated items"
 msgstr "Список оценнёных товаров"
 
 #: .\templates\users\profile.html:72
