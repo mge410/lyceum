@@ -1,14 +1,15 @@
-from catalog.models import Item
-import django.views.generic
-import rating.forms
-import rating.models
-from django.views.generic.edit import FormMixin
-from django.views.generic import DetailView
 import catalog.models
-from django.http import HttpRequest, HttpResponse
+from catalog.models import Item
 from django.contrib import messages
+from django.http import HttpRequest
+from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
+import django.views.generic
+from django.views.generic import DetailView
+from django.views.generic.edit import FormMixin
+import rating.forms
+import rating.models
 
 
 class ItemListView(django.views.generic.ListView):
@@ -47,8 +48,9 @@ class ItemDetailView(FormMixin, DetailView):
         context = super().get_context_data(*args, **kwargs)
 
         sum_grades, number = 0, 0
-        item_grades = rating.models.Grade.objects\
-            .get_item_grades(self.kwargs['id'])
+        item_grades = rating.models.Grade.objects.get_item_grades(
+            self.kwargs['id']
+        )
         minrating, maxrating = 6, 0
         for grade in item_grades:
             sum_grades += int(grade.rating)
@@ -72,10 +74,7 @@ class ItemDetailView(FormMixin, DetailView):
         return context
 
     def get_success_url(self, **kwargs):
-        return reverse_lazy(
-            'catalog:item_detail',
-            kwargs={'id': kwargs['id']}
-        )
+        return reverse_lazy('catalog:item_detail', kwargs={'id': kwargs['id']})
 
     def post(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
         form = self.form_class(request.POST or None)
@@ -89,8 +88,7 @@ class ItemDetailView(FormMixin, DetailView):
                 messages.success(request, 'Product with a rating')
             else:
                 self.form_model.objects.filter(
-                    user_id=request.user.id,
-                    item_id=self.kwargs['id']
+                    user_id=request.user.id, item_id=self.kwargs['id']
                 ).delete()
                 messages.success(request, 'Rating removed')
         return redirect(self.get_success_url(**self.kwargs))
