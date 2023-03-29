@@ -29,7 +29,7 @@ urlpatterns = [
         name='unchecked_item_list',
     ),
     path(
-        '<int:pk>/',
+        '<int:id>/',
         views.ItemDetailView.as_view(),
         name='item_detail',
     ),
