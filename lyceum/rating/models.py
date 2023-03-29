@@ -20,6 +20,7 @@ class Grade(CreatedDateBaseModel):
         max_length=1,
         default=Rating.neutrally,
         choices=Rating.choices,
+        blank=True,
         help_text='Items rating',
     )
 
