@@ -1,6 +1,7 @@
-import core.models
 from django.contrib.auth.models import User
 from django.db import models
+
+import core.models
 from users.managers import UserProfileManager
 
 

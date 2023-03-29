@@ -1,9 +1,10 @@
 from typing import Any
 
-import catalog.models
 from ckeditor.widgets import CKEditorWidget
 from django import forms
 from django.contrib import admin
+
+import catalog.models
 
 
 class ItemTextAdminForm(forms.ModelForm):
