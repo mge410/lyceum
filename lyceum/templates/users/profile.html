@@ -23,7 +23,7 @@
         {% csrf_token %}
         {% if user.profile.image %}
         <div class="text-center">
-          <h2>Your profile photo</h2>
+          <h2>{% translate 'Your profile photo'%}</h2>
           <img class="border-info profile-image" src="{{user.profile.get_image_300x300.url}}" alt="">
         </div>
         {% endif %}
@@ -58,28 +58,23 @@
         </div>
       </form>
       </div>
-      <div class="col-12  m-1">
-          <h3 class="text-center">{% translate 'Your statistic' %}</h3>
-        <div class="row  justify-content-center mx-auto">
-          <a class="btn btn-primary m-3 d-inline" id="stat_user"
-             href="{% url 'statistic:user_item_list' %}">
-              {% translate 'Most favourite' %}</a>
-          <a class="btn btn-primary m-3 d-inline" id="stat_items"
-             href="{% url 'statistic:user_item_list' %}">
-              {% translate 'List rated items' %}</a>
-          <a class="btn btn-primary m-3 d-inline" id="stat_grades"
-             href="{% url 'statistic:user_item_list' %}">
-              {% translate 'Averages' %}</a>
+      <div class="row actions">
+        <div class="row-item m-3">
+          <h2 class="mb-1 text-center">{% translate 'Your statistic' %}</h2>
+          <ul class="list-group">
+            <li class="list-group-item"><a class="btn btn-info w-100" id="stat_user" href="{% url 'statistic:user_item_list' %}">{% translate 'Most favourite' %}</a></li>
+            <li class="list-group-item"><a class="btn btn-info w-100" id="stat_items" href="{% url 'statistic:user_item_list' %}">{% translate 'List rated items' %}</a></li>
+            <li class="list-group-item"><a class="btn btn-info w-100" id="stat_grades" href="{% url 'statistic:user_item_list' %}">{% translate 'Averages' %}</a></li>
+          </ul>
         </div>
-      </div>
-      <div class="col-md-12 row justify-content-center m-1">
-        <button class="btn btn-primary m-3" type="button" id="coffee_count">{% translate 'To drink coffee' %}</button>
-      </div>
-      <div class="col-md-12 row justify-content-center m-1">
-        <a class="btn btn-primary" href="{% url 'users:logout' %}">{% translate 'Logout' %}</a>
-      </div>
-      <div class="col-md-12 row justify-content-center m-1">
-        <a class="btn btn-primary" href="{% url 'users:password_change' %}">{% translate 'Change password' %}</a>
+        <div class="row-item m-3">
+          <h2 class="mb-1 text-center">{% translate 'Actions' %}</h2>
+          <ul class="list-group">
+            <li class="list-group-item"><button class="btn btn-success w-100" type="button" id="coffee_count">{% translate 'To drink coffee' %}</button></li>
+            <li class="list-group-item"><a class="btn btn-success w-100" href="{% url 'users:password_change' %}">{% translate 'Change password' %}</a></li>
+            <li class="list-group-item"><a class="btn btn-danger w-100" href="{% url 'users:logout' %}">{% translate 'Logout' %}</a></li>
+          </ul>
+        </div>
       </div>
     </section>
   </div>
