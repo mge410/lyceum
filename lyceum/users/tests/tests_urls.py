@@ -1,6 +1,7 @@
-import parameterized.parameterized
-from django.test import Client, TestCase
+from django.test import Client
+from django.test import TestCase
 from django.urls import reverse
+import parameterized.parameterized
 
 
 class StaticUrlsTests(TestCase):
@@ -15,10 +16,10 @@ class StaticUrlsTests(TestCase):
             ('password_change_done', 302),
         ]
     )
-    def test_registration_endpoints(self, url, status):
+    def test_registration_endpoints(self, url: str, status: int) -> None:
         response = Client().get(reverse(f'users:{url}'))
         self.assertEqual(response.status_code, status)
 
-    def test_users_endpoints(self):
+    def test_users_endpoints(self) -> None:
         response = Client().get(reverse('users:users_list'))
         self.assertEqual(response.status_code, 200)

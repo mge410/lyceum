@@ -1,7 +1,8 @@
 import re
 from typing import Any
 
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpRequest
+from django.http import HttpResponse
 
 
 class ReverseMiddleware:

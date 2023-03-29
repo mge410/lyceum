@@ -1,10 +1,11 @@
-import django.db.models
-import rating.models
 from django.contrib.auth.models import User
+import django.db.models
+from django.db.models import QuerySet
+import rating.models
 
 
 class GradeManager(django.db.models.Manager):
-    def get_item_grades(self, item_id):
+    def get_item_grades(self, item_id: int) -> QuerySet:
         return (
             self.get_queryset()
             .select_related(
@@ -31,7 +32,7 @@ class GradeManager(django.db.models.Manager):
             )
         )
 
-    def get_filtered_items(self, user_id):
+    def get_filtered_items(self, user_id: int) -> QuerySet:
         return (
             rating.models.Grade.objects.filter(user_id=user_id)
             .select_related(rating.models.Grade.item.field.name)

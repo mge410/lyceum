@@ -1,8 +1,11 @@
-import django.views.generic
 from catalog.models import Item
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import QuerySet
+from django.http import HttpRequest
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import View
+import django.views.generic
 from rating.models import Grade
 
 
@@ -10,7 +13,7 @@ class UserItemListView(LoginRequiredMixin, django.views.generic.ListView):
     template_name = 'catalog/item_list.html'
     context_object_name = 'items'
 
-    def get_queryset(self):
+    def get_queryset(self) -> QuerySet:
         return Item.objects.user_rated_list(self.request.user.id)
 
 
@@ -19,7 +22,7 @@ class UserStatisticView(View):
 
     template_name = 'statistic/user_statistic.html'
 
-    def get(self, request, id):
+    def get(self, request: HttpRequest, id: int) -> HttpResponse:
         items = Grade.objects.get_filtered_items(user_id=id)
 
         if len(items) == 0:

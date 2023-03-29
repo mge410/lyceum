@@ -64,7 +64,6 @@ class FeedbackFiles(models.Model):
         on_delete=models.CASCADE,
         verbose_name='feedback',
         default=None,
-        related_name='files',
         help_text='Attach files',
     )
 

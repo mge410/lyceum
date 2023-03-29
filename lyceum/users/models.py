@@ -5,7 +5,7 @@ from users.managers import UserProfileManager
 
 
 class Profile(core.models.ImageBaseModel):
-    def saving_path(self, name):
+    def saving_path(self, name: str) -> str:
         return f'uploads/user_image/{self.user.id}/{name}'
 
     login_failed_count = models.PositiveSmallIntegerField(
@@ -19,6 +19,7 @@ class Profile(core.models.ImageBaseModel):
         default=None,
         null=True,
         blank=True,
+        help_text='Account lockout date',
     )
 
     user = models.OneToOneField(

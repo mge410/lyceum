@@ -1,5 +1,5 @@
-import core.models as core
 from catalog.managers import ItemManager
+import core.models as core
 from django.core import validators
 from django.db import models
 
@@ -19,11 +19,13 @@ class Category(
                 32767, 'The maximum number to enter is 32767'
             ),
         ],
+        help_text='Enter weight please',
     )
 
     class Meta:
         verbose_name = 'category'
         verbose_name_plural = 'categories'
+        default_related_name = 'category'
 
 
 class Tag(
@@ -47,7 +49,9 @@ class Item(
 ):
     objects = ItemManager()
 
-    is_on_main = models.BooleanField('Show on home page', default=False)
+    is_on_main = models.BooleanField(
+        'show on homepage', default=False, help_text='Show on homepage'
+    )
 
     category = models.ForeignKey(
         Category,
@@ -73,7 +77,7 @@ class Item(
 
 
 class MainImageItem(core.NamedBaseModel, core.ImageBaseModel):
-    def saving_path(self, name):
+    def saving_path(self, name: str) -> str:
         return f'uploads/main_image/{self.items.id}/{name}'
 
     items = models.OneToOneField(
@@ -82,7 +86,7 @@ class MainImageItem(core.NamedBaseModel, core.ImageBaseModel):
         on_delete=models.CASCADE,
         null=True,
         blank=True,
-        help_text='main image',
+        help_text='Enter main image please',
     )
 
     image = models.ImageField(
@@ -98,7 +102,7 @@ class MainImageItem(core.NamedBaseModel, core.ImageBaseModel):
 
 
 class GalleryImagesItem(core.NamedBaseModel, core.ImageBaseModel):
-    def saving_path(self, name):
+    def saving_path(self, name: str) -> str:
         return f'uploads/gallery_images/{self.item.id}/{name}'
 
     image = models.ImageField(

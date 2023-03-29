@@ -1,20 +1,23 @@
-from datetime import datetime, timedelta
+from datetime import datetime
+from datetime import timedelta
 from random import sample
 
 import catalog.models
 from django.db import models
-from django.db.models import F, Prefetch
+from django.db.models import F
+from django.db.models import Prefetch
+from django.db.models.query import QuerySet
 
 
 class ItemManager(models.Manager):
-    def homepage(self):
+    def homepage(self) -> QuerySet:
         return self.prefetch_to_items().filter(
             is_published=True,
             is_on_main=True,
             category__is_published=True,
         )
 
-    def catalog_list(self):
+    def catalog_list(self) -> QuerySet:
         return (
             self.prefetch_to_items()
             .filter(
@@ -27,7 +30,7 @@ class ItemManager(models.Manager):
             )
         )
 
-    def new_item_list(self):
+    def new_item_list(self) -> QuerySet:
         try:
             my_ids = list(
                 catalog.models.Item.objects.filter(
@@ -62,7 +65,7 @@ class ItemManager(models.Manager):
         except Exception:
             return None
 
-    def friday_item_list(self):
+    def friday_item_list(self) -> QuerySet:
         return (
             self.prefetch_to_items()
             .filter(
@@ -73,7 +76,7 @@ class ItemManager(models.Manager):
             .order_by(f'-{catalog.models.Item.created_at.field.name}')[:5]
         )
 
-    def unchecked_item_list(self):
+    def unchecked_item_list(self) -> QuerySet:
         return (
             self.prefetch_to_items()
             .filter(
@@ -87,14 +90,14 @@ class ItemManager(models.Manager):
             )
         )
 
-    def user_rated_list(self, id):
+    def user_rated_list(self, id: int) -> QuerySet:
         return (
             self.catalog_list()
-            .filter(grades__user__id=id)
-            .order_by('-grades__rating')
+            .filter(ratings__user__id=id)
+            .order_by('-ratings__rating')
         )
 
-    def catalog_detail(self):
+    def catalog_detail(self) -> QuerySet:
         return (
             self.prefetch_to_items()
             .prefetch_related(
@@ -108,7 +111,7 @@ class ItemManager(models.Manager):
             )
         )
 
-    def prefetch_to_items(self):
+    def prefetch_to_items(self) -> QuerySet:
         return (
             self.get_queryset()
             .select_related(

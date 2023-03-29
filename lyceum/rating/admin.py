@@ -1,5 +1,5 @@
-import rating.models
 from django.contrib import admin
+import rating.models
 
 
 @admin.register(rating.models.Grade)

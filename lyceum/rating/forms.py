@@ -1,13 +1,13 @@
 import django.forms
-import rating.models
 from django.forms import ModelForm
 from django.utils.translation import gettext as _
+import rating.models
 
 
 class GradeForm(ModelForm):
     delete_grade = django.forms.BooleanField(initial=False, required=False)
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         super(GradeForm, self).__init__(*args, **kwargs)
         for field in self.visible_fields():
             field.field.widget.attrs['class'] = 'form-control'

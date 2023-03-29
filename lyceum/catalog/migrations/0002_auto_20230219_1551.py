@@ -2,10 +2,11 @@
 
 import re
 
-import django.core.validators
-import django.db.models.deletion
 from core.validators import ValidateMustContain
-from django.db import migrations, models
+import django.core.validators
+from django.db import migrations
+from django.db import models
+import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
