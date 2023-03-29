@@ -1,14 +1,12 @@
 import django.views.generic
-from django.shortcuts import render
-from django.views import View
-
 from catalog.models import Item
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.shortcuts import render
+from django.views import View
 from rating.models import Grade
 
 
-class UserItemListView(django.views.generic.ListView, LoginRequiredMixin):
+class UserItemListView(LoginRequiredMixin, django.views.generic.ListView):
     template_name = 'catalog/item_list.html'
     context_object_name = 'items'
 

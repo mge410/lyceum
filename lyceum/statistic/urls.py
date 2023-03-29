@@ -14,4 +14,3 @@ urlpatterns = [
         name='user_detail_statistics',
     ),
 ]
-

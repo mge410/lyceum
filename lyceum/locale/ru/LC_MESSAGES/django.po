@@ -42,6 +42,12 @@ msgstr "Пушистики о нас"
 msgid "Actions"
 msgstr "Действия"
 
+msgid "The user who left the most positive rating:"
+msgstr "Пользователь, оставивший самую положительную оценку:"
+
+msgid "The user who left the most negative rating:"
+msgstr "Пользователь, оставивший самую отрицательную оценку:"
+
 msgid "Your profile photo"
 msgstr "Фото вашего профиля"
 

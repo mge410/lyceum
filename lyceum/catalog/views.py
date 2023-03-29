@@ -47,14 +47,21 @@ class ItemDetailView(
         user = self.request.user
 
         grades = rating.models.Grade.objects.get_item_grades(item_id)
+
         sum_rating = 0
+        count = len(grades)
+
+        user_min_rating, user_max_rating = None, None
+
+        if count != 0:
+            user_min_rating = grades[0].user.username
+            user_max_rating = grades[len(grades) - 1].user.username
         user_grade = None
+
         for grade in grades:
             if user.id == grade.user.id:
                 user_grade = grade
             sum_rating += int(grade.rating)
-        count = len(grades)
-
         rating_value_choices = {
             choice.value: choice.name for choice in rating.models.Grade.Rating
         }
@@ -69,6 +76,9 @@ class ItemDetailView(
         context['average_rating_name'] = average_rating_name
         context['average_rate_value'] = average
         context['count_grades'] = count
+
+        context['user_min_rating'] = user_min_rating
+        context['user_max_rating'] = user_max_rating
 
         if user.is_authenticated:
             if user_grade is None:
