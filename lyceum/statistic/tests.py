@@ -48,25 +48,25 @@ class StatsTests(TestCase):
 
     def test_user_stats_status_code_with_review(self) -> None:
         user_id = self.test_user_with_review.id
-        response = Client().get(f'/userstats/{user_id}')
-        self.assertTemplateUsed(response, 'stats/userstats.html')
+        response = Client().get(f'/statistic/{user_id}')
+        self.assertTemplateUsed(response, 'statistic/user_statistic.html')
         self.assertEquals(response.status_code, 200)
 
     def test_user_stats_status_code_without_review(self) -> None:
         user_id = self.test_user_without_review.id
-        response = Client().get(f'/userstats/{user_id}')
-        self.assertTemplateUsed(response, 'stats/userstats.html')
+        response = Client().get(f'/statistic/{user_id}')
+        self.assertTemplateUsed(response, 'statistic/user_statistic.html')
         self.assertEquals(response.status_code, 200)
 
-    def test_user_stats_context_success(self):
+    def test_user_stats_context_success(self) -> None:
         user_id = self.test_user_with_review.id
-        response = Client().get(f'/userstats/{user_id}')
+        response = Client().get(f'/statistic/{user_id}')
         context = response.context
         self.assertEquals(1, context.get('is_successful'))
 
     def test_user_stats_context_failure(self) -> None:
         user_id = self.test_user_without_review.id
-        response = Client().get(f'/userstats/{user_id}')
+        response = Client().get(f'/statistic/{user_id}')
         context = response.context
         self.assertEquals(0, context.get('is_successful'))
 
