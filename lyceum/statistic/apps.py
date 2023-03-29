@@ -1,7 +1,7 @@
 from django.apps import AppConfig
 
 
-class StatsConfig(AppConfig):
+class StatisticConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'stats'
-    verbose_name = 'Stats'
+    name = 'statistic'
+    verbose_name = 'Statistics'
