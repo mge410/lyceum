@@ -285,7 +285,7 @@ msgid "Averages"
 msgstr "Средние показатели"
 
 #: .\templates\users\profile.html:76
-msgid "To drink coffee"
+msgid "Drink coffee"
 msgstr "Выпить кофе"
 
 #: .\templates\users\profile.html:82

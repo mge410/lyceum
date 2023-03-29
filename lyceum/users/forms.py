@@ -1,5 +1,6 @@
 from django import forms
 import django.contrib.auth.forms
+from django.contrib.auth.models import User
 from django.db.models import Q
 from users.models import Profile
 from users.models import UserProfileProxy
@@ -13,7 +14,7 @@ class CustomUserCreationForm(django.contrib.auth.forms.UserCreationForm):
 
     class Meta(django.contrib.auth.forms.UserCreationForm.Meta):
         model = UserProfileProxy
-        fields = ('username', 'email')
+        fields = (User.username.field.name, User.email.field.name)
 
     def clean_email(self):
         normalized_email = UserProfileProxy.objects.__class__.normalize_email(

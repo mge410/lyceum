@@ -27,7 +27,9 @@ class NamedBaseModel(models.Model):
 
 
 class PublishedBaseModel(models.Model):
-    is_published = models.BooleanField('published', default=True)
+    is_published = models.BooleanField(
+        'published', default=True, help_text='Published'
+    )
 
     class Meta:
         abstract = True
@@ -71,14 +73,18 @@ class TextMessageModel(models.Model):
 
 
 class CreatedDateBaseModel(models.Model):
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(
+        'date of creation', auto_now_add=True, help_text='Date of creation'
+    )
 
     class Meta:
         abstract = True
 
 
 class UpdatedDateBaseModel(models.Model):
-    updated_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(
+        'update date', auto_now=True, help_text='Update date'
+    )
 
     class Meta:
         abstract = True
@@ -86,8 +92,9 @@ class UpdatedDateBaseModel(models.Model):
 
 class ImageBaseModel(models.Model):
     image = models.ImageField(
-        'Will be rendered at 300px',
+        'image',
         upload_to='catalog/',
+        help_text='Will be rendered at 300px',
     )
 
     class Meta:
