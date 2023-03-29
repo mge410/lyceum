@@ -87,6 +87,13 @@ class ItemManager(models.Manager):
             )
         )
 
+    def user_rated_list(self, id):
+        return (
+            self.catalog_list()
+            .filter(grades__user__id=id)
+            .order_by('-grades__rating')
+        )
+
     def catalog_detail(self):
         return (
             self.prefetch_to_items()

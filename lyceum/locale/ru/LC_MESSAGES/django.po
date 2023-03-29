@@ -36,6 +36,12 @@ msgstr ""
 msgid "Fluffy about us"
 msgstr "Пушистики о нас"
 
+msgid "Actions"
+msgstr "Действия"
+
+msgid "Your profile photo"
+msgstr "Фото вашего профиля"
+
 #: .\templates\about\description.html:15 .\templates\include\footer.html:9
 msgid "About as"
 msgstr "О нас"
