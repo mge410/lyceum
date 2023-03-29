@@ -1,7 +1,9 @@
 from http import HTTPStatus
 
-from catalog.models import Category, Item
-from django.test import Client, TestCase
+from catalog.models import Category
+from catalog.models import Item
+from django.test import Client
+from django.test import TestCase
 from parameterized import parameterized
 
 

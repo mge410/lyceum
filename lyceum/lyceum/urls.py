@@ -1,5 +1,7 @@
 import about.urls
 import catalog.urls
+from django.conf import settings
+from django.conf.urls.static import static
 import django.contrib.admin
 import django.contrib.auth.urls
 import django.urls
@@ -8,8 +10,6 @@ import feedback.urls
 import homepage.urls
 import statistic.urls
 import users.urls
-from django.conf import settings
-from django.conf.urls.static import static
 
 urlpatterns = [
     django.urls.path('', django.urls.include(homepage.urls)),

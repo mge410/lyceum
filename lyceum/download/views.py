@@ -1,5 +1,6 @@
 from django.conf import settings
-from django.http import FileResponse, HttpRequest
+from django.http import FileResponse
+from django.http import HttpRequest
 from django.views.generic import View
 
 

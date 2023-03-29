@@ -1,8 +1,8 @@
-import django.views.generic
 from catalog.models import Item
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views import View
+import django.views.generic
 from rating.models import Grade
 
 
