@@ -30,9 +30,9 @@
     {% block content %}{% translate "Content didn't load "%} =({% endblock %}
 
 
-    <div class="row align-items-center m-3 flex-column">
+    <div class="row align-items-center m-3 flex-column mt-lg-5">
       <h2 class="text-center">{% translate "Birthday people"%}</h2>
-      <ul class="list-group col-6 ">
+      <ul class="list-group col-4">
         {% for man in birthday_users %}
         <li class="list-group-item">{{man.username}} - {{man.email}}</li>
         {% empty %}
