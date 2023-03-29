@@ -54,4 +54,4 @@ __Для linux__
 
 
 Схема Базы Данных Обратной связи в проекте  
-![alt text](database_feedback.PNG)
+![alt text](databasefeedback.PNG)
