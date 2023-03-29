@@ -16,10 +16,10 @@ class StaticUrlsTests(TestCase):
             ('password_change_done', 302),
         ]
     )
-    def test_registration_endpoints(self, url, status):
+    def test_registration_endpoints(self, url: str, status: int) -> None:
         response = Client().get(reverse(f'users:{url}'))
         self.assertEqual(response.status_code, status)
 
-    def test_users_endpoints(self):
+    def test_users_endpoints(self) -> None:
         response = Client().get(reverse('users:users_list'))
         self.assertEqual(response.status_code, 200)

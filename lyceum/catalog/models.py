@@ -77,7 +77,7 @@ class Item(
 
 
 class MainImageItem(core.NamedBaseModel, core.ImageBaseModel):
-    def saving_path(self, name):
+    def saving_path(self, name: str) -> str:
         return f'uploads/main_image/{self.items.id}/{name}'
 
     items = models.OneToOneField(
@@ -102,7 +102,7 @@ class MainImageItem(core.NamedBaseModel, core.ImageBaseModel):
 
 
 class GalleryImagesItem(core.NamedBaseModel, core.ImageBaseModel):
-    def saving_path(self, name):
+    def saving_path(self, name: str) -> str:
         return f'uploads/gallery_images/{self.item.id}/{name}'
 
     image = models.ImageField(

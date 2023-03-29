@@ -14,6 +14,6 @@ class HomeView(ListView):
 class CoffeeView(TemplateView):
     template_name = 'homepage/coffee.html'
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs) -> None:
         context = self.get_context_data(**kwargs)
         return self.render_to_response(context, status=HTTPStatus.IM_A_TEAPOT)

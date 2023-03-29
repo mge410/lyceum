@@ -1,5 +1,6 @@
 from catalog.models import Item
 import django.db.models
+from django.http import HttpResponseRedirect
 import django.shortcuts
 import django.urls
 from django.utils.translation import gettext as _
@@ -41,7 +42,7 @@ class ItemDetailView(
     queryset = Item.objects.catalog_detail()
     form_class = rating.forms.GradeForm
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, **kwargs) -> dict:
         context = super().get_context_data(**kwargs)
         item_id = self.kwargs[self.pk_url_kwarg]
         user = self.request.user
@@ -99,7 +100,7 @@ class ItemDetailView(
     def get(self, request, *args, **kwargs):
         return super().get(request, *args, **kwargs)
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs) -> django.shortcuts.redirect:
         instance, _ = rating.models.Grade.objects.get_or_create(
             item__id=self.get_object().id,
             user__id=self.request.user.id,
@@ -109,7 +110,7 @@ class ItemDetailView(
 
         return django.shortcuts.redirect(self.get_success_url())
 
-    def form_valid(self, form):
+    def form_valid(self, form) -> HttpResponseRedirect:
         if form.is_valid():
             delete_grade = form.cleaned_data.get('delete_grade')
             if delete_grade:
@@ -129,7 +130,7 @@ class ItemDetailView(
             django.views.generic.edit.ModelFormMixin, self
         ).form_valid(form)
 
-    def get_success_url(self):
+    def get_success_url(self) -> callable:
         return django.urls.reverse_lazy(
             'catalog:item_detail',
             kwargs={self.pk_url_kwarg: self.kwargs[self.pk_url_kwarg]},
