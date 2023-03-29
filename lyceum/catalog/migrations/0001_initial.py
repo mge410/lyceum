@@ -4,8 +4,9 @@ import re
 
 import django.core.validators
 import django.db.models.deletion
-from core.validators import ValidateMustContain
 from django.db import migrations, models
+
+from core.validators import ValidateMustContain
 
 
 class Migration(migrations.Migration):

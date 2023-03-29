@@ -1,7 +1,8 @@
 from http import HTTPStatus
 
-from catalog.models import Item
 from django.views.generic import ListView, TemplateView
+
+from catalog.models import Item
 
 
 class HomeView(ListView):

@@ -1,6 +1,7 @@
 import django.db.models
-import rating.models
 from django.contrib.auth.models import User
+
+import rating.models
 
 
 class GradeManager(django.db.models.Manager):

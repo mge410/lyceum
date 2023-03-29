@@ -1,7 +1,8 @@
 from datetime import datetime
 
-import users.models
 from django.contrib.auth.models import User, UserManager
+
+import users.models
 
 
 class UserProfileManager(UserManager):

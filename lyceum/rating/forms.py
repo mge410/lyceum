@@ -1,7 +1,8 @@
 import django.forms
-import rating.models
 from django.forms import ModelForm
 from django.utils.translation import gettext as _
+
+import rating.models
 
 
 class GradeForm(ModelForm):

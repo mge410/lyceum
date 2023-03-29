@@ -1,6 +1,7 @@
 import django.contrib.auth.forms
 from django import forms
 from django.db.models import Q
+
 from users.models import Profile, UserProfileProxy
 
 

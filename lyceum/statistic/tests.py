@@ -1,7 +1,8 @@
+from django.test import Client, TestCase
+
 import catalog.models
 import rating.models
 import users.models
-from django.test import Client, TestCase
 
 
 class StatsTests(TestCase):

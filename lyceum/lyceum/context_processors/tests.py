@@ -1,8 +1,9 @@
 import datetime
 
 import django.urls
-import users.models
 from django.test import Client, TestCase
+
+import users.models
 
 
 class ContextProcessorsTests(TestCase):

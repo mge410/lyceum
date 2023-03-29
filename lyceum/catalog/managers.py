@@ -1,9 +1,10 @@
 from datetime import datetime, timedelta
 from random import sample
 
-import catalog.models
 from django.db import models
 from django.db.models import F, Prefetch
+
+import catalog.models
 
 
 class ItemManager(models.Manager):

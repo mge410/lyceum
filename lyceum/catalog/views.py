@@ -2,10 +2,11 @@ import django.db.models
 import django.shortcuts
 import django.urls
 import django.views.generic
+from django.utils.translation import gettext as _
+
 import rating.forms
 import rating.models
 from catalog.models import Item
-from django.utils.translation import gettext as _
 
 
 class ItemListView(django.views.generic.ListView):

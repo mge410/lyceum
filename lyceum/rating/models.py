@@ -1,7 +1,8 @@
-from catalog.models import Item
-from core.models import CreatedDateBaseModel
 from django.contrib.auth.models import User
 from django.db import models
+
+from catalog.models import Item
+from core.models import CreatedDateBaseModel
 from rating.managers import GradeManager
 
 
