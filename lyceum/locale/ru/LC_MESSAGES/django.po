@@ -28,6 +28,9 @@ msgstr "Нет информации о рейтинге"
 msgid "Your rating"
 msgstr "Ваш профиль"
 
+msgid "User ratings"
+msgstr "Оценки пользователя"
+
 #: .\rating\forms.py:19
 msgid "Add your rating"
 msgstr ""
