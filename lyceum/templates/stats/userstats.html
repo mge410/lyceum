@@ -15,10 +15,10 @@
     </h4>
   {% else %}
     <h4 class="lead">
-      {% translate 'Last worst rated item: ' %}<a href="{% url 'catalog:item_detail' id=worst_rated_item.id %}"><em><b>{{ worst_rated_item.name }}</b></em></a>
+      {% translate 'Last worst rated item: ' %}<a href="{% url 'catalog:item_detail' id=worst_rated_item.id %}"><em><b>{{ worst_rated_item.name|upper }}</b></em></a>
     </h4>
     <h4 class="lead">
-      {% translate 'Last best rated item: ' %}<a href="{% url 'catalog:item_detail' id=best_rated_item.id %}"><em><b>{{ best_rated_item.name }}</b></em></a>
+      {% translate 'Last best rated item: ' %}<a href="{% url 'catalog:item_detail' id=best_rated_item.id %}"><em><b>{{ best_rated_item.name|upper   }}</b></em></a>
     </h4>
     <h4 class="lead">
       {% translate 'Total reviews made: ' %}{{ count_rates }}
