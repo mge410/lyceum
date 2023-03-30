@@ -1,5 +1,6 @@
 from django import forms
 import django.contrib.auth.forms
+from django.contrib.auth.models import User
 from django.db.models import Q
 
 from users.models import Profile
@@ -8,17 +9,16 @@ from users.models import UserProfileProxy
 
 class CustomUserCreationForm(django.contrib.auth.forms.UserCreationForm):
     email = forms.EmailField(
-        label='Email',
-        max_length=254,
+        label='Email', max_length=254, help_text='Enter email please'
     )
 
     class Meta(django.contrib.auth.forms.UserCreationForm.Meta):
         model = UserProfileProxy
         fields = ('username', 'email')
 
-    def clean_email(self):
+    def clean_email(self) -> str:
         normalized_email = UserProfileProxy.objects.__class__.normalize_email(
-            self.cleaned_data.get('email')
+            self.cleaned_data.get(User.email.field.name)
         )
         is_email_unique = UserProfileProxy.objects.filter(
             ~Q(pk=self.instance.id),
@@ -48,9 +48,9 @@ class CustomUserChangeForm(django.contrib.auth.forms.UserChangeForm):
             UserProfileProxy.last_name.field.name,
         ]
 
-    def clean_email(self):
+    def clean_email(self) -> str:
         normalized_email = UserProfileProxy.objects.__class__.normalize_email(
-            self.cleaned_data.get('email')
+            self.cleaned_data.get(User.email.field.name)
         )
         is_email_unique = UserProfileProxy.objects.filter(
             ~Q(pk=self.instance.id),

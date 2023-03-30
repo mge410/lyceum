@@ -20,7 +20,7 @@ class RegisterViewsTests(TestCase):
         'password2': '123123123g',
     }
 
-    def test_user_register_context(self):
+    def test_user_register_context(self) -> None:
         response = Client().get(
             reverse(
                 'users:register',
@@ -28,7 +28,7 @@ class RegisterViewsTests(TestCase):
         )
         self.assertIn('form', response.context)
 
-    def test_user_register_success_redirect(self):
+    def test_user_register_success_redirect(self) -> None:
         response = Client().post(
             reverse('users:register'),
             self.user_register_data,
@@ -37,7 +37,7 @@ class RegisterViewsTests(TestCase):
 
         self.assertRedirects(response, reverse('homepage:home'))
 
-    def test_user_register_success(self):
+    def test_user_register_success(self) -> None:
         user_count = User.objects.count()
 
         Client().post(
@@ -49,7 +49,7 @@ class RegisterViewsTests(TestCase):
         self.assertEqual(User.objects.count(), user_count + 1)
 
     @override_settings(DEFAULT_USER_ACTIVITY='False')
-    def test_register_is_active_false(self):
+    def test_register_is_active_false(self) -> None:
         Client().post(
             reverse('users:register'),
             self.user_register_data,
@@ -61,7 +61,7 @@ class RegisterViewsTests(TestCase):
         self.assertFalse(user.is_active)
 
     @override_settings(DEFAULT_USER_ACTIVITY='True')
-    def test_register_is_active_true(self):
+    def test_register_is_active_true(self) -> None:
         Client().post(
             reverse('users:register'),
             self.user_register_data,
@@ -73,7 +73,7 @@ class RegisterViewsTests(TestCase):
         self.assertTrue(user.is_active)
 
     @override_settings(DEFAULT_USER_ACTIVITY='False')
-    def test_user_activate_success(self):
+    def test_user_activate_success(self) -> None:
         Client().post(
             reverse('users:register'),
             self.user_register_data,
@@ -93,7 +93,7 @@ class RegisterViewsTests(TestCase):
 
     @override_settings(DEFAULT_USER_ACTIVITY='False')
     @mock.patch('django.utils.timezone.now')
-    def test_user_activate_error(self, mock_now):
+    def test_user_activate_error(self, mock_now: mock.Mock) -> None:
         Client().post(
             reverse('users:register'),
             self.user_register_data,
@@ -124,7 +124,7 @@ class RegisterViewsTests(TestCase):
         ],
     )
     @override_settings(DEFAULT_USER_ACTIVITY='True')
-    def test_user_login_username(self, username, password):
+    def test_user_login_username(self, username: str, password: str) -> None:
         Client().post(
             reverse('users:register'),
             self.user_register_data,
@@ -155,7 +155,7 @@ class RegisterViewsTests(TestCase):
             ['ABo.ba.+ger@gmail.com', 'aboba@gmail.com'],
         ]
     )
-    def test_user_normalize_email(self, email, expected):
+    def test_user_normalize_email(self, email: str, expected: str) -> None:
         Client().post(
             reverse('users:register'),
             {
@@ -170,7 +170,7 @@ class RegisterViewsTests(TestCase):
         self.assertEqual(user.email, expected)
 
     @override_settings(DEFAULT_USER_ACTIVITY='True')
-    def test_user_to_success_block(self):
+    def test_user_to_success_block(self) -> None:
         Client().post(
             reverse('users:register'),
             {
@@ -196,7 +196,7 @@ class RegisterViewsTests(TestCase):
         self.assertFalse(user.is_active)
 
     @override_settings(DEFAULT_USER_ACTIVITY='True')
-    def test_user_to_success_recovery(self):
+    def test_user_to_success_recovery(self) -> None:
         Client().post(
             reverse('users:register'),
             {

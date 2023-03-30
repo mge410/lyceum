@@ -17,7 +17,7 @@ class FeedbackForm(django.forms.Form):
         help_text='Download file',
     )
 
-    def save(self, file_list):
+    def save(self, file_list: list) -> bool:
         data = self.cleaned_data
 
         feedback_data = feedback.models.Feedback(text=data['text'])
