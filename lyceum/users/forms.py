@@ -1,8 +1,9 @@
-import django.contrib.auth.forms
 from django import forms
+import django.contrib.auth.forms
 from django.db.models import Q
 
-from users.models import Profile, UserProfileProxy
+from users.models import Profile
+from users.models import UserProfileProxy
 
 
 class CustomUserCreationForm(django.contrib.auth.forms.UserCreationForm):

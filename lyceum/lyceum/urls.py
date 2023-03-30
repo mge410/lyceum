@@ -1,8 +1,8 @@
+from django.conf import settings
+from django.conf.urls.static import static
 import django.contrib.admin
 import django.contrib.auth.urls
 import django.urls
-from django.conf import settings
-from django.conf.urls.static import static
 
 import about.urls
 import catalog.urls

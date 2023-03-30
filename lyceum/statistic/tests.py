@@ -1,4 +1,5 @@
-from django.test import Client, TestCase
+from django.test import Client
+from django.test import TestCase
 
 import catalog.models
 import rating.models

@@ -1,7 +1,8 @@
 import datetime
 
+from django.test import Client
+from django.test import TestCase
 import django.urls
-from django.test import Client, TestCase
 
 import users.models
 

@@ -1,5 +1,5 @@
-import django.db.models
 from django.contrib.auth.models import User
+import django.db.models
 
 import rating.models
 

@@ -2,7 +2,9 @@ from django.core import exceptions
 from django.test import TestCase
 from parameterized import parameterized
 
-from catalog.models import Category, Item, Tag
+from catalog.models import Category
+from catalog.models import Item
+from catalog.models import Tag
 
 
 class ModelsTests(TestCase):

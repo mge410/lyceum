@@ -31,7 +31,7 @@ jobs:
           max-line-length: "79"
           per-file-ignores: "manage.py:Q000"
           import-order-style: "google"
-          plugins: "flake8==5.0.4 pep8-naming==0.13.3 flake8-broken-line==0.6.0 flake8-return==1.2.0 flake8-quotes==3.3.2"
+          plugins: "flake8==5.0.4 pep8-naming==0.13.3 flake8-broken-line==0.6.0 flake8-return==1.2.0 flake8-isort==6.0.0 flake8-quotes==3.3.2"
   build:
     runs-on: ubuntu-latest
     strategy:

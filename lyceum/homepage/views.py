@@ -1,6 +1,7 @@
 from http import HTTPStatus
 
-from django.views.generic import ListView, TemplateView
+from django.views.generic import ListView
+from django.views.generic import TemplateView
 
 from catalog.models import Item
 

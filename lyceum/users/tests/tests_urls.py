@@ -1,6 +1,7 @@
-import parameterized.parameterized
-from django.test import Client, TestCase
+from django.test import Client
+from django.test import TestCase
 from django.urls import reverse
+import parameterized.parameterized
 
 
 class StaticUrlsTests(TestCase):
