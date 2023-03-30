@@ -1,5 +1,6 @@
 import django.forms
 from django.forms import ModelForm
+
 import rating.models
 
 
