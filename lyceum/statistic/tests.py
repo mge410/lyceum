@@ -1,3 +1,5 @@
+from http import HTTPStatus
+
 from django.test import Client
 from django.test import TestCase
 
@@ -52,13 +54,13 @@ class StatsTests(TestCase):
         user_id = self.test_user_with_review.id
         response = Client().get(f'/statistic/{user_id}')
         self.assertTemplateUsed(response, 'statistic/user_statistic.html')
-        self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.status_code, HTTPStatus.OK)
 
     def test_user_stats_status_code_without_review(self) -> None:
         user_id = self.test_user_without_review.id
         response = Client().get(f'/statistic/{user_id}')
         self.assertTemplateUsed(response, 'statistic/user_statistic.html')
-        self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.status_code, HTTPStatus.OK)
 
     def test_user_stats_context_success(self) -> None:
         user_id = self.test_user_with_review.id
