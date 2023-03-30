@@ -2,6 +2,7 @@
 from django.contrib.auth.models import User
 from django.db import migrations
 from django.db import transaction
+
 from users.models import Profile
 
 

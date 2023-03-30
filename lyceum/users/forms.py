@@ -1,7 +1,7 @@
 from django import forms
 import django.contrib.auth.forms
-from django.contrib.auth.models import User
 from django.db.models import Q
+
 from users.models import Profile
 from users.models import UserProfileProxy
 
@@ -14,11 +14,11 @@ class CustomUserCreationForm(django.contrib.auth.forms.UserCreationForm):
 
     class Meta(django.contrib.auth.forms.UserCreationForm.Meta):
         model = UserProfileProxy
-        fields = (User.username.field.name, User.email.field.name)
+        fields = ('username', 'email')
 
-    def clean_email(self) -> str:
+    def clean_email(self):
         normalized_email = UserProfileProxy.objects.__class__.normalize_email(
-            self.cleaned_data.get(UserProfileProxy.email.field.name)
+            self.cleaned_data.get('email')
         )
         is_email_unique = UserProfileProxy.objects.filter(
             ~Q(pk=self.instance.id),
@@ -33,7 +33,7 @@ class CustomUserCreationForm(django.contrib.auth.forms.UserCreationForm):
 
 
 class CustomUserChangeForm(django.contrib.auth.forms.UserChangeForm):
-    def __init__(self, *args, **kwargs) -> None:
+    def __init__(self, *args, **kwargs):
         super(CustomUserChangeForm, self).__init__(*args, **kwargs)
 
     password = None
@@ -48,9 +48,9 @@ class CustomUserChangeForm(django.contrib.auth.forms.UserChangeForm):
             UserProfileProxy.last_name.field.name,
         ]
 
-    def clean_email(self) -> str:
+    def clean_email(self):
         normalized_email = UserProfileProxy.objects.__class__.normalize_email(
-            self.cleaned_data.get(UserProfileProxy.email.field.name)
+            self.cleaned_data.get('email')
         )
         is_email_unique = UserProfileProxy.objects.filter(
             ~Q(pk=self.instance.id),

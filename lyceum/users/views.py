@@ -4,14 +4,13 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
-from django.http import HttpRequest
-from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.utils import timezone
 from django.views import View
+
 import users.forms
 from users.models import Profile
 from users.models import UserProfileProxy
@@ -20,11 +19,11 @@ from users.models import UserProfileProxy
 class Register(View):
     template_name = 'users/signup.html'
 
-    def get(self, request: HttpRequest) -> HttpResponse:
+    def get(self, request):
         context = {'form': users.forms.CustomUserCreationForm()}
         return render(request, self.template_name, context)
 
-    def post(self, request: HttpRequest) -> HttpResponse:
+    def post(self, request):
         form = users.forms.CustomUserCreationForm(request.POST)
 
         if form.is_valid():
@@ -59,7 +58,7 @@ class Register(View):
 class ActivateUsers(View):
     template_name = 'users/activate.html'
 
-    def get(self, request: HttpRequest, name: str) -> HttpResponse:
+    def get(self, request, name):
         context = {}
 
         user = get_object_or_404(User, username=name)
@@ -84,7 +83,7 @@ class ActivateUsers(View):
 class UsersList(View):
     template_name = 'users/user_list.html'
 
-    def get(self, request: HttpRequest) -> HttpResponse:
+    def get(self, request):
         users = UserProfileProxy.objects.get_user_list()
         context = {'users': users}
         return render(request, self.template_name, context)
@@ -93,7 +92,7 @@ class UsersList(View):
 class UsersDetail(View):
     template_name = 'users/user_detail.html'
 
-    def get(self, request: HttpRequest, id: int) -> HttpResponse:
+    def get(self, request, id):
         user = get_object_or_404(
             UserProfileProxy.objects.get_user_detail(), pk=id
         )
@@ -104,14 +103,14 @@ class UsersDetail(View):
 class UsersProfile(View):
     template_name = 'users/profile.html'
 
-    def get(self, request: HttpRequest) -> HttpResponse:
+    def get(self, request):
         user = request.user
         form = users.forms.CustomUserChangeForm(instance=user)
         profile_form = users.forms.ProfileForm(instance=user.profile)
         context = {'form': form, 'profile_form': profile_form}
         return render(request, self.template_name, context)
 
-    def post(self, request: HttpRequest) -> HttpResponse:
+    def post(self, request):
         user = request.user
 
         form = users.forms.CustomUserChangeForm(request.POST, instance=user)
@@ -130,7 +129,7 @@ class UsersProfile(View):
 class UserRecovery(View):
     template_name = 'users/recovery.html'
 
-    def get(self, request: HttpRequest, name: str) -> HttpResponse:
+    def get(self, request, name):
         user = get_object_or_404(User, username=name)
         if (
             user.profile.account_blocking_date is not None

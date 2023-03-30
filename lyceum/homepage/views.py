@@ -1,8 +1,9 @@
 from http import HTTPStatus
 
-from catalog.models import Item
 from django.views.generic import ListView
 from django.views.generic import TemplateView
+
+from catalog.models import Item
 
 
 class HomeView(ListView):
@@ -14,6 +15,6 @@ class HomeView(ListView):
 class CoffeeView(TemplateView):
     template_name = 'homepage/coffee.html'
 
-    def get(self, request, *args, **kwargs) -> None:
+    def get(self, request, *args, **kwargs):
         context = self.get_context_data(**kwargs)
         return self.render_to_response(context, status=HTTPStatus.IM_A_TEAPOT)

@@ -2,12 +2,12 @@ from datetime import datetime
 
 from django.contrib.auth.models import User
 from django.contrib.auth.models import UserManager
-from django.db.models import QuerySet
+
 import users.models
 
 
 class UserProfileManager(UserManager):
-    def get_queryset(self) -> QuerySet:
+    def get_queryset(self):
         return (
             super(UserProfileManager, self)
             .get_queryset()
@@ -15,13 +15,13 @@ class UserProfileManager(UserManager):
             .filter(is_active=True)
         )
 
-    def get_user_list(self) -> QuerySet:
+    def get_user_list(self):
         return self.get_queryset().only(
             User.username.field.name,
             User.email.field.name,
         )
 
-    def get_birthday_list(self, today_user_datetime: datetime) -> QuerySet:
+    def get_birthday_list(self, today_user_datetime: datetime):
         return (
             self.get_queryset()
             .only(
@@ -37,7 +37,7 @@ class UserProfileManager(UserManager):
             )
         )
 
-    def get_user_detail(self) -> QuerySet:
+    def get_user_detail(self):
         return self.get_queryset().only(
             User.username.field.name,
             User.email.field.name,
@@ -52,7 +52,7 @@ class UserProfileManager(UserManager):
         )
 
     @classmethod
-    def normalize_email(cls, email: str) -> QuerySet:
+    def normalize_email(cls, email):
         if not email:
             return ''
         try:

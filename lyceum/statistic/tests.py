@@ -1,6 +1,7 @@
-import catalog.models
 from django.test import Client
 from django.test import TestCase
+
+import catalog.models
 import rating.models
 import users.models
 
