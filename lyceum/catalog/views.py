@@ -1,5 +1,3 @@
-import catalog.models
-from catalog.models import Item
 from django.contrib import messages
 from django.http import HttpRequest
 from django.http import HttpResponse
@@ -8,6 +6,9 @@ from django.urls import reverse_lazy
 import django.views.generic
 from django.views.generic import DetailView
 from django.views.generic.edit import FormMixin
+
+import catalog.models
+from catalog.models import Item
 import rating.forms
 import rating.models
 
