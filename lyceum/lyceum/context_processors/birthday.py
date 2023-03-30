@@ -10,7 +10,9 @@ def birthday_people(request: HttpRequest) -> dict:
         return {
             'birthday_users': UserProfileProxy.objects.get_birthday_list(
                 datetime.date(
-                    *map(int, request.COOKIES.get('django_timezone').split('-'))
+                    *map(
+                        int, request.COOKIES.get('django_timezone').split('-')
+                    )
                 )
             )
         }
