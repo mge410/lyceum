@@ -13,9 +13,9 @@
       <thead>
         <tr>
           <th scope="col">ID</th>
-          <th scope="col">Username</th>
-          <th scope="col">Email</th>
-          <th scope="col">Ratings</th>
+          <th scope="col">{% translate 'Username'%}</th>
+          <th scope="col">{% translate 'Email'%}</th>
+          <th scope="col">{% translate 'Ratings'%}</th>
         </tr>
       </thead>
       <tbody>
@@ -28,9 +28,9 @@
         </tr>
         {% empty %}
         <tr>
-          <th scope="row">Скорее всего</th>
-          <td>Ты единственный</td>
-          <td>Кто сюда зашёл</td>
+          <th scope="row">{% translate 'You are most likely'%}</th>
+          <td>{% translate 'the first person'%}</td>
+          <td>{% translate 'to come here.'%}</td>
           <td>=(</td>
         </tr>
         {% endfor %}

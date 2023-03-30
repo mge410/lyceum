@@ -192,6 +192,51 @@ msgstr "Выйти"
 msgid "Login"
 msgstr "Авторизация"
 
+msgid "Sing in"
+msgstr "Войти"
+
+msgid "Sing up"
+msgstr "Зарегистрироваться"
+
+msgid "You are most likely"
+msgstr "Вы, скорее всего,"
+
+msgid "the first person"
+msgstr "первый человек, "
+
+msgid "to come here."
+msgstr "который пришел сюда."
+
+msgid "Your password has been set. You may go ahead and log in now !"
+msgstr "Ваш пароль установлен. Вы можете войти в систему прямо сейчас!"
+
+msgid "Email"
+msgstr "Электронная почта"
+
+msgid "User review stats"
+msgstr "Пользователь, статистика отзывов"
+
+msgid "There are no reviews made by this user yet"
+msgstr "От этого пользователя пока нет отзывов"
+
+msgid "no information"
+msgstr "Нет информации"
+
+msgid "We take care of animals that are homeless. We also help them find happy owners and make everything feel better. "
+msgstr "Мы заботимся о бездомных животных. Мы также помогаем им найти счастливых владельцев и сделать так, чтобы всем стало лучше. "
+
+msgid "Read More"
+msgstr "Узнать больше"
+
+msgid "You have successfully changed your password !"
+msgstr "Вы успешно изменили ваш пароль !"
+
+msgid "Ratings"
+msgstr "Рейтинг"
+
+msgid "We’ve emailed you instructions for setting your password, if an account exists with the email you entered. You should receive them shortly. If you don’t receive an email, please make sure you’ve entered the address you registered with, and check your spam folder."
+msgstr "Мы отправили вам инструкции по установке пароля, если существует учетная запись с введенным вами адресом электронной почты. Вы должны получить их в ближайшее время. Если вы не получили электронное письмо, убедитесь, что вы ввели адрес, который вы указали при регистрации, и проверьте папку со спамом."
+
 #: .\templates\include\sidebar.html:8
 msgid "Interesting offers "
 msgstr "Интересные предложения"

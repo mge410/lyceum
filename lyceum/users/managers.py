@@ -12,7 +12,7 @@ class UserProfileManager(UserManager):
         return (
             super(UserProfileManager, self)
             .get_queryset()
-            .select_related('profile')
+            .select_related(f'{User.profile.related.related_name}')
             .filter(is_active=True)
         )
 

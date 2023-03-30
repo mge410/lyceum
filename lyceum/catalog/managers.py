@@ -92,10 +92,16 @@ class ItemManager(models.Manager):
         )
 
     def user_rated_list(self, id: int) -> QuerySet:
+        rating = (
+            catalog.models.Item.ratings.rel.related_model.rating.field.name
+        )
         return (
             self.catalog_list()
-            .filter(grades__user__id=id)
-            .order_by('-grades__rating')
+            .filter(ratings__user__id=id)
+            .order_by(
+                f'-{catalog.models.Item.ratings.rel.related_name}'
+                f'__{rating}'
+            )
         )
 
     def catalog_detail(self) -> QuerySet:
