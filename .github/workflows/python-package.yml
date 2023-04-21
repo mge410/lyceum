@@ -26,7 +26,6 @@ jobs:
         with:
           flake8-version: "5.0.4"
           exclude: ".git,__pycache__,.env,venv/,*/migrations/"
-          args: "--config setup.cfg"
           ignore: "W503,E203"
           max-line-length: "79"
           per-file-ignores: "manage.py:Q000"

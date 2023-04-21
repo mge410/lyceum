@@ -33,7 +33,7 @@ msgstr "Оценки пользователя"
 
 #: .\rating\forms.py:19
 msgid "Add your rating"
-msgstr ""
+msgstr "Опубликовать рейтинг"
 
 #: .\templates\about\description.html:6 .\templates\homepage\coffee.html:6
 msgid "Fluffy about us"
@@ -52,36 +52,44 @@ msgid "Your profile photo"
 msgstr "Фото вашего профиля"
 
 #: .\templates\about\description.html:15 .\templates\include\footer.html:9
-msgid "About as"
+msgid "About us"
 msgstr "О нас"
 
 #: .\templates\about\description.html:26
 msgid ""
 "We take care of animals that are homeless. We also help them find happy "
-"owners and make everything feel better. "
+"owners and make everyone feel better. "
 msgstr ""
 "Мы занимаемся приютом животных, которые остались без дома. Так же мы "
-"помогаем найти им счастливых хозяев и сделать все чуть счастливее"
+"помогаем найти им счастливых хозяев и сделать всех чуть счастливее"
 
 #: .\templates\catalog\item_detail.html:6
 msgid "Fluffy"
 msgstr "Пушистик"
 
+#: .\templates\catalog\item_detail.html:19
+msgid "Get to know him better"
+msgstr "Узнать получше"
+
+#: .\templates\catalog\item_detail.html:19
+msgid "Pick up this pet"
+msgstr "Забрать его"
+
 #: .\templates\catalog\item_detail.html:45
 msgid "Average user rating:"
-msgstr ""
+msgstr "Средний рейтинг пользователя"
 
 #: .\templates\catalog\item_detail.html:48
 msgid "Number of ratings:"
-msgstr ""
+msgstr "Количество ревью"
 
 #: .\templates\catalog\item_detail.html:65
 msgid "Errors"
-msgstr ""
+msgstr "Ошибки"
 
 #: .\templates\catalog\item_detail.html:76
 msgid "Save"
-msgstr ""
+msgstr "Сохранить"
 
 #: .\templates\catalog\item_list.html:6
 msgid "Fluffies catalog"
@@ -135,6 +143,10 @@ msgstr "Милые зверюшки"
 msgid "Waiting for you !"
 msgstr "Ждем Вас !"
 
+#: .\templates\include\item_card.html:17
+msgid "Tags"
+msgstr "Теги"
+
 #: .\templates\include\footer.html:44
 msgid "Address"
 msgstr "Адрес"
@@ -179,6 +191,51 @@ msgstr "Выйти"
 #: .\templates\include\header.html:31 .\templates\users\login.html:6
 msgid "Login"
 msgstr "Авторизация"
+
+msgid "Sing in"
+msgstr "Войти"
+
+msgid "Sing up"
+msgstr "Зарегистрироваться"
+
+msgid "You are most likely"
+msgstr "Вы, скорее всего,"
+
+msgid "the first person"
+msgstr "первый человек, "
+
+msgid "to come here."
+msgstr "который пришел сюда."
+
+msgid "Your password has been set. You may go ahead and log in now !"
+msgstr "Ваш пароль установлен. Вы можете войти в систему прямо сейчас!"
+
+msgid "Email"
+msgstr "Электронная почта"
+
+msgid "User review stats"
+msgstr "Пользователь, статистика отзывов"
+
+msgid "There are no reviews made by this user yet"
+msgstr "От этого пользователя пока нет отзывов"
+
+msgid "no information"
+msgstr "Нет информации"
+
+msgid "We take care of animals that are homeless. We also help them find happy owners and make everything feel better. "
+msgstr "Мы заботимся о бездомных животных. Мы также помогаем им найти счастливых владельцев и сделать так, чтобы всем стало лучше. "
+
+msgid "Read More"
+msgstr "Узнать больше"
+
+msgid "You have successfully changed your password !"
+msgstr "Вы успешно изменили ваш пароль !"
+
+msgid "Ratings"
+msgstr "Рейтинг"
+
+msgid "We’ve emailed you instructions for setting your password, if an account exists with the email you entered. You should receive them shortly. If you don’t receive an email, please make sure you’ve entered the address you registered with, and check your spam folder."
+msgstr "Мы отправили вам инструкции по установке пароля, если существует учетная запись с введенным вами адресом электронной почты. Вы должны получить их в ближайшее время. Если вы не получили электронное письмо, убедитесь, что вы ввели адрес, который вы указали при регистрации, и проверьте папку со спамом."
 
 #: .\templates\include\sidebar.html:8
 msgid "Interesting offers "
@@ -273,11 +330,11 @@ msgid "Your statistic"
 msgstr "Ваша статистика"
 
 #: .\templates\users\profile.html:66
-msgid "Most favourite"
+msgid "Most favorite"
 msgstr "Самый понравившийся/нет товар"
 
 #: .\templates\users\profile.html:69
-msgid "List rated items"
+msgid "List of rated items"
 msgstr "Список оценнёных товаров"
 
 #: .\templates\users\profile.html:72
@@ -285,7 +342,7 @@ msgid "Averages"
 msgstr "Средние показатели"
 
 #: .\templates\users\profile.html:76
-msgid "To drink coffee"
+msgid "Drink coffee"
 msgstr "Выпить кофе"
 
 #: .\templates\users\profile.html:82

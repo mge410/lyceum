@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.db.models import Q
+from django.http import HttpRequest
 
 
 class AuthBackend(object):
@@ -11,14 +12,14 @@ class AuthBackend(object):
     supports_anonymous_user = False
     supports_inactive_user = False
 
-    def get_user(self, user_id):
+    def get_user(self, user_id: int) -> None:
         try:
             return User.objects.get(pk=user_id)
         except User.DoesNotExist:
             return None
 
     @classmethod
-    def normalize_email(cls, email):
+    def normalize_email(cls, email: str) -> str:
         if not email:
             return ''
         try:
@@ -35,7 +36,9 @@ class AuthBackend(object):
             email = '@'.join([email_user_no_tags, email_domain.lower()])
         return email
 
-    def authenticate(self, request, username, password):
+    def authenticate(
+        self, request: HttpRequest, username: str, password: str
+    ) -> None | User:
         try:
             user = User.objects.get(
                 Q(username=username)

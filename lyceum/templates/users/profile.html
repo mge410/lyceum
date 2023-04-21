@@ -58,18 +58,18 @@
         </div>
       </form>
       </div>
-      <div class="row actions">
+      <div class="row actions justify-content-center">
         <div class="row-item m-3">
           <h2 class="mb-1 text-center">{% translate 'Your statistic' %}</h2>
           <ul class="list-group">
-            <li class="list-group-item"><a class="btn btn-info w-100" id="stat_user" href="{% url 'statistic:user_item_list' %}">{% translate 'List rated items' %}</a></li>
-            <li class="list-group-item"><a class="btn btn-info w-100" id="stat_items" href="{% url 'statistic:user_detail_statistics' id=user.id %}">{% translate 'Most favourite' %}</a></li>
+            <li class="list-group-item"><a class="btn btn-info w-100" id="stat_user" href="{% url 'statistic:user_item_list' %}">{% translate 'List of rated items' %}</a></li>
+            <li class="list-group-item"><a class="btn btn-info w-100" id="stat_items" href="{% url 'statistic:user_detail_statistics' id=user.id %}">{% translate 'Most favorite' %}</a></li>
           </ul>
         </div>
         <div class="row-item m-3">
           <h2 class="mb-1 text-center">{% translate 'Actions' %}</h2>
           <ul class="list-group">
-            <li class="list-group-item"><button class="btn btn-success w-100" type="button" id="coffee_count">{% translate 'To drink coffee' %}</button></li>
+            <li class="list-group-item"><button class="btn btn-success w-100" type="button" id="coffee_count">{% translate 'Drink coffee' %}</button></li>
             <li class="list-group-item"><a class="btn btn-success w-100" href="{% url 'users:password_change' %}">{% translate 'Change password' %}</a></li>
           </ul>
         </div>

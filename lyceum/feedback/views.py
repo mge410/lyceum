@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib import messages
 from django.core.mail import send_mail
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic import FormView
 
@@ -12,7 +13,7 @@ class FeedbackView(FormView):
     template_name = 'feedback/feedback.html'
     success_url = reverse_lazy('feedback:feedback')
 
-    def form_valid(self, form: forms.FeedbackForm):
+    def form_valid(self, form: forms.FeedbackForm) -> HttpResponseRedirect:
         try:
             form.save(self.request.FILES.getlist('files'))
 

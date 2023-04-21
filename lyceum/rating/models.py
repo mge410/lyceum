@@ -21,6 +21,7 @@ class Grade(CreatedDateBaseModel):
         max_length=1,
         default=Rating.neutrally,
         choices=Rating.choices,
+        blank=True,
         help_text='Items rating',
     )
 
@@ -35,11 +36,14 @@ class Grade(CreatedDateBaseModel):
         on_delete=models.CASCADE,
         verbose_name='item',
         help_text='Product that has been rated',
-        related_name='grades',
     )
 
     class Meta:
-        unique_together = ('user', 'item')
+        constraints = [
+            models.UniqueConstraint(
+                name='unique_rating', fields=['item', 'user']
+            )
+        ]
         verbose_name = 'rating'
         verbose_name_plural = 'ratings'
         default_related_name = 'ratings'

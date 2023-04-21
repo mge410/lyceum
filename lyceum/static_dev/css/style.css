@@ -2762,10 +2762,12 @@ label{
 }
 
 .row-item{
-    width: calc(( 100% - 64px ) / 2);
-    min-width: calc(( 100% - 64px ) / 2);
+    width: 300px;
 }
 
 .actions{
-    min-width: 560px;
+}
+
+.birthday-list{
+    min-width: 320px;
 }

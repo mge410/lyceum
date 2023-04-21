@@ -3,7 +3,7 @@
 {% load i18n %}
 
 {% block title %}
-<title>{% translate 'Fluffy'%} {{ item.name }}</title>
+<title>{% translate 'Fluffy' %} {{ item.name }}</title>
 {% endblock %}
 
 {% block content %}
@@ -16,7 +16,7 @@
                 <h4 class="detail__title">{{ item.name }}</h4>
             </div>
           <div class="user_details">
-            <div class="float-left"> <a href="#">Get to know him better</a> <a href="#">Pick up a pet</a> </div>
+            <div class="float-left"> <a href="#">{% translate 'Get to know him better' %}</a> <a href="#">{% translate 'Pick up this pet' %}</a> </div>
             <div class="float-right mt-sm-0 mt-3">
             </div>
           </div>
@@ -64,6 +64,13 @@
             <div class="d-inline col-6">
             <form method="post" class="block">
               {% csrf_token %}
+                {% for message in messages %}
+                  <div class="container xxl-8">
+                    <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                      {{ message }}
+                    </div>
+                  </div>
+                {% endfor %}
               <div>
                 {% for field in form %}
                 {% if not field.field.disabled  %}
