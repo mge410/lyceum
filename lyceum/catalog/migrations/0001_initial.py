@@ -17,100 +17,100 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Category',
+            name="Category",
             fields=[
                 (
-                    'id',
+                    "id",
                     models.BigAutoField(
                         auto_created=True,
                         primary_key=True,
                         serialize=False,
-                        verbose_name='ID',
+                        verbose_name="ID",
                     ),
                 ),
-                ('is_published', models.BooleanField(default=True)),
-                ('name', models.CharField(max_length=150)),
+                ("is_published", models.BooleanField(default=True)),
+                ("name", models.CharField(max_length=150)),
                 (
-                    'slug',
+                    "slug",
                     models.CharField(
                         max_length=200,
                         unique=True,
                         validators=[
                             django.core.validators.RegexValidator(
-                                re.compile('^[-a-zA-Z0-9_]+\\Z'),
-                                'Enter a valid “slug” consisting of letters, numbers, underscores or hyphens.',
-                                'invalid',
+                                re.compile("^[-a-zA-Z0-9_]+\\Z"),
+                                "Enter a valid “slug” consisting of letters, numbers, underscores or hyphens.",
+                                "invalid",
                             ),
                             ValidateMustContain,
                         ],
                     ),
                 ),
-                ('weight', models.SmallIntegerField()),
+                ("weight", models.SmallIntegerField()),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
         migrations.CreateModel(
-            name='Tag',
+            name="Tag",
             fields=[
                 (
-                    'id',
+                    "id",
                     models.BigAutoField(
                         auto_created=True,
                         primary_key=True,
                         serialize=False,
-                        verbose_name='ID',
+                        verbose_name="ID",
                     ),
                 ),
-                ('is_published', models.BooleanField(default=True)),
-                ('name', models.CharField(max_length=150)),
+                ("is_published", models.BooleanField(default=True)),
+                ("name", models.CharField(max_length=150)),
                 (
-                    'slug',
+                    "slug",
                     models.CharField(
                         max_length=200,
                         unique=True,
                         validators=[
                             django.core.validators.RegexValidator(
-                                re.compile('^[-a-zA-Z0-9_]+\\Z'),
-                                'Enter a valid “slug” consisting of letters, numbers, underscores or hyphens.',
-                                'invalid',
+                                re.compile("^[-a-zA-Z0-9_]+\\Z"),
+                                "Enter a valid “slug” consisting of letters, numbers, underscores or hyphens.",
+                                "invalid",
                             )
                         ],
                     ),
                 ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
         migrations.CreateModel(
-            name='Item',
+            name="Item",
             fields=[
                 (
-                    'id',
+                    "id",
                     models.BigAutoField(
                         auto_created=True,
                         primary_key=True,
                         serialize=False,
-                        verbose_name='ID',
+                        verbose_name="ID",
                     ),
                 ),
-                ('is_published', models.BooleanField(default=True)),
-                ('name', models.CharField(max_length=150)),
-                ('text', models.TextField()),
+                ("is_published", models.BooleanField(default=True)),
+                ("name", models.CharField(max_length=150)),
+                ("text", models.TextField()),
                 (
-                    'category',
+                    "category",
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.PROTECT,
-                        related_name='catalog_items',
-                        to='catalog.category',
+                        related_name="catalog_items",
+                        to="catalog.category",
                     ),
                 ),
-                ('tags', models.ManyToManyField(to='catalog.Tag')),
+                ("tags", models.ManyToManyField(to="catalog.Tag")),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
     ]

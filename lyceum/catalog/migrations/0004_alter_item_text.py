@@ -8,17 +8,17 @@ import core.validators
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('catalog', '0003_auto_20230220_2142'),
+        ("catalog", "0003_auto_20230220_2142"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='item',
-            name='text',
+            model_name="item",
+            name="text",
             field=models.TextField(
-                help_text='В тексте должно быть одно из слов: роскошно, превосходно.',
+                help_text="В тексте должно быть одно из слов: роскошно, превосходно.",
                 validators=[core.validators.ValidateMustContain],
-                verbose_name='описание',
+                verbose_name="описание",
             ),
         ),
     ]

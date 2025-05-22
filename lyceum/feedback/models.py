@@ -8,67 +8,67 @@ class Feedback(
     core.TextMessageModel,
 ):
     class Status(models.TextChoices):
-        accepted = 'c', 'accepted'
-        processing = 'b', 'processing'
-        completed = 'a', 'completed'
+        accepted = "c", "accepted"
+        processing = "b", "processing"
+        completed = "a", "completed"
 
     status = models.CharField(
-        'status',
+        "status",
         max_length=2,
         default=Status.accepted,
         choices=Status.choices,
-        help_text='Mail status',
+        help_text="Mail status",
     )
 
     class Meta:
-        ordering = ('created_at',)
-        verbose_name = 'mail'
-        verbose_name_plural = 'mails'
+        ordering = ("created_at",)
+        verbose_name = "mail"
+        verbose_name_plural = "mails"
 
 
 class FeedbackUserData(models.Model):
     email = models.EmailField(
-        'mail',
+        "mail",
         max_length=254,
-        help_text='you need to enter a corrective email address',
+        help_text="you need to enter a corrective email address",
     )
 
     feedback = models.OneToOneField(
         Feedback,
         on_delete=models.CASCADE,
-        verbose_name='feedback',
+        verbose_name="feedback",
         null=True,
         blank=True,
-        help_text='Feedback',
+        help_text="Feedback",
     )
 
     class Meta:
-        verbose_name = 'user data'
-        verbose_name_plural = 'users data'
-        default_related_name = 'data_user'
+        verbose_name = "user data"
+        verbose_name_plural = "users data"
+        default_related_name = "data_user"
 
 
 class FeedbackFiles(models.Model):
     def saving_path(self, name):
-        return f'uploads/{self.feedback.id}/{name}'
+        return f"uploads/{self.feedback.id}/{name}"
 
     files = models.FileField(
-        'files',
+        "files",
         upload_to=saving_path,
         null=True,
         default=None,
-        help_text='attach files',
+        help_text="attach files",
     )
 
     feedback = models.ForeignKey(
         Feedback,
         on_delete=models.CASCADE,
-        verbose_name='feedback',
+        verbose_name="feedback",
         default=None,
-        help_text='Attach files',
+        help_text="Attach files",
     )
 
     class Meta:
-        verbose_name = 'feedback files'
-        verbose_name_plural = 'feedback files'
-        default_related_name = 'files'
+        verbose_name = "feedback files"
+        verbose_name_plural = "feedback files"
+        default_related_name = "files"

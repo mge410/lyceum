@@ -6,8 +6,8 @@ from django.http import HttpResponse
 
 
 class ReverseMiddleware:
-    regular_split = r'\W|[0-9]'
-    regular_check = r'^[А-ЯЁа-яё]*$'
+    regular_split = r"\W|[0-9]"
+    regular_check = r"^[А-ЯЁа-яё]*$"
 
     def __init__(self, get_response: Any) -> None:
         self.count = 0
@@ -20,9 +20,7 @@ class ReverseMiddleware:
         if self.count % 10 != 0:
             return response
 
-        response.content = self.reverse_word_cyrillic(
-            response.content.decode('utf-8')
-        )
+        response.content = self.reverse_word_cyrillic(response.content.decode("utf-8"))
         return response
 
     @classmethod

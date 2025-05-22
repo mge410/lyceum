@@ -7,100 +7,100 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('catalog', '0009_auto_20230223_2139'),
+        ("catalog", "0009_auto_20230223_2139"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='MainImageItem',
+            name="MainImageItem",
             fields=[
                 (
-                    'id',
+                    "id",
                     models.BigAutoField(
                         auto_created=True,
                         primary_key=True,
                         serialize=False,
-                        verbose_name='ID',
+                        verbose_name="ID",
                     ),
                 ),
                 (
-                    'name',
+                    "name",
                     models.CharField(
-                        help_text='Максимум 150 символов. Можно использовать только буквы цифры и знаки подчеркивания и тире.',
+                        help_text="Максимум 150 символов. Можно использовать только буквы цифры и знаки подчеркивания и тире.",
                         max_length=150,
                         unique=True,
-                        verbose_name='название',
+                        verbose_name="название",
                     ),
                 ),
                 (
-                    'image',
+                    "image",
                     models.ImageField(
-                        upload_to='catalog/',
-                        verbose_name='Будут приведены к 300px',
+                        upload_to="catalog/",
+                        verbose_name="Будут приведены к 300px",
                     ),
                 ),
                 (
-                    'items',
+                    "items",
                     models.OneToOneField(
                         blank=True,
                         null=True,
                         on_delete=django.db.models.deletion.CASCADE,
-                        related_name='main_image',
-                        to='catalog.item',
-                        verbose_name='галерея изображение',
+                        related_name="main_image",
+                        to="catalog.item",
+                        verbose_name="галерея изображение",
                     ),
                 ),
             ],
             options={
-                'verbose_name': 'главная картинка',
-                'verbose_name_plural': 'главные изображения',
-                'default_related_name': 'main_image',
+                "verbose_name": "главная картинка",
+                "verbose_name_plural": "главные изображения",
+                "default_related_name": "main_image",
             },
         ),
         migrations.CreateModel(
-            name='GalleryImagesItem',
+            name="GalleryImagesItem",
             fields=[
                 (
-                    'id',
+                    "id",
                     models.BigAutoField(
                         auto_created=True,
                         primary_key=True,
                         serialize=False,
-                        verbose_name='ID',
+                        verbose_name="ID",
                     ),
                 ),
                 (
-                    'name',
+                    "name",
                     models.CharField(
-                        help_text='Максимум 150 символов. Можно использовать только буквы цифры и знаки подчеркивания и тире.',
+                        help_text="Максимум 150 символов. Можно использовать только буквы цифры и знаки подчеркивания и тире.",
                         max_length=150,
                         unique=True,
-                        verbose_name='название',
+                        verbose_name="название",
                     ),
                 ),
                 (
-                    'image',
+                    "image",
                     models.ImageField(
-                        upload_to='catalog/',
-                        verbose_name='Будут приведены к 300px',
+                        upload_to="catalog/",
+                        verbose_name="Будут приведены к 300px",
                     ),
                 ),
                 (
-                    'item',
+                    "item",
                     models.ForeignKey(
                         blank=True,
                         null=True,
                         on_delete=django.db.models.deletion.CASCADE,
-                        related_name='gallery_images',
-                        to='catalog.item',
-                        verbose_name='главное изображение',
+                        related_name="gallery_images",
+                        to="catalog.item",
+                        verbose_name="главное изображение",
                     ),
                 ),
             ],
             options={
-                'verbose_name': 'галерея изображений',
-                'verbose_name_plural': 'галерея изображений',
-                'default_related_name': 'gallery_images',
+                "verbose_name": "галерея изображений",
+                "verbose_name_plural": "галерея изображений",
+                "default_related_name": "gallery_images",
             },
         ),
     ]

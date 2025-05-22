@@ -8,27 +8,27 @@ from django.db import models
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('catalog', '0012_item_is_on_main'),
+        ("catalog", "0012_item_is_on_main"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='item',
+            name="item",
             options={
-                'default_related_name': 'items',
-                'ordering': ('name',),
-                'verbose_name': 'товар',
-                'verbose_name_plural': 'товары',
+                "default_related_name": "items",
+                "ordering": ("name",),
+                "verbose_name": "товар",
+                "verbose_name_plural": "товары",
             },
         ),
         migrations.AddField(
-            model_name='item',
-            name='created_at',
+            model_name="item",
+            name="created_at",
             field=models.DateTimeField(default=datetime.datetime.now),
         ),
         migrations.AddField(
-            model_name='item',
-            name='updated_at',
+            model_name="item",
+            name="updated_at",
             field=models.DateTimeField(default=datetime.datetime.now),
         ),
     ]

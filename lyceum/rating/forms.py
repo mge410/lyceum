@@ -7,9 +7,7 @@ import rating.models
 class GradeForm(ModelForm):
     class Meta:
         model = rating.models.Grade
-        fields = ('rating',)
+        fields = ("rating",)
         widgets = {
-            'rating': django.forms.widgets.Select(
-                attrs={'class': 'form-select'}
-            )
+            "rating": django.forms.widgets.Select(attrs={"class": "form-select"})
         }

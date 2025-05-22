@@ -6,5 +6,5 @@ from django.test import TestCase
 
 class StaticURLTests(TestCase):
     def test_feedback_endpoint(self) -> None:
-        response = Client().get('/feedback/')
+        response = Client().get("/feedback/")
         self.assertEqual(response.status_code, HTTPStatus.OK)

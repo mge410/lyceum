@@ -8,7 +8,7 @@ from users.models import Profile
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('users', '0002_alter_profile_image'),
+        ("users", "0002_alter_profile_image"),
     ]
 
     def fill_users_profile(apps, schema_editor):
@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
 
         with transaction.atomic():
             for user in User.objects.using(db_alias).all():
-                if hasattr(user, 'profile'):
+                if hasattr(user, "profile"):
                     profile = Profile.objects.get(user=user)
                     profile.delete()
 

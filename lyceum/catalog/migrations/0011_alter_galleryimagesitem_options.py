@@ -5,16 +5,16 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('catalog', '0010_galleryimagesitem_mainimageitem'),
+        ("catalog", "0010_galleryimagesitem_mainimageitem"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='galleryimagesitem',
+            name="galleryimagesitem",
             options={
-                'default_related_name': 'gallery_images',
-                'verbose_name': 'изображение',
-                'verbose_name_plural': 'галерея изображений',
+                "default_related_name": "gallery_images",
+                "verbose_name": "изображение",
+                "verbose_name_plural": "галерея изображений",
             },
         ),
     ]

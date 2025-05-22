@@ -20,12 +20,10 @@ class GradeManager(django.db.models.Manager):
             .only(
                 rating.models.Grade.rating.field.name,
                 rating.models.Grade.created_at.field.name,
-                f'{rating.models.Grade.item.field.name}'
-                f'__{User.id.field.name}',
-                f'{rating.models.Grade.user.field.name}'
-                f'__{User.id.field.name}',
-                f'{rating.models.Grade.user.field.name}'
-                f'__{User.username.field.name}',
+                f"{rating.models.Grade.item.field.name}" f"__{User.id.field.name}",
+                f"{rating.models.Grade.user.field.name}" f"__{User.id.field.name}",
+                f"{rating.models.Grade.user.field.name}"
+                f"__{User.username.field.name}",
             )
             .order_by(
                 rating.models.Grade.rating.field.name,

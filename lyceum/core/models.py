@@ -1,4 +1,5 @@
 import re
+from django.utils import timezone
 from typing import Any
 
 from django.core.exceptions import ValidationError
@@ -12,12 +13,12 @@ from core.validators import ValidateMustContain
 
 class NamedBaseModel(models.Model):
     name = models.CharField(
-        'name',
+        "name",
         max_length=150,
         unique=True,
-        help_text='Maximum 150 characters. '
-        'Only letters, numbers, underscores,'
-        ' and dashes can be used.',
+        help_text="Maximum 150 characters. "
+        "Only letters, numbers, underscores,"
+        " and dashes can be used.",
     )
 
     class Meta:
@@ -28,9 +29,7 @@ class NamedBaseModel(models.Model):
 
 
 class PublishedBaseModel(models.Model):
-    is_published = models.BooleanField(
-        'published', default=True, help_text='Published'
-    )
+    is_published = models.BooleanField("published", default=True, help_text="Published")
 
     class Meta:
         abstract = True
@@ -38,12 +37,12 @@ class PublishedBaseModel(models.Model):
 
 class SluggedBaseModel(models.Model):
     slug = models.SlugField(
-        'slug',
+        "slug",
         max_length=200,
         unique=True,
-        help_text='Maximum 200 characters. '
-        'Only letters, numbers, underscores,'
-        ' and dashes can be used.',
+        help_text="Maximum 200 characters. "
+        "Only letters, numbers, underscores,"
+        " and dashes can be used.",
     )
 
     class Meta:
@@ -52,11 +51,11 @@ class SluggedBaseModel(models.Model):
 
 class TextBaseModel(models.Model):
     text = models.TextField(
-        'description',
-        validators=[ValidateMustContain('luxuriously', 'excellent')],
-        help_text='The text should contain '
-        'one of the words: luxuriously,'
-        ' excellent.',
+        "description",
+        validators=[ValidateMustContain("luxuriously", "excellent")],
+        help_text="The text should contain "
+        "one of the words: luxuriously,"
+        " excellent.",
     )
 
     class Meta:
@@ -65,8 +64,8 @@ class TextBaseModel(models.Model):
 
 class TextMessageModel(models.Model):
     text = models.TextField(
-        'message to us',
-        help_text='Message to us',
+        "message to us",
+        help_text="Message to us",
     )
 
     class Meta:
@@ -75,7 +74,7 @@ class TextMessageModel(models.Model):
 
 class CreatedDateBaseModel(models.Model):
     created_at = models.DateTimeField(
-        'date of creation', auto_now_add=True, help_text='Date of creation'
+        "date of creation", default=timezone.now, help_text="Date of creation"
     )
 
     class Meta:
@@ -84,7 +83,7 @@ class CreatedDateBaseModel(models.Model):
 
 class UpdatedDateBaseModel(models.Model):
     updated_at = models.DateTimeField(
-        'update date', auto_now=True, help_text='Update date'
+        "update date", default=timezone.now, help_text="Update date"
     )
 
     class Meta:
@@ -93,29 +92,29 @@ class UpdatedDateBaseModel(models.Model):
 
 class ImageBaseModel(models.Model):
     image = models.ImageField(
-        'image',
-        upload_to='catalog/',
-        help_text='Will be rendered at 300px',
+        "image",
+        upload_to="catalog/",
+        help_text="Will be rendered at 300px",
     )
 
     class Meta:
         abstract = True
 
     def get_image_300x300(self) -> str:
-        return get_thumbnail(self.image, '300x300', crop='center', quality=51)
+        return get_thumbnail(self.image, "300x300", crop="center", quality=51)
 
     def image_tmb(self) -> str:
         if self.image:
             return mark_safe(f'<img src="{self.get_image_300x300().url}">')
-        return 'No picture'
+        return "No picture"
 
     def save(self, *args: Any, **kwargs: Any) -> None:
         if self.image is None:
-            self.image.name = '.'.join(
+            self.image.name = ".".join(
                 list(
                     map(
                         lambda x: translit.slugify(x),
-                        self.image.name.split('.'),
+                        self.image.name.split("."),
                     )
                 )
             )
@@ -124,16 +123,16 @@ class ImageBaseModel(models.Model):
         else:
             super().save(*args, **kwargs)
 
-    image_tmb.short_description = 'Image'
+    image_tmb.short_description = "Image"
 
 
 class NormalizedNameBaseModel(models.Model):
     normalized_name = models.CharField(
-        'normalized name',
+        "normalized name",
         max_length=150,
         editable=False,
         null=True,
-        help_text='Normalized name',
+        help_text="Normalized name",
     )
 
     class Meta:
@@ -146,35 +145,35 @@ class NormalizedNameBaseModel(models.Model):
         ]
         if normalized_name in normalized_name_list:
             raise ValidationError(
-                'An object with the same name '
-                'already exists. Rephrase your '
-                'object or use an existing one'
+                "An object with the same name "
+                "already exists. Rephrase your "
+                "object or use an existing one"
             )
         self.normalized_name = normalized_name
         super(NormalizedNameBaseModel, self).clean()
 
     def get_normalized_name(self, text: str) -> str:
         replace_letters = {
-            'е': 'e',
-            'о': 'o',
-            'с': 'c',
-            'х': 'x',
-            'а': 'a',
-            'р': 'p',
-            'у': 'y',
-            'А': 'A',
-            'Р': 'P',
-            'С': 'C',
-            'Е': 'E',
-            'О': 'O',
-            'Х': 'X',
-            'Т': 'T',
-            'М': 'M',
-            'К': 'K',
-            'В': 'B',
-            'Н': 'H',
+            "е": "e",
+            "о": "o",
+            "с": "c",
+            "х": "x",
+            "а": "a",
+            "р": "p",
+            "у": "y",
+            "А": "A",
+            "Р": "P",
+            "С": "C",
+            "Е": "E",
+            "О": "O",
+            "Х": "X",
+            "Т": "T",
+            "М": "M",
+            "К": "K",
+            "В": "B",
+            "Н": "H",
         }
         for key in replace_letters.keys():
             text = text.replace(key, replace_letters[key])
-            normalized_name = re.sub(r'\W', '', text).lower()
+            normalized_name = re.sub(r"\W", "", text).lower()
         return normalized_name

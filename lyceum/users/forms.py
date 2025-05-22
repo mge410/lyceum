@@ -9,12 +9,12 @@ from users.models import UserProfileProxy
 
 class CustomUserCreationForm(django.contrib.auth.forms.UserCreationForm):
     email = forms.EmailField(
-        label='Email', max_length=254, help_text='Enter email please'
+        label="Email", max_length=254, help_text="Enter email please"
     )
 
     class Meta(django.contrib.auth.forms.UserCreationForm.Meta):
         model = UserProfileProxy
-        fields = ('username', 'email')
+        fields = ("username", "email")
 
     def clean_email(self) -> str:
         normalized_email = UserProfileProxy.objects.__class__.normalize_email(
@@ -27,7 +27,7 @@ class CustomUserCreationForm(django.contrib.auth.forms.UserCreationForm):
         if is_email_unique:
             self.add_error(
                 UserProfileProxy.email.field.name,
-                'User with this email address is registered',
+                "User with this email address is registered",
             )
         return normalized_email
 
@@ -40,7 +40,7 @@ class CustomUserChangeForm(django.contrib.auth.forms.UserChangeForm):
 
     class Meta:
         model = UserProfileProxy
-        field_classes = {'username': django.contrib.auth.forms.UsernameField}
+        field_classes = {"username": django.contrib.auth.forms.UsernameField}
         fields = [
             UserProfileProxy.email.field.name,
             UserProfileProxy.username.field.name,
@@ -59,7 +59,7 @@ class CustomUserChangeForm(django.contrib.auth.forms.UserChangeForm):
         if is_email_unique:
             self.add_error(
                 UserProfileProxy.email.field.name,
-                'User with this email address is registered',
+                "User with this email address is registered",
             )
         return normalized_email
 
@@ -74,6 +74,6 @@ class ProfileForm(forms.ModelForm):
         ]
         widgets = {
             Profile.coffee_count.field.name: forms.TextInput(
-                attrs={'readonly': 'readonly'}
+                attrs={"readonly": "readonly"}
             ),
         }

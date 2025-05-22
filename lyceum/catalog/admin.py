@@ -12,7 +12,7 @@ class ItemTextAdminForm(forms.ModelForm):
 
     class Meta:
         model = catalog.models.Item
-        fields = '__all__'
+        fields = "__all__"
 
 
 class MainImageAdmin(admin.TabularInline):
@@ -35,7 +35,7 @@ class ItemAdmin(admin.ModelAdmin):
         catalog.models.Item.name.field.name,
         catalog.models.Item.is_published.field.name,
         catalog.models.Item.is_on_main.field.name,
-        'get_image',
+        "get_image",
     )
     form = ItemTextAdminForm
     inlines = [MainImageAdmin, GalleryImageAdmin]
@@ -54,7 +54,7 @@ class ItemAdmin(admin.ModelAdmin):
         catalog.models.Item.text.field.name,
     )
 
-    @admin.display(ordering='main_image', description='Фото товара')
+    @admin.display(ordering="main_image", description="Фото товара")
     def get_image(self, obj: Any) -> str:
         return obj.main_image.image_tmb()
 

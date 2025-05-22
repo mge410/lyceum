@@ -8,26 +8,26 @@ import catalog.models
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('catalog', '0016_auto_20230322_1447'),
+        ("catalog", "0016_auto_20230322_1447"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='galleryimagesitem',
-            name='image',
+            model_name="galleryimagesitem",
+            name="image",
             field=models.ImageField(
-                help_text='Will be rendered at 300px',
+                help_text="Will be rendered at 300px",
                 upload_to=catalog.models.GalleryImagesItem.saving_path,
-                verbose_name='main image',
+                verbose_name="main image",
             ),
         ),
         migrations.AlterField(
-            model_name='mainimageitem',
-            name='image',
+            model_name="mainimageitem",
+            name="image",
             field=models.ImageField(
-                help_text='Will be rendered at 300px',
+                help_text="Will be rendered at 300px",
                 upload_to=catalog.models.MainImageItem.saving_path,
-                verbose_name='main image',
+                verbose_name="main image",
             ),
         ),
     ]

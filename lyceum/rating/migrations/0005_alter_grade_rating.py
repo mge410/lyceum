@@ -6,26 +6,26 @@ from django.db import models
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('rating', '0004_auto_20230329_1831'),
+        ("rating", "0004_auto_20230329_1831"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='grade',
-            name='rating',
+            model_name="grade",
+            name="rating",
             field=models.CharField(
                 blank=True,
                 choices=[
-                    ('1', 'hatred'),
-                    ('2', 'dislike'),
-                    ('3', 'neutrally'),
-                    ('4', 'adore'),
-                    ('5', 'love'),
+                    ("1", "hatred"),
+                    ("2", "dislike"),
+                    ("3", "neutrally"),
+                    ("4", "adore"),
+                    ("5", "love"),
                 ],
-                default='3',
-                help_text='Items rating',
+                default="3",
+                help_text="Items rating",
                 max_length=1,
-                verbose_name='rating',
+                verbose_name="rating",
             ),
         ),
     ]

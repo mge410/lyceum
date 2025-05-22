@@ -7,51 +7,49 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('catalog', '0019_auto_20230329_1831'),
+        ("catalog", "0019_auto_20230329_1831"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='category',
+            name="category",
             options={
-                'verbose_name': 'category',
-                'verbose_name_plural': 'categories',
+                "verbose_name": "category",
+                "verbose_name_plural": "categories",
             },
         ),
         migrations.AlterField(
-            model_name='category',
-            name='weight',
+            model_name="category",
+            name="weight",
             field=models.PositiveSmallIntegerField(
                 default=100,
                 validators=[
                     django.core.validators.MinValueValidator(
-                        0, 'Minimum number to enter 0'
+                        0, "Minimum number to enter 0"
                     ),
                     django.core.validators.MaxValueValidator(
-                        32767, 'The maximum number to enter is 32767'
+                        32767, "The maximum number to enter is 32767"
                     ),
                 ],
-                verbose_name='weight',
+                verbose_name="weight",
             ),
         ),
         migrations.AlterField(
-            model_name='item',
-            name='is_on_main',
-            field=models.BooleanField(
-                default=False, verbose_name='Show on home page'
-            ),
+            model_name="item",
+            name="is_on_main",
+            field=models.BooleanField(default=False, verbose_name="Show on home page"),
         ),
         migrations.AlterField(
-            model_name='mainimageitem',
-            name='items',
+            model_name="mainimageitem",
+            name="items",
             field=models.OneToOneField(
                 blank=True,
-                help_text='main image',
+                help_text="main image",
                 null=True,
                 on_delete=django.db.models.deletion.CASCADE,
-                related_name='main_image',
-                to='catalog.item',
-                verbose_name='main image',
+                related_name="main_image",
+                to="catalog.item",
+                verbose_name="main image",
             ),
         ),
     ]

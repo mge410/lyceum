@@ -8,13 +8,13 @@ from catalog.models import Item
 
 
 class HomeView(ListView):
-    template_name = 'homepage/home.html'
-    context_object_name = 'items'
+    template_name = "homepage/home.html"
+    context_object_name = "items"
     queryset = Item.objects.homepage()
 
 
 class CoffeeView(TemplateView):
-    template_name = 'homepage/coffee.html'
+    template_name = "homepage/coffee.html"
 
     def get(self, request, *args, **kwargs) -> HttpResponse:
         context = self.get_context_data(**kwargs)

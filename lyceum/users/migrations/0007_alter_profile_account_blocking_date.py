@@ -6,19 +6,19 @@ from django.db import models
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('users', '0006_auto_20230323_0058'),
+        ("users", "0006_auto_20230323_0058"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='profile',
-            name='account_blocking_date',
+            model_name="profile",
+            name="account_blocking_date",
             field=models.DateTimeField(
                 blank=True,
                 default=None,
-                help_text='Account lockout date',
+                help_text="Account lockout date",
                 null=True,
-                verbose_name='account blocking date',
+                verbose_name="account blocking date",
             ),
         ),
     ]

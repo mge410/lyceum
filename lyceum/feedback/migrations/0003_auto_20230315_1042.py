@@ -7,44 +7,44 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('feedback', '0002_alter_feedbackdatauser_email'),
+        ("feedback", "0002_alter_feedbackdatauser_email"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='feedbackdatauser',
+            name="feedbackdatauser",
             options={
-                'default_related_name': 'data_user',
-                'verbose_name': 'данные пользователя',
-                'verbose_name_plural': 'данные пользователя',
+                "default_related_name": "data_user",
+                "verbose_name": "данные пользователя",
+                "verbose_name_plural": "данные пользователя",
             },
         ),
         migrations.RemoveField(
-            model_name='feedback',
-            name='data_user',
+            model_name="feedback",
+            name="data_user",
         ),
         migrations.AddField(
-            model_name='feedbackdatauser',
-            name='feedback',
+            model_name="feedbackdatauser",
+            name="feedback",
             field=models.OneToOneField(
                 blank=True,
                 null=True,
                 on_delete=django.db.models.deletion.CASCADE,
-                related_name='data_user',
-                to='feedback.feedback',
-                verbose_name='обратная связь',
+                related_name="data_user",
+                to="feedback.feedback",
+                verbose_name="обратная связь",
             ),
         ),
         migrations.AlterField(
-            model_name='feedbackfiles',
-            name='feedback',
+            model_name="feedbackfiles",
+            name="feedback",
             field=models.ForeignKey(
                 default=None,
-                help_text='прикрепите файлы',
+                help_text="прикрепите файлы",
                 on_delete=django.db.models.deletion.CASCADE,
-                related_name='files',
-                to='feedback.feedback',
-                verbose_name='обратная связь',
+                related_name="files",
+                to="feedback.feedback",
+                verbose_name="обратная связь",
             ),
         ),
     ]

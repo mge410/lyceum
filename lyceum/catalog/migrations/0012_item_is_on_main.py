@@ -6,15 +6,15 @@ from django.db import models
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('catalog', '0011_alter_galleryimagesitem_options'),
+        ("catalog", "0011_alter_galleryimagesitem_options"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='item',
-            name='is_on_main',
+            model_name="item",
+            name="is_on_main",
             field=models.BooleanField(
-                default=False, verbose_name='Отображать на главной'
+                default=False, verbose_name="Отображать на главной"
             ),
         ),
     ]

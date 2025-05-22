@@ -6,38 +6,38 @@ from django.db import models
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('catalog', '0008_auto_20230222_1729'),
+        ("catalog", "0008_auto_20230222_1729"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='category',
-            name='keywords',
+            model_name="category",
+            name="keywords",
         ),
         migrations.RemoveField(
-            model_name='tag',
-            name='keywords',
+            model_name="tag",
+            name="keywords",
         ),
         migrations.AddField(
-            model_name='category',
-            name='normalized_name',
+            model_name="category",
+            name="normalized_name",
             field=models.CharField(
                 editable=False,
-                help_text='Нормализированное имя',
+                help_text="Нормализированное имя",
                 max_length=150,
                 null=True,
-                verbose_name='Нормализированное имя',
+                verbose_name="Нормализированное имя",
             ),
         ),
         migrations.AddField(
-            model_name='tag',
-            name='normalized_name',
+            model_name="tag",
+            name="normalized_name",
             field=models.CharField(
                 editable=False,
-                help_text='Нормализированное имя',
+                help_text="Нормализированное имя",
                 max_length=150,
                 null=True,
-                verbose_name='Нормализированное имя',
+                verbose_name="Нормализированное имя",
             ),
         ),
     ]

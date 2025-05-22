@@ -6,27 +6,27 @@ from django.db import models
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('users', '0005_auto_20230322_1620'),
+        ("users", "0005_auto_20230322_1620"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='profile',
-            name='account_blocking_date',
+            model_name="profile",
+            name="account_blocking_date",
             field=models.DateTimeField(
                 blank=True,
                 default=None,
                 null=True,
-                verbose_name='account blocking date',
+                verbose_name="account blocking date",
             ),
         ),
         migrations.AddField(
-            model_name='profile',
-            name='login_failed_count',
+            model_name="profile",
+            name="login_failed_count",
             field=models.PositiveSmallIntegerField(
                 default=0,
-                help_text='number of failed logins',
-                verbose_name='number of failed logins',
+                help_text="number of failed logins",
+                verbose_name="number of failed logins",
             ),
         ),
     ]

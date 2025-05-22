@@ -8,94 +8,94 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('catalog', '0018_alter_item_text'),
+        ("catalog", "0018_alter_item_text"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='category',
+            name="category",
             options={
-                'default_related_name': 'category',
-                'verbose_name': 'category',
-                'verbose_name_plural': 'categories',
+                "default_related_name": "category",
+                "verbose_name": "category",
+                "verbose_name_plural": "categories",
             },
         ),
         migrations.AlterField(
-            model_name='category',
-            name='is_published',
+            model_name="category",
+            name="is_published",
             field=models.BooleanField(
-                default=True, help_text='Published', verbose_name='published'
+                default=True, help_text="Published", verbose_name="published"
             ),
         ),
         migrations.AlterField(
-            model_name='category',
-            name='weight',
+            model_name="category",
+            name="weight",
             field=models.PositiveSmallIntegerField(
                 default=100,
-                help_text='Enter weight please',
+                help_text="Enter weight please",
                 validators=[
                     django.core.validators.MinValueValidator(
-                        0, 'Minimum number to enter 0'
+                        0, "Minimum number to enter 0"
                     ),
                     django.core.validators.MaxValueValidator(
-                        32767, 'The maximum number to enter is 32767'
+                        32767, "The maximum number to enter is 32767"
                     ),
                 ],
-                verbose_name='weight',
+                verbose_name="weight",
             ),
         ),
         migrations.AlterField(
-            model_name='item',
-            name='created_at',
+            model_name="item",
+            name="created_at",
             field=models.DateTimeField(
                 auto_now_add=True,
-                help_text='Date of creation',
-                verbose_name='date of creation',
+                help_text="Date of creation",
+                verbose_name="date of creation",
             ),
         ),
         migrations.AlterField(
-            model_name='item',
-            name='is_on_main',
+            model_name="item",
+            name="is_on_main",
             field=models.BooleanField(
                 default=False,
-                help_text='Show on homepage',
-                verbose_name='show on homepage',
+                help_text="Show on homepage",
+                verbose_name="show on homepage",
             ),
         ),
         migrations.AlterField(
-            model_name='item',
-            name='is_published',
+            model_name="item",
+            name="is_published",
             field=models.BooleanField(
-                default=True, help_text='Published', verbose_name='published'
+                default=True, help_text="Published", verbose_name="published"
             ),
         ),
         migrations.AlterField(
-            model_name='item',
-            name='updated_at',
+            model_name="item",
+            name="updated_at",
             field=models.DateTimeField(
                 auto_now=True,
-                help_text='Update date',
-                verbose_name='update date',
+                help_text="Update date",
+                verbose_name="update date",
             ),
         ),
         migrations.AlterField(
-            model_name='mainimageitem',
-            name='items',
+            model_name="mainimageitem",
+            name="items",
             field=models.OneToOneField(
                 blank=True,
-                help_text='Enter main image please',
+                help_text="Enter main image please",
                 null=True,
                 on_delete=django.db.models.deletion.CASCADE,
-                related_name='main_image',
-                to='catalog.item',
-                verbose_name='main image',
+                related_name="main_image",
+                to="catalog.item",
+                verbose_name="main image",
             ),
         ),
         migrations.AlterField(
-            model_name='tag',
-            name='is_published',
+            model_name="tag",
+            name="is_published",
             field=models.BooleanField(
-                default=True, help_text='Published', verbose_name='published'
+                default=True, help_text="Published", verbose_name="published"
             ),
         ),
     ]

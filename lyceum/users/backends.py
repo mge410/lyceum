@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.db.models import Q
 from django.http import HttpRequest
+from django.utils import timezone
 
 
 class AuthBackend(object):
@@ -21,19 +22,19 @@ class AuthBackend(object):
     @classmethod
     def normalize_email(cls, email: str) -> str:
         if not email:
-            return ''
+            return ""
         try:
-            email_user, email_domain = email.strip().rsplit('@', 1)
+            email_user, email_domain = email.strip().rsplit("@", 1)
         except ValueError:
             pass
         else:
-            email_user_no_tags = email_user.split('+')[0].lower()
-            if email_domain.lower() in ['yandex.ru', 'ya.ru']:
-                email_user_no_tags = email_user_no_tags.replace('.', '-')
-                email_domain = 'yandex.ru'
-            if email_domain.lower() == 'gmail.com':
-                email_user_no_tags = email_user_no_tags.replace('.', '')
-            email = '@'.join([email_user_no_tags, email_domain.lower()])
+            email_user_no_tags = email_user.split("+")[0].lower()
+            if email_domain.lower() in ["yandex.ru", "ya.ru"]:
+                email_user_no_tags = email_user_no_tags.replace(".", "-")
+                email_domain = "yandex.ru"
+            if email_domain.lower() == "gmail.com":
+                email_user_no_tags = email_user_no_tags.replace(".", "")
+            email = "@".join([email_user_no_tags, email_domain.lower()])
         return email
 
     def authenticate(
@@ -41,8 +42,7 @@ class AuthBackend(object):
     ) -> None | User:
         try:
             user = User.objects.get(
-                Q(username=username)
-                | Q(email=AuthBackend.normalize_email(username))
+                Q(username=username) | Q(email=AuthBackend.normalize_email(username))
             )
         except User.DoesNotExist:
             return None
@@ -51,17 +51,14 @@ class AuthBackend(object):
             return user
 
         user.profile.login_failed_count += 1
-        if (
-            user.profile.login_failed_count
-            == settings.NUMBER_OF_LOGIN_ATTEMPTS
-        ):
+        if user.profile.login_failed_count == settings.NUMBER_OF_LOGIN_ATTEMPTS:
             user.is_active = False
-            user.profile.freezing_account_data = datetime.now()
+            user.profile.freezing_account_data = timezone.now()
             send_mail(
-                'Account recovery link',
-                'http://127.0.0.1:8000/auth/recovery/' f'{user.username}',
+                "Account recovery link",
+                "http://127.0.0.1:8000/auth/recovery/" f"{user.username}",
                 settings.MAIL_SENDER,
-                [f'{user.email}'],
+                [f"{user.email}"],
                 fail_silently=False,
             )
             user.save()

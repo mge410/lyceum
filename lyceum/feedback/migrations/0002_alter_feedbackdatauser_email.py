@@ -6,17 +6,17 @@ from django.db import models
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('feedback', '0001_initial'),
+        ("feedback", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='feedbackdatauser',
-            name='email',
+            model_name="feedbackdatauser",
+            name="email",
             field=models.EmailField(
-                help_text='необходимо ввести корректную почту',
+                help_text="необходимо ввести корректную почту",
                 max_length=254,
-                verbose_name='почта',
+                verbose_name="почта",
             ),
         ),
     ]

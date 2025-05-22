@@ -10,40 +10,38 @@ import users.models
 
 class StatsTests(TestCase):
     user_register_data = {
-        'username': 'ABEBRA',
-        'email': 'aboba@ma.ru',
-        'password1': '123123123g',
-        'password2': '123123123g',
+        "username": "ABEBRA",
+        "email": "aboba@ma.ru",
+        "password1": "123123123g",
+        "password2": "123123123g",
     }
 
     def setUp(self) -> None:
-        self.test_user_with_review = (
-            users.models.UserProfileProxy.objects.create_user(
-                username=self.user_register_data['username']
-            )
+        self.test_user_with_review = users.models.UserProfileProxy.objects.create_user(
+            username=self.user_register_data["username"]
         )
         self.test_user_without_review = (
             users.models.UserProfileProxy.objects.create_user(
-                username=''.join(
+                username="".join(
                     [
-                        self.user_register_data['username'],
-                        '_no_review',
+                        self.user_register_data["username"],
+                        "_no_review",
                     ]
                 )
             )
         )
         self.base_category = catalog.models.Category.objects.create(
-            name='Тестовая категория',
-            slug='test-category-slug',
+            name="Тестовая категория",
+            slug="test-category-slug",
         )
         self.base_tag = catalog.models.Tag.objects.create(
-            name='Тестовый тэг',
-            slug='test-tag-slug',
+            name="Тестовый тэг",
+            slug="test-tag-slug",
         )
         self.test_item = catalog.models.Item.objects.create(
-            name='Тестовый товар',
+            name="Тестовый товар",
             category=self.base_category,
-            text='превосходно',
+            text="превосходно",
         )
         self.grade = rating.models.Grade.objects.create(
             user=self.test_user_with_review,
@@ -52,27 +50,27 @@ class StatsTests(TestCase):
 
     def test_user_stats_status_code_with_review(self) -> None:
         user_id = self.test_user_with_review.id
-        response = Client().get(f'/statistic/{user_id}')
-        self.assertTemplateUsed(response, 'statistic/user_statistic.html')
+        response = Client().get(f"/statistic/{user_id}")
+        self.assertTemplateUsed(response, "statistic/user_statistic.html")
         self.assertEquals(response.status_code, HTTPStatus.OK)
 
     def test_user_stats_status_code_without_review(self) -> None:
         user_id = self.test_user_without_review.id
-        response = Client().get(f'/statistic/{user_id}')
-        self.assertTemplateUsed(response, 'statistic/user_statistic.html')
+        response = Client().get(f"/statistic/{user_id}")
+        self.assertTemplateUsed(response, "statistic/user_statistic.html")
         self.assertEquals(response.status_code, HTTPStatus.OK)
 
     def test_user_stats_context_success(self) -> None:
         user_id = self.test_user_with_review.id
-        response = Client().get(f'/statistic/{user_id}')
+        response = Client().get(f"/statistic/{user_id}")
         context = response.context
-        self.assertEquals(1, context.get('is_successful'))
+        self.assertEquals(1, context.get("is_successful"))
 
     def test_user_stats_context_failure(self) -> None:
         user_id = self.test_user_without_review.id
-        response = Client().get(f'/statistic/{user_id}')
+        response = Client().get(f"/statistic/{user_id}")
         context = response.context
-        self.assertEquals(0, context.get('is_successful'))
+        self.assertEquals(0, context.get("is_successful"))
 
     def tearDown(self) -> None:
         catalog.models.Item.objects.all().delete()

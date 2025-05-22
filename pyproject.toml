@@ -1,7 +1,42 @@
-[tool.black]
-line-length = 79
-skip-string-normalization = true
+[tool.ruff.format]
+quote-style = "double"
 
-[tool.isort]
-profile = "google"
-src_paths = ["lyceum"]
+[tool.poetry]
+name = "lyceum"
+version = "0.1.0"
+description = ""
+authors = ["Vladimir <vov.voron2005@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+Django = "3.2.17"
+asgiref = "3.6.0"
+django-environ = "0.9.0"
+pytz = "2022.7.1"
+sqlparse = "0.4.3"
+django-debug-toolbar = "3.8.1"
+pillow = ">=9.4.0"
+django-cleanup = "7.0.0"
+sorl-thumbnail = "12.9.0"
+django-ckeditor = "6.5.1"
+django-js-asset = "2.0.0"
+django-i18n = "1.0.4"
+pyyaml = ">=6.0.1,<7.0.0"
+pytils = "^0.4.3"
+mock = "5.0.1"
+setuptools = "^80.8.0"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.3.0"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.4.0"
+pytest-cov = "^4.1.0"
+pytest-mock = "^3.11.1"
+factory-boy = "^3.2.1"
+requests-mock = "^1.11.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

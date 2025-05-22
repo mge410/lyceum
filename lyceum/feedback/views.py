@@ -10,15 +10,15 @@ import feedback.forms as forms
 
 class FeedbackView(FormView):
     form_class = forms.FeedbackForm
-    template_name = 'feedback/feedback.html'
-    success_url = reverse_lazy('feedback:feedback')
+    template_name = "feedback/feedback.html"
+    success_url = reverse_lazy("feedback:feedback")
 
     def form_valid(self, form: forms.FeedbackForm) -> HttpResponseRedirect:
         try:
-            form.save(self.request.FILES.getlist('files'))
+            form.save(self.request.FILES.getlist("files"))
 
             send_mail(
-                'Feedback',
+                "Feedback",
                 f'Thanks for the feedback <br> Your message '
                 f'- « {form.cleaned_data["text"]} »',
                 settings.MAIL_SENDER,
@@ -27,8 +27,8 @@ class FeedbackView(FormView):
             )
 
             messages.success(
-                self.request, 'Thank you for the confidential communication =)'
+                self.request, "Thank you for the confidential communication =)"
             )
         except Exception:
-            messages.success(self.request, 'Write error =(')
+            messages.success(self.request, "Write error =(")
         return super().form_valid(form)

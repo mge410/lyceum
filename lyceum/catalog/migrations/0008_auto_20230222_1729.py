@@ -6,30 +6,30 @@ from django.db import models
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('catalog', '0007_auto_20230222_1626'),
+        ("catalog", "0007_auto_20230222_1626"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='category',
-            name='keywords',
+            model_name="category",
+            name="keywords",
             field=models.CharField(
                 editable=False,
-                help_text='Ключевые слова',
+                help_text="Ключевые слова",
                 max_length=150,
                 null=True,
-                verbose_name='ключевые слова',
+                verbose_name="ключевые слова",
             ),
         ),
         migrations.AlterField(
-            model_name='tag',
-            name='keywords',
+            model_name="tag",
+            name="keywords",
             field=models.CharField(
                 editable=False,
-                help_text='Ключевые слова',
+                help_text="Ключевые слова",
                 max_length=150,
                 null=True,
-                verbose_name='ключевые слова',
+                verbose_name="ключевые слова",
             ),
         ),
     ]

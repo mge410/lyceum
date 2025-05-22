@@ -10,88 +10,84 @@ from catalog.models import Tag
 
 
 class ModelsTests(TestCase):
-    fixtures = ['data.json']
+    fixtures = ["data.json"]
 
     def test_homepage_correct_context(self):
-        response = Client().get(django.urls.reverse('homepage:home'))
-        items = response.context['items']
+        response = Client().get(django.urls.reverse("homepage:home"))
+        items = response.context["items"]
         self.assertEqual(items.count(), 4)
 
     def test_catalog_list_correct_context(self):
-        response = Client().get(django.urls.reverse('catalog:item_list'))
-        items = response.context['items']
+        response = Client().get(django.urls.reverse("catalog:item_list"))
+        items = response.context["items"]
         self.assertEqual(items.count(), 6)
 
     def test_catalog_detail_context(self):
         response = Client().get(
             django.urls.reverse(
-                'catalog:item_detail',
+                "catalog:item_detail",
                 args=[Item.objects.filter(is_published=True)[:1][0].id],
             )
         )
-        self.assertIn('item', response.context)
+        self.assertIn("item", response.context)
 
     @parameterized.expand(
         [
             [
-                'id',
+                "id",
             ],
             [
-                'name',
+                "name",
             ],
             [
-                'text',
+                "text",
             ],
             [
-                'category',
+                "category",
             ],
             [
-                'tags',
+                "tags",
             ],
         ]
     )
     def test_catalog_list_attributes(self, field):
         context_item = model_to_dict(
-            Client()
-            .get(django.urls.reverse('catalog:item_list'))
-            .context['items'][0]
+            Client().get(django.urls.reverse("catalog:item_list")).context["items"][0]
         )
         self.assertIn(field, context_item.keys())
 
     @parameterized.expand(
         [
             [
-                'created_at',
+                "created_at",
             ],
             [
-                'updated_at',
+                "updated_at",
             ],
         ]
     )
     def test_catalog_detail_list_attributes(self, field):
         context_item = model_to_dict(
-            Client()
-            .get(django.urls.reverse('catalog:item_list'))
-            .context['items'][0]
+            Client().get(django.urls.reverse("catalog:item_list")).context["items"][0]
         )
         self.assertNotIn(field, context_item.keys())
 
     @parameterized.expand(
         [
             [
-                'id',
+                "id",
             ],
             [
-                'name',
+                "name",
             ],
             [
-                'text',
+                "text",
             ],
             [
-                'category',
+                "category",
             ],
             [
-                'tags',
+                "tags",
             ],
         ]
     )
@@ -100,21 +96,21 @@ class ModelsTests(TestCase):
             Client()
             .get(
                 django.urls.reverse(
-                    'catalog:item_detail',
+                    "catalog:item_detail",
                     args=[Item.objects.filter(is_published=True)[:1][0].id],
                 )
             )
-            .context[0]['item']
+            .context[0]["item"]
         )
         self.assertIn(field, context_item.keys())
 
     @parameterized.expand(
         [
             [
-                'created_at',
+                "created_at",
             ],
             [
-                'updated_at',
+                "updated_at",
             ],
         ]
     )
@@ -123,11 +119,11 @@ class ModelsTests(TestCase):
             Client()
             .get(
                 django.urls.reverse(
-                    'catalog:item_detail',
+                    "catalog:item_detail",
                     args=[Item.objects.filter(is_published=True)[:1][0].id],
                 )
             )
-            .context[0]['item']
+            .context[0]["item"]
         )
         self.assertNotIn(field, context_item.keys())
 

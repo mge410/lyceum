@@ -8,31 +8,31 @@ import users.models
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('auth', '0012_alter_user_first_name_max_length'),
-        ('users', '0003_users_add_profile'),
+        ("auth", "0012_alter_user_first_name_max_length"),
+        ("users", "0003_users_add_profile"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='UserProfileProxy',
+            name="UserProfileProxy",
             fields=[],
             options={
-                'ordering': ('date_joined',),
-                'proxy': True,
-                'indexes': [],
-                'constraints': [],
+                "ordering": ("date_joined",),
+                "proxy": True,
+                "indexes": [],
+                "constraints": [],
             },
-            bases=('auth.user',),
+            bases=("auth.user",),
         ),
         migrations.AlterField(
-            model_name='profile',
-            name='image',
+            model_name="profile",
+            name="image",
             field=models.ImageField(
                 blank=True,
-                help_text='Enter profile picture',
+                help_text="Enter profile picture",
                 null=True,
                 upload_to=users.models.Profile.saving_path,
-                verbose_name='profile picture',
+                verbose_name="profile picture",
             ),
         ),
     ]

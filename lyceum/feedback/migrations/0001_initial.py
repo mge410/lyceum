@@ -14,119 +14,119 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Feedback',
+            name="Feedback",
             fields=[
                 (
-                    'id',
+                    "id",
                     models.BigAutoField(
                         auto_created=True,
                         primary_key=True,
                         serialize=False,
-                        verbose_name='ID',
+                        verbose_name="ID",
                     ),
                 ),
                 (
-                    'text',
+                    "text",
                     models.TextField(
-                        help_text='Сообщение для нас',
-                        verbose_name='сообщение для нас',
+                        help_text="Сообщение для нас",
+                        verbose_name="сообщение для нас",
                     ),
                 ),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
                 (
-                    'status',
+                    "status",
                     models.TextField(
                         choices=[
-                            ('получено', 'получено'),
-                            ('в обработке', 'в обработке'),
-                            ('ответ дан', 'ответ дан'),
+                            ("получено", "получено"),
+                            ("в обработке", "в обработке"),
+                            ("ответ дан", "ответ дан"),
                         ],
-                        default='получено',
-                        verbose_name='статус',
+                        default="получено",
+                        verbose_name="статус",
                     ),
                 ),
             ],
             options={
-                'verbose_name': 'обратная связь',
-                'verbose_name_plural': 'обратная связь',
-                'ordering': ('created_at',),
+                "verbose_name": "обратная связь",
+                "verbose_name_plural": "обратная связь",
+                "ordering": ("created_at",),
             },
         ),
         migrations.CreateModel(
-            name='FeedbackDataUser',
+            name="FeedbackDataUser",
             fields=[
                 (
-                    'id',
+                    "id",
                     models.BigAutoField(
                         auto_created=True,
                         primary_key=True,
                         serialize=False,
-                        verbose_name='ID',
+                        verbose_name="ID",
                     ),
                 ),
                 (
-                    'email',
+                    "email",
                     models.EmailField(
-                        help_text='Необходимо ввести корректную почту',
+                        help_text="Необходимо ввести корректную почту",
                         max_length=254,
-                        verbose_name='почта',
+                        verbose_name="почта",
                     ),
                 ),
             ],
             options={
-                'verbose_name': 'данные пользователя',
-                'verbose_name_plural': 'данные пользователя',
-                'default_related_name': 'user',
+                "verbose_name": "данные пользователя",
+                "verbose_name_plural": "данные пользователя",
+                "default_related_name": "user",
             },
         ),
         migrations.CreateModel(
-            name='FeedbackFiles',
+            name="FeedbackFiles",
             fields=[
                 (
-                    'id',
+                    "id",
                     models.BigAutoField(
                         auto_created=True,
                         primary_key=True,
                         serialize=False,
-                        verbose_name='ID',
+                        verbose_name="ID",
                     ),
                 ),
                 (
-                    'files',
+                    "files",
                     models.FileField(
                         default=None,
                         null=True,
                         upload_to=feedback.models.FeedbackFiles.saving_path,
-                        verbose_name='файлы',
+                        verbose_name="файлы",
                     ),
                 ),
                 (
-                    'feedback',
+                    "feedback",
                     models.ForeignKey(
                         default=None,
-                        help_text='прикрепите файлы',
+                        help_text="прикрепите файлы",
                         on_delete=django.db.models.deletion.CASCADE,
-                        related_name='files',
-                        to='feedback.feedback',
-                        verbose_name='файлы',
+                        related_name="files",
+                        to="feedback.feedback",
+                        verbose_name="файлы",
                     ),
                 ),
             ],
             options={
-                'verbose_name': 'файлы фидбека',
-                'verbose_name_plural': 'файлы фидбека',
-                'default_related_name': 'files',
+                "verbose_name": "файлы фидбека",
+                "verbose_name_plural": "файлы фидбека",
+                "default_related_name": "files",
             },
         ),
         migrations.AddField(
-            model_name='feedback',
-            name='data_user',
+            model_name="feedback",
+            name="data_user",
             field=models.OneToOneField(
                 blank=True,
                 null=True,
                 on_delete=django.db.models.deletion.CASCADE,
-                to='feedback.feedbackdatauser',
-                verbose_name='данные пользователя',
+                to="feedback.feedbackdatauser",
+                verbose_name="данные пользователя",
             ),
         ),
     ]

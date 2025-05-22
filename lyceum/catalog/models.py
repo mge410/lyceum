@@ -12,19 +12,17 @@ class Category(
     core.NormalizedNameBaseModel,
 ):
     weight = models.PositiveSmallIntegerField(
-        'weight',
+        "weight",
         default=100,
         validators=[
-            validators.MinValueValidator(0, 'Minimum number to enter 0'),
-            validators.MaxValueValidator(
-                32767, 'The maximum number to enter is 32767'
-            ),
+            validators.MinValueValidator(0, "Minimum number to enter 0"),
+            validators.MaxValueValidator(32767, "The maximum number to enter is 32767"),
         ],
     )
 
     class Meta:
-        verbose_name = 'category'
-        verbose_name_plural = 'categories'
+        verbose_name = "category"
+        verbose_name_plural = "categories"
 
 
 class Tag(
@@ -34,9 +32,9 @@ class Tag(
     core.NormalizedNameBaseModel,
 ):
     class Meta:
-        verbose_name = 'tag'
-        verbose_name_plural = 'tags'
-        default_related_name = 'tags'
+        verbose_name = "tag"
+        verbose_name_plural = "tags"
+        default_related_name = "tags"
 
 
 class Item(
@@ -48,26 +46,26 @@ class Item(
 ):
     objects = ItemManager()
 
-    is_on_main = models.BooleanField('Show on home page', default=False)
+    is_on_main = models.BooleanField("Show on home page", default=False)
 
     category = models.ForeignKey(
         Category,
         on_delete=models.PROTECT,
-        verbose_name='category',
-        help_text='The product must have a category.',
+        verbose_name="category",
+        help_text="The product must have a category.",
     )
 
     tags = models.ManyToManyField(
         Tag,
-        verbose_name='tags',
-        help_text='The element must have at least 1 tag.',
+        verbose_name="tags",
+        help_text="The element must have at least 1 tag.",
     )
 
     class Meta:
-        ordering = ('name',)
-        verbose_name = 'product'
-        verbose_name_plural = 'products'
-        default_related_name = 'items'
+        ordering = ("name",)
+        verbose_name = "product"
+        verbose_name_plural = "products"
+        default_related_name = "items"
 
     def __str__(self) -> str:
         return self.name[:20]
@@ -75,37 +73,37 @@ class Item(
 
 class MainImageItem(core.NamedBaseModel, core.ImageBaseModel):
     def saving_path(self, name):
-        return f'uploads/main_image/{self.items.id}/{name}'
+        return f"uploads/main_image/{self.items.id}/{name}"
 
     items = models.OneToOneField(
         Item,
-        verbose_name='main image',
+        verbose_name="main image",
         on_delete=models.CASCADE,
         null=True,
         blank=True,
-        help_text='main image',
+        help_text="main image",
     )
 
     image = models.ImageField(
-        'main image',
+        "main image",
         upload_to=saving_path,
-        help_text='Will be rendered at 300px',
+        help_text="Will be rendered at 300px",
     )
 
     class Meta:
-        verbose_name = 'main image'
-        verbose_name_plural = 'main images'
-        default_related_name = 'main_image'
+        verbose_name = "main image"
+        verbose_name_plural = "main images"
+        default_related_name = "main_image"
 
 
 class GalleryImagesItem(core.NamedBaseModel, core.ImageBaseModel):
     def saving_path(self, name):
-        return f'uploads/gallery_images/{self.item.id}/{name}'
+        return f"uploads/gallery_images/{self.item.id}/{name}"
 
     image = models.ImageField(
-        'main image',
+        "main image",
         upload_to=saving_path,
-        help_text='Will be rendered at 300px',
+        help_text="Will be rendered at 300px",
     )
 
     item = models.ForeignKey(
@@ -113,11 +111,11 @@ class GalleryImagesItem(core.NamedBaseModel, core.ImageBaseModel):
         on_delete=models.CASCADE,
         null=True,
         blank=True,
-        verbose_name='gallery images',
-        help_text='gallery images',
+        verbose_name="gallery images",
+        help_text="gallery images",
     )
 
     class Meta:
-        verbose_name = 'image'
-        verbose_name_plural = 'image gallery'
-        default_related_name = 'gallery_images'
+        verbose_name = "image"
+        verbose_name_plural = "image gallery"
+        default_related_name = "gallery_images"

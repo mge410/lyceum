@@ -13,15 +13,15 @@ from feedback.models import Feedback
 from feedback.models import FeedbackFiles
 
 
-@override_settings(MEDIA_ROOT=os.path.join(settings.MEDIA_ROOT, 'test_media'))
+@override_settings(MEDIA_ROOT=os.path.join(settings.MEDIA_ROOT, "test_media"))
 class ViewsTests(TestCase):
     def setUp(self) -> None:
         self.feedback_data_with_files = {
-            'text': '123',
-            'email': 'aboba@ma.ru',
-            'files': [
-                SimpleUploadedFile('file.txt', b'aboba'),
-                SimpleUploadedFile('file2.txt', b'aboba2'),
+            "text": "123",
+            "email": "aboba@ma.ru",
+            "files": [
+                SimpleUploadedFile("file.txt", b"aboba"),
+                SimpleUploadedFile("file2.txt", b"aboba2"),
             ],
         }
         super(ViewsTests, self).setUp()
@@ -29,31 +29,29 @@ class ViewsTests(TestCase):
     def test_feedback_context(self) -> None:
         response = Client().get(
             django.urls.reverse(
-                'feedback:feedback',
+                "feedback:feedback",
             )
         )
-        self.assertIn('form', response.context)
+        self.assertIn("form", response.context)
 
     def test_feedback_success_redirect_context(self) -> None:
         form_value = {
-            'email': 'fff@mail.com',
-            'text': '123',
+            "email": "fff@mail.com",
+            "text": "123",
         }
 
         response = Client().post(
             django.urls.reverse(
-                'feedback:feedback',
+                "feedback:feedback",
             ),
             data=form_value,
         )
 
-        self.assertRedirects(
-            response, django.urls.reverse('feedback:feedback')
-        )
+        self.assertRedirects(response, django.urls.reverse("feedback:feedback"))
 
     def test_attach_files_in_feedback(self) -> None:
         response = Client().post(
-            reverse('feedback:feedback'),
+            reverse("feedback:feedback"),
             self.feedback_data_with_files,
             follow=True,
         )
@@ -64,26 +62,26 @@ class ViewsTests(TestCase):
         file_count = FeedbackFiles.objects.count()
 
         Client().post(
-            reverse('feedback:feedback'),
+            reverse("feedback:feedback"),
             self.feedback_data_with_files,
             follow=True,
         )
 
         self.assertEquals(
-            file_count + len(self.feedback_data_with_files['files']),
+            file_count + len(self.feedback_data_with_files["files"]),
             FeedbackFiles.objects.count(),
         )
 
     def test_feedback_success_save_context(self) -> None:
         mail_count = Feedback.objects.count()
         form_data = {
-            'email': 'fff@mail.com',
-            'text': '123123',
+            "email": "fff@mail.com",
+            "text": "123123",
         }
 
         Client().post(
             django.urls.reverse(
-                'feedback:feedback',
+                "feedback:feedback",
             ),
             data=form_data,
         )
@@ -93,13 +91,13 @@ class ViewsTests(TestCase):
     def test_feedback_error_save_context(self) -> None:
         mail_count = Feedback.objects.count()
         form_data = {
-            'email': 'fffmail.com',
-            'text': '123123',
+            "email": "fffmail.com",
+            "text": "123123",
         }
 
         Client().post(
             django.urls.reverse(
-                'feedback:feedback',
+                "feedback:feedback",
             ),
             data=form_data,
         )

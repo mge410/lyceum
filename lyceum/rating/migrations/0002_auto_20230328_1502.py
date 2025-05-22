@@ -8,40 +8,40 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('catalog', '0018_alter_item_text'),
+        ("catalog", "0018_alter_item_text"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('rating', '0001_initial'),
+        ("rating", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='grade',
+            name="grade",
             options={
-                'default_related_name': 'ratings',
-                'verbose_name': 'rating',
-                'verbose_name_plural': 'ratings',
+                "default_related_name": "ratings",
+                "verbose_name": "rating",
+                "verbose_name_plural": "ratings",
             },
         ),
         migrations.AlterField(
-            model_name='grade',
-            name='item',
+            model_name="grade",
+            name="item",
             field=models.ForeignKey(
-                help_text='Product that has been rated',
+                help_text="Product that has been rated",
                 on_delete=django.db.models.deletion.CASCADE,
-                related_name='ratings',
-                to='catalog.item',
-                verbose_name='item',
+                related_name="ratings",
+                to="catalog.item",
+                verbose_name="item",
             ),
         ),
         migrations.AlterField(
-            model_name='grade',
-            name='user',
+            model_name="grade",
+            name="user",
             field=models.ForeignKey(
-                help_text='The user who left the rating',
+                help_text="The user who left the rating",
                 on_delete=django.db.models.deletion.CASCADE,
-                related_name='ratings',
+                related_name="ratings",
                 to=settings.AUTH_USER_MODEL,
-                verbose_name='user',
+                verbose_name="user",
             ),
         ),
     ]

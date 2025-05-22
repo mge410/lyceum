@@ -7,39 +7,39 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('catalog', '0019_auto_20230329_1831'),
-        ('rating', '0003_alter_grade_item'),
+        ("catalog", "0019_auto_20230329_1831"),
+        ("rating", "0003_alter_grade_item"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='grade',
-            name='created_at',
+            model_name="grade",
+            name="created_at",
             field=models.DateTimeField(
                 auto_now_add=True,
-                help_text='Date of creation',
-                verbose_name='date of creation',
+                help_text="Date of creation",
+                verbose_name="date of creation",
             ),
         ),
         migrations.AlterField(
-            model_name='grade',
-            name='item',
+            model_name="grade",
+            name="item",
             field=models.ForeignKey(
-                help_text='Product that has been rated',
+                help_text="Product that has been rated",
                 on_delete=django.db.models.deletion.CASCADE,
-                related_name='ratings',
-                to='catalog.item',
-                verbose_name='item',
+                related_name="ratings",
+                to="catalog.item",
+                verbose_name="item",
             ),
         ),
         migrations.AlterUniqueTogether(
-            name='grade',
+            name="grade",
             unique_together=set(),
         ),
         migrations.AddConstraint(
-            model_name='grade',
+            model_name="grade",
             constraint=models.UniqueConstraint(
-                fields=('item', 'user'), name='unique_rating'
+                fields=("item", "user"), name="unique_rating"
             ),
         ),
     ]

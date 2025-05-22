@@ -9,28 +9,28 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('users', '0004_auto_20230322_1447'),
+        ("users", "0004_auto_20230322_1447"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='profile',
-            name='coffee_count',
+            model_name="profile",
+            name="coffee_count",
             field=models.PositiveSmallIntegerField(
                 default=0,
-                help_text='Number of user requests for coffee',
-                verbose_name='coffee count',
+                help_text="Number of user requests for coffee",
+                verbose_name="coffee count",
             ),
         ),
         migrations.AlterField(
-            model_name='profile',
-            name='user',
+            model_name="profile",
+            name="user",
             field=models.OneToOneField(
-                help_text='user',
+                help_text="user",
                 on_delete=django.db.models.deletion.CASCADE,
-                related_name='profile',
+                related_name="profile",
                 to=settings.AUTH_USER_MODEL,
-                verbose_name='user',
+                verbose_name="user",
             ),
         ),
     ]

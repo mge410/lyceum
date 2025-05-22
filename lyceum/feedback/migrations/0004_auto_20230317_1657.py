@@ -9,85 +9,85 @@ import feedback.models
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('feedback', '0003_auto_20230315_1042'),
+        ("feedback", "0003_auto_20230315_1042"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='FeedbackUserData',
+            name="FeedbackUserData",
             fields=[
                 (
-                    'id',
+                    "id",
                     models.BigAutoField(
                         auto_created=True,
                         primary_key=True,
                         serialize=False,
-                        verbose_name='ID',
+                        verbose_name="ID",
                     ),
                 ),
                 (
-                    'email',
+                    "email",
                     models.EmailField(
-                        help_text='необходимо ввести корректную почту',
+                        help_text="необходимо ввести корректную почту",
                         max_length=254,
-                        verbose_name='почта',
+                        verbose_name="почта",
                     ),
                 ),
             ],
             options={
-                'verbose_name': 'данные пользователя',
-                'verbose_name_plural': 'данные пользователя',
-                'default_related_name': 'data_user',
+                "verbose_name": "данные пользователя",
+                "verbose_name_plural": "данные пользователя",
+                "default_related_name": "data_user",
             },
         ),
         migrations.AlterModelOptions(
-            name='feedback',
+            name="feedback",
             options={
-                'ordering': ('created_at',),
-                'verbose_name': 'письмо',
-                'verbose_name_plural': 'письма',
+                "ordering": ("created_at",),
+                "verbose_name": "письмо",
+                "verbose_name_plural": "письма",
             },
         ),
         migrations.AlterField(
-            model_name='feedback',
-            name='status',
+            model_name="feedback",
+            name="status",
             field=models.CharField(
                 choices=[
-                    ('c', 'получено'),
-                    ('b', 'в обработке'),
-                    ('a', 'ответ дан'),
+                    ("c", "получено"),
+                    ("b", "в обработке"),
+                    ("a", "ответ дан"),
                 ],
-                default='c',
-                help_text='статус письма',
+                default="c",
+                help_text="статус письма",
                 max_length=2,
-                verbose_name='статус',
+                verbose_name="статус",
             ),
         ),
         migrations.AlterField(
-            model_name='feedbackfiles',
-            name='files',
+            model_name="feedbackfiles",
+            name="files",
             field=models.FileField(
                 default=None,
-                help_text='прикрепите файлы',
+                help_text="прикрепите файлы",
                 null=True,
                 upload_to=feedback.models.FeedbackFiles.saving_path,
-                verbose_name='файлы',
+                verbose_name="файлы",
             ),
         ),
         migrations.DeleteModel(
-            name='FeedbackDataUser',
+            name="FeedbackDataUser",
         ),
         migrations.AddField(
-            model_name='feedbackuserdata',
-            name='feedback',
+            model_name="feedbackuserdata",
+            name="feedback",
             field=models.OneToOneField(
                 blank=True,
-                help_text='обратная связь',
+                help_text="обратная связь",
                 null=True,
                 on_delete=django.db.models.deletion.CASCADE,
-                related_name='data_user',
-                to='feedback.feedback',
-                verbose_name='обратная связь',
+                related_name="data_user",
+                to="feedback.feedback",
+                verbose_name="обратная связь",
             ),
         ),
     ]

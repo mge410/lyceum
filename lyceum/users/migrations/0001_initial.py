@@ -15,57 +15,57 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Profile',
+            name="Profile",
             fields=[
                 (
-                    'id',
+                    "id",
                     models.BigAutoField(
                         auto_created=True,
                         primary_key=True,
                         serialize=False,
-                        verbose_name='ID',
+                        verbose_name="ID",
                     ),
                 ),
                 (
-                    'birthday',
+                    "birthday",
                     models.DateField(
                         blank=True,
-                        help_text='Enter date of birth',
+                        help_text="Enter date of birth",
                         null=True,
-                        verbose_name='birthday',
+                        verbose_name="birthday",
                     ),
                 ),
                 (
-                    'image',
+                    "image",
                     models.ImageField(
                         blank=True,
-                        help_text='Enter profile picture',
+                        help_text="Enter profile picture",
                         null=True,
-                        upload_to='',
-                        verbose_name='profile picture',
+                        upload_to="",
+                        verbose_name="profile picture",
                     ),
                 ),
                 (
-                    'coffee_count',
+                    "coffee_count",
                     models.BigIntegerField(
                         default=0,
-                        help_text='Number of user requests for coffee',
-                        verbose_name='coffee count',
+                        help_text="Number of user requests for coffee",
+                        verbose_name="coffee count",
                     ),
                 ),
                 (
-                    'user',
+                    "user",
                     models.OneToOneField(
                         on_delete=django.db.models.deletion.CASCADE,
-                        related_name='profile',
+                        related_name="profile",
                         to=settings.AUTH_USER_MODEL,
                     ),
                 ),
             ],
             options={
-                'verbose_name': 'additional field',
-                'verbose_name_plural': 'additional fields',
-                'default_related_name': 'profile',
+                "verbose_name": "additional field",
+                "verbose_name_plural": "additional fields",
+                "default_related_name": "profile",
             },
         ),
     ]
