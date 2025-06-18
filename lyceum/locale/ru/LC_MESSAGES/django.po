@@ -1,87 +1,82 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
+# МаркаМ - веб-приложение для предоставления услуг
+# Copyright (C) 2024 МаркаМ
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-28 21:11+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Project-Id-Version: МаркаМ 1.0\n"
+"Report-Msgid-Bugs-To: support@markam.ru\n"
+"POT-Creation-Date: 2024-03-20 12:00+0300\n"
+"PO-Revision-Date: 2024-03-20 12:00+0300\n"
+"Last-Translator: МаркаМ <contact@markam.ru>\n"
+"Language-Team: МаркаМ <team@markam.ru>\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: .\catalog\views.py:64
 msgid "No rating information"
 msgstr "Нет информации о рейтинге"
 
 #: .\rating\forms.py:17
-#, fuzzy
-#| msgid "Your profile"
 msgid "Your rating"
-msgstr "Ваш профиль"
+msgstr "Ваша оценка"
 
 msgid "User ratings"
-msgstr "Оценки пользователя"
+msgstr "Оценки клиентов"
 
 #: .\rating\forms.py:19
 msgid "Add your rating"
-msgstr "Опубликовать рейтинг"
+msgstr "Добавить оценку"
 
 #: .\templates\about\description.html:6 .\templates\homepage\coffee.html:6
 msgid "Fluffy about us"
-msgstr "Пушистики о нас"
+msgstr "О компании МаркаМ"
 
 msgid "Actions"
 msgstr "Действия"
 
 msgid "The user who left the most positive rating:"
-msgstr "Пользователь, оставивший самую положительную оценку:"
+msgstr "Клиент с самой положительной оценкой:"
 
 msgid "The user who left the most negative rating:"
-msgstr "Пользователь, оставивший самую отрицательную оценку:"
+msgstr "Клиент с самой отрицательной оценкой:"
 
 msgid "Your profile photo"
-msgstr "Фото вашего профиля"
+msgstr "Фото профиля"
 
 #: .\templates\about\description.html:15 .\templates\include\footer.html:9
 msgid "About us"
-msgstr "О нас"
+msgstr "О компании"
 
 #: .\templates\about\description.html:26
 msgid ""
 "We take care of animals that are homeless. We also help them find happy "
 "owners and make everyone feel better. "
 msgstr ""
-"Мы занимаемся приютом животных, которые остались без дома. Так же мы "
-"помогаем найти им счастливых хозяев и сделать всех чуть счастливее"
+"Мы предоставляем профессиональные услуги высшего качества. Наша цель - "
+"сделать жизнь клиентов проще и комфортнее с помощью наших решений."
 
 #: .\templates\catalog\item_detail.html:6
 msgid "Fluffy"
-msgstr "Пушистик"
+msgstr "Услуга"
 
 #: .\templates\catalog\item_detail.html:19
 msgid "Get to know him better"
-msgstr "Узнать получше"
+msgstr "Подробнее об услуге"
 
 #: .\templates\catalog\item_detail.html:19
 msgid "Pick up this pet"
-msgstr "Забрать его"
+msgstr "Заказать услугу"
 
 #: .\templates\catalog\item_detail.html:45
 msgid "Average user rating:"
-msgstr "Средний рейтинг пользователя"
+msgstr "Средняя оценка:"
 
 #: .\templates\catalog\item_detail.html:48
 msgid "Number of ratings:"
-msgstr "Количество ревью"
+msgstr "Количество отзывов"
 
 #: .\templates\catalog\item_detail.html:65
 msgid "Errors"
@@ -93,15 +88,15 @@ msgstr "Сохранить"
 
 #: .\templates\catalog\item_list.html:6
 msgid "Fluffies catalog"
-msgstr "Пушистики каталог"
+msgstr "Каталог услуг"
 
 #: .\templates\feedback\feedback.html:6
 msgid "Fluffies feedback"
-msgstr "Пушистики обратная связь"
+msgstr "Обратная связь"
 
 #: .\templates\feedback\feedback.html:15 .\templates\include\header.html:21
 msgid "Feedback"
-msgstr "Обратная связь"
+msgstr "Отзывы"
 
 #: .\templates\homepage\coffee.html:13
 msgid "I am a teapot"
@@ -109,27 +104,27 @@ msgstr ""
 
 #: .\templates\homepage\home.html:6
 msgid "Fluffies "
-msgstr "Пушистики"
+msgstr "МаркаМ"
 
 #: .\templates\homepage\home.html:14
 msgid "Care & love"
-msgstr "Забота & любовь"
+msgstr "Качество & надежность"
 
 #: .\templates\homepage\home.html:15
 msgid "For all animals"
-msgstr "Для всех зверюшек"
+msgstr "Для всех клиентов"
 
 #: .\templates\include\footer.html:10
 msgid ""
 "We take care of animals and help them find the best owners. Only the cutest "
 "cats for the most caring hands."
 msgstr ""
-"Мы заботимся о животных и помогает найти им лучших хозяев. Только самый "
-"милые котики для самых заботливых рук."
+"Мы предоставляем профессиональные услуги с 2010 года. Только проверенные "
+"решения для самых требовательных клиентов."
 
 #: .\templates\include\footer.html:15
 msgid "Newsletter"
-msgstr "Новостная рассылка"
+msgstr "Рассылка"
 
 #: .\templates\include\footer.html:16
 msgid "Stay up to date with our news "
@@ -137,15 +132,15 @@ msgstr "Будьте в курсе наших новостей"
 
 #: .\templates\include\footer.html:28
 msgid "Cute animals"
-msgstr "Милые зверюшки"
+msgstr "Наши услуги"
 
 #: .\templates\include\footer.html:43
 msgid "Waiting for you !"
-msgstr "Ждем Вас !"
+msgstr "Ждем вас!"
 
 #: .\templates\include\item_card.html:17
 msgid "Tags"
-msgstr "Теги"
+msgstr "Категории"
 
 #: .\templates\include\footer.html:44
 msgid "Address"
@@ -153,11 +148,11 @@ msgstr "Адрес"
 
 #: .\templates\include\footer.html:45
 msgid "Tula - st. Magic d39 "
-msgstr "Тула - ул. Волшебная д39"
+msgstr "Москва - ул. Деловая, 15"
 
 #: .\templates\include\footer.html:46
 msgid "Now year"
-msgstr "Сейчас год"
+msgstr "2024"
 
 #: .\templates\include\form.html:19
 msgid "Send"
@@ -165,19 +160,19 @@ msgstr "Отправить"
 
 #: .\templates\include\header.html:18
 msgid "Home"
-msgstr "Домашняя"
+msgstr "Главная"
 
 #: .\templates\include\header.html:19
 msgid "Catalog"
-msgstr "Каталог"
+msgstr "Услуги"
 
 #: .\templates\include\header.html:20
 msgid "About"
-msgstr "О нас"
+msgstr "О компании"
 
 #: .\templates\include\header.html:23
 msgid "Admin"
-msgstr "Админка"
+msgstr "Админ"
 
 #: .\templates\include\header.html:28
 msgid "My Profile"
@@ -190,72 +185,72 @@ msgstr "Выйти"
 
 #: .\templates\include\header.html:31 .\templates\users\login.html:6
 msgid "Login"
-msgstr "Авторизация"
+msgstr "Вход"
 
 msgid "Sing in"
 msgstr "Войти"
 
 msgid "Sing up"
-msgstr "Зарегистрироваться"
+msgstr "Регистрация"
 
 msgid "You are most likely"
-msgstr "Вы, скорее всего,"
+msgstr "Скорее всего,"
 
 msgid "the first person"
-msgstr "первый человек, "
+msgstr "вы первый,"
 
 msgid "to come here."
-msgstr "который пришел сюда."
+msgstr "кто зашел сюда."
 
 msgid "Your password has been set. You may go ahead and log in now !"
-msgstr "Ваш пароль установлен. Вы можете войти в систему прямо сейчас!"
+msgstr "Ваш пароль установлен. Теперь вы можете войти в систему!"
 
 msgid "Email"
-msgstr "Электронная почта"
+msgstr "Email"
 
 msgid "User review stats"
-msgstr "Пользователь, статистика отзывов"
+msgstr "Статистика отзывов"
 
 msgid "There are no reviews made by this user yet"
-msgstr "От этого пользователя пока нет отзывов"
+msgstr "Пока нет отзывов от этого клиента"
 
 msgid "no information"
 msgstr "Нет информации"
 
 msgid "We take care of animals that are homeless. We also help them find happy owners and make everything feel better. "
-msgstr "Мы заботимся о бездомных животных. Мы также помогаем им найти счастливых владельцев и сделать так, чтобы всем стало лучше. "
+msgstr "Мы предлагаем комплексные решения для бизнеса и частных клиентов. Наши услуги помогут вам достичь ваших целей."
 
 msgid "Read More"
-msgstr "Узнать больше"
+msgstr "Подробнее"
 
 msgid "You have successfully changed your password !"
-msgstr "Вы успешно изменили ваш пароль !"
+msgstr "Вы успешно изменили пароль!"
 
 msgid "Ratings"
-msgstr "Рейтинг"
+msgstr "Рейтинги"
 
 msgid "We’ve emailed you instructions for setting your password, if an account exists with the email you entered. You should receive them shortly. If you don’t receive an email, please make sure you’ve entered the address you registered with, and check your spam folder."
-msgstr "Мы отправили вам инструкции по установке пароля, если существует учетная запись с введенным вами адресом электронной почты. Вы должны получить их в ближайшее время. Если вы не получили электронное письмо, убедитесь, что вы ввели адрес, который вы указали при регистрации, и проверьте папку со спамом."
+msgstr "Мы отправили инструкции по сбросу пароля на ваш email. Если письмо не пришло, проверьте папку спам."
 
 #: .\templates\include\sidebar.html:8
 msgid "Interesting offers "
-msgstr "Интересные предложения"
+msgstr "Специальные предложения"
 
 #: .\templates\include\sidebar.html:12
 msgid "New"
-msgstr "Новые"
+msgstr "Новинки"
 
 #: .\templates\include\sidebar.html:17
 msgid "Friday"
-msgstr "Пятница"
+msgstr "Акции"
 
 #: .\templates\include\sidebar.html:22
 msgid "Unchecked"
-msgstr "Непроверенные"
+msgstr "Новые"
 
 #: .\templates\include\sidebar.html:28 .\templates\users\user_list.html:6
 msgid "List of users"
-msgstr "Cписок пользователей"
+msgstr "Клиенты"
 
 #: .\templates\include\sidebar.html:30
 msgid "Look"
@@ -263,23 +258,23 @@ msgstr "Смотреть"
 
 #: .\templates\include\sidebar.html:34
 msgid "Our Favorites"
-msgstr "Наши любимчики"
+msgstr "Популярные"
 
 #: .\templates\layouts\layout.html:23
 msgid "Fluffies house "
-msgstr "Пушистики дом"
+msgstr "МаркаМ"
 
 #: .\templates\layouts\layout.html:30
 msgid "Content didn't load "
-msgstr "Контент не подгрузился"
+msgstr "Контент не загружен"
 
 #: .\templates\layouts\layout.html:34
 msgid "Birthday people"
-msgstr "Именинники"
+msgstr "Акции"
 
 #: .\templates\layouts\layout.html:39
 msgid "There are no users whose birthday is today"
-msgstr "Нет пользователей, день рождения которых сегодня"
+msgstr "Нет активных акций"
 
 #: .\templates\users\activate.html:6 .\templates\users\recovery.html:6
 msgid "Profile activation"
@@ -287,19 +282,19 @@ msgstr "Активация профиля"
 
 #: .\templates\users\login.html:13
 msgid "Login to your account"
-msgstr "Войдите в свой аккаунт"
+msgstr "Вход в личный кабинет"
 
 #: .\templates\users\login.html:25
 msgid "Register"
-msgstr "Зарегистрироваться"
+msgstr "Регистрация"
 
 #: .\templates\users\login.html:28
 msgid "Forgot your password"
-msgstr "Забыли пароль"
+msgstr "Забыли пароль?"
 
 #: .\templates\users\logout.html:13
 msgid "You are logged out!"
-msgstr "Вы успешно вышли из учётной записи"
+msgstr "Вы вышли из системы"
 
 #: .\templates\users\password_change_done.html:6
 #: .\templates\users\password_change_form.html:6
@@ -319,37 +314,35 @@ msgstr "Восстановление пароля"
 
 #: .\templates\users\profile.html:6 .\templates\users\profile.html:13
 msgid "Your profile"
-msgstr "Ваш профиль"
+msgstr "Личный кабинет"
 
 #: .\templates\users\profile.html:56
 msgid "Update your profile"
-msgstr "Обновить ваш профиль"
+msgstr "Обновить профиль"
 
 #: .\templates\users\profile.html:62
 msgid "Your statistic"
-msgstr "Ваша статистика"
+msgstr "Статистика"
 
 #: .\templates\users\profile.html:66
 msgid "Most favorite"
-msgstr "Самый понравившийся/нет товар"
+msgstr "Избранное"
 
 #: .\templates\users\profile.html:69
 msgid "List of rated items"
-msgstr "Список оценнёных товаров"
+msgstr "История заказов"
 
 #: .\templates\users\profile.html:72
 msgid "Averages"
-msgstr "Средние показатели"
+msgstr "Статистика"
 
 #: .\templates\users\profile.html:76
 msgid "Drink coffee"
-msgstr "Выпить кофе"
+msgstr "Поддержка"
 
 #: .\templates\users\profile.html:82
-#, fuzzy
-#| msgid "Сhange password"
 msgid "Change password"
-msgstr "Изменить пароль"
+msgstr "Сменить пароль"
 
 #: .\templates\users\signup.html:6
 msgid "Registration"
@@ -357,38 +350,32 @@ msgstr "Регистрация"
 
 #: .\templates\users\signup.html:13
 msgid "Register to your account"
-msgstr "Зарегистрируйте свой аккаунт"
+msgstr "Создать аккаунт"
 
 #: .\templates\users\user_detail.html:6
 msgid "User"
-msgstr "Пользователь"
+msgstr "Клиент"
 
 #: .\templates\users\user_detail.html:12
 msgid "Profile user"
-msgstr "Профиль пользователя"
+msgstr "Профиль клиента"
 
 #: .\templates\users\user_detail.html:18
 msgid "Username"
-msgstr "Ник пользователя"
+msgstr "Логин"
 
 #: .\templates\users\user_detail.html:22
 msgid "First name"
-msgstr "Имя пользователя"
+msgstr "Имя"
 
 #: .\templates\users\user_detail.html:26
 msgid "Last name"
-msgstr "Фамилия пользователя"
+msgstr "Фамилия"
 
 #: .\templates\users\user_detail.html:36
 msgid "Coffee count"
-msgstr "Кол-во кофе"
+msgstr "Заказов"
 
 #: .\templates\users\user_detail.html:42
 msgid "Birthday"
-msgstr "День рождения"
-
-#~ msgid "Category"
-#~ msgstr "Категория"
-
-#~ msgid "Popular tags"
-#~ msgstr "Популярные тэги"
+msgstr "Дата регистрации"
